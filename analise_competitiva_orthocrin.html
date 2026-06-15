@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Análise Competitiva — Orthocrin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F0F0F0;
+      color: #1a1a1a;
+      font-size: 14px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: #FFE600;
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    }
+    .header-left { display: flex; align-items: center; gap: 14px; }
+    .header-logo {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: #1a1a1a; display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 800; color: #FFE600;
+    }
+    header h1 { font-size: 20px; font-weight: 800; color: #1a1a1a; }
+    header h1 span { font-weight: 400; opacity: .6; font-size: 14px; margin-left: 8px; }
+    .header-badge {
+      background: #1a1a1a; color: #FFE600;
+      padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600;
+    }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 28px 24px; }
+
+    .section-title {
+      font-size: 13px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: #666; margin-bottom: 14px; padding-bottom: 6px;
+      border-bottom: 2px solid #FFE600;
+    }
+
+    .section { margin-bottom: 36px; }
+
+    /* ── KPI CARDS ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+    .kpi-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+    }
+    .kpi-label { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing:.06em; }
+    .kpi-value { font-size: 22px; font-weight: 800; color: #1a1a1a; margin-top: 6px; }
+    .kpi-sub { font-size: 11px; color: #aaa; margin-top: 3px; }
+
+    /* ── PRESENÇA NO SEGMENTO ── */
+    .segment-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+    .segment-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 18px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      border-top: 4px solid #e0e0e0;
+      position: relative;
+    }
+    .segment-card.top { border-top-color: #22c55e; }
+    .segment-card.out { border-top-color: #ef4444; }
+    .segment-cat {
+      font-size: 10px; font-weight: 700; color: #999; text-transform: uppercase;
+      letter-spacing: .07em; margin-bottom: 8px;
+    }
+    .segment-rank {
+      font-size: 28px; font-weight: 800; color: #1a1a1a;
+    }
+    .segment-rank .pos-label { font-size: 12px; font-weight: 500; color: #888; margin-left: 2px; }
+    .segment-gmv { font-size: 13px; font-weight: 600; color: #444; margin-top: 6px; }
+    .segment-indice {
+      margin-top: 8px;
+      background: #F0F0F0;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 11px; font-weight: 700; color: #555;
+    }
+    .status-pill {
+      position: absolute; top: 14px; right: 14px;
+      padding: 3px 8px; border-radius: 20px; font-size: 10px; font-weight: 700;
+    }
+    .pill-out { background: #fee2e2; color: #dc2626; }
+    .pill-in { background: #dcfce7; color: #16a34a; }
+
+    /* ── PANORAMA TABLE ── */
+    .table-wrap {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: #1a1a1a; }
+    thead th {
+      color: #FFE600; font-size: 11px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+      padding: 12px 16px; text-align: left;
+    }
+    thead th.right { text-align: right; }
+    tbody tr { border-bottom: 1px solid #F0F0F0; transition: background .15s; }
+    tbody tr:hover { background: #fafafa; }
+    tbody tr.highlight { background: #fffbe6; border-left: 4px solid #FFE600; }
+    tbody tr.highlight td { font-weight: 700; }
+    tbody td { padding: 11px 16px; font-size: 13px; }
+    tbody td.right { text-align: right; }
+    tbody td.mono { font-family: monospace; }
+
+    /* ── INDEX BAR ── */
+    .index-cell { display: flex; align-items: center; gap: 8px; min-width: 120px; }
+    .index-bar-bg {
+      flex: 1; height: 6px; background: #F0F0F0; border-radius: 4px; overflow: hidden;
+    }
+    .index-bar-fill {
+      height: 100%; border-radius: 4px; background: #FFE600;
+      transition: width .4s ease;
+    }
+    .index-bar-fill.leader { background: #1a1a1a; }
+    .index-val { font-size: 12px; font-weight: 700; min-width: 28px; text-align: right; }
+
+    /* ── TWO COLUMNS ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    /* ── PARETO ── */
+    .pareto-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .pareto-card {
+      background: #fff; border-radius: 12px; padding: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08); text-align: center;
+    }
+    .pareto-num { font-size: 36px; font-weight: 800; color: #1a1a1a; }
+    .pareto-desc { font-size: 12px; color: #888; margin-top: 4px; }
+    .pareto-pct { font-size: 14px; font-weight: 700; color: #FFE600; background:#1a1a1a; display:inline-block; padding: 3px 10px; border-radius:20px; margin-top: 8px; }
+
+    /* ── PRICE FAIXAS ── */
+    .price-bars { background: #fff; border-radius: 12px; padding: 24px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+    .price-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .price-label { font-size: 12px; font-weight: 600; color: #555; min-width: 130px; }
+    .price-bar-wrap { flex: 1; background: #F0F0F0; border-radius: 6px; height: 22px; overflow: hidden; }
+    .price-bar { height: 100%; border-radius: 6px; background: #FFE600; display: flex; align-items: center; padding-left: 8px; transition: width .5s ease; }
+    .price-bar-text { font-size: 11px; font-weight: 700; color: #1a1a1a; white-space: nowrap; }
+    .price-meta { font-size: 11px; color: #999; min-width: 90px; text-align: right; }
+
+    /* ── PORTFOLIO TABLE ── */
+    .logi-pill {
+      display: inline-block; padding: 2px 8px; border-radius: 20px;
+      font-size: 10px; font-weight: 700;
+    }
+    .logi-xd { background: #dbeafe; color: #1d4ed8; }
+    .logi-full { background: #dcfce7; color: #15803d; }
+    .logi-other { background: #f3f4f6; color: #6b7280; }
+
+    /* ── LOGÍSTICA SPLIT ── */
+    .logi-split { display: flex; gap: 14px; }
+    .logi-card {
+      flex: 1; background: #fff; border-radius: 12px; padding: 18px 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .logi-icon {
+      width: 42px; height: 42px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0;
+    }
+    .logi-pct { font-size: 22px; font-weight: 800; }
+    .logi-detail { font-size: 11px; color: #999; margin-top: 2px; }
+    .logi-name { font-size: 12px; font-weight: 600; color: #555; }
+
+    /* ── DIAGNOSTICO ── */
+    .diag-list { display: flex; flex-direction: column; gap: 14px; }
+    .diag-item {
+      background: #fff; border-radius: 12px; padding: 18px 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      display: flex; gap: 16px; align-items: flex-start;
+    }
+    .diag-num {
+      min-width: 30px; height: 30px; border-radius: 50%;
+      background: #1a1a1a; color: #FFE600;
+      font-size: 14px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .diag-title { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+    .diag-desc { font-size: 13px; color: #555; line-height: 1.5; }
+
+    /* ── PLANO DE AÇÃO ── */
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .plan-card {
+      background: #fff; border-radius: 12px; padding: 20px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.08);
+      border-top: 4px solid;
+    }
+    .plan-card.urgente { border-top-color: #ef4444; }
+    .plan-card.curto { border-top-color: #f59e0b; }
+    .plan-card.medio { border-top-color: #3b82f6; }
+    .plan-badge {
+      display: inline-block; padding: 3px 10px; border-radius: 20px;
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .badge-urgente { background: #fee2e2; color: #dc2626; }
+    .badge-curto { background: #fef3c7; color: #d97706; }
+    .badge-medio { background: #dbeafe; color: #2563eb; }
+    .plan-title { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+    .plan-desc { font-size: 13px; color: #555; line-height: 1.6; }
+    .plan-bullets { list-style: none; margin-top: 8px; }
+    .plan-bullets li { font-size: 12px; color: #555; padding: 3px 0; padding-left: 14px; position: relative; }
+    .plan-bullets li::before { content: '→'; position: absolute; left: 0; color: #FFE600; font-weight: 700; }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 24px;
+      font-size: 11px; color: #aaa;
+      border-top: 1px solid #e0e0e0; margin-top: 8px;
+    }
+
+    .chip {
+      display: inline-block; padding: 2px 8px; border-radius: 20px;
+      font-size: 11px; font-weight: 600; background: #F0F0F0; color: #555;
+    }
+
+    @media (max-width: 900px) {
+      .kpi-grid, .segment-grid { grid-template-columns: repeat(2, 1fr); }
+      .two-col, .plan-grid, .pareto-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="header-logo">O</div>
+    <h1>Orthocrin <span>Análise Competitiva • Jan–Jun 2026</span></h1>
+  </div>
+  <div class="header-badge">Seller #560912973</div>
+</header>
+
+<div class="container">
+
+  <!-- KPIs OVERVIEW -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">GMV Total</div>
+      <div class="kpi-value">R$ 1,28M</div>
+      <div class="kpi-sub">Jan–Jun 2026</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Unidades Vendidas</div>
+      <div class="kpi-value">2.091</div>
+      <div class="kpi-sub">6 meses</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">SKUs com Venda</div>
+      <div class="kpi-value">381</div>
+      <div class="kpi-sub">170 ativos em mai/26</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Ticket Médio</div>
+      <div class="kpi-value">R$ 613</div>
+      <div class="kpi-sub">por unidade</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Categorias Ativas</div>
+      <div class="kpi-value">5</div>
+      <div class="kpi-sub">Colchões é 81% do GMV</div>
+    </div>
+  </div>
+
+  <!-- PRESENÇA NO SEGMENTO -->
+  <div class="section">
+    <div class="section-title">Presença no Segmento</div>
+    <div class="segment-grid">
+      <div class="segment-card out">
+        <div class="status-pill pill-out">Fora do Top 10</div>
+        <div class="segment-cat">Colchões</div>
+        <div class="segment-rank">#23 <span class="pos-label">no mercado</span></div>
+        <div class="segment-gmv">R$ 1.043.551</div>
+        <div class="segment-indice">Índice 4 / 100 (líder Emma)</div>
+      </div>
+      <div class="segment-card out">
+        <div class="status-pill pill-out">Fora do Top 10</div>
+        <div class="segment-cat">Travesseiros</div>
+        <div class="segment-rank">#103 <span class="pos-label">no mercado</span></div>
+        <div class="segment-gmv">R$ 152.352</div>
+        <div class="segment-indice">Índice 3 / 100 (líder Oaktex)</div>
+      </div>
+      <div class="segment-card">
+        <div class="segment-cat">Box Spring / Bases</div>
+        <div class="segment-rank">284<span class="pos-label"> SKUs</span></div>
+        <div class="segment-gmv">R$ 47.410</div>
+        <div class="segment-indice">49 unidades • R$ 967 ticket</div>
+      </div>
+      <div class="segment-card">
+        <div class="segment-cat">Travesseiros Bebê</div>
+        <div class="segment-rank">8<span class="pos-label"> SKUs</span></div>
+        <div class="segment-gmv">R$ 33.520</div>
+        <div class="segment-indice">335 unidades • R$ 100 ticket</div>
+      </div>
+      <div class="segment-card">
+        <div class="segment-cat">Camas Pet</div>
+        <div class="segment-rank">4<span class="pos-label"> SKUs</span></div>
+        <div class="segment-gmv">R$ 4.726</div>
+        <div class="segment-indice">25 unidades • R$ 189 ticket</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANORAMAS -->
+  <div class="two-col">
+
+    <!-- PANORAMA COLCHÕES -->
+    <div class="section">
+      <div class="section-title">Panorama — Colchões (MLB-MATTRESSES)</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Seller</th>
+              <th class="right">GMV</th>
+              <th class="right">SKUs</th>
+              <th class="right">Ticket</th>
+              <th>Índice</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td><td><strong>Concorrente 1</strong></td>
+              <td class="right">R$ 27,9M</td><td class="right">58</td><td class="right">R$ 1.980</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill leader" style="width:100%"></div></div><span class="index-val">100</span></div></td>
+            </tr>
+            <tr>
+              <td>2</td><td><strong>Concorrente 2</strong></td>
+              <td class="right">R$ 19,0M</td><td class="right">419</td><td class="right">R$ 788</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:68%"></div></div><span class="index-val">68</span></div></td>
+            </tr>
+            <tr>
+              <td>3</td><td><strong>Concorrente 3</strong></td>
+              <td class="right">R$ 18,4M</td><td class="right">69</td><td class="right">R$ 1.552</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:66%"></div></div><span class="index-val">66</span></div></td>
+            </tr>
+            <tr>
+              <td>4</td><td><strong>Concorrente 4</strong></td>
+              <td class="right">R$ 14,4M</td><td class="right">293</td><td class="right">R$ 720</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:52%"></div></div><span class="index-val">52</span></div></td>
+            </tr>
+            <tr>
+              <td>5</td><td><strong>Concorrente 5</strong></td>
+              <td class="right">R$ 8,3M</td><td class="right">279</td><td class="right">R$ 587</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:30%"></div></div><span class="index-val">30</span></div></td>
+            </tr>
+            <tr>
+              <td>6</td><td>Concorrente 6</td>
+              <td class="right">R$ 5,4M</td><td class="right">103</td><td class="right">R$ 301</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:19%"></div></div><span class="index-val">19</span></div></td>
+            </tr>
+            <tr>
+              <td>7</td><td>Concorrente 7</td>
+              <td class="right">R$ 4,3M</td><td class="right">37</td><td class="right">R$ 665</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:15%"></div></div><span class="index-val">15</span></div></td>
+            </tr>
+            <tr>
+              <td>8</td><td>Concorrente 8</td>
+              <td class="right">R$ 3,0M</td><td class="right">197</td><td class="right">R$ 989</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:11%"></div></div><span class="index-val">11</span></div></td>
+            </tr>
+            <tr>
+              <td>9</td><td>Concorrente 9</td>
+              <td class="right">R$ 2,6M</td><td class="right">31</td><td class="right">R$ 968</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:9%"></div></div><span class="index-val">9</span></div></td>
+            </tr>
+            <tr>
+              <td>10</td><td>Concorrente 10</td>
+              <td class="right">R$ 2,3M</td><td class="right">234</td><td class="right">R$ 739</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:8%"></div></div><span class="index-val">8</span></div></td>
+            </tr>
+            <tr class="highlight">
+              <td>23</td><td>⭐ Orthocrin</td>
+              <td class="right">R$ 1,0M</td><td class="right">284</td><td class="right">R$ 1.476</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:4%"></div></div><span class="index-val">4</span></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- PANORAMA TRAVESSEIROS -->
+    <div class="section">
+      <div class="section-title">Panorama — Travesseiros (MLB-PILLOWS)</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Seller</th>
+              <th class="right">GMV</th>
+              <th class="right">SKUs</th>
+              <th class="right">Ticket</th>
+              <th>Índice</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td><td><strong>Concorrente 1</strong></td>
+              <td class="right">R$ 5,97M</td><td class="right">74</td><td class="right">R$ 53</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill leader" style="width:100%"></div></div><span class="index-val">100</span></div></td>
+            </tr>
+            <tr>
+              <td>2</td><td><strong>Concorrente 2</strong></td>
+              <td class="right">R$ 5,59M</td><td class="right">44</td><td class="right">R$ 97</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:94%"></div></div><span class="index-val">94</span></div></td>
+            </tr>
+            <tr>
+              <td>3</td><td>Concorrente 3</td>
+              <td class="right">R$ 3,23M</td><td class="right">127</td><td class="right">R$ 89</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:54%"></div></div><span class="index-val">54</span></div></td>
+            </tr>
+            <tr>
+              <td>4</td><td>Concorrente 4</td>
+              <td class="right">R$ 2,72M</td><td class="right">58</td><td class="right">R$ 143</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:46%"></div></div><span class="index-val">46</span></div></td>
+            </tr>
+            <tr>
+              <td>5</td><td>Concorrente 5</td>
+              <td class="right">R$ 2,68M</td><td class="right">37</td><td class="right">R$ 74</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:45%"></div></div><span class="index-val">45</span></div></td>
+            </tr>
+            <tr>
+              <td>6</td><td>Concorrente 6</td>
+              <td class="right">R$ 2,51M</td><td class="right">58</td><td class="right">R$ 275</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:42%"></div></div><span class="index-val">42</span></div></td>
+            </tr>
+            <tr>
+              <td>7</td><td>Concorrente 7</td>
+              <td class="right">R$ 2,09M</td><td class="right">37</td><td class="right">R$ 183</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:35%"></div></div><span class="index-val">35</span></div></td>
+            </tr>
+            <tr>
+              <td>8</td><td>Concorrente 8</td>
+              <td class="right">R$ 1,82M</td><td class="right">311</td><td class="right">R$ 164</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:30%"></div></div><span class="index-val">30</span></div></td>
+            </tr>
+            <tr>
+              <td>9</td><td>Concorrente 9</td>
+              <td class="right">R$ 1,80M</td><td class="right">43</td><td class="right">R$ 182</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:30%"></div></div><span class="index-val">30</span></div></td>
+            </tr>
+            <tr>
+              <td>10</td><td>Concorrente 10</td>
+              <td class="right">R$ 1,59M</td><td class="right">93</td><td class="right">R$ 121</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:27%"></div></div><span class="index-val">27</span></div></td>
+            </tr>
+            <tr class="highlight">
+              <td>103</td><td>⭐ Orthocrin</td>
+              <td class="right">R$ 152K</td><td class="right">62</td><td class="right">R$ 156</td>
+              <td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:3%"></div></div><span class="index-val">3</span></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONCENTRAÇÃO GMV (PARETO) -->
+  <div class="section">
+    <div class="section-title">Concentração GMV — Análise Pareto</div>
+    <div class="pareto-grid">
+      <div class="pareto-card">
+        <div class="pareto-num">1</div>
+        <div class="pareto-desc">item de maior GMV</div>
+        <div class="pareto-pct">apenas 2,6% do GMV total</div>
+        <div style="font-size:11px;color:#aaa;margin-top:8px;">Sem item âncora. GMV distribuído uniformemente.</div>
+      </div>
+      <div class="pareto-card">
+        <div class="pareto-num">62</div>
+        <div class="pareto-desc">itens necessários para atingir 50% do GMV</div>
+        <div class="pareto-pct">50% do GMV</div>
+        <div style="font-size:11px;color:#aaa;margin-top:8px;">Extrema fragmentação de portfólio.</div>
+      </div>
+      <div class="pareto-card">
+        <div class="pareto-num">171</div>
+        <div class="pareto-desc">itens necessários para atingir 80% do GMV</div>
+        <div class="pareto-pct">80% do GMV</div>
+        <div style="font-size:11px;color:#aaa;margin-top:8px;">45% dos SKUs para 80% do GMV. Regra 80/20 invertida.</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;background:#fff;border-radius:12px;padding:18px 24px;box-shadow:0 1px 4px rgba(0,0,0,.08);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <span style="font-size:12px;font-weight:600;color:#555;">Top 30 itens (acumulado)</span>
+        <span style="font-size:12px;font-weight:700;color:#888;">33,1% do GMV total</span>
+      </div>
+      <div style="background:#F0F0F0;border-radius:8px;height:28px;overflow:hidden;">
+        <div style="width:33.1%;height:100%;background:linear-gradient(90deg,#FFE600,#f59e0b);border-radius:8px;display:flex;align-items:center;padding-left:10px;">
+          <span style="font-size:11px;font-weight:700;color:#1a1a1a;">33,1% (30 itens)</span>
+        </div>
+      </div>
+      <div style="margin-top:6px;font-size:11px;color:#aaa;">Para comparação: King House tem 3 itens = 82,9% do GMV</div>
+    </div>
+  </div>
+
+  <!-- FAIXAS DE PREÇO + LOGÍSTICA -->
+  <div class="two-col">
+
+    <div class="section">
+      <div class="section-title">Faixas de Preço — Distribuição do GMV</div>
+      <div class="price-bars">
+        <div class="price-row">
+          <div class="price-label">Até R$ 200</div>
+          <div class="price-bar-wrap">
+            <div class="price-bar" style="width:9.7%">
+              <span class="price-bar-text">9,7%</span>
+            </div>
+          </div>
+          <div class="price-meta">R$ 123K • 1.064 un</div>
+        </div>
+        <div class="price-row">
+          <div class="price-label">R$ 200 – R$ 500</div>
+          <div class="price-bar-wrap">
+            <div class="price-bar" style="width:6.4%">
+              <span class="price-bar-text">6,4%</span>
+            </div>
+          </div>
+          <div class="price-meta">R$ 81K • 312 un</div>
+        </div>
+        <div class="price-row">
+          <div class="price-label">R$ 500 – R$ 800</div>
+          <div class="price-bar-wrap">
+            <div class="price-bar" style="width:8.7%">
+              <span class="price-bar-text">8,7%</span>
+            </div>
+          </div>
+          <div class="price-meta">R$ 112K • 170 un</div>
+        </div>
+        <div class="price-row">
+          <div class="price-label">R$ 800 – R$ 1.200</div>
+          <div class="price-bar-wrap">
+            <div class="price-bar" style="width:12.3%">
+              <span class="price-bar-text">12,3%</span>
+            </div>
+          </div>
+          <div class="price-meta">R$ 158K • 156 un</div>
+        </div>
+        <div class="price-row">
+          <div class="price-label">R$ 1.200 – R$ 2.000</div>
+          <div class="price-bar-wrap">
+            <div class="price-bar" style="width:29.5%;background:#f59e0b;">
+              <span class="price-bar-text">29,5%</span>
+            </div>
+          </div>
+          <div class="price-meta">R$ 378K • 235 un</div>
+        </div>
+        <div class="price-row">
+          <div class="price-label">Acima de R$ 2.000</div>
+          <div class="price-bar-wrap">
+            <div class="price-bar" style="width:33.4%;background:#1a1a1a;">
+              <span class="price-bar-text" style="color:#FFE600;">33,4%</span>
+            </div>
+          </div>
+          <div class="price-meta">R$ 428K • 154 un</div>
+        </div>
+        <div style="margin-top:14px;padding-top:12px;border-top:1px solid #F0F0F0;font-size:11px;color:#888;">
+          <strong>62,9% do GMV</strong> concentrado nas faixas premium (R$1.200+). Volume ainda baixo nessas faixas (389 unidades).
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Logística</div>
+      <div class="logi-split" style="flex-direction:column;">
+        <div class="logi-card">
+          <div class="logi-icon" style="background:#dbeafe;">📦</div>
+          <div>
+            <div class="logi-pct" style="color:#1d4ed8;">87,3%</div>
+            <div class="logi-name">Cross Docking (XD)</div>
+            <div class="logi-detail">1.867 pedidos • R$ 1.119.499 GMV</div>
+          </div>
+        </div>
+        <div class="logi-card" style="margin-top:12px;">
+          <div class="logi-icon" style="background:#f3f4f6;">🚚</div>
+          <div>
+            <div class="logi-pct" style="color:#6b7280;">12,7%</div>
+            <div class="logi-name">Transportadora (OTHER)</div>
+            <div class="logi-detail">67 pedidos • R$ 163.982 GMV — itens king/queen grandes</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.08);">
+          <div style="font-size:12px;font-weight:700;color:#ef4444;margin-bottom:6px;">⚠ Zero presença em Full (FBM)</div>
+          <div style="font-size:12px;color:#555;line-height:1.5;">
+            Concorrentes líderes (Emma, Luuna) operam com Full, garantindo entrega mais rápida e melhor posicionamento no ranking. Orthocrin depende 100% de XD + transportadora própria.
+          </div>
+        </div>
+        <div style="margin-top:12px;background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 4px rgba(0,0,0,.08);">
+          <div style="font-size:12px;font-weight:700;color:#1a1a1a;margin-bottom:6px;">Visibilidade do Catálogo</div>
+          <div style="font-size:12px;color:#555;line-height:1.5;">
+            <strong>170 itens ativos</strong> em mai/26 — <strong>165 com venda (97,1%)</strong> • apenas 5 sem venda<br>
+            <strong>381 SKUs únicos</strong> venderam em algum momento (jan–jun), média <strong>326 visitas/item</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORTFOLIO TOP 10 -->
+  <div class="section">
+    <div class="section-title">Portfolio — Top 10 Itens por GMV</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Item</th>
+            <th class="right">GMV</th>
+            <th class="right">Unidades</th>
+            <th class="right">Ticket Médio</th>
+            <th>Logística</th>
+            <th>% GMV</th>
+            <th>% Acum.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Colchão Casal D33 Royal Saúde Plus 138×188×18 Bege</td>
+            <td class="right">R$ 33.613</td><td class="right">20</td><td class="right">R$ 1.680</td>
+            <td><span class="logi-pill logi-other">OTHER</span></td>
+            <td class="right">2,6%</td><td class="right">2,6%</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Colchão Casal Diamante D33 138×188×18 Antialérgico</td>
+            <td class="right">R$ 26.061</td><td class="right">21</td><td class="right">R$ 1.241</td>
+            <td><span class="logi-pill logi-xd">XD</span></td>
+            <td class="right">2,0%</td><td class="right">4,7%</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Travesseiro Bebê Meu Primeiro Visco 35×55×4</td>
+            <td class="right">R$ 20.127</td><td class="right">214</td><td class="right">R$ 94</td>
+            <td><span class="logi-pill logi-xd">XD</span></td>
+            <td class="right">1,6%</td><td class="right">6,2%</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Travesseiro Infantil Meu Orthocrin Visco 40×60×6</td>
+            <td class="right">R$ 19.650</td><td class="right">172</td><td class="right">R$ 114</td>
+            <td><span class="logi-pill logi-xd">XD</span></td>
+            <td class="right">1,5%</td><td class="right">7,8%</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Colchão Casal Diamante D33 138×188×16 Bege</td>
+            <td class="right">R$ 17.718</td><td class="right">15</td><td class="right">R$ 1.181</td>
+            <td><span class="logi-pill logi-xd">XD</span></td>
+            <td class="right">1,4%</td><td class="right">9,1%</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Colchão Casal D45 Royal Saúde Plus Pillow Top 138×188×24</td>
+            <td class="right">R$ 17.366</td><td class="right">6</td><td class="right">R$ 2.894</td>
+            <td><span class="logi-pill logi-xd">XD</span></td>
+            <td class="right">1,4%</td><td class="right">10,5%</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Colchão King D45 Royal Saúde Plus Pillow Top 193×203×28</td>
+            <td class="right">R$ 16.718</td><td class="right">4</td><td class="right">R$ 4.179</td>
+            <td><span class="logi-pill logi-other">OTHER</span></td>
+            <td class="right">1,3%</td><td class="right">11,8%</td>
+          </tr>
+          <tr>
+            <td>8</td>
+            <td>Colchão Casal Diamante D33 138×188×20 Bege</td>
+            <td class="right">R$ 15.853</td><td class="right">10</td><td class="right">R$ 1.585</td>
+            <td><span class="logi-pill logi-xd">XD</span></td>
+            <td class="right">1,2%</td><td class="right">13,0%</td>
+          </tr>
+          <tr>
+            <td>9</td>
+            <td>Colchão Queen Ortopédico Madeira Ouro 158×198×24</td>
+            <td class="right">R$ 15.549</td><td class="right">7</td><td class="right">R$ 2.221</td>
+            <td><span class="logi-pill logi-xd">XD</span></td>
+            <td class="right">1,2%</td><td class="right">14,3%</td>
+          </tr>
+          <tr>
+            <td>10</td>
+            <td>Colchão King D33 Royal Saúde Plus Pillow Top 193×203×28</td>
+            <td class="right">R$ 15.032</td><td class="right">4</td><td class="right">R$ 3.758</td>
+            <td><span class="logi-pill logi-other">OTHER</span></td>
+            <td class="right">1,2%</td><td class="right">15,4%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:10px;font-size:11px;color:#aaa;text-align:right;">Top 10 = 15,4% do GMV total • Item #1 tem apenas 2,6% de concentração</div>
+  </div>
+
+  <!-- DIAGNÓSTICO -->
+  <div class="section">
+    <div class="section-title">Diagnóstico — 5 Problemas Identificados</div>
+    <div class="diag-list">
+      <div class="diag-item">
+        <div class="diag-num">1</div>
+        <div>
+          <div class="diag-title">Posição Competitiva Crítica em Ambos os Segmentos Core</div>
+          <div class="diag-desc">Orthocrin está em <strong>#23 em colchões</strong> (índice 4/100 vs. líder Emma) e <strong>#103 em travesseiros</strong> (índice 3/100). O seller compete no mesmo espaço de marcas como Emma, Luuna, Ortobom e Esplanada — sellers da própria carteira monitorada — sem massa crítica para disputar organicamente. Resultado: baixa visibilidade, baixo ranking e dependência de tráfego pago inexistente (sem ADS/PADS).</div>
+        </div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-num">2</div>
+        <div>
+          <div class="diag-title">GMV Extremamente Fragmentado — Sem Item Âncora</div>
+          <div class="diag-desc">O item de maior GMV representa apenas <strong>2,6% do total</strong>. São necessários <strong>62 SKUs para atingir 50%</strong> e <strong>171 SKUs para atingir 80%</strong> do GMV (total 381 SKUs). Isso é o inverso da regra 80/20. Sem âncora, impossível construir histórico de vendas, subir no ranking ou alocar recursos de forma eficiente. Cada SKU gera em média R$ 3.363 em 6 meses (~R$ 560/mês).</div>
+        </div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-num">3</div>
+        <div>
+          <div class="diag-title">Zero Presença em Full (FBM) — Desvantagem Logística Estrutural</div>
+          <div class="diag-desc">100% do volume é processado via <strong>Cross Docking (XD) e transportadora própria (OTHER)</strong>. Concorrentes líderes como Emma e Luuna utilizam Full Fulfillment, garantindo entrega mais rápida (próxima ao Prime), melhor ranking e conversão. Em colchões de médio/alto ticket, prazo de entrega é diferencial competitivo crítico. Orthocrin não tem essa alavanca.</div>
+        </div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-num">4</div>
+        <div>
+          <div class="diag-title">Travesseiros sem Viabilidade Competitiva</div>
+          <div class="diag-desc"><strong>#103 no mercado de travesseiros</strong>, com GMV de R$ 152K em 6 meses (índice 3/100). Os líderes (Oaktex, Anjos Têxtil) operam com tickets de R$ 53–97, kits de 2 ou 4 peças e altíssimo volume. Orthocrin compete com ticket de R$ 156 (individual, premium) sem volume para construir ranking. A posição em travesseiros infantis (MLB-BABY_CUSHIONS_AND_PILLOWS) é mais relevante proporcionalmente — 335 unidades e presença diferenciada.</div>
+        </div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-num">5</div>
+        <div>
+          <div class="diag-title">Portfolio Superdimensionado — Alto Custo de Gestão, Baixo Retorno</div>
+          <div class="diag-desc">Com <strong>284 SKUs em colchões</strong> e apenas <strong>707 unidades vendidas</strong> em 6 meses, a média é de <strong>2,5 unidades por SKU</strong> no período. Isso gera custos elevados de gestão de catálogo, anúncios, estoque e precificação sem geração de volume suficiente para melhorar posição orgânica. O portfólio está fragmentando esforços ao invés de concentrá-los nos produtos de maior potencial.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANO DE AÇÃO -->
+  <div class="section">
+    <div class="section-title">Plano de Ação</div>
+    <div class="plan-grid">
+      <div class="plan-card urgente">
+        <div class="plan-badge badge-urgente">Urgente — imediato</div>
+        <div class="plan-title">Consolidar o Portfólio de Colchões</div>
+        <ul class="plan-bullets">
+          <li>Selecionar 20–30 SKUs âncora com base em GMV, ticket e potencial de ranking</li>
+          <li>Pausar ou arquivar os ~200 SKUs com GMV abaixo de R$ 2K em 6 meses</li>
+          <li>Garantir qualidade máxima de anúncio (fotos, título, descrição) nos SKUs âncora</li>
+          <li>Mapear quais dos top 30 itens têm concorrência de buybox — priorizar BB neles</li>
+        </ul>
+      </div>
+      <div class="plan-card curto">
+        <div class="plan-badge badge-curto">Curto Prazo — 1 a 3 meses</div>
+        <div class="plan-title">Construir Volume e Melhorar Posição Orgânica</div>
+        <ul class="plan-bullets">
+          <li>Avaliar entrada em Full (FBM) para os 5–10 itens âncora de maior GMV</li>
+          <li>Criar 2–3 ofertas de entrada competitivas na faixa R$ 800–R$ 1.200 (maior demanda)</li>
+          <li>Ativar campanhas automáticas nos itens âncora para ganhar tráfego e histórico</li>
+          <li>Usar travesseiros bebê como anchor em MLB-BABY_CUSHIONS (já top performer relativo)</li>
+        </ul>
+      </div>
+      <div class="plan-card medio">
+        <div class="plan-badge badge-medio">Médio Prazo — 3 a 6 meses</div>
+        <div class="plan-title">Redefinir Estratégia em Travesseiros</div>
+        <ul class="plan-bullets">
+          <li>Avaliar saída ou redução drástica em MLB-PILLOWS (adulto) — baixíssima competitividade</li>
+          <li>Apostar em MLB-BABY_CUSHIONS_AND_PILLOWS onde há posição relativa melhor</li>
+          <li>Medir evolução do ranking orgânico após consolidação de portfólio e Full</li>
+          <li>Revisitar presença em Box Spring conforme evolução da posição em colchões</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Análise gerada em 15/06/2026 • Dados: BigQuery meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB • Período Jan–Jun 2026 • Seller Orthocrin #560912973
+</footer>
+
+</body>
+</html>
