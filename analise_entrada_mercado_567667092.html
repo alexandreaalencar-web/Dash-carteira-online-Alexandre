@@ -43,7 +43,7 @@
     .kpi-sub { font-size: 11px; color: #aaa; margin-top: 3px; }
 
     /* SEGMENTO CARDS */
-    .seg-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .seg-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
     .seg-card {
       background: #fff; border-radius: 12px; padding: 20px;
       box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 4px solid #FFE600;
@@ -155,8 +155,8 @@
   <div class="kpi-grid">
     <div class="kpi-card">
       <div class="kpi-label">Mercado Total</div>
-      <div class="kpi-value">R$ 544M</div>
-      <div class="kpi-sub">4 segmentos combinados</div>
+      <div class="kpi-value">R$ 631M</div>
+      <div class="kpi-sub">5 segmentos combinados</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Maior Segmento</div>
@@ -232,6 +232,18 @@
         </div>
         <span class="opp-pill opp-baixa">Alta Concentração</span>
       </div>
+      <div class="seg-card" style="border-top-color:#22c55e;">
+        <div class="seg-cat">Capas & Protetores de Colchão</div>
+        <div class="seg-gmv">R$ 87M</div>
+        <div class="seg-dominio">MLB-MATTRESS_COVERS</div>
+        <div class="seg-meta">
+          <div class="seg-meta-row"><span class="seg-meta-label">Top seller share</span><span class="seg-meta-val">7,2%</span></div>
+          <div class="seg-meta-row"><span class="seg-meta-label">Sellers p/ 50% GMV</span><span class="seg-meta-val">28 sellers</span></div>
+          <div class="seg-meta-row"><span class="seg-meta-label">Faixa dominante</span><span class="seg-meta-val">Até R$ 50</span></div>
+          <div class="seg-meta-row"><span class="seg-meta-label">Sellers ativos</span><span class="seg-meta-val">2.340</span></div>
+        </div>
+        <span class="opp-pill opp-alta">Alta Oportunidade</span>
+      </div>
     </div>
   </div>
 
@@ -243,6 +255,7 @@
       <button class="tab-btn" onclick="showTab('tab-len')">Lençóis & Capas</button>
       <button class="tab-btn" onclick="showTab('tab-tra')">Travesseiros</button>
       <button class="tab-btn" onclick="showTab('tab-toa')">Toalhas & Tapetes</button>
+      <button class="tab-btn" onclick="showTab('tab-cap')">Capas & Protetores</button>
     </div>
 
     <!-- COBERTORES -->
@@ -360,6 +373,37 @@
         🚨 Líder domina <strong>15,3% do mercado</strong> — distância grande para o #2 (3,25%). Tapetes de banheiro (MLB-TOILET_RUGS) são mais acessíveis. <strong>Toalhas exige posicionamento claro vs. líder absoluto.</strong>
       </div>
     </div>
+
+    <!-- CAPAS & PROTETORES -->
+    <div id="tab-cap" class="tab-content">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th><th>Seller</th><th class="right">GMV</th><th class="right">SKUs</th>
+              <th class="right">Ticket Médio</th><th class="right">Market Share</th><th>Índice</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td><strong>Concorrente 1</strong></td><td class="right">R$ 6,22M</td><td class="right">150</td><td class="right">R$ 30</td><td class="right">7,15%</td><td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill leader" style="width:100%"></div></div><span class="index-val">100</span></div></td></tr>
+            <tr><td>2</td><td><strong>Concorrente 2</strong></td><td class="right">R$ 5,74M</td><td class="right">481</td><td class="right">R$ 50</td><td class="right">6,61%</td><td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:92%"></div></div><span class="index-val">92</span></div></td></tr>
+            <tr><td>3</td><td><strong>Concorrente 3</strong></td><td class="right">R$ 5,14M</td><td class="right">71</td><td class="right">R$ 45</td><td class="right">5,91%</td><td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:83%"></div></div><span class="index-val">83</span></div></td></tr>
+            <tr><td>4</td><td><strong>Concorrente 4</strong></td><td class="right">R$ 2,66M</td><td class="right">180</td><td class="right">R$ 34</td><td class="right">3,06%</td><td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:43%"></div></div><span class="index-val">43</span></div></td></tr>
+            <tr><td>5</td><td>Concorrente 5</td><td class="right">R$ 1,94M</td><td class="right">102</td><td class="right">R$ 381</td><td class="right">2,23%</td><td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:31%"></div></div><span class="index-val">31</span></div></td></tr>
+            <tr><td>6</td><td>Concorrente 6</td><td class="right">R$ 1,55M</td><td class="right">30</td><td class="right">R$ 155</td><td class="right">1,78%</td><td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:25%"></div></div><span class="index-val">25</span></div></td></tr>
+            <tr><td>7</td><td>Concorrente 7</td><td class="right">R$ 1,51M</td><td class="right">37</td><td class="right">R$ 59</td><td class="right">1,74%</td><td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:24%"></div></div><span class="index-val">24</span></div></td></tr>
+            <tr><td>8</td><td>Concorrente 8</td><td class="right">R$ 1,44M</td><td class="right">37</td><td class="right">R$ 59</td><td class="right">1,65%</td><td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:23%"></div></div><span class="index-val">23</span></div></td></tr>
+            <tr><td>9</td><td>Concorrente 9</td><td class="right">R$ 1,41M</td><td class="right">55</td><td class="right">R$ 45</td><td class="right">1,62%</td><td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:23%"></div></div><span class="index-val">23</span></div></td></tr>
+            <tr><td>10</td><td>Concorrente 10</td><td class="right">R$ 1,28M</td><td class="right">49</td><td class="right">R$ 690</td><td class="right">1,47%</td><td><div class="index-cell"><div class="index-bar-bg"><div class="index-bar-fill" style="width:21%"></div></div><span class="index-val">21</span></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:10px;font-size:11px;color:#888;padding:0 4px;">
+        ✅ Top 3 competem por volume (R$30–50 ticket, 80K–200K unidades). Concorrente 5 e 10 mostram demanda premium (R$381–690) com menor volume. <strong>Dois nichos claros: volume commodity vs. protetor premium impermeável.</strong>
+      </div>
+    </div>
+
+    </div>
   </div>
 
   <!-- FAIXAS DE PREÇO -->
@@ -397,6 +441,16 @@
           <div class="price-row"><div class="price-label">R$ 200 – R$ 400</div><div class="price-bar-wrap"><div class="price-bar" style="width:11%"><span class="price-bar-text">11%</span></div></div><div class="price-meta">R$ 18M</div></div>
           <div class="price-row"><div class="price-label">R$ 400 – R$ 700</div><div class="price-bar-wrap"><div class="price-bar" style="width:4%"></div></div><div class="price-meta">R$ 6M</div></div>
           <div class="price-row"><div class="price-label">Acima R$ 700</div><div class="price-bar-wrap"><div class="price-bar" style="width:1%"></div></div><div class="price-meta">R$ 2M</div></div>
+        </div>
+
+        <div style="font-size:12px;font-weight:700;color:#1a1a1a;margin:18px 0 10px">Capas & Protetores de Colchão (R$ 87M)</div>
+        <div class="price-bars">
+          <div class="price-row"><div class="price-label">Até R$ 50</div><div class="price-bar-wrap"><div class="price-bar" style="width:35.7%;background:#f59e0b"><span class="price-bar-text">35,7% ← maior vol.</span></div></div><div class="price-meta">R$ 31M</div></div>
+          <div class="price-row"><div class="price-label">R$ 50 – R$ 100</div><div class="price-bar-wrap"><div class="price-bar" style="width:21.3%"><span class="price-bar-text">21,3%</span></div></div><div class="price-meta">R$ 18,5M</div></div>
+          <div class="price-row"><div class="price-label">R$ 100 – R$ 200</div><div class="price-bar-wrap"><div class="price-bar" style="width:20%"><span class="price-bar-text">20%</span></div></div><div class="price-meta">R$ 17,4M</div></div>
+          <div class="price-row"><div class="price-label">R$ 200 – R$ 400</div><div class="price-bar-wrap"><div class="price-bar" style="width:11.3%"><span class="price-bar-text">11,3%</span></div></div><div class="price-meta">R$ 9,8M</div></div>
+          <div class="price-row"><div class="price-label">R$ 400 – R$ 700</div><div class="price-bar-wrap"><div class="price-bar" style="width:7.5%"><span class="price-bar-text">7,5%</span></div></div><div class="price-meta">R$ 6,5M</div></div>
+          <div class="price-row"><div class="price-label">Acima R$ 700</div><div class="price-bar-wrap"><div class="price-bar" style="width:4.3%"></div></div><div class="price-meta">R$ 3,7M</div></div>
         </div>
 
         <div style="font-size:12px;font-weight:700;color:#1a1a1a;margin:18px 0 10px">Toalhas & Tapetes (R$ 132M)</div>
@@ -442,6 +496,10 @@
           <div><div class="pareto-dom">Tapetes de Banheiro</div><div class="pareto-sub">MLB-TOILET_RUGS • 3.902 sellers ativos</div></div>
           <div class="pareto-vals">39 → 50%&nbsp;&nbsp;|&nbsp;&nbsp;185 → 80%</div>
         </div>
+        <div class="pareto-row">
+          <div><div class="pareto-dom">Capas & Protetores de Colchão</div><div class="pareto-sub">MLB-MATTRESS_COVERS • 2.340 sellers ativos</div></div>
+          <div class="pareto-vals">28 → 50%&nbsp;&nbsp;|&nbsp;&nbsp;144 → 80%</div>
+        </div>
       </div>
       <div style="background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.08);">
         <div style="font-size:12px;font-weight:700;margin-bottom:12px;color:#1a1a1a;">Leitura da Concentração</div>
@@ -461,6 +519,10 @@
           <div style="display:flex;gap:10px;align-items:flex-start;">
             <div style="min-width:10px;height:10px;background:#ef4444;border-radius:50%;margin-top:3px;"></div>
             <div style="font-size:12px;color:#555;line-height:1.5;"><strong>Toalhas:</strong> Apenas 21 sellers = 50% e líder com 15,3% do mercado. Alta concentração, difícil entrada sem diferenciação forte.</div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start;margin-top:10px;">
+            <div style="min-width:10px;height:10px;background:#22c55e;border-radius:50%;margin-top:3px;"></div>
+            <div style="font-size:12px;color:#555;line-height:1.5;"><strong>Capas & Protetores:</strong> 28 sellers = 50% do GMV em mercado de R$87M. Dois nichos claros: volume commodity (até R$50) e protetor premium impermeável (R$400+). Alta sinergia com quem já vende colchões.</div>
           </div>
         </div>
       </div>
@@ -495,6 +557,13 @@
       <div class="diag-item">
         <div class="diag-num">4</div>
         <div>
+          <div class="diag-title">Capas & Protetores de Colchão — Sinergia Natural com o Core de Colchões</div>
+          <div class="diag-desc">Mercado de <strong>R$87M</strong> com 28 sellers fazendo 50% do GMV — concentração moderada e gerenciável. O segmento tem dois nichos muito distintos: <strong>volume commodity</strong> (até R$50, líderes com R$30–50/un e 80K–200K unidades) e <strong>premium impermeável</strong> (R$381–690, vendedores com 5K–2K unidades e alto ticket). Para um seller que já vende colchões, este domínio é o cross-sell mais natural — o cliente que compra o colchão tende a buscar o protetor na mesma visita. <strong>Alta sinergia, entrada prioritária vs. os demais segmentos têxteis.</strong></div>
+        </div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-num">5</div>
+        <div>
           <div class="diag-title">Toalhas — Alta Concentração, Tapetes São a Janela Viável</div>
           <div class="diag-desc">O líder de <strong>toalhas tem 15,3% de market share</strong> (R$20M) — uma posição muito dominante. Os demais concorrentes caem drasticamente para 3,25%, 2,96%... Entrar em <strong>toalhas de banho</strong> exige marca consolidada e logística de alto volume. Já em <strong>tapetes de banheiro</strong> o mercado é mais pulverizado (39 sellers = 50%), o líder tem menos de 10% de share, e a faixa até R$50 domina em volume com <strong>471K unidades</strong> vendidas — alto giro, produto simples. <strong>Tapetes são a porta de entrada em Casa/Banho.</strong></div>
         </div>
@@ -508,12 +577,12 @@
     <div class="plan-grid">
       <div class="plan-card p1">
         <div class="plan-badge badge-p1">Prioridade 1 — Imediato</div>
-        <div class="plan-title">Cobertores & Edredons</div>
+        <div class="plan-title">Capas & Protetores de Colchão</div>
         <ul class="plan-bullets">
-          <li>Iniciar com 5–10 SKUs de edredom/cobertor Sherpa na faixa R$100–200</li>
-          <li>Posicionamento em "kit casal + solteiro" para aumentar ticket médio</li>
-          <li>Usar XD como logística inicial, avaliar Full para item âncora</li>
-          <li>Meta: entrar no top 30 em 3 meses com 2 itens âncora</li>
+          <li>Entrada premium: protetor impermeável matelado (R$150–300) — maior margem, menor concorrência</li>
+          <li>Criar combo colchão + protetor no mesmo anúncio (cross-sell direto)</li>
+          <li>5–8 SKUs cobrindo solteiro, casal, queen e king para manter consistência com o portfólio de colchões</li>
+          <li>Meta: estar no top 30 em 3 meses aproveitando a base de clientes de colchões</li>
         </ul>
       </div>
       <div class="plan-card p2">
