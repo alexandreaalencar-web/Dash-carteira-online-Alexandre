@@ -3,127 +3,88 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Novos Produtos (Vácuo) — Orthocrin #560912973</title>
+  <title>Novos Produtos — Orthocrin #560912973</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Inter', sans-serif; background: #F0F0F0; color: #1a1a1a; font-size: 14px; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:#F0F0F0;color:#1a1a1a;font-size:14px}
 
-    header {
-      background: #FFE600; padding: 18px 32px;
-      display: flex; align-items: center; justify-content: space-between;
-      position: sticky; top: 0; z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,.12);
-    }
-    .header-left { display: flex; align-items: center; gap: 14px; }
-    .header-logo { width: 36px; height: 36px; border-radius: 8px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: #FFE600; }
-    header h1 { font-size: 20px; font-weight: 800; color: #1a1a1a; }
-    header h1 span { font-weight: 400; opacity: .6; font-size: 14px; margin-left: 8px; }
-    .header-badge { background: #1a1a1a; color: #FFE600; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+    header{background:#FFE600;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+    .header-left{display:flex;align-items:center;gap:14px}
+    .header-logo{width:36px;height:36px;border-radius:8px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#FFE600}
+    header h1{font-size:19px;font-weight:800;color:#1a1a1a}
+    header h1 span{font-weight:400;opacity:.6;font-size:13px;margin-left:8px}
+    .header-badge{background:#1a1a1a;color:#FFE600;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600}
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 28px 24px; }
-    .section { margin-bottom: 36px; }
-    .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #666; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 2px solid #FFE600; }
+    .container{max-width:1260px;margin:0 auto;padding:28px 24px}
+    .section{margin-bottom:36px}
+    .section-title{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#666;margin-bottom:14px;padding-bottom:6px;border-bottom:2px solid #FFE600}
 
     /* KPIs */
-    .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 36px; }
-    .kpi-card { background: #fff; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
-    .kpi-label { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing:.06em; }
-    .kpi-value { font-size: 22px; font-weight: 800; color: #1a1a1a; margin-top: 6px; }
-    .kpi-sub { font-size: 11px; color: #aaa; margin-top: 3px; }
+    .kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:36px}
+    .kpi-card{background:#fff;border-radius:12px;padding:16px 18px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .kpi-label{font-size:10px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:.06em}
+    .kpi-value{font-size:20px;font-weight:800;color:#1a1a1a;margin-top:5px}
+    .kpi-sub{font-size:10px;color:#aaa;margin-top:2px}
 
-    /* TABELA RESUMO */
-    .table-wrap { background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
-    table { width: 100%; border-collapse: collapse; }
-    thead { background: #1a1a1a; }
-    thead th { color: #FFE600; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing:.06em; padding: 12px 16px; text-align: left; }
-    thead th.right { text-align: right; }
-    thead th.center { text-align: center; }
-    tbody tr { border-bottom: 1px solid #F0F0F0; transition: background .15s; }
-    tbody tr:hover { background: #fafafa; }
-    tbody tr.separator { background: #f8f8f8; }
-    tbody td { padding: 11px 16px; font-size: 13px; }
-    tbody td.right { text-align: right; }
-    tbody td.center { text-align: center; }
+    /* TABLE */
+    .table-wrap{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden}
+    table{width:100%;border-collapse:collapse}
+    thead{background:#1a1a1a}
+    thead th{color:#FFE600;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:11px 14px;text-align:left;white-space:nowrap}
+    thead th.right{text-align:right}
+    thead th.center{text-align:center}
+    tbody tr{border-bottom:1px solid #F0F0F0;transition:background .15s}
+    tbody tr:hover{background:#fafafa}
+    tbody tr.sep{background:#f4f4f4}
+    tbody tr.sep td{font-size:11px;font-weight:700;color:#666;padding:8px 14px;letter-spacing:.04em}
+    tbody td{padding:10px 14px;font-size:12px}
+    tbody td.right{text-align:right}
+    tbody td.center{text-align:center}
 
-    /* TIPO PILL */
-    .tipo-pill { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
-    .tipo-espuma { background: #dbeafe; color: #1d4ed8; }
-    .tipo-mola { background: #fef3c7; color: #b45309; }
+    /* PILLS */
+    .tipo-pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+    .tp-esp{background:#dbeafe;color:#1d4ed8}
+    .tp-mol{background:#fef3c7;color:#b45309}
+    .tam-pill{display:inline-block;padding:2px 7px;border-radius:6px;font-size:11px;font-weight:600;background:#F0F0F0;color:#555}
 
-    /* FAIXA TICKET */
-    .ticket-range { display: flex; align-items: center; gap: 6px; }
-    .ticket-bar-wrap { flex: 1; position: relative; height: 8px; background: #F0F0F0; border-radius: 4px; min-width: 80px; }
-    .ticket-bar { position: absolute; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #FFE600, #f59e0b); }
-    .ticket-dot { position: absolute; width: 10px; height: 10px; background: #1a1a1a; border-radius: 50%; top: -1px; transform: translateX(-50%); }
-    .ticket-labels { display: flex; justify-content: space-between; font-size: 10px; color: #aaa; margin-top: 2px; }
+    /* TICKET RANGE */
+    .tr-wrap{display:flex;align-items:center;gap:6px}
+    .tr-bar{flex:1;height:6px;border-radius:3px;background:linear-gradient(90deg,#dbeafe,#FFE600,#f59e0b);min-width:60px}
+    .tr-vals{display:flex;flex-direction:column;min-width:130px}
+    .tr-main{font-size:12px;font-weight:700;color:#1a1a1a}
+    .tr-range{font-size:10px;color:#aaa}
 
-    /* OPP BADGE */
-    .opp { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
-    .opp-alta { background: #dcfce7; color: #15803d; }
-    .opp-media { background: #fef3c7; color: #d97706; }
-    .opp-baixa { background: #fee2e2; color: #dc2626; }
-    .opp-nova { background: #ede9fe; color: #7c3aed; }
+    /* APOSTAR BADGE */
+    .bet{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700}
+    .bet-sim{background:#dcfce7;color:#15803d}
+    .bet-2{background:#fef3c7;color:#d97706}
+    .bet-nao{background:#f3f4f6;color:#9ca3af}
+    .bet-new{background:#ede9fe;color:#7c3aed}
 
-    /* CARDS DE ESPECIFICAÇÃO */
-    .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .spec-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 4px solid; }
-    .spec-card.espuma { border-top-color: #3b82f6; }
-    .spec-card.mola { border-top-color: #f59e0b; }
-    .spec-card.mola-nova { border-top-color: #8b5cf6; }
-    .spec-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
-    .spec-name { font-size: 15px; font-weight: 800; color: #1a1a1a; }
-    .spec-sub { font-size: 11px; color: #888; margin-top: 2px; }
-    .spec-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-    .spec-metric { background: #F0F0F0; border-radius: 8px; padding: 10px; }
-    .spec-metric-label { font-size: 10px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: .05em; }
-    .spec-metric-val { font-size: 16px; font-weight: 800; color: #1a1a1a; margin-top: 3px; }
-    .spec-metric-sub { font-size: 10px; color: #aaa; }
+    /* RECOMENDAÇÕES */
+    .rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .rec-card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.08);border-top:4px solid}
+    .rc1{border-top-color:#22c55e}.rc2{border-top-color:#f59e0b}.rc3{border-top-color:#8b5cf6}
+    .rec-badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;margin-bottom:8px}
+    .rb1{background:#dcfce7;color:#15803d}.rb2{background:#fef3c7;color:#d97706}.rb3{background:#ede9fe;color:#7c3aed}
+    .rec-title{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:10px}
+    .rec-rows{display:flex;flex-direction:column;gap:8px}
+    .rec-row{background:#F0F0F0;border-radius:8px;padding:10px 12px}
+    .rec-row-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+    .rec-row-name{font-size:12px;font-weight:700;color:#1a1a1a}
+    .rec-row-meta{font-size:11px;color:#555}
+    .rec-row-price{font-size:13px;font-weight:800;color:#1a1a1a}
+    .rec-row-range{font-size:10px;color:#888}
 
-    /* TICKET RANGE VISUAL */
-    .ticket-visual { background: #F0F0F0; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
-    .ticket-visual-title { font-size: 10px; font-weight: 700; color: #888; text-transform: uppercase; margin-bottom: 8px; }
-    .ticket-scale { position: relative; height: 10px; background: linear-gradient(90deg, #e0f2fe, #FFE600, #f59e0b, #ef4444); border-radius: 5px; margin-bottom: 6px; }
-    .tick-marker { position: absolute; transform: translateX(-50%); }
-    .tick-marker::before { content: ''; display: block; width: 2px; height: 14px; background: #1a1a1a; margin: 0 auto; }
-    .tick-label { font-size: 9px; font-weight: 700; color: #1a1a1a; white-space: nowrap; margin-top: 2px; text-align: center; }
-    .tick-sublabel { font-size: 8px; color: #888; text-align: center; }
-    .ticket-vals-row { display: flex; justify-content: space-between; margin-top: 14px; }
-    .ticket-val-item { text-align: center; }
-    .ticket-val-num { font-size: 12px; font-weight: 700; color: #1a1a1a; }
-    .ticket-val-lbl { font-size: 9px; color: #aaa; }
+    /* DIAG */
+    .diag-list{display:flex;flex-direction:column;gap:12px}
+    .diag-item{background:#fff;border-radius:12px;padding:16px 20px;box-shadow:0 1px 4px rgba(0,0,0,.08);display:flex;gap:14px;align-items:flex-start}
+    .diag-num{min-width:28px;height:28px;border-radius:50%;background:#1a1a1a;color:#FFE600;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .diag-title{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:3px}
+    .diag-desc{font-size:12px;color:#555;line-height:1.55}
 
-    /* NOVA LABEL */
-    .novo-badge { display: inline-block; background: #7c3aed; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
-
-    /* DIAGN */
-    .diag-list { display: flex; flex-direction: column; gap: 12px; }
-    .diag-item { background: #fff; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); display: flex; gap: 16px; align-items: flex-start; }
-    .diag-num { min-width: 30px; height: 30px; border-radius: 50%; background: #1a1a1a; color: #FFE600; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .diag-title { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
-    .diag-desc { font-size: 13px; color: #555; line-height: 1.55; }
-
-    /* PLANO */
-    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-    .plan-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 4px solid; }
-    .plan-card.p1 { border-top-color: #22c55e; }
-    .plan-card.p2 { border-top-color: #f59e0b; }
-    .plan-card.p3 { border-top-color: #8b5cf6; }
-    .plan-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
-    .badge-p1 { background: #dcfce7; color: #15803d; }
-    .badge-p2 { background: #fef3c7; color: #d97706; }
-    .badge-p3 { background: #ede9fe; color: #7c3aed; }
-    .plan-title { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
-    .plan-bullets { list-style: none; }
-    .plan-bullets li { font-size: 12px; color: #555; padding: 4px 0 4px 14px; position: relative; line-height: 1.4; }
-    .plan-bullets li::before { content: '→'; position: absolute; left: 0; color: #FFE600; font-weight: 700; }
-
-    footer { text-align: center; padding: 24px; font-size: 11px; color: #aaa; border-top: 1px solid #e0e0e0; margin-top: 8px; }
-
-    @media (max-width: 960px) {
-      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
-      .spec-grid, .plan-grid { grid-template-columns: 1fr; }
-    }
+    footer{text-align:center;padding:24px;font-size:11px;color:#aaa;border-top:1px solid #e0e0e0;margin-top:8px}
   </style>
 </head>
 <body>
@@ -133,17 +94,17 @@
     <div class="header-logo">O</div>
     <h1>Orthocrin — Análise de Novos Produtos <span>Seller #560912973 • Espuma a Vácuo + Mola • Jan–Mai 2026</span></h1>
   </div>
-  <div class="header-badge">7 Especificações Analisadas</div>
+  <div class="header-badge">7 tipos · 4 variantes</div>
 </header>
 
 <div class="container">
 
-  <!-- KPIs ATUAIS -->
+  <!-- KPIs -->
   <div class="kpi-grid">
     <div class="kpi-card">
-      <div class="kpi-label">GMV Atual (Jan–Mai)</div>
+      <div class="kpi-label">GMV Atual Orthocrin</div>
       <div class="kpi-value">R$ 1,14M</div>
-      <div class="kpi-sub">Portfólio existente</div>
+      <div class="kpi-sub">Jan–Mai 2026 (portfólio existente)</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Mercado Espuma a Vácuo</div>
@@ -151,448 +112,402 @@
       <div class="kpi-sub">D28 + D33 + D45 (na caixa)</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-label">Mercado Mola (tipos)</div>
+      <div class="kpi-label">Mercado Mola</div>
       <div class="kpi-value">R$ 29,3M</div>
-      <div class="kpi-sub">Todos os tipos mola analisados</div>
+      <div class="kpi-sub">Todos os tipos analisados</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Variante de maior GMV</div>
+      <div class="kpi-value">Mola Casal</div>
+      <div class="kpi-sub">R$8,87M · mediana R$999</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Novos SKUs Orthocrin</div>
       <div class="kpi-value">0 / 7</div>
-      <div class="kpi-sub">Nenhum dos 7 tipos existe hoje</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Oportunidade Imediata</div>
-      <div class="kpi-value">D33 17cm</div>
-      <div class="kpi-sub">Maior mercado, menor barreira</div>
+      <div class="kpi-sub">Nenhum tipo existe no portfólio hoje</div>
     </div>
   </div>
 
-  <!-- TABELA RESUMO -->
+  <!-- TABELA COMPLETA POR VARIANTE -->
   <div class="section">
-    <div class="section-title">Resumo — Mercado por Especificação (Jan–Mai 2026)</div>
+    <div class="section-title">Mercado por Tipo × Variante — Ticket e Volume (Jan–Mai 2026)</div>
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>Especificação</th>
-            <th>Tipo</th>
-            <th class="right">SKUs no mercado</th>
+            <th>Tipo de Colchão</th>
+            <th>Variante</th>
+            <th class="right">SKUs</th>
             <th class="right">Sellers</th>
-            <th class="right">Unidades vendidas</th>
-            <th class="right">GMV mercado</th>
-            <th class="right">Ticket mín</th>
+            <th class="right">Unidades</th>
+            <th class="right">GMV</th>
+            <th class="right">P25</th>
             <th class="right">Mediana</th>
-            <th class="right">Ticket máx</th>
-            <th class="center">Oportunidade</th>
+            <th class="right">P75</th>
+            <th class="center">Apostar?</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="separator"><td colspan="10" style="font-size:11px;font-weight:700;color:#888;padding:8px 16px;">ESPUMA A VÁCUO (na caixa) — Altura 17cm</td></tr>
+          <!-- ESPUMA VÁCUO D33 -->
+          <tr class="sep"><td colspan="10">ESPUMA A VÁCUO — D33 · 17cm</td></tr>
           <tr>
-            <td><strong>D33 — 17cm a vácuo</strong></td>
-            <td><span class="tipo-pill tipo-espuma">Espuma Vácuo</span></td>
-            <td class="right">229</td>
-            <td class="right">52</td>
-            <td class="right">10.551</td>
-            <td class="right">R$ 7.570.404</td>
-            <td class="right">R$ 114</td>
-            <td class="right"><strong>R$ 674</strong></td>
-            <td class="right">R$ 2.907</td>
-            <td class="center"><span class="opp opp-alta">⬤ Alta</span></td>
+            <td rowspan="4"><span class="tipo-pill tp-esp">Espuma Vácuo</span><br><strong style="font-size:13px">D33 · 17cm</strong></td>
+            <td><span class="tam-pill">Solteiro</span></td>
+            <td class="right">145</td><td class="right">46</td><td class="right">4.914</td><td class="right">R$ 2.954.980</td>
+            <td class="right">R$ 531</td><td class="right"><strong>R$ 579</strong></td><td class="right">R$ 629</td>
+            <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
           </tr>
           <tr>
-            <td><strong>D45 — 17cm a vácuo</strong></td>
-            <td><span class="tipo-pill tipo-espuma">Espuma Vácuo</span></td>
-            <td class="right">18</td>
-            <td class="right">6</td>
-            <td class="right">1.878</td>
-            <td class="right">R$ 1.749.089</td>
-            <td class="right">R$ 482</td>
-            <td class="right"><strong>R$ 875</strong></td>
-            <td class="right">R$ 2.949</td>
-            <td class="center"><span class="opp opp-alta">⬤ Alta</span></td>
+            <td><span class="tam-pill">Casal</span></td>
+            <td class="right">42</td><td class="right">16</td><td class="right">4.788</td><td class="right">R$ 3.670.705</td>
+            <td class="right">R$ 679</td><td class="right"><strong>R$ 730</strong></td><td class="right">R$ 770</td>
+            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
           </tr>
           <tr>
-            <td><strong>D28 — 17cm a vácuo</strong></td>
-            <td><span class="tipo-pill tipo-espuma">Espuma Vácuo</span></td>
-            <td class="right">79</td>
-            <td class="right">32</td>
-            <td class="right">2.891</td>
-            <td class="right">R$ 1.921.849</td>
-            <td class="right">R$ 359</td>
-            <td class="right"><strong>R$ 562</strong></td>
-            <td class="right">R$ 1.874</td>
-            <td class="center"><span class="opp opp-alta">⬤ Alta</span></td>
-          </tr>
-          <tr class="separator"><td colspan="10" style="font-size:11px;font-weight:700;color:#888;padding:8px 16px;">MOLA — Diferentes alturas e composições</td></tr>
-          <tr>
-            <td><strong>Mola Simples</strong> <span style="font-size:10px;color:#aaa;">(contexto geral)</span></td>
-            <td><span class="tipo-pill tipo-mola">Mola</span></td>
-            <td class="right">1.969</td>
-            <td class="right">152</td>
-            <td class="right">31.974</td>
-            <td class="right">R$ 28.922.750</td>
-            <td class="right">R$ 200</td>
-            <td class="right"><strong>R$ 786</strong></td>
-            <td class="right">R$ 12.183</td>
-            <td class="center"><span class="opp opp-alta">⬤ Alta</span></td>
+            <td><span class="tam-pill">Queen</span></td>
+            <td class="right">32</td><td class="right">11</td><td class="right">656</td><td class="right">R$ 709.803</td>
+            <td class="right">R$ 920</td><td class="right"><strong>R$ 989</strong></td><td class="right">R$ 1.180</td>
+            <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
           </tr>
           <tr>
-            <td><strong>Pillow Visco — 27cm</strong></td>
-            <td><span class="tipo-pill tipo-mola">Mola</span></td>
-            <td class="right">59</td>
-            <td class="right">9</td>
-            <td class="right">153</td>
-            <td class="right">R$ 282.358</td>
-            <td class="right">R$ 898</td>
-            <td class="right"><strong>R$ 1.704</strong></td>
-            <td class="right">R$ 4.815</td>
-            <td class="center"><span class="opp opp-media">⬤ Média</span></td>
+            <td><span class="tam-pill">King</span></td>
+            <td class="right">5</td><td class="right">2</td><td class="right">158</td><td class="right">R$ 208.914</td>
+            <td class="right">R$ 1.199</td><td class="right"><strong>R$ 1.199</strong></td><td class="right">R$ 1.454</td>
+            <td class="center"><span class="bet bet-nao">– Validar</span></td>
+          </tr>
+
+          <!-- ESPUMA VÁCUO D45 -->
+          <tr class="sep"><td colspan="10">ESPUMA A VÁCUO — D45 · 17cm</td></tr>
+          <tr>
+            <td rowspan="4"><span class="tipo-pill tp-esp">Espuma Vácuo</span><br><strong style="font-size:13px">D45 · 17cm</strong></td>
+            <td><span class="tam-pill">Solteiro</span></td>
+            <td class="right">11</td><td class="right">4</td><td class="right">968</td><td class="right">R$ 742.215</td>
+            <td class="right">R$ 659</td><td class="right"><strong>R$ 729</strong></td><td class="right">R$ 839</td>
+            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
           </tr>
           <tr>
-            <td><strong>Visco / D33 — 32cm</strong></td>
-            <td><span class="tipo-pill tipo-mola">Mola</span></td>
-            <td class="right">10</td>
-            <td class="right">6</td>
-            <td class="right">49</td>
-            <td class="right">R$ 93.383</td>
-            <td class="right">R$ 829</td>
-            <td class="right"><strong>R$ 2.099</strong></td>
-            <td class="right">R$ 3.119</td>
-            <td class="center"><span class="opp opp-media">⬤ Média</span></td>
+            <td><span class="tam-pill">Casal</span></td>
+            <td class="right">4</td><td class="right">4</td><td class="right">642</td><td class="right">R$ 647.063</td>
+            <td class="right">R$ 930</td><td class="right"><strong>R$ 979</strong></td><td class="right">R$ 999</td>
+            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
           </tr>
           <tr>
-            <td><strong>D65/D26 — 22cm</strong></td>
-            <td><span class="tipo-pill tipo-mola">Mola</span></td>
-            <td class="right" style="color:#aaa;">—</td>
-            <td class="right" style="color:#aaa;">—</td>
-            <td class="right" style="color:#aaa;">—</td>
-            <td class="right" style="color:#aaa;">—</td>
-            <td class="right" style="color:#aaa;">—</td>
-            <td class="right" style="color:#aaa;">—</td>
-            <td class="right" style="color:#aaa;">—</td>
-            <td class="center"><span class="opp opp-nova">⬤ Mercado Novo</span></td>
+            <td><span class="tam-pill">Queen</span></td>
+            <td class="right">2</td><td class="right">1</td><td class="right">206</td><td class="right">R$ 259.836</td>
+            <td class="right">R$ 1.139</td><td class="right"><strong>R$ 1.199</strong></td><td class="right">R$ 1.399</td>
+            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
           </tr>
           <tr>
-            <td><strong>EPS + D26 — 25cm</strong></td>
-            <td><span class="tipo-pill tipo-mola">Mola</span></td>
-            <td class="right">1</td>
-            <td class="right">1</td>
-            <td class="right">11</td>
-            <td class="right">R$ 6.518</td>
-            <td class="right" style="color:#aaa;">R$ 567</td>
-            <td class="right" style="color:#aaa;">R$ 597</td>
-            <td class="right" style="color:#aaa;">R$ 597</td>
-            <td class="center"><span class="opp opp-nova">⬤ Mercado Novo</span></td>
+            <td><span class="tam-pill">King</span></td>
+            <td class="right">1</td><td class="right">1</td><td class="right">62</td><td class="right">R$ 99.975</td>
+            <td class="right">R$ 1.499</td><td class="right"><strong>R$ 1.499</strong></td><td class="right">R$ 1.559</td>
+            <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
           </tr>
+
+          <!-- ESPUMA VÁCUO D28 -->
+          <tr class="sep"><td colspan="10">ESPUMA A VÁCUO — D28 · 17cm</td></tr>
+          <tr>
+            <td rowspan="3"><span class="tipo-pill tp-esp">Espuma Vácuo</span><br><strong style="font-size:13px">D28 · 17cm</strong></td>
+            <td><span class="tam-pill">Solteiro</span></td>
+            <td class="right">69</td><td class="right">28</td><td class="right">2.037</td><td class="right">R$ 1.114.438</td>
+            <td class="right">R$ 474</td><td class="right"><strong>R$ 499</strong></td><td class="right">R$ 568</td>
+            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
+          </tr>
+          <tr>
+            <td><span class="tam-pill">Casal</span></td>
+            <td class="right">8</td><td class="right">6</td><td class="right">797</td><td class="right">R$ 752.897</td>
+            <td class="right">R$ 899</td><td class="right"><strong>R$ 989</strong></td><td class="right">R$ 999</td>
+            <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
+          </tr>
+          <tr>
+            <td><span class="tam-pill">Queen</span></td>
+            <td class="right">1</td><td class="right">1</td><td class="right">56</td><td class="right">R$ 52.640</td>
+            <td class="right">R$ 900</td><td class="right"><strong>R$ 900</strong></td><td class="right">R$ 900</td>
+            <td class="center"><span class="bet bet-nao">– Validar</span></td>
+          </tr>
+
+          <!-- MOLA SIMPLES D65/D26 -->
+          <tr class="sep"><td colspan="10">MOLA — D65/D26 · 22cm (referência de mercado)</td></tr>
+          <tr>
+            <td rowspan="4"><span class="tipo-pill tp-mol">Mola</span><br><strong style="font-size:13px">D65/D26 · 22cm</strong></td>
+            <td><span class="tam-pill">Solteiro</span></td>
+            <td class="right">860</td><td class="right">115</td><td class="right">18.708</td><td class="right">R$ 12.535.974</td>
+            <td class="right">R$ 447</td><td class="right"><strong>R$ 599</strong></td><td class="right">R$ 836</td>
+            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
+          </tr>
+          <tr>
+            <td><span class="tam-pill">Casal</span></td>
+            <td class="right">451</td><td class="right">78</td><td class="right">8.105</td><td class="right">R$ 8.872.249</td>
+            <td class="right">R$ 799</td><td class="right"><strong>R$ 999</strong></td><td class="right">R$ 1.299</td>
+            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
+          </tr>
+          <tr>
+            <td><span class="tam-pill">Queen</span></td>
+            <td class="right">420</td><td class="right">79</td><td class="right">3.754</td><td class="right">R$ 5.519.933</td>
+            <td class="right">R$ 999</td><td class="right"><strong>R$ 1.350</strong></td><td class="right">R$ 1.819</td>
+            <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
+          </tr>
+          <tr>
+            <td><span class="tam-pill">King</span></td>
+            <td class="right">165</td><td class="right">47</td><td class="right">720</td><td class="right">R$ 1.421.276</td>
+            <td class="right">R$ 1.514</td><td class="right"><strong>R$ 1.832</strong></td><td class="right">R$ 2.299</td>
+            <td class="center"><span class="bet bet-nao">– Validar</span></td>
+          </tr>
+
+          <!-- MOLA PILLOW VISCO -->
+          <tr class="sep"><td colspan="10">MOLA PILLOW VISCO · 27cm</td></tr>
+          <tr>
+            <td rowspan="4"><span class="tipo-pill tp-mol">Mola</span><br><strong style="font-size:13px">Pillow Visco · 27cm</strong></td>
+            <td><span class="tam-pill">Solteiro</span></td>
+            <td class="right">8</td><td class="right">2</td><td class="right">21</td><td class="right">R$ 28.464</td>
+            <td class="right">R$ 944</td><td class="right"><strong>R$ 1.451</strong></td><td class="right">R$ 1.559</td>
+            <td class="center"><span class="bet bet-nao">– Validar</span></td>
+          </tr>
+          <tr>
+            <td><span class="tam-pill">Casal</span></td>
+            <td class="right">29</td><td class="right">7</td><td class="right">77</td><td class="right">R$ 135.354</td>
+            <td class="right">R$ 1.619</td><td class="right"><strong>R$ 1.690</strong></td><td class="right">R$ 1.784</td>
+            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
+          </tr>
+          <tr>
+            <td><span class="tam-pill">Queen</span></td>
+            <td class="right">18</td><td class="right">3</td><td class="right">47</td><td class="right">R$ 96.752</td>
+            <td class="right">R$ 1.748</td><td class="right"><strong>R$ 2.008</strong></td><td class="right">R$ 2.101</td>
+            <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
+          </tr>
+          <tr>
+            <td><span class="tam-pill">King</span></td>
+            <td class="right">4</td><td class="right">1</td><td class="right">8</td><td class="right">R$ 21.788</td>
+            <td class="right">R$ 2.521</td><td class="right"><strong>R$ 2.561</strong></td><td class="right">R$ 2.611</td>
+            <td class="center"><span class="bet bet-nao">– Validar</span></td>
+          </tr>
+
+          <!-- MOLA VISCO D33 32cm -->
+          <tr class="sep"><td colspan="10">MOLA VISCO / D33 · 32cm</td></tr>
+          <tr>
+            <td rowspan="3"><span class="tipo-pill tp-mol">Mola</span><br><strong style="font-size:13px">Visco/D33 · 32cm</strong></td>
+            <td><span class="tam-pill">Solteiro</span></td>
+            <td class="right">3</td><td class="right">2</td><td class="right">9</td><td class="right">R$ 13.007</td>
+            <td class="right">R$ 1.036</td><td class="right"><strong>R$ 1.321</strong></td><td class="right">R$ 1.639</td>
+            <td class="center"><span class="bet bet-nao">– Validar</span></td>
+          </tr>
+          <tr>
+            <td><span class="tam-pill">Casal</span></td>
+            <td class="right">1</td><td class="right">1</td><td class="right">2</td><td class="right">R$ 1.728</td>
+            <td class="right">R$ 829</td><td class="right"><strong>R$ 829</strong></td><td class="right">R$ 899</td>
+            <td class="center"><span class="bet bet-nao">– Validar</span></td>
+          </tr>
+          <tr>
+            <td><span class="tam-pill">Queen</span></td>
+            <td class="right">5</td><td class="right">3</td><td class="right">37</td><td class="right">R$ 75.771</td>
+            <td class="right">R$ 1.600</td><td class="right"><strong>R$ 2.099</strong></td><td class="right">R$ 2.159</td>
+            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
+          </tr>
+
+          <!-- MOLA EPS D26 -->
+          <tr class="sep"><td colspan="10">MOLA EPS + D26 · 25cm — mercado praticamente inexistente</td></tr>
+          <tr>
+            <td colspan="2" style="color:#aaa;font-size:12px;">EPS + D26 · 25cm</td>
+            <td class="right" style="color:#aaa;">1</td><td class="right" style="color:#aaa;">1</td><td class="right" style="color:#aaa;">11</td><td class="right" style="color:#aaa;">R$ 6.518</td>
+            <td class="right" style="color:#aaa;">—</td><td class="right" style="color:#aaa;"><strong>R$ 597</strong></td><td class="right" style="color:#aaa;">—</td>
+            <td class="center"><span class="bet bet-new">★ Pioneiro</span></td>
+          </tr>
+
         </tbody>
       </table>
     </div>
-    <div style="margin-top:8px;font-size:11px;color:#aaa;">P25/Mediana/P75 calculados sobre pedidos individuais jan–mai 2026. Mercado = MLB-MATTRESSES. Orthocrin não possui nenhum dos 7 tipos no portfólio atual.</div>
+    <div style="margin-top:8px;font-size:11px;color:#aaa;">
+      ★ 1ª = apostar imediatamente &nbsp;|&nbsp; ▲ 2ª = segunda onda &nbsp;|&nbsp; – Validar = aguardar volume mínimo &nbsp;|&nbsp; ★ Pioneiro = mercado novo, sem referência direta
+    </div>
   </div>
 
-  <!-- CARDS DETALHADOS -->
+  <!-- ONDE APOSTAR -->
   <div class="section">
-    <div class="section-title">Detalhamento por Especificação</div>
-    <div class="spec-grid">
+    <div class="section-title">Onde o Seller Deve Apostar — Priorização por Variante</div>
+    <div class="rec-grid">
 
-      <!-- D33 17cm vácuo -->
-      <div class="spec-card espuma">
-        <div class="spec-header">
-          <div>
-            <div class="spec-name">Espuma D33 — 17cm a Vácuo</div>
-            <div class="spec-sub">Maior mercado de espuma a vácuo</div>
+      <div class="rec-card rc1">
+        <div class="rec-badge rb1">Prioridade 1 — Lançar já</div>
+        <div class="rec-title">Espuma a Vácuo + Mola Solteiro/Casal</div>
+        <div class="rec-rows">
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">D33 Vácuo — Casal</div><div class="rec-row-meta">42 SKUs · 16 sellers · 4.788 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 679–770</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
           </div>
-          <span class="opp opp-alta">Alta</span>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">D33 Vácuo — Solteiro</div><div class="rec-row-meta">145 SKUs · 46 sellers · 4.914 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 531–629</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">D45 Vácuo — Casal</div><div class="rec-row-meta">4 SKUs · 4 sellers · 642 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 930–999</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">D45 Vácuo — Solteiro</div><div class="rec-row-meta">11 SKUs · 4 sellers · 968 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 659–839</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">D28 Vácuo — Solteiro</div><div class="rec-row-meta">69 SKUs · 28 sellers · 2.037 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 474–568</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">Mola Solteiro</div><div class="rec-row-meta">860 SKUs · 115 sellers · 18.708 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 447–836</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">Mola Casal</div><div class="rec-row-meta">451 SKUs · 78 sellers · 8.105 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 799–1.299</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
         </div>
-        <div class="spec-metrics">
-          <div class="spec-metric">
-            <div class="spec-metric-label">GMV Mercado</div>
-            <div class="spec-metric-val">R$ 7,6M</div>
-            <div class="spec-metric-sub">jan–mai 2026</div>
-          </div>
-          <div class="spec-metric">
-            <div class="spec-metric-label">Unidades</div>
-            <div class="spec-metric-val">10.551</div>
-            <div class="spec-metric-sub">52 sellers ativos</div>
-          </div>
-        </div>
-        <div class="ticket-visual">
-          <div class="ticket-visual-title">Faixa de Ticket Médio no Mercado</div>
-          <div class="ticket-vals-row">
-            <div class="ticket-val-item"><div class="ticket-val-num">R$ 114</div><div class="ticket-val-lbl">Mínimo</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 581</div><div class="ticket-val-lbl">P25</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#1a1a1a;font-size:16px;">R$ 674</div><div class="ticket-val-lbl">Mediana</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 759</div><div class="ticket-val-lbl">P75</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num">R$ 2.907</div><div class="ticket-val-lbl">Máximo</div></div>
-          </div>
-        </div>
-        <div style="font-size:12px;color:#555;line-height:1.5;">Maior volume do segmento a vácuo — 10.551 unidades, R$7,6M. 52 sellers com mercado bem consolidado. Entrada entre R$620–760 posiciona na faixa mediana–P75. Ticket superior ao D33 convencional.</div>
       </div>
 
-      <!-- D45 17cm vácuo -->
-      <div class="spec-card espuma">
-        <div class="spec-header">
-          <div>
-            <div class="spec-name">Espuma D45 — 17cm a Vácuo</div>
-            <div class="spec-sub">Menor concorrência, maior ticket</div>
+      <div class="rec-card rc2">
+        <div class="rec-badge rb2">Prioridade 2 — Segunda Onda</div>
+        <div class="rec-title">Queen + Mola Premium</div>
+        <div class="rec-rows">
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">D33 Vácuo — Queen</div><div class="rec-row-meta">32 SKUs · 11 sellers · 656 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 920–1.180</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
           </div>
-          <span class="opp opp-alta">Alta</span>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">D45 Vácuo — Queen</div><div class="rec-row-meta">2 SKUs · 1 seller · 206 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 1.139–1.399</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">D28 Vácuo — Casal</div><div class="rec-row-meta">8 SKUs · 6 sellers · 797 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 899–999</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">Mola Queen</div><div class="rec-row-meta">420 SKUs · 79 sellers · 3.754 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 999–1.819</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">Mola Pillow Visco — Casal</div><div class="rec-row-meta">29 SKUs · 7 sellers · 77 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 1.619–1.784</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">Mola Pillow Visco — Queen</div><div class="rec-row-meta">18 SKUs · 3 sellers · 47 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 1.748–2.101</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">Mola Visco/D33 — Queen</div><div class="rec-row-meta">5 SKUs · 3 sellers · 37 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 1.600–2.159</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
         </div>
-        <div class="spec-metrics">
-          <div class="spec-metric">
-            <div class="spec-metric-label">GMV Mercado</div>
-            <div class="spec-metric-val">R$ 1,75M</div>
-            <div class="spec-metric-sub">jan–mai 2026</div>
-          </div>
-          <div class="spec-metric">
-            <div class="spec-metric-label">Unidades</div>
-            <div class="spec-metric-val">1.878</div>
-            <div class="spec-metric-sub">apenas 6 sellers</div>
-          </div>
-        </div>
-        <div class="ticket-visual">
-          <div class="ticket-visual-title">Faixa de Ticket Médio no Mercado</div>
-          <div class="ticket-vals-row">
-            <div class="ticket-val-item"><div class="ticket-val-num">R$ 482</div><div class="ticket-val-lbl">Mínimo</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 729</div><div class="ticket-val-lbl">P25</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#1a1a1a;font-size:16px;">R$ 875</div><div class="ticket-val-lbl">Mediana</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 1.049</div><div class="ticket-val-lbl">P75</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num">R$ 2.949</div><div class="ticket-val-lbl">Máximo</div></div>
-          </div>
-        </div>
-        <div style="font-size:12px;color:#555;line-height:1.5;">Apenas 6 sellers no segmento a vácuo D45 — baixíssima concorrência. Mediana R$875 com P75 em R$1.049. Orthocrin já tem brand equity em D45 convencional. Entrada natural e diferenciada.</div>
       </div>
 
-      <!-- D28 17cm vácuo -->
-      <div class="spec-card espuma">
-        <div class="spec-header">
-          <div>
-            <div class="spec-name">Espuma D28 — 17cm a Vácuo</div>
-            <div class="spec-sub">Volume relevante, ticket acessível</div>
+      <div class="rec-card rc3">
+        <div class="rec-badge rb3">Prioridade 3 — Validar / Pioneiro</div>
+        <div class="rec-title">King + Mercados Nascentes</div>
+        <div class="rec-rows">
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">D33 Vácuo — King</div><div class="rec-row-meta">5 SKUs · 2 sellers · 158 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 1.199–1.454</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
           </div>
-          <span class="opp opp-alta">Alta</span>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">D45 Vácuo — King</div><div class="rec-row-meta">1 SKU · 1 seller · 62 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 1.499–1.559</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">Mola King</div><div class="rec-row-meta">165 SKUs · 47 sellers · 720 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 1.514–2.299</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">D28 Vácuo — Queen</div><div class="rec-row-meta">1 SKU · 1 seller · 56 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 900</div><div class="rec-row-range">referência única</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">EPS + D26 · 25cm — todos</div><div class="rec-row-meta">1 SKU · 1 seller · 11 un · mercado novo</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 597</div><div class="rec-row-range">único referência</div></div>
+            </div>
+          </div>
+          <div class="rec-row">
+            <div class="rec-row-top">
+              <div><div class="rec-row-name">Mola Visco/D33 — Casal</div><div class="rec-row-meta">1 SKU · 1 seller · 2 un</div></div>
+              <div style="text-align:right"><div class="rec-row-price">R$ 829–899</div><div class="rec-row-range">P25–P75</div></div>
+            </div>
+          </div>
         </div>
-        <div class="spec-metrics">
-          <div class="spec-metric">
-            <div class="spec-metric-label">GMV Mercado</div>
-            <div class="spec-metric-val">R$ 1,92M</div>
-            <div class="spec-metric-sub">jan–mai 2026</div>
-          </div>
-          <div class="spec-metric">
-            <div class="spec-metric-label">Unidades</div>
-            <div class="spec-metric-val">2.891</div>
-            <div class="spec-metric-sub">32 sellers ativos</div>
-          </div>
-        </div>
-        <div class="ticket-visual">
-          <div class="ticket-visual-title">Faixa de Ticket Médio no Mercado</div>
-          <div class="ticket-vals-row">
-            <div class="ticket-val-item"><div class="ticket-val-num">R$ 359</div><div class="ticket-val-lbl">Mínimo</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 485</div><div class="ticket-val-lbl">P25</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#1a1a1a;font-size:16px;">R$ 562</div><div class="ticket-val-lbl">Mediana</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 899</div><div class="ticket-val-lbl">P75</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num">R$ 1.874</div><div class="ticket-val-lbl">Máximo</div></div>
-          </div>
-        </div>
-        <div style="font-size:12px;color:#555;line-height:1.5;">Produto de entrada acessível (mediana R$562) com bom volume (2.891 unidades). Posicionar entre R$500–600 para capturar demanda de consumidor sensível a preço que quer colchão a vácuo.</div>
       </div>
 
-      <!-- Mola Simples -->
-      <div class="spec-card mola">
-        <div class="spec-header">
-          <div>
-            <div class="spec-name">Mola — Categoria Geral</div>
-            <div class="spec-sub">Maior mercado de colchões no MLB</div>
-          </div>
-          <span class="opp opp-alta">Alta</span>
-        </div>
-        <div class="spec-metrics">
-          <div class="spec-metric">
-            <div class="spec-metric-label">GMV Mercado</div>
-            <div class="spec-metric-val">R$ 28,9M</div>
-            <div class="spec-metric-sub">jan–mai 2026</div>
-          </div>
-          <div class="spec-metric">
-            <div class="spec-metric-label">Unidades</div>
-            <div class="spec-metric-val">31.974</div>
-            <div class="spec-metric-sub">152 sellers ativos</div>
-          </div>
-        </div>
-        <div class="ticket-visual">
-          <div class="ticket-visual-title">Faixa de Ticket Médio no Mercado (Mola Geral)</div>
-          <div class="ticket-vals-row">
-            <div class="ticket-val-item"><div class="ticket-val-num">R$ 200</div><div class="ticket-val-lbl">Mínimo</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 559</div><div class="ticket-val-lbl">P25</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#1a1a1a;font-size:16px;">R$ 786</div><div class="ticket-val-lbl">Mediana</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 1.170</div><div class="ticket-val-lbl">P75</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num">R$ 12.183</div><div class="ticket-val-lbl">Máximo</div></div>
-          </div>
-        </div>
-        <div style="font-size:12px;color:#555;line-height:1.5;">Maior oportunidade em volume absoluto. D65/D26 22cm e EPS+D26 25cm são subtipos dentro deste mercado. Referência de faixa para precificar os novos produtos mola.</div>
-      </div>
-
-      <!-- Pillow Visco 27cm -->
-      <div class="spec-card mola">
-        <div class="spec-header">
-          <div>
-            <div class="spec-name">Mola Pillow Visco — 27cm</div>
-            <div class="spec-sub">Premium — ticket alto, baixo volume</div>
-          </div>
-          <span class="opp opp-media">Média</span>
-        </div>
-        <div class="spec-metrics">
-          <div class="spec-metric">
-            <div class="spec-metric-label">GMV Mercado</div>
-            <div class="spec-metric-val">R$ 282K</div>
-            <div class="spec-metric-sub">jan–mai 2026</div>
-          </div>
-          <div class="spec-metric">
-            <div class="spec-metric-label">Unidades</div>
-            <div class="spec-metric-val">153</div>
-            <div class="spec-metric-sub">9 sellers ativos</div>
-          </div>
-        </div>
-        <div class="ticket-visual">
-          <div class="ticket-visual-title">Faixa de Ticket Médio no Mercado</div>
-          <div class="ticket-vals-row">
-            <div class="ticket-val-item"><div class="ticket-val-num">R$ 898</div><div class="ticket-val-lbl">Mínimo</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 1.619</div><div class="ticket-val-lbl">P25</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#1a1a1a;font-size:16px;">R$ 1.704</div><div class="ticket-val-lbl">Mediana</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 2.008</div><div class="ticket-val-lbl">P75</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num">R$ 4.815</div><div class="ticket-val-lbl">Máximo</div></div>
-          </div>
-        </div>
-        <div style="font-size:12px;color:#555;line-height:1.5;">Ticket premium (R$1.704 mediana). Mercado pequeno mas bem definido. Boa opção para Orthocrin posicionar produto diferenciado acima de R$1.500, aproveitando reputação de marca.</div>
-      </div>
-
-      <!-- Visco D33 32cm -->
-      <div class="spec-card mola">
-        <div class="spec-header">
-          <div>
-            <div class="spec-name">Mola Visco/D33 — 32cm</div>
-            <div class="spec-sub">Ultra-premium — mercado nascente</div>
-          </div>
-          <span class="opp opp-media">Média</span>
-        </div>
-        <div class="spec-metrics">
-          <div class="spec-metric">
-            <div class="spec-metric-label">GMV Mercado</div>
-            <div class="spec-metric-val">R$ 93K</div>
-            <div class="spec-metric-sub">jan–mai 2026</div>
-          </div>
-          <div class="spec-metric">
-            <div class="spec-metric-label">Unidades</div>
-            <div class="spec-metric-val">49</div>
-            <div class="spec-metric-sub">6 sellers ativos</div>
-          </div>
-        </div>
-        <div class="ticket-visual">
-          <div class="ticket-visual-title">Faixa de Ticket Médio no Mercado</div>
-          <div class="ticket-vals-row">
-            <div class="ticket-val-item"><div class="ticket-val-num">R$ 829</div><div class="ticket-val-lbl">Mínimo</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 1.600</div><div class="ticket-val-lbl">P25</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#1a1a1a;font-size:16px;">R$ 2.099</div><div class="ticket-val-lbl">Mediana</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 2.159</div><div class="ticket-val-lbl">P75</div></div>
-            <div class="ticket-val-item"><div class="ticket-val-num">R$ 3.119</div><div class="ticket-val-lbl">Máximo</div></div>
-          </div>
-        </div>
-        <div style="font-size:12px;color:#555;line-height:1.5;">Menor mercado mapeado (49 unidades, 6 sellers). Ticket acima de R$2.000 — produto de alto valor mas demanda muito baixa. Avaliar como topo de linha após consolidar outros produtos.</div>
-      </div>
-
-    </div>
-
-    <!-- Cards especiais: mercado novo -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
-      <div class="spec-card mola-nova">
-        <div class="spec-header">
-          <div>
-            <div class="spec-name">Mola D65/D26 — 22cm</div>
-            <div class="spec-sub">Sem registro com essa nomenclatura no mercado</div>
-          </div>
-          <span class="opp opp-nova">Mercado Novo</span>
-        </div>
-        <div style="font-size:12px;color:#555;line-height:1.6;margin-top:8px;">
-          Não foram encontrados colchões de mola com densidade <strong>D65/D26 e 22cm</strong> descritos dessa forma nos títulos do MLB (jan–mai 2026). O mercado geral de mola simples (R$28,9M) serve como referência — a faixa de ticket para colchões de mola 20–24cm está entre <strong>R$559 (P25) e R$1.170 (P75)</strong>. Produto possivelmente novo no segmento ou com nomenclatura diferente nos anúncios.
-        </div>
-      </div>
-      <div class="spec-card mola-nova">
-        <div class="spec-header">
-          <div>
-            <div class="spec-name">Mola EPS + D26 — 25cm</div>
-            <div class="spec-sub">Mercado praticamente inexistente</div>
-          </div>
-          <span class="opp opp-nova">Mercado Novo</span>
-        </div>
-        <div style="font-size:12px;color:#555;line-height:1.6;margin-top:8px;">
-          Apenas <strong>1 seller, 11 unidades, GMV R$6.518</strong> em todo o período. Ticket médio de R$597. EPS (poliestireno expandido) em colchões de mola é raro no MLB. Pode representar uma inovação ou produto importado. Referência de mercado: mola simples 25cm opera entre <strong>R$559–R$1.170</strong>. Risco de demanda baixa no curto prazo.
-        </div>
-      </div>
     </div>
   </div>
 
   <!-- DIAGNÓSTICO -->
   <div class="section">
-    <div class="section-title">Diagnóstico — Priorização dos 7 Produtos</div>
+    <div class="section-title">Diagnóstico — Principais Insights por Tipo</div>
     <div class="diag-list">
       <div class="diag-item">
         <div class="diag-num">1</div>
         <div>
-          <div class="diag-title">Espuma D33 17cm a Vácuo — Maior Mercado, Entrada Prioritária</div>
-          <div class="diag-desc">Mercado de <strong>R$7,6M</strong> com <strong>10.551 unidades</strong> vendidas em 5 meses — muito maior que o segmento convencional. Com 52 sellers e mediana de <strong>R$674</strong>, o segmento a vácuo tem ticket superior ao D33 convencional (R$464). Entrada entre R$620–760 posiciona na faixa mediana–P75 sem ser o mais caro. Para Orthocrin, que já tem brand equity em colchões de espuma, é o produto de maior volume e menor risco.</div>
+          <div class="diag-title">D33 a Vácuo Casal supera Solteiro em GMV — apostar em Casal como âncora</div>
+          <div class="diag-desc">Apesar de ter quase o mesmo número de unidades (4.788 Casal vs. 4.914 Solteiro), o <strong>Casal gera R$3,67M vs. R$2,95M</strong> do Solteiro — 24% a mais de GMV com ticket médio de R$730 vs. R$579. Produto âncora recomendado: <strong>D33 17cm a Vácuo Casal</strong> entre R$679–730.</div>
         </div>
       </div>
       <div class="diag-item">
         <div class="diag-num">2</div>
         <div>
-          <div class="diag-title">Espuma D45 17cm a Vácuo — Menor Concorrência, Melhor Ticket</div>
-          <div class="diag-desc">Apenas <strong>6 sellers</strong> no mercado de D45 a vácuo — mais baixo que qualquer outra especificação. GMV de <strong>R$1,75M</strong>, mediana R$875 e P75 em R$1.049. Orthocrin já domina D45 no portfólio atual (ticket ~R$1.466 em versões mais espessas). A versão 17cm a vácuo abre o produto para novo público com preço mais acessível, mantendo o posicionamento premium da marca.</div>
+          <div class="diag-title">D45 a Vácuo — baixíssima concorrência em todos os tamanhos</div>
+          <div class="diag-desc">Com apenas <strong>4–6 sellers</strong> em Solteiro e Casal (vs. 46 sellers no D33), o D45 a vácuo é o segmento com melhor relação oportunidade/concorrência. Ticket P25 já começa em R$659 (Solteiro) e R$930 (Casal). Orthocrin já tem credencial D45 no portfólio convencional — entrada a vácuo é extensão natural.</div>
         </div>
       </div>
       <div class="diag-item">
         <div class="diag-num">3</div>
         <div>
-          <div class="diag-title">Mola — Grande Oportunidade, Exige Posicionamento Claro por Subtipo</div>
-          <div class="diag-desc">O mercado de mola simples tem <strong>R$28,9M</strong> em GMV — 5x maior que todo o segmento espuma 17cm. Com 152 sellers, é mais competitivo. A entrada ideal para Orthocrin é via diferenciação nos subtipos premium: <strong>Pillow Visco 27cm (R$1.704 mediana)</strong> ou <strong>Visco/D33 32cm (R$2.099 mediana)</strong>, onde a concorrência é menor (6–9 sellers) e o ticket justifica investimento em qualidade. Os tipos D65/D26 22cm e EPS+D26 25cm representam oportunidade de pioneirismo.</div>
+          <div class="diag-title">Mola Solteiro é o maior volume do estudo — 18.708 unidades em 5 meses</div>
+          <div class="diag-desc">O mercado de <strong>Mola Solteiro</strong> tem 115 sellers e 18.708 unidades — muito maior que qualquer variante de espuma a vácuo. Mediana de R$599 é acessível. Para um novo entrante em mola, Solteiro + Casal juntos capturam <strong>R$21,4M de GMV</strong> (73% do mercado mola analisado).</div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- PLANO DE ENTRADA -->
-  <div class="section">
-    <div class="section-title">Plano de Entrada — Sequência Recomendada</div>
-    <div class="plan-grid">
-      <div class="plan-card p1">
-        <div class="plan-badge badge-p1">Prioridade 1 — Imediato</div>
-        <div class="plan-title">Espuma D33 + D45 — 17cm a Vácuo</div>
-        <ul class="plan-bullets">
-          <li>D33 a vácuo: posicionar entre R$620–760 (mediana–P75 do mercado)</li>
-          <li>D45 a vácuo: posicionar entre R$850–1.050 (mediana–P75 do mercado)</li>
-          <li>Destacar "a vácuo / na caixa" no título — termo de busca ativo no mercado</li>
-          <li>Cobrir solteiro, casal e queen para maximizar cobertura de busca</li>
-          <li>Meta: 30 dias para construir histórico orgânico de vendas</li>
-        </ul>
+      <div class="diag-item">
+        <div class="diag-num">4</div>
+        <div>
+          <div class="diag-title">Queen é a variante premium com menor concorrência nos tipos mola</div>
+          <div class="diag-desc">Mola Pillow Visco Queen tem <strong>apenas 3 sellers</strong> com mediana R$2.008. Mola Visco/D33 Queen tem 3 sellers com mediana R$2.099. Para produtos premium com ticket acima de R$1.700, Queen é a variante com maior relação GMV/concorrência. King tem volume marginal e deve ser tratado como extensão de portfólio após consolidar Queen.</div>
+        </div>
       </div>
-      <div class="plan-card p2">
-        <div class="plan-badge badge-p2">Prioridade 2 — 1 a 2 meses</div>
-        <div class="plan-title">Mola Simples + Pillow Visco 27cm</div>
-        <ul class="plan-bullets">
-          <li>Mola simples: entrada entre R$700–900 (mediana R$786) para começar a construir histórico no segmento mola</li>
-          <li>Pillow Visco 27cm: precificar acima de R$1.500 — premium com baixa concorrência (9 sellers)</li>
-          <li>Validar logística (XD ou Full) para colchões de mola antes de escalar</li>
-          <li>D28 17cm: avaliar posicionamento — ticket alto (R$949) pode ser resultado de pillow top</li>
-        </ul>
-      </div>
-      <div class="plan-card p3">
-        <div class="plan-badge badge-p3">Prioridade 3 — 3+ meses</div>
-        <div class="plan-title">Visco/D33 32cm + D65/D26 + EPS+D26</div>
-        <ul class="plan-bullets">
-          <li>Visco/D33 32cm: topo de linha acima de R$2.000 — para após consolidar molas básicas</li>
-          <li>D65/D26 22cm: testar como produto novo no mercado — pioneirismo pode gerar tração orgânica</li>
-          <li>EPS+D26 25cm: mercado praticamente inexistente — validar demanda antes de produzir</li>
-          <li>Criar linha nomeada clara (ex: "Linha Premium Mola") para construir identidade</li>
-        </ul>
+      <div class="diag-item">
+        <div class="diag-num">5</div>
+        <div>
+          <div class="diag-title">EPS + D26 · 25cm e D65/D26 · 22cm são oportunidades de pioneirismo</div>
+          <div class="diag-desc">O EPS + D26 25cm tem <strong>1 seller e 11 unidades</strong> — praticamente sem concorrência. O D65/D26 22cm como classificação específica não aparece no mercado (a busca mais ampla captura a categoria geral de mola, que tem R$28,9M). Orthocrin pode ser o primeiro a nomear e posicionar esse produto explicitamente no ML, criando uma categoria proprietária.</div>
+        </div>
       </div>
     </div>
   </div>
