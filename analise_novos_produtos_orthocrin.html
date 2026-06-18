@@ -12,8 +12,8 @@
     header{background:#FFE600;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.12)}
     .header-left{display:flex;align-items:center;gap:14px}
     .header-logo{width:36px;height:36px;border-radius:8px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:#FFE600}
-    header h1{font-size:19px;font-weight:800;color:#1a1a1a}
-    header h1 span{font-weight:400;opacity:.6;font-size:13px;margin-left:8px}
+    header h1{font-size:18px;font-weight:800;color:#1a1a1a}
+    header h1 span{font-weight:400;opacity:.6;font-size:12px;margin-left:8px}
     .header-badge{background:#1a1a1a;color:#FFE600;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600}
 
     .container{max-width:1260px;margin:0 auto;padding:28px 24px}
@@ -27,6 +27,16 @@
     .kpi-value{font-size:20px;font-weight:800;color:#1a1a1a;margin-top:5px}
     .kpi-sub{font-size:10px;color:#aaa;margin-top:2px}
 
+    /* TOGGLE */
+    .toggle-bar{display:flex;gap:10px;margin-bottom:20px}
+    .toggle-btn{padding:10px 24px;border-radius:30px;font-size:13px;font-weight:700;cursor:pointer;border:2px solid transparent;transition:all .2s}
+    .toggle-btn.vacuo{background:#fff;color:#1d4ed8;border-color:#1d4ed8}
+    .toggle-btn.vacuo.active{background:#1d4ed8;color:#fff}
+    .toggle-btn.conv{background:#fff;color:#b45309;border-color:#f59e0b}
+    .toggle-btn.conv.active{background:#f59e0b;color:#fff}
+    .view{display:none}
+    .view.active{display:block}
+
     /* TABLE */
     .table-wrap{background:#fff;border-radius:12px;box-shadow:0 1px 4px rgba(0,0,0,.08);overflow:hidden}
     table{width:100%;border-collapse:collapse}
@@ -36,46 +46,40 @@
     thead th.center{text-align:center}
     tbody tr{border-bottom:1px solid #F0F0F0;transition:background .15s}
     tbody tr:hover{background:#fafafa}
-    tbody tr.sep{background:#f4f4f4}
-    tbody tr.sep td{font-size:11px;font-weight:700;color:#666;padding:8px 14px;letter-spacing:.04em}
+    tbody tr.sep td{font-size:11px;font-weight:700;color:#555;padding:8px 14px;background:#f4f4f4;letter-spacing:.04em}
     tbody td{padding:10px 14px;font-size:12px}
     tbody td.right{text-align:right}
     tbody td.center{text-align:center}
 
     /* PILLS */
-    .tipo-pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
-    .tp-esp{background:#dbeafe;color:#1d4ed8}
-    .tp-mol{background:#fef3c7;color:#b45309}
+    .tipo-pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700;white-space:nowrap}
+    .tp-v{background:#dbeafe;color:#1d4ed8}
+    .tp-c{background:#fef3c7;color:#b45309}
     .tam-pill{display:inline-block;padding:2px 7px;border-radius:6px;font-size:11px;font-weight:600;background:#F0F0F0;color:#555}
 
-    /* TICKET RANGE */
-    .tr-wrap{display:flex;align-items:center;gap:6px}
-    .tr-bar{flex:1;height:6px;border-radius:3px;background:linear-gradient(90deg,#dbeafe,#FFE600,#f59e0b);min-width:60px}
-    .tr-vals{display:flex;flex-direction:column;min-width:130px}
-    .tr-main{font-size:12px;font-weight:700;color:#1a1a1a}
-    .tr-range{font-size:10px;color:#aaa}
+    /* TICKET CELL */
+    .tk{display:flex;flex-direction:column;align-items:flex-end}
+    .tk-med{font-size:13px;font-weight:800;color:#1a1a1a}
+    .tk-range{font-size:10px;color:#aaa}
 
-    /* APOSTAR BADGE */
-    .bet{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700}
-    .bet-sim{background:#dcfce7;color:#15803d}
+    /* BET */
+    .bet{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;white-space:nowrap}
+    .bet-1{background:#dcfce7;color:#15803d}
     .bet-2{background:#fef3c7;color:#d97706}
-    .bet-nao{background:#f3f4f6;color:#9ca3af}
-    .bet-new{background:#ede9fe;color:#7c3aed}
+    .bet-v{background:#f3f4f6;color:#6b7280}
 
-    /* RECOMENDAÇÕES */
-    .rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    .rec-card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.08);border-top:4px solid}
-    .rc1{border-top-color:#22c55e}.rc2{border-top-color:#f59e0b}.rc3{border-top-color:#8b5cf6}
-    .rec-badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;margin-bottom:8px}
-    .rb1{background:#dcfce7;color:#15803d}.rb2{background:#fef3c7;color:#d97706}.rb3{background:#ede9fe;color:#7c3aed}
-    .rec-title{font-size:14px;font-weight:700;color:#1a1a1a;margin-bottom:10px}
-    .rec-rows{display:flex;flex-direction:column;gap:8px}
-    .rec-row{background:#F0F0F0;border-radius:8px;padding:10px 12px}
-    .rec-row-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
-    .rec-row-name{font-size:12px;font-weight:700;color:#1a1a1a}
-    .rec-row-meta{font-size:11px;color:#555}
-    .rec-row-price{font-size:13px;font-weight:800;color:#1a1a1a}
-    .rec-row-range{font-size:10px;color:#888}
+    /* COMPARATIVO */
+    .comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .comp-card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+    .comp-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+    .comp-dot{width:12px;height:12px;border-radius:50%}
+    .comp-title{font-size:14px;font-weight:800;color:#1a1a1a}
+    .comp-sub{font-size:11px;color:#888}
+    .comp-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #F0F0F0}
+    .comp-row:last-child{border:none}
+    .comp-row-name{font-size:12px;color:#555}
+    .comp-row-val{font-size:13px;font-weight:700;color:#1a1a1a}
+    .comp-row-sub{font-size:10px;color:#aaa;text-align:right}
 
     /* DIAG */
     .diag-list{display:flex;flex-direction:column;gap:12px}
@@ -83,6 +87,20 @@
     .diag-num{min-width:28px;height:28px;border-radius:50%;background:#1a1a1a;color:#FFE600;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
     .diag-title{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:3px}
     .diag-desc{font-size:12px;color:#555;line-height:1.55}
+
+    /* RECOMENDAÇÕES */
+    .rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .rec-card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.08);border-top:4px solid}
+    .rc1{border-top-color:#22c55e}.rc2{border-top-color:#f59e0b}.rc3{border-top-color:#8b5cf6}
+    .rec-badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;margin-bottom:8px}
+    .rb1{background:#dcfce7;color:#15803d}.rb2{background:#fef3c7;color:#d97706}.rb3{background:#ede9fe;color:#7c3aed}
+    .rec-title{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:10px}
+    .rec-rows{display:flex;flex-direction:column;gap:8px}
+    .rec-row{background:#F0F0F0;border-radius:8px;padding:10px 12px}
+    .rec-name{font-size:12px;font-weight:700;color:#1a1a1a}
+    .rec-meta{font-size:10px;color:#888;margin-top:1px}
+    .rec-price{font-size:13px;font-weight:800;color:#1a1a1a;text-align:right}
+    .rec-range{font-size:10px;color:#aaa;text-align:right}
 
     footer{text-align:center;padding:24px;font-size:11px;color:#aaa;border-top:1px solid #e0e0e0;margin-top:8px}
   </style>
@@ -92,9 +110,9 @@
 <header>
   <div class="header-left">
     <div class="header-logo">O</div>
-    <h1>Orthocrin — Análise de Novos Produtos <span>Seller #560912973 • Espuma a Vácuo + Mola • Jan–Mai 2026</span></h1>
+    <h1>Orthocrin — Análise de Novos Produtos <span>Seller #560912973 • Espuma (Vácuo + Convencional) + Mola • Jan–Mai 2026</span></h1>
   </div>
-  <div class="header-badge">7 tipos · 4 variantes</div>
+  <div class="header-badge">7 tipos · 4 variantes · 2 visões</div>
 </header>
 
 <div class="container">
@@ -104,12 +122,17 @@
     <div class="kpi-card">
       <div class="kpi-label">GMV Atual Orthocrin</div>
       <div class="kpi-value">R$ 1,14M</div>
-      <div class="kpi-sub">Jan–Mai 2026 (portfólio existente)</div>
+      <div class="kpi-sub">Jan–Mai 2026 — portfólio atual</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Mercado Espuma a Vácuo</div>
       <div class="kpi-value">R$ 11,2M</div>
-      <div class="kpi-sub">D28 + D33 + D45 (na caixa)</div>
+      <div class="kpi-sub">D28+D33+D45 com termo na caixa/vácuo</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Mercado Espuma Convencional</div>
+      <div class="kpi-value">R$ 41,2M</div>
+      <div class="kpi-sub">D28+D33+D45 sem termo de embalagem</div>
     </div>
     <div class="kpi-card">
       <div class="kpi-label">Mercado Mola</div>
@@ -117,396 +140,351 @@
       <div class="kpi-sub">Todos os tipos analisados</div>
     </div>
     <div class="kpi-card">
-      <div class="kpi-label">Variante de maior GMV</div>
-      <div class="kpi-value">Mola Casal</div>
-      <div class="kpi-sub">R$8,87M · mediana R$999</div>
-    </div>
-    <div class="kpi-card">
-      <div class="kpi-label">Novos SKUs Orthocrin</div>
-      <div class="kpi-value">0 / 7</div>
-      <div class="kpi-sub">Nenhum tipo existe no portfólio hoje</div>
+      <div class="kpi-label">Total Endereçável</div>
+      <div class="kpi-value">R$ 81,7M</div>
+      <div class="kpi-sub">Espuma (ambos) + Mola</div>
     </div>
   </div>
 
-  <!-- TABELA COMPLETA POR VARIANTE -->
+  <!-- ESPUMA — DUAS VISÕES -->
   <div class="section">
-    <div class="section-title">Mercado por Tipo × Variante — Ticket e Volume (Jan–Mai 2026)</div>
+    <div class="section-title">Espuma D28 / D33 / D45 — Mercado por Variante e Tipo de Embalagem</div>
+
+    <div class="toggle-bar">
+      <button class="toggle-btn vacuo active" onclick="switchView('vacuo', this)">📦 A Vácuo / Na Caixa / Enrolado</button>
+      <button class="toggle-btn conv" onclick="switchView('conv', this)">🛏️ Convencional</button>
+    </div>
+
+    <!-- VISÃO VÁCUO -->
+    <div id="view-vacuo" class="view active">
+      <div style="background:#dbeafe;border-radius:10px;padding:10px 16px;margin-bottom:14px;font-size:12px;color:#1d4ed8;font-weight:600;">
+        📦 Inclui itens com termos "a vácuo", "na caixa", "comprimido", "enrolado" ou "roll" no título
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Densidade</th><th>Variante</th>
+              <th class="right">SKUs</th><th class="right">Sellers</th><th class="right">Unidades</th>
+              <th class="right">GMV</th><th class="right">P25</th><th class="right">Mediana</th><th class="right">P75</th>
+              <th class="center">Apostar?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="sep"><td colspan="10">D33 · 17cm — A VÁCUO</td></tr>
+            <tr>
+              <td rowspan="4"><span class="tipo-pill tp-v">D33 Vácuo</span></td>
+              <td><span class="tam-pill">Solteiro</span></td>
+              <td class="right">145</td><td class="right">46</td><td class="right">4.914</td><td class="right">R$ 2.954.980</td>
+              <td class="right">R$ 531</td><td class="right"><strong>R$ 579</strong></td><td class="right">R$ 629</td>
+              <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">Casal</span></td>
+              <td class="right">42</td><td class="right">16</td><td class="right">4.788</td><td class="right">R$ 3.670.705</td>
+              <td class="right">R$ 679</td><td class="right"><strong>R$ 730</strong></td><td class="right">R$ 770</td>
+              <td class="center"><span class="bet bet-1">★ 1ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">Queen</span></td>
+              <td class="right">32</td><td class="right">11</td><td class="right">656</td><td class="right">R$ 709.803</td>
+              <td class="right">R$ 920</td><td class="right"><strong>R$ 989</strong></td><td class="right">R$ 1.180</td>
+              <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">King</span></td>
+              <td class="right">5</td><td class="right">2</td><td class="right">158</td><td class="right">R$ 208.914</td>
+              <td class="right">R$ 1.199</td><td class="right"><strong>R$ 1.199</strong></td><td class="right">R$ 1.454</td>
+              <td class="center"><span class="bet bet-v">– Validar</span></td>
+            </tr>
+
+            <tr class="sep"><td colspan="10">D45 · 17cm — A VÁCUO</td></tr>
+            <tr>
+              <td rowspan="4"><span class="tipo-pill tp-v">D45 Vácuo</span></td>
+              <td><span class="tam-pill">Solteiro</span></td>
+              <td class="right">11</td><td class="right">4</td><td class="right">968</td><td class="right">R$ 742.215</td>
+              <td class="right">R$ 659</td><td class="right"><strong>R$ 729</strong></td><td class="right">R$ 839</td>
+              <td class="center"><span class="bet bet-1">★ 1ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">Casal</span></td>
+              <td class="right">4</td><td class="right">4</td><td class="right">642</td><td class="right">R$ 647.063</td>
+              <td class="right">R$ 930</td><td class="right"><strong>R$ 979</strong></td><td class="right">R$ 999</td>
+              <td class="center"><span class="bet bet-1">★ 1ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">Queen</span></td>
+              <td class="right">2</td><td class="right">1</td><td class="right">206</td><td class="right">R$ 259.836</td>
+              <td class="right">R$ 1.139</td><td class="right"><strong>R$ 1.199</strong></td><td class="right">R$ 1.399</td>
+              <td class="center"><span class="bet bet-1">★ 1ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">King</span></td>
+              <td class="right">1</td><td class="right">1</td><td class="right">62</td><td class="right">R$ 99.975</td>
+              <td class="right">R$ 1.499</td><td class="right"><strong>R$ 1.499</strong></td><td class="right">R$ 1.559</td>
+              <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
+            </tr>
+
+            <tr class="sep"><td colspan="10">D28 · 17cm — A VÁCUO</td></tr>
+            <tr>
+              <td rowspan="3"><span class="tipo-pill tp-v">D28 Vácuo</span></td>
+              <td><span class="tam-pill">Solteiro</span></td>
+              <td class="right">69</td><td class="right">28</td><td class="right">2.037</td><td class="right">R$ 1.114.438</td>
+              <td class="right">R$ 474</td><td class="right"><strong>R$ 499</strong></td><td class="right">R$ 568</td>
+              <td class="center"><span class="bet bet-1">★ 1ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">Casal</span></td>
+              <td class="right">8</td><td class="right">6</td><td class="right">797</td><td class="right">R$ 752.897</td>
+              <td class="right">R$ 899</td><td class="right"><strong>R$ 989</strong></td><td class="right">R$ 999</td>
+              <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">Queen</span></td>
+              <td class="right">1</td><td class="right">1</td><td class="right">56</td><td class="right">R$ 52.640</td>
+              <td class="right">R$ 900</td><td class="right"><strong>R$ 900</strong></td><td class="right">R$ 900</td>
+              <td class="center"><span class="bet bet-v">– Validar</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:#aaa;">★ 1ª = apostar imediatamente &nbsp;|&nbsp; ▲ 2ª = segunda onda &nbsp;|&nbsp; – Validar = aguardar volume</div>
+    </div>
+
+    <!-- VISÃO CONVENCIONAL -->
+    <div id="view-conv" class="view">
+      <div style="background:#fef3c7;border-radius:10px;padding:10px 16px;margin-bottom:14px;font-size:12px;color:#b45309;font-weight:600;">
+        🛏️ Não inclui termos de embalagem no título — colchões convencionais, inclui grandes sellers como Umaflex, Ortobom e outros sem designação
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Densidade</th><th>Variante</th>
+              <th class="right">SKUs</th><th class="right">Sellers</th><th class="right">Unidades</th>
+              <th class="right">GMV</th><th class="right">P25</th><th class="right">Mediana</th><th class="right">P75</th>
+              <th class="center">Apostar?</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="sep"><td colspan="10">D33 — CONVENCIONAL</td></tr>
+            <tr>
+              <td rowspan="4"><span class="tipo-pill tp-c">D33 Conv.</span></td>
+              <td><span class="tam-pill">Solteiro</span></td>
+              <td class="right">1.150</td><td class="right">235</td><td class="right">35.785</td><td class="right">R$ 14.535.259</td>
+              <td class="right">R$ 329</td><td class="right"><strong>R$ 391</strong></td><td class="right">R$ 479</td>
+              <td class="center"><span class="bet bet-1">★ 1ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">Casal</span></td>
+              <td class="right">487</td><td class="right">101</td><td class="right">16.681</td><td class="right">R$ 10.314.529</td>
+              <td class="right">R$ 543</td><td class="right"><strong>R$ 599</strong></td><td class="right">R$ 699</td>
+              <td class="center"><span class="bet bet-1">★ 1ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">Queen</span></td>
+              <td class="right">136</td><td class="right">34</td><td class="right">1.844</td><td class="right">R$ 1.681.773</td>
+              <td class="right">R$ 729</td><td class="right"><strong>R$ 799</strong></td><td class="right">R$ 999</td>
+              <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">King</span></td>
+              <td class="right">43</td><td class="right">16</td><td class="right">297</td><td class="right">R$ 349.476</td>
+              <td class="right">R$ 712</td><td class="right"><strong>R$ 970</strong></td><td class="right">R$ 1.389</td>
+              <td class="center"><span class="bet bet-v">– Validar</span></td>
+            </tr>
+
+            <tr class="sep"><td colspan="10">D45 — CONVENCIONAL</td></tr>
+            <tr>
+              <td rowspan="4"><span class="tipo-pill tp-c">D45 Conv.</span></td>
+              <td><span class="tam-pill">Solteiro</span></td>
+              <td class="right">297</td><td class="right">48</td><td class="right">3.966</td><td class="right">R$ 2.262.653</td>
+              <td class="right">R$ 452</td><td class="right"><strong>R$ 514</strong></td><td class="right">R$ 676</td>
+              <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">Casal</span></td>
+              <td class="right">239</td><td class="right">45</td><td class="right">5.245</td><td class="right">R$ 4.748.964</td>
+              <td class="right">R$ 663</td><td class="right"><strong>R$ 862</strong></td><td class="right">R$ 999</td>
+              <td class="center"><span class="bet bet-1">★ 1ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">Queen</span></td>
+              <td class="right">111</td><td class="right">28</td><td class="right">1.454</td><td class="right">R$ 1.808.287</td>
+              <td class="right">R$ 929</td><td class="right"><strong>R$ 1.099</strong></td><td class="right">R$ 1.409</td>
+              <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">King</span></td>
+              <td class="right">35</td><td class="right">13</td><td class="right">304</td><td class="right">R$ 488.411</td>
+              <td class="right">R$ 1.119</td><td class="right"><strong>R$ 1.399</strong></td><td class="right">R$ 1.829</td>
+              <td class="center"><span class="bet bet-v">– Validar</span></td>
+            </tr>
+
+            <tr class="sep"><td colspan="10">D28 — CONVENCIONAL</td></tr>
+            <tr>
+              <td rowspan="4"><span class="tipo-pill tp-c">D28 Conv.</span></td>
+              <td><span class="tam-pill">Solteiro</span></td>
+              <td class="right">342</td><td class="right">104</td><td class="right">6.315</td><td class="right">R$ 2.426.138</td>
+              <td class="right">R$ 329</td><td class="right"><strong>R$ 390</strong></td><td class="right">R$ 439</td>
+              <td class="center"><span class="bet bet-1">★ 1ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">Casal</span></td>
+              <td class="right">120</td><td class="right">34</td><td class="right">2.583</td><td class="right">R$ 1.617.619</td>
+              <td class="right">R$ 370</td><td class="right"><strong>R$ 575</strong></td><td class="right">R$ 929</td>
+              <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">Queen</span></td>
+              <td class="right">25</td><td class="right">14</td><td class="right">629</td><td class="right">R$ 743.132</td>
+              <td class="right">R$ 1.099</td><td class="right"><strong>R$ 1.199</strong></td><td class="right">R$ 1.259</td>
+              <td class="center"><span class="bet bet-v">– Validar</span></td>
+            </tr>
+            <tr>
+              <td><span class="tam-pill">King</span></td>
+              <td class="right">8</td><td class="right">4</td><td class="right">50</td><td class="right">R$ 30.686</td>
+              <td class="right">R$ 497</td><td class="right"><strong>R$ 497</strong></td><td class="right">R$ 536</td>
+              <td class="center"><span class="bet bet-v">– Validar</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:8px;font-size:11px;color:#aaa;">★ 1ª = apostar imediatamente &nbsp;|&nbsp; ▲ 2ª = segunda onda &nbsp;|&nbsp; – Validar = aguardar volume</div>
+    </div>
+  </div>
+
+  <!-- COMPARATIVO VÁCUO vs CONVENCIONAL -->
+  <div class="section">
+    <div class="section-title">Comparativo — A Vácuo vs. Convencional por Densidade</div>
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="comp-header">
+          <div class="comp-dot" style="background:#1d4ed8"></div>
+          <div><div class="comp-title">D33 — Vácuo vs. Convencional</div><div class="comp-sub">GMV · Unidades · Ticket mediano</div></div>
+        </div>
+        <div class="comp-row"><span class="comp-row-name">Vácuo — GMV Total</span><div><div class="comp-row-val">R$ 7,54M</div><div class="comp-row-sub">10.516 unidades</div></div></div>
+        <div class="comp-row"><span class="comp-row-name">Convencional — GMV Total</span><div><div class="comp-row-val" style="color:#b45309;">R$ 26,88M</div><div class="comp-row-sub">54.607 unidades</div></div></div>
+        <div class="comp-row"><span class="comp-row-name">Ticket mediano Casal</span><div><div class="comp-row-val">R$ 730 <span style="font-size:10px;color:#aaa;">vácuo</span> vs R$ 599 <span style="font-size:10px;color:#aaa;">conv.</span></div></div></div>
+        <div class="comp-row"><span class="comp-row-name">Sellers ativos</span><div><div class="comp-row-val">52 <span style="font-size:10px;color:#aaa;">vácuo</span> vs 235 <span style="font-size:10px;color:#aaa;">conv.</span></div></div></div>
+        <div style="margin-top:10px;font-size:11px;color:#555;background:#F0F0F0;padding:8px 10px;border-radius:6px;">Convencional é 3,6x maior em GMV. Vácuo cobra 22% a mais no ticket casal.</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-header">
+          <div class="comp-dot" style="background:#b45309"></div>
+          <div><div class="comp-title">D45 — Vácuo vs. Convencional</div><div class="comp-sub">GMV · Unidades · Ticket mediano</div></div>
+        </div>
+        <div class="comp-row"><span class="comp-row-name">Vácuo — GMV Total</span><div><div class="comp-row-val">R$ 1,75M</div><div class="comp-row-sub">1.878 unidades · 6 sellers</div></div></div>
+        <div class="comp-row"><span class="comp-row-name">Convencional — GMV Total</span><div><div class="comp-row-val" style="color:#b45309;">R$ 9,51M</div><div class="comp-row-sub">11.467 unidades · 50 sellers</div></div></div>
+        <div class="comp-row"><span class="comp-row-name">Ticket mediano Casal</span><div><div class="comp-row-val">R$ 979 <span style="font-size:10px;color:#aaa;">vácuo</span> vs R$ 862 <span style="font-size:10px;color:#aaa;">conv.</span></div></div></div>
+        <div class="comp-row"><span class="comp-row-name">Sellers ativos</span><div><div class="comp-row-val">6 <span style="font-size:10px;color:#aaa;">vácuo</span> vs 50 <span style="font-size:10px;color:#aaa;">conv.</span></div></div></div>
+        <div style="margin-top:10px;font-size:11px;color:#555;background:#F0F0F0;padding:8px 10px;border-radius:6px;">Vácuo D45 tem apenas 6 sellers — grande oportunidade de ocupar o segmento premium a vácuo.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MOLA -->
+  <div class="section">
+    <div class="section-title">Mola — Todos os Tipos por Variante (Jan–Mai 2026)</div>
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>Tipo de Colchão</th>
-            <th>Variante</th>
-            <th class="right">SKUs</th>
-            <th class="right">Sellers</th>
-            <th class="right">Unidades</th>
-            <th class="right">GMV</th>
-            <th class="right">P25</th>
-            <th class="right">Mediana</th>
-            <th class="right">P75</th>
+            <th>Tipo</th><th>Variante</th>
+            <th class="right">SKUs</th><th class="right">Sellers</th><th class="right">Unidades</th>
+            <th class="right">GMV</th><th class="right">P25</th><th class="right">Mediana</th><th class="right">P75</th>
             <th class="center">Apostar?</th>
           </tr>
         </thead>
         <tbody>
-          <!-- ESPUMA VÁCUO D33 -->
-          <tr class="sep"><td colspan="10">ESPUMA A VÁCUO — D33 · 17cm</td></tr>
-          <tr>
-            <td rowspan="4"><span class="tipo-pill tp-esp">Espuma Vácuo</span><br><strong style="font-size:13px">D33 · 17cm</strong></td>
-            <td><span class="tam-pill">Solteiro</span></td>
-            <td class="right">145</td><td class="right">46</td><td class="right">4.914</td><td class="right">R$ 2.954.980</td>
-            <td class="right">R$ 531</td><td class="right"><strong>R$ 579</strong></td><td class="right">R$ 629</td>
-            <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">Casal</span></td>
-            <td class="right">42</td><td class="right">16</td><td class="right">4.788</td><td class="right">R$ 3.670.705</td>
-            <td class="right">R$ 679</td><td class="right"><strong>R$ 730</strong></td><td class="right">R$ 770</td>
-            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">Queen</span></td>
-            <td class="right">32</td><td class="right">11</td><td class="right">656</td><td class="right">R$ 709.803</td>
-            <td class="right">R$ 920</td><td class="right"><strong>R$ 989</strong></td><td class="right">R$ 1.180</td>
-            <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">King</span></td>
-            <td class="right">5</td><td class="right">2</td><td class="right">158</td><td class="right">R$ 208.914</td>
-            <td class="right">R$ 1.199</td><td class="right"><strong>R$ 1.199</strong></td><td class="right">R$ 1.454</td>
-            <td class="center"><span class="bet bet-nao">– Validar</span></td>
-          </tr>
+          <tr class="sep"><td colspan="10">MOLA D65/D26 · 22cm (referência mercado geral)</td></tr>
+          <tr><td rowspan="4"><span class="tipo-pill tp-c">Mola</span></td><td><span class="tam-pill">Solteiro</span></td><td class="right">860</td><td class="right">115</td><td class="right">18.708</td><td class="right">R$ 12.535.974</td><td class="right">R$ 447</td><td class="right"><strong>R$ 599</strong></td><td class="right">R$ 836</td><td class="center"><span class="bet bet-1">★ 1ª</span></td></tr>
+          <tr><td><span class="tam-pill">Casal</span></td><td class="right">451</td><td class="right">78</td><td class="right">8.105</td><td class="right">R$ 8.872.249</td><td class="right">R$ 799</td><td class="right"><strong>R$ 999</strong></td><td class="right">R$ 1.299</td><td class="center"><span class="bet bet-1">★ 1ª</span></td></tr>
+          <tr><td><span class="tam-pill">Queen</span></td><td class="right">420</td><td class="right">79</td><td class="right">3.754</td><td class="right">R$ 5.519.933</td><td class="right">R$ 999</td><td class="right"><strong>R$ 1.350</strong></td><td class="right">R$ 1.819</td><td class="center"><span class="bet bet-2">▲ 2ª</span></td></tr>
+          <tr><td><span class="tam-pill">King</span></td><td class="right">165</td><td class="right">47</td><td class="right">720</td><td class="right">R$ 1.421.276</td><td class="right">R$ 1.514</td><td class="right"><strong>R$ 1.832</strong></td><td class="right">R$ 2.299</td><td class="center"><span class="bet bet-v">– Validar</span></td></tr>
 
-          <!-- ESPUMA VÁCUO D45 -->
-          <tr class="sep"><td colspan="10">ESPUMA A VÁCUO — D45 · 17cm</td></tr>
-          <tr>
-            <td rowspan="4"><span class="tipo-pill tp-esp">Espuma Vácuo</span><br><strong style="font-size:13px">D45 · 17cm</strong></td>
-            <td><span class="tam-pill">Solteiro</span></td>
-            <td class="right">11</td><td class="right">4</td><td class="right">968</td><td class="right">R$ 742.215</td>
-            <td class="right">R$ 659</td><td class="right"><strong>R$ 729</strong></td><td class="right">R$ 839</td>
-            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">Casal</span></td>
-            <td class="right">4</td><td class="right">4</td><td class="right">642</td><td class="right">R$ 647.063</td>
-            <td class="right">R$ 930</td><td class="right"><strong>R$ 979</strong></td><td class="right">R$ 999</td>
-            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">Queen</span></td>
-            <td class="right">2</td><td class="right">1</td><td class="right">206</td><td class="right">R$ 259.836</td>
-            <td class="right">R$ 1.139</td><td class="right"><strong>R$ 1.199</strong></td><td class="right">R$ 1.399</td>
-            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">King</span></td>
-            <td class="right">1</td><td class="right">1</td><td class="right">62</td><td class="right">R$ 99.975</td>
-            <td class="right">R$ 1.499</td><td class="right"><strong>R$ 1.499</strong></td><td class="right">R$ 1.559</td>
-            <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
-          </tr>
-
-          <!-- ESPUMA VÁCUO D28 -->
-          <tr class="sep"><td colspan="10">ESPUMA A VÁCUO — D28 · 17cm</td></tr>
-          <tr>
-            <td rowspan="3"><span class="tipo-pill tp-esp">Espuma Vácuo</span><br><strong style="font-size:13px">D28 · 17cm</strong></td>
-            <td><span class="tam-pill">Solteiro</span></td>
-            <td class="right">69</td><td class="right">28</td><td class="right">2.037</td><td class="right">R$ 1.114.438</td>
-            <td class="right">R$ 474</td><td class="right"><strong>R$ 499</strong></td><td class="right">R$ 568</td>
-            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">Casal</span></td>
-            <td class="right">8</td><td class="right">6</td><td class="right">797</td><td class="right">R$ 752.897</td>
-            <td class="right">R$ 899</td><td class="right"><strong>R$ 989</strong></td><td class="right">R$ 999</td>
-            <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">Queen</span></td>
-            <td class="right">1</td><td class="right">1</td><td class="right">56</td><td class="right">R$ 52.640</td>
-            <td class="right">R$ 900</td><td class="right"><strong>R$ 900</strong></td><td class="right">R$ 900</td>
-            <td class="center"><span class="bet bet-nao">– Validar</span></td>
-          </tr>
-
-          <!-- MOLA SIMPLES D65/D26 -->
-          <tr class="sep"><td colspan="10">MOLA — D65/D26 · 22cm (referência de mercado)</td></tr>
-          <tr>
-            <td rowspan="4"><span class="tipo-pill tp-mol">Mola</span><br><strong style="font-size:13px">D65/D26 · 22cm</strong></td>
-            <td><span class="tam-pill">Solteiro</span></td>
-            <td class="right">860</td><td class="right">115</td><td class="right">18.708</td><td class="right">R$ 12.535.974</td>
-            <td class="right">R$ 447</td><td class="right"><strong>R$ 599</strong></td><td class="right">R$ 836</td>
-            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">Casal</span></td>
-            <td class="right">451</td><td class="right">78</td><td class="right">8.105</td><td class="right">R$ 8.872.249</td>
-            <td class="right">R$ 799</td><td class="right"><strong>R$ 999</strong></td><td class="right">R$ 1.299</td>
-            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">Queen</span></td>
-            <td class="right">420</td><td class="right">79</td><td class="right">3.754</td><td class="right">R$ 5.519.933</td>
-            <td class="right">R$ 999</td><td class="right"><strong>R$ 1.350</strong></td><td class="right">R$ 1.819</td>
-            <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">King</span></td>
-            <td class="right">165</td><td class="right">47</td><td class="right">720</td><td class="right">R$ 1.421.276</td>
-            <td class="right">R$ 1.514</td><td class="right"><strong>R$ 1.832</strong></td><td class="right">R$ 2.299</td>
-            <td class="center"><span class="bet bet-nao">– Validar</span></td>
-          </tr>
-
-          <!-- MOLA PILLOW VISCO -->
           <tr class="sep"><td colspan="10">MOLA PILLOW VISCO · 27cm</td></tr>
-          <tr>
-            <td rowspan="4"><span class="tipo-pill tp-mol">Mola</span><br><strong style="font-size:13px">Pillow Visco · 27cm</strong></td>
-            <td><span class="tam-pill">Solteiro</span></td>
-            <td class="right">8</td><td class="right">2</td><td class="right">21</td><td class="right">R$ 28.464</td>
-            <td class="right">R$ 944</td><td class="right"><strong>R$ 1.451</strong></td><td class="right">R$ 1.559</td>
-            <td class="center"><span class="bet bet-nao">– Validar</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">Casal</span></td>
-            <td class="right">29</td><td class="right">7</td><td class="right">77</td><td class="right">R$ 135.354</td>
-            <td class="right">R$ 1.619</td><td class="right"><strong>R$ 1.690</strong></td><td class="right">R$ 1.784</td>
-            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">Queen</span></td>
-            <td class="right">18</td><td class="right">3</td><td class="right">47</td><td class="right">R$ 96.752</td>
-            <td class="right">R$ 1.748</td><td class="right"><strong>R$ 2.008</strong></td><td class="right">R$ 2.101</td>
-            <td class="center"><span class="bet bet-2">▲ 2ª</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">King</span></td>
-            <td class="right">4</td><td class="right">1</td><td class="right">8</td><td class="right">R$ 21.788</td>
-            <td class="right">R$ 2.521</td><td class="right"><strong>R$ 2.561</strong></td><td class="right">R$ 2.611</td>
-            <td class="center"><span class="bet bet-nao">– Validar</span></td>
-          </tr>
+          <tr><td rowspan="4"><span class="tipo-pill tp-c">Pillow Visco</span></td><td><span class="tam-pill">Solteiro</span></td><td class="right">8</td><td class="right">2</td><td class="right">21</td><td class="right">R$ 28.464</td><td class="right">R$ 944</td><td class="right"><strong>R$ 1.451</strong></td><td class="right">R$ 1.559</td><td class="center"><span class="bet bet-v">– Validar</span></td></tr>
+          <tr><td><span class="tam-pill">Casal</span></td><td class="right">29</td><td class="right">7</td><td class="right">77</td><td class="right">R$ 135.354</td><td class="right">R$ 1.619</td><td class="right"><strong>R$ 1.690</strong></td><td class="right">R$ 1.784</td><td class="center"><span class="bet bet-1">★ 1ª</span></td></tr>
+          <tr><td><span class="tam-pill">Queen</span></td><td class="right">18</td><td class="right">3</td><td class="right">47</td><td class="right">R$ 96.752</td><td class="right">R$ 1.748</td><td class="right"><strong>R$ 2.008</strong></td><td class="right">R$ 2.101</td><td class="center"><span class="bet bet-2">▲ 2ª</span></td></tr>
+          <tr><td><span class="tam-pill">King</span></td><td class="right">4</td><td class="right">1</td><td class="right">8</td><td class="right">R$ 21.788</td><td class="right">R$ 2.521</td><td class="right"><strong>R$ 2.561</strong></td><td class="right">R$ 2.611</td><td class="center"><span class="bet bet-v">– Validar</span></td></tr>
 
-          <!-- MOLA VISCO D33 32cm -->
           <tr class="sep"><td colspan="10">MOLA VISCO / D33 · 32cm</td></tr>
-          <tr>
-            <td rowspan="3"><span class="tipo-pill tp-mol">Mola</span><br><strong style="font-size:13px">Visco/D33 · 32cm</strong></td>
-            <td><span class="tam-pill">Solteiro</span></td>
-            <td class="right">3</td><td class="right">2</td><td class="right">9</td><td class="right">R$ 13.007</td>
-            <td class="right">R$ 1.036</td><td class="right"><strong>R$ 1.321</strong></td><td class="right">R$ 1.639</td>
-            <td class="center"><span class="bet bet-nao">– Validar</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">Casal</span></td>
-            <td class="right">1</td><td class="right">1</td><td class="right">2</td><td class="right">R$ 1.728</td>
-            <td class="right">R$ 829</td><td class="right"><strong>R$ 829</strong></td><td class="right">R$ 899</td>
-            <td class="center"><span class="bet bet-nao">– Validar</span></td>
-          </tr>
-          <tr>
-            <td><span class="tam-pill">Queen</span></td>
-            <td class="right">5</td><td class="right">3</td><td class="right">37</td><td class="right">R$ 75.771</td>
-            <td class="right">R$ 1.600</td><td class="right"><strong>R$ 2.099</strong></td><td class="right">R$ 2.159</td>
-            <td class="center"><span class="bet bet-sim">★ 1ª</span></td>
-          </tr>
+          <tr><td rowspan="3"><span class="tipo-pill tp-c">Visco/D33</span></td><td><span class="tam-pill">Solteiro</span></td><td class="right">3</td><td class="right">2</td><td class="right">9</td><td class="right">R$ 13.007</td><td class="right">R$ 1.036</td><td class="right"><strong>R$ 1.321</strong></td><td class="right">R$ 1.639</td><td class="center"><span class="bet bet-v">– Validar</span></td></tr>
+          <tr><td><span class="tam-pill">Casal</span></td><td class="right">1</td><td class="right">1</td><td class="right">2</td><td class="right">R$ 1.728</td><td class="right">R$ 829</td><td class="right"><strong>R$ 829</strong></td><td class="right">R$ 899</td><td class="center"><span class="bet bet-v">– Validar</span></td></tr>
+          <tr><td><span class="tam-pill">Queen</span></td><td class="right">5</td><td class="right">3</td><td class="right">37</td><td class="right">R$ 75.771</td><td class="right">R$ 1.600</td><td class="right"><strong>R$ 2.099</strong></td><td class="right">R$ 2.159</td><td class="center"><span class="bet bet-1">★ 1ª</span></td></tr>
 
-          <!-- MOLA EPS D26 -->
-          <tr class="sep"><td colspan="10">MOLA EPS + D26 · 25cm — mercado praticamente inexistente</td></tr>
-          <tr>
-            <td colspan="2" style="color:#aaa;font-size:12px;">EPS + D26 · 25cm</td>
-            <td class="right" style="color:#aaa;">1</td><td class="right" style="color:#aaa;">1</td><td class="right" style="color:#aaa;">11</td><td class="right" style="color:#aaa;">R$ 6.518</td>
-            <td class="right" style="color:#aaa;">—</td><td class="right" style="color:#aaa;"><strong>R$ 597</strong></td><td class="right" style="color:#aaa;">—</td>
-            <td class="center"><span class="bet bet-new">★ Pioneiro</span></td>
-          </tr>
-
+          <tr class="sep"><td colspan="10">MOLA EPS + D26 · 25cm — Mercado nascente</td></tr>
+          <tr><td colspan="2" style="color:#aaa">Todos os tamanhos</td><td class="right" style="color:#aaa">1</td><td class="right" style="color:#aaa">1</td><td class="right" style="color:#aaa">11</td><td class="right" style="color:#aaa">R$ 6.518</td><td class="right" style="color:#aaa">—</td><td class="right" style="color:#aaa"><strong>R$ 597</strong></td><td class="right" style="color:#aaa">—</td><td class="center"><span class="bet" style="background:#ede9fe;color:#7c3aed">Pioneiro</span></td></tr>
         </tbody>
       </table>
-    </div>
-    <div style="margin-top:8px;font-size:11px;color:#aaa;">
-      ★ 1ª = apostar imediatamente &nbsp;|&nbsp; ▲ 2ª = segunda onda &nbsp;|&nbsp; – Validar = aguardar volume mínimo &nbsp;|&nbsp; ★ Pioneiro = mercado novo, sem referência direta
-    </div>
-  </div>
-
-  <!-- ONDE APOSTAR -->
-  <div class="section">
-    <div class="section-title">Onde o Seller Deve Apostar — Priorização por Variante</div>
-    <div class="rec-grid">
-
-      <div class="rec-card rc1">
-        <div class="rec-badge rb1">Prioridade 1 — Lançar já</div>
-        <div class="rec-title">Espuma a Vácuo + Mola Solteiro/Casal</div>
-        <div class="rec-rows">
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">D33 Vácuo — Casal</div><div class="rec-row-meta">42 SKUs · 16 sellers · 4.788 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 679–770</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">D33 Vácuo — Solteiro</div><div class="rec-row-meta">145 SKUs · 46 sellers · 4.914 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 531–629</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">D45 Vácuo — Casal</div><div class="rec-row-meta">4 SKUs · 4 sellers · 642 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 930–999</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">D45 Vácuo — Solteiro</div><div class="rec-row-meta">11 SKUs · 4 sellers · 968 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 659–839</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">D28 Vácuo — Solteiro</div><div class="rec-row-meta">69 SKUs · 28 sellers · 2.037 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 474–568</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">Mola Solteiro</div><div class="rec-row-meta">860 SKUs · 115 sellers · 18.708 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 447–836</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">Mola Casal</div><div class="rec-row-meta">451 SKUs · 78 sellers · 8.105 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 799–1.299</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="rec-card rc2">
-        <div class="rec-badge rb2">Prioridade 2 — Segunda Onda</div>
-        <div class="rec-title">Queen + Mola Premium</div>
-        <div class="rec-rows">
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">D33 Vácuo — Queen</div><div class="rec-row-meta">32 SKUs · 11 sellers · 656 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 920–1.180</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">D45 Vácuo — Queen</div><div class="rec-row-meta">2 SKUs · 1 seller · 206 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 1.139–1.399</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">D28 Vácuo — Casal</div><div class="rec-row-meta">8 SKUs · 6 sellers · 797 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 899–999</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">Mola Queen</div><div class="rec-row-meta">420 SKUs · 79 sellers · 3.754 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 999–1.819</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">Mola Pillow Visco — Casal</div><div class="rec-row-meta">29 SKUs · 7 sellers · 77 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 1.619–1.784</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">Mola Pillow Visco — Queen</div><div class="rec-row-meta">18 SKUs · 3 sellers · 47 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 1.748–2.101</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">Mola Visco/D33 — Queen</div><div class="rec-row-meta">5 SKUs · 3 sellers · 37 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 1.600–2.159</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="rec-card rc3">
-        <div class="rec-badge rb3">Prioridade 3 — Validar / Pioneiro</div>
-        <div class="rec-title">King + Mercados Nascentes</div>
-        <div class="rec-rows">
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">D33 Vácuo — King</div><div class="rec-row-meta">5 SKUs · 2 sellers · 158 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 1.199–1.454</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">D45 Vácuo — King</div><div class="rec-row-meta">1 SKU · 1 seller · 62 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 1.499–1.559</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">Mola King</div><div class="rec-row-meta">165 SKUs · 47 sellers · 720 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 1.514–2.299</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">D28 Vácuo — Queen</div><div class="rec-row-meta">1 SKU · 1 seller · 56 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 900</div><div class="rec-row-range">referência única</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">EPS + D26 · 25cm — todos</div><div class="rec-row-meta">1 SKU · 1 seller · 11 un · mercado novo</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 597</div><div class="rec-row-range">único referência</div></div>
-            </div>
-          </div>
-          <div class="rec-row">
-            <div class="rec-row-top">
-              <div><div class="rec-row-name">Mola Visco/D33 — Casal</div><div class="rec-row-meta">1 SKU · 1 seller · 2 un</div></div>
-              <div style="text-align:right"><div class="rec-row-price">R$ 829–899</div><div class="rec-row-range">P25–P75</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
   <!-- DIAGNÓSTICO -->
   <div class="section">
-    <div class="section-title">Diagnóstico — Principais Insights por Tipo</div>
+    <div class="section-title">Diagnóstico — Onde o GMV Realmente Está</div>
     <div class="diag-list">
       <div class="diag-item">
         <div class="diag-num">1</div>
         <div>
-          <div class="diag-title">D33 a Vácuo Casal supera Solteiro em GMV — apostar em Casal como âncora</div>
-          <div class="diag-desc">Apesar de ter quase o mesmo número de unidades (4.788 Casal vs. 4.914 Solteiro), o <strong>Casal gera R$3,67M vs. R$2,95M</strong> do Solteiro — 24% a mais de GMV com ticket médio de R$730 vs. R$579. Produto âncora recomendado: <strong>D33 17cm a Vácuo Casal</strong> entre R$679–730.</div>
+          <div class="diag-title">D33 Convencional Solteiro — Maior Oportunidade em Volume Absoluto</div>
+          <div class="diag-desc"><strong>35.785 unidades</strong> e <strong>R$14,5M de GMV</strong> em 5 meses — o maior segmento de todo o estudo. Mediana de R$391 é acessível. 235 sellers competem, mas a escala de demanda justifica entrada. Para Orthocrin (marca estabelecida em D33), o posicionamento entre R$430–480 (P25–P75) seria suficiente para capturar tráfego orgânico.</div>
         </div>
       </div>
       <div class="diag-item">
         <div class="diag-num">2</div>
         <div>
-          <div class="diag-title">D45 a Vácuo — baixíssima concorrência em todos os tamanhos</div>
-          <div class="diag-desc">Com apenas <strong>4–6 sellers</strong> em Solteiro e Casal (vs. 46 sellers no D33), o D45 a vácuo é o segmento com melhor relação oportunidade/concorrência. Ticket P25 já começa em R$659 (Solteiro) e R$930 (Casal). Orthocrin já tem credencial D45 no portfólio convencional — entrada a vácuo é extensão natural.</div>
+          <div class="diag-title">A Vácuo tem ticket 22% maior — justifica embalagem especial</div>
+          <div class="diag-desc">D33 Casal a vácuo tem mediana de <strong>R$730 vs. R$599</strong> convencional — diferença de R$131 por unidade. No D45, a diferença é de R$117 (R$979 vácuo vs. R$862 convencional). A embalagem a vácuo permite cobrar mais e facilita logística (menor volume). Com apenas <strong>6 sellers no D45 vácuo</strong>, a oportunidade é imediata.</div>
         </div>
       </div>
       <div class="diag-item">
         <div class="diag-num">3</div>
         <div>
-          <div class="diag-title">Mola Solteiro é o maior volume do estudo — 18.708 unidades em 5 meses</div>
-          <div class="diag-desc">O mercado de <strong>Mola Solteiro</strong> tem 115 sellers e 18.708 unidades — muito maior que qualquer variante de espuma a vácuo. Mediana de R$599 é acessível. Para um novo entrante em mola, Solteiro + Casal juntos capturam <strong>R$21,4M de GMV</strong> (73% do mercado mola analisado).</div>
+          <div class="diag-title">Mola Solteiro + Casal concentram 73% do GMV de mola</div>
+          <div class="diag-desc">Mola Solteiro (R$12,5M) + Mola Casal (R$8,9M) = <strong>R$21,4M combinados</strong> de R$29,3M total do segmento mola. Ambos têm alta liquidez de demanda. Para entrar em mola, começar com esses dois tamanhos antes de ir para Queen e King.</div>
         </div>
       </div>
-      <div class="diag-item">
-        <div class="diag-num">4</div>
-        <div>
-          <div class="diag-title">Queen é a variante premium com menor concorrência nos tipos mola</div>
-          <div class="diag-desc">Mola Pillow Visco Queen tem <strong>apenas 3 sellers</strong> com mediana R$2.008. Mola Visco/D33 Queen tem 3 sellers com mediana R$2.099. Para produtos premium com ticket acima de R$1.700, Queen é a variante com maior relação GMV/concorrência. King tem volume marginal e deve ser tratado como extensão de portfólio após consolidar Queen.</div>
+    </div>
+  </div>
+
+  <!-- ONDE APOSTAR -->
+  <div class="section">
+    <div class="section-title">Onde Apostar — Sequência de Entrada por Prioridade</div>
+    <div class="rec-grid">
+      <div class="rec-card rc1">
+        <div class="rec-badge rb1">Prioridade 1 — Lançar já</div>
+        <div class="rec-title">Maior volume e menor concorrência</div>
+        <div class="rec-rows">
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">D33 Conv. — Solteiro</div><div class="rec-meta">1.150 SKUs · 235 sellers · 35.785 un</div></div><div style="text-align:right"><div class="rec-price">R$ 329–479</div><div class="rec-range">P25–P75</div></div></div></div>
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">D33 Conv. — Casal</div><div class="rec-meta">487 SKUs · 101 sellers · 16.681 un</div></div><div style="text-align:right"><div class="rec-price">R$ 543–699</div><div class="rec-range">P25–P75</div></div></div></div>
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">D45 Vácuo — Solteiro</div><div class="rec-meta">11 SKUs · 4 sellers · 968 un</div></div><div style="text-align:right"><div class="rec-price">R$ 659–839</div><div class="rec-range">P25–P75</div></div></div></div>
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">D45 Vácuo — Casal</div><div class="rec-meta">4 SKUs · 4 sellers · 642 un</div></div><div style="text-align:right"><div class="rec-price">R$ 930–999</div><div class="rec-range">P25–P75</div></div></div></div>
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">Mola Solteiro</div><div class="rec-meta">860 SKUs · 115 sellers · 18.708 un</div></div><div style="text-align:right"><div class="rec-price">R$ 447–836</div><div class="rec-range">P25–P75</div></div></div></div>
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">Mola Casal</div><div class="rec-meta">451 SKUs · 78 sellers · 8.105 un</div></div><div style="text-align:right"><div class="rec-price">R$ 799–1.299</div><div class="rec-range">P25–P75</div></div></div></div>
         </div>
       </div>
-      <div class="diag-item">
-        <div class="diag-num">5</div>
-        <div>
-          <div class="diag-title">EPS + D26 · 25cm e D65/D26 · 22cm são oportunidades de pioneirismo</div>
-          <div class="diag-desc">O EPS + D26 25cm tem <strong>1 seller e 11 unidades</strong> — praticamente sem concorrência. O D65/D26 22cm como classificação específica não aparece no mercado (a busca mais ampla captura a categoria geral de mola, que tem R$28,9M). Orthocrin pode ser o primeiro a nomear e posicionar esse produto explicitamente no ML, criando uma categoria proprietária.</div>
+      <div class="rec-card rc2">
+        <div class="rec-badge rb2">Prioridade 2 — Segunda Onda</div>
+        <div class="rec-title">Queens + Vácuo D33 Casal</div>
+        <div class="rec-rows">
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">D33 Vácuo — Casal</div><div class="rec-meta">42 SKUs · 16 sellers · 4.788 un</div></div><div style="text-align:right"><div class="rec-price">R$ 679–770</div><div class="rec-range">P25–P75</div></div></div></div>
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">D45 Conv. — Casal</div><div class="rec-meta">239 SKUs · 45 sellers · 5.245 un</div></div><div style="text-align:right"><div class="rec-price">R$ 663–999</div><div class="rec-range">P25–P75</div></div></div></div>
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">D45 Vácuo — Queen</div><div class="rec-meta">2 SKUs · 1 seller · 206 un</div></div><div style="text-align:right"><div class="rec-price">R$ 1.139–1.399</div><div class="rec-range">P25–P75</div></div></div></div>
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">Mola Queen</div><div class="rec-meta">420 SKUs · 79 sellers · 3.754 un</div></div><div style="text-align:right"><div class="rec-price">R$ 999–1.819</div><div class="rec-range">P25–P75</div></div></div></div>
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">Mola Pillow Visco — Casal</div><div class="rec-meta">29 SKUs · 7 sellers · 77 un</div></div><div style="text-align:right"><div class="rec-price">R$ 1.619–1.784</div><div class="rec-range">P25–P75</div></div></div></div>
+        </div>
+      </div>
+      <div class="rec-card rc3">
+        <div class="rec-badge rb3">Prioridade 3 — Validar / Pioneiro</div>
+        <div class="rec-title">Kings + Mercados Nascentes</div>
+        <div class="rec-rows">
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">D33 Conv. — Queen</div><div class="rec-meta">136 SKUs · 34 sellers · 1.844 un</div></div><div style="text-align:right"><div class="rec-price">R$ 729–999</div><div class="rec-range">P25–P75</div></div></div></div>
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">D45 Conv. — Queen</div><div class="rec-meta">111 SKUs · 28 sellers · 1.454 un</div></div><div style="text-align:right"><div class="rec-price">R$ 929–1.409</div><div class="rec-range">P25–P75</div></div></div></div>
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">Mola Visco/D33 — Queen</div><div class="rec-meta">5 SKUs · 3 sellers · 37 un</div></div><div style="text-align:right"><div class="rec-price">R$ 1.600–2.159</div><div class="rec-range">P25–P75</div></div></div></div>
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">Kings (todos os tipos)</div><div class="rec-meta">baixo volume — expandir após Solteiro/Casal</div></div><div style="text-align:right"><div class="rec-price">R$ 970–1.829</div><div class="rec-range">por tipo</div></div></div></div>
+          <div class="rec-row"><div style="display:flex;justify-content:space-between"><div><div class="rec-name">EPS + D26 · 25cm</div><div class="rec-meta">mercado novo — 1 seller no Brasil</div></div><div style="text-align:right"><div class="rec-price">R$ 597+</div><div class="rec-range">referência única</div></div></div></div>
         </div>
       </div>
     </div>
@@ -517,6 +495,15 @@
 <footer>
   Análise gerada em 17/06/2026 • Dados: BigQuery meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB • Período Jan–Mai 2026 • Seller Orthocrin #560912973
 </footer>
+
+<script>
+  function switchView(view, btn) {
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.querySelectorAll('.toggle-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('view-' + view).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
 
 </body>
 </html>
