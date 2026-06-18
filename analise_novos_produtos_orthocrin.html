@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novos Produtos — Orthocrin #560912973</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #F0F0F0; color: #1a1a1a; font-size: 14px; }
+
+    header {
+      background: #FFE600; padding: 18px 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.12);
+    }
+    .header-left { display: flex; align-items: center; gap: 14px; }
+    .header-logo { width: 36px; height: 36px; border-radius: 8px; background: #1a1a1a; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: #FFE600; }
+    header h1 { font-size: 20px; font-weight: 800; color: #1a1a1a; }
+    header h1 span { font-weight: 400; opacity: .6; font-size: 14px; margin-left: 8px; }
+    .header-badge { background: #1a1a1a; color: #FFE600; padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 28px 24px; }
+    .section { margin-bottom: 36px; }
+    .section-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: #666; margin-bottom: 14px; padding-bottom: 6px; border-bottom: 2px solid #FFE600; }
+
+    /* KPIs */
+    .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 36px; }
+    .kpi-card { background: #fff; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+    .kpi-label { font-size: 11px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing:.06em; }
+    .kpi-value { font-size: 22px; font-weight: 800; color: #1a1a1a; margin-top: 6px; }
+    .kpi-sub { font-size: 11px; color: #aaa; margin-top: 3px; }
+
+    /* TABELA RESUMO */
+    .table-wrap { background: #fff; border-radius: 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08); overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; }
+    thead { background: #1a1a1a; }
+    thead th { color: #FFE600; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing:.06em; padding: 12px 16px; text-align: left; }
+    thead th.right { text-align: right; }
+    thead th.center { text-align: center; }
+    tbody tr { border-bottom: 1px solid #F0F0F0; transition: background .15s; }
+    tbody tr:hover { background: #fafafa; }
+    tbody tr.separator { background: #f8f8f8; }
+    tbody td { padding: 11px 16px; font-size: 13px; }
+    tbody td.right { text-align: right; }
+    tbody td.center { text-align: center; }
+
+    /* TIPO PILL */
+    .tipo-pill { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+    .tipo-espuma { background: #dbeafe; color: #1d4ed8; }
+    .tipo-mola { background: #fef3c7; color: #b45309; }
+
+    /* FAIXA TICKET */
+    .ticket-range { display: flex; align-items: center; gap: 6px; }
+    .ticket-bar-wrap { flex: 1; position: relative; height: 8px; background: #F0F0F0; border-radius: 4px; min-width: 80px; }
+    .ticket-bar { position: absolute; height: 100%; border-radius: 4px; background: linear-gradient(90deg, #FFE600, #f59e0b); }
+    .ticket-dot { position: absolute; width: 10px; height: 10px; background: #1a1a1a; border-radius: 50%; top: -1px; transform: translateX(-50%); }
+    .ticket-labels { display: flex; justify-content: space-between; font-size: 10px; color: #aaa; margin-top: 2px; }
+
+    /* OPP BADGE */
+    .opp { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+    .opp-alta { background: #dcfce7; color: #15803d; }
+    .opp-media { background: #fef3c7; color: #d97706; }
+    .opp-baixa { background: #fee2e2; color: #dc2626; }
+    .opp-nova { background: #ede9fe; color: #7c3aed; }
+
+    /* CARDS DE ESPECIFICAÇÃO */
+    .spec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .spec-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 4px solid; }
+    .spec-card.espuma { border-top-color: #3b82f6; }
+    .spec-card.mola { border-top-color: #f59e0b; }
+    .spec-card.mola-nova { border-top-color: #8b5cf6; }
+    .spec-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; }
+    .spec-name { font-size: 15px; font-weight: 800; color: #1a1a1a; }
+    .spec-sub { font-size: 11px; color: #888; margin-top: 2px; }
+    .spec-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+    .spec-metric { background: #F0F0F0; border-radius: 8px; padding: 10px; }
+    .spec-metric-label { font-size: 10px; font-weight: 600; color: #888; text-transform: uppercase; letter-spacing: .05em; }
+    .spec-metric-val { font-size: 16px; font-weight: 800; color: #1a1a1a; margin-top: 3px; }
+    .spec-metric-sub { font-size: 10px; color: #aaa; }
+
+    /* TICKET RANGE VISUAL */
+    .ticket-visual { background: #F0F0F0; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+    .ticket-visual-title { font-size: 10px; font-weight: 700; color: #888; text-transform: uppercase; margin-bottom: 8px; }
+    .ticket-scale { position: relative; height: 10px; background: linear-gradient(90deg, #e0f2fe, #FFE600, #f59e0b, #ef4444); border-radius: 5px; margin-bottom: 6px; }
+    .tick-marker { position: absolute; transform: translateX(-50%); }
+    .tick-marker::before { content: ''; display: block; width: 2px; height: 14px; background: #1a1a1a; margin: 0 auto; }
+    .tick-label { font-size: 9px; font-weight: 700; color: #1a1a1a; white-space: nowrap; margin-top: 2px; text-align: center; }
+    .tick-sublabel { font-size: 8px; color: #888; text-align: center; }
+    .ticket-vals-row { display: flex; justify-content: space-between; margin-top: 14px; }
+    .ticket-val-item { text-align: center; }
+    .ticket-val-num { font-size: 12px; font-weight: 700; color: #1a1a1a; }
+    .ticket-val-lbl { font-size: 9px; color: #aaa; }
+
+    /* NOVA LABEL */
+    .novo-badge { display: inline-block; background: #7c3aed; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; }
+
+    /* DIAGN */
+    .diag-list { display: flex; flex-direction: column; gap: 12px; }
+    .diag-item { background: #fff; border-radius: 12px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); display: flex; gap: 16px; align-items: flex-start; }
+    .diag-num { min-width: 30px; height: 30px; border-radius: 50%; background: #1a1a1a; color: #FFE600; font-size: 14px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .diag-title { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+    .diag-desc { font-size: 13px; color: #555; line-height: 1.55; }
+
+    /* PLANO */
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .plan-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 4px solid; }
+    .plan-card.p1 { border-top-color: #22c55e; }
+    .plan-card.p2 { border-top-color: #f59e0b; }
+    .plan-card.p3 { border-top-color: #8b5cf6; }
+    .plan-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+    .badge-p1 { background: #dcfce7; color: #15803d; }
+    .badge-p2 { background: #fef3c7; color: #d97706; }
+    .badge-p3 { background: #ede9fe; color: #7c3aed; }
+    .plan-title { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 8px; }
+    .plan-bullets { list-style: none; }
+    .plan-bullets li { font-size: 12px; color: #555; padding: 4px 0 4px 14px; position: relative; line-height: 1.4; }
+    .plan-bullets li::before { content: '→'; position: absolute; left: 0; color: #FFE600; font-weight: 700; }
+
+    footer { text-align: center; padding: 24px; font-size: 11px; color: #aaa; border-top: 1px solid #e0e0e0; margin-top: 8px; }
+
+    @media (max-width: 960px) {
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .spec-grid, .plan-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="header-logo">O</div>
+    <h1>Orthocrin — Análise de Novos Produtos <span>Seller #560912973 • Jan–Mai 2026</span></h1>
+  </div>
+  <div class="header-badge">7 Especificações Analisadas</div>
+</header>
+
+<div class="container">
+
+  <!-- KPIs ATUAIS -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">GMV Atual (Jan–Mai)</div>
+      <div class="kpi-value">R$ 1,14M</div>
+      <div class="kpi-sub">Portfólio existente</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Mercado Espuma 17cm</div>
+      <div class="kpi-value">R$ 5,13M</div>
+      <div class="kpi-sub">D28 + D33 + D45</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Mercado Mola (tipos)</div>
+      <div class="kpi-value">R$ 29,3M</div>
+      <div class="kpi-sub">Todos os tipos mola analisados</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Novos SKUs Orthocrin</div>
+      <div class="kpi-value">0 / 7</div>
+      <div class="kpi-sub">Nenhum dos 7 tipos existe hoje</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Oportunidade Imediata</div>
+      <div class="kpi-value">D33 17cm</div>
+      <div class="kpi-sub">Maior mercado, menor barreira</div>
+    </div>
+  </div>
+
+  <!-- TABELA RESUMO -->
+  <div class="section">
+    <div class="section-title">Resumo — Mercado por Especificação (Jan–Mai 2026)</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Especificação</th>
+            <th>Tipo</th>
+            <th class="right">SKUs no mercado</th>
+            <th class="right">Sellers</th>
+            <th class="right">Unidades vendidas</th>
+            <th class="right">GMV mercado</th>
+            <th class="right">Ticket mín</th>
+            <th class="right">Mediana</th>
+            <th class="right">Ticket máx</th>
+            <th class="center">Oportunidade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="separator"><td colspan="10" style="font-size:11px;font-weight:700;color:#888;padding:8px 16px;">ESPUMA — Altura 17cm</td></tr>
+          <tr>
+            <td><strong>D33 — 17cm</strong></td>
+            <td><span class="tipo-pill tipo-espuma">Espuma</span></td>
+            <td class="right">185</td>
+            <td class="right">57</td>
+            <td class="right">6.264</td>
+            <td class="right">R$ 3.148.907</td>
+            <td class="right">R$ 272</td>
+            <td class="right"><strong>R$ 464</strong></td>
+            <td class="right">R$ 2.101</td>
+            <td class="center"><span class="opp opp-alta">⬤ Alta</span></td>
+          </tr>
+          <tr>
+            <td><strong>D45 — 17cm</strong></td>
+            <td><span class="tipo-pill tipo-espuma">Espuma</span></td>
+            <td class="right">29</td>
+            <td class="right">9</td>
+            <td class="right">1.786</td>
+            <td class="right">R$ 1.090.217</td>
+            <td class="right">R$ 331</td>
+            <td class="right"><strong>R$ 629</strong></td>
+            <td class="right">R$ 1.667</td>
+            <td class="center"><span class="opp opp-alta">⬤ Alta</span></td>
+          </tr>
+          <tr>
+            <td><strong>D28 — 17cm</strong></td>
+            <td><span class="tipo-pill tipo-espuma">Espuma</span></td>
+            <td class="right">23</td>
+            <td class="right">11</td>
+            <td class="right">1.020</td>
+            <td class="right">R$ 891.580</td>
+            <td class="right">R$ 288</td>
+            <td class="right"><strong>R$ 949</strong></td>
+            <td class="right">R$ 1.299</td>
+            <td class="center"><span class="opp opp-media">⬤ Média</span></td>
+          </tr>
+          <tr class="separator"><td colspan="10" style="font-size:11px;font-weight:700;color:#888;padding:8px 16px;">MOLA — Diferentes alturas e composições</td></tr>
+          <tr>
+            <td><strong>Mola Simples</strong> <span style="font-size:10px;color:#aaa;">(contexto geral)</span></td>
+            <td><span class="tipo-pill tipo-mola">Mola</span></td>
+            <td class="right">1.969</td>
+            <td class="right">152</td>
+            <td class="right">31.974</td>
+            <td class="right">R$ 28.922.750</td>
+            <td class="right">R$ 200</td>
+            <td class="right"><strong>R$ 786</strong></td>
+            <td class="right">R$ 12.183</td>
+            <td class="center"><span class="opp opp-alta">⬤ Alta</span></td>
+          </tr>
+          <tr>
+            <td><strong>Pillow Visco — 27cm</strong></td>
+            <td><span class="tipo-pill tipo-mola">Mola</span></td>
+            <td class="right">59</td>
+            <td class="right">9</td>
+            <td class="right">153</td>
+            <td class="right">R$ 282.358</td>
+            <td class="right">R$ 898</td>
+            <td class="right"><strong>R$ 1.704</strong></td>
+            <td class="right">R$ 4.815</td>
+            <td class="center"><span class="opp opp-media">⬤ Média</span></td>
+          </tr>
+          <tr>
+            <td><strong>Visco / D33 — 32cm</strong></td>
+            <td><span class="tipo-pill tipo-mola">Mola</span></td>
+            <td class="right">10</td>
+            <td class="right">6</td>
+            <td class="right">49</td>
+            <td class="right">R$ 93.383</td>
+            <td class="right">R$ 829</td>
+            <td class="right"><strong>R$ 2.099</strong></td>
+            <td class="right">R$ 3.119</td>
+            <td class="center"><span class="opp opp-media">⬤ Média</span></td>
+          </tr>
+          <tr>
+            <td><strong>D65/D26 — 22cm</strong></td>
+            <td><span class="tipo-pill tipo-mola">Mola</span></td>
+            <td class="right" style="color:#aaa;">—</td>
+            <td class="right" style="color:#aaa;">—</td>
+            <td class="right" style="color:#aaa;">—</td>
+            <td class="right" style="color:#aaa;">—</td>
+            <td class="right" style="color:#aaa;">—</td>
+            <td class="right" style="color:#aaa;">—</td>
+            <td class="right" style="color:#aaa;">—</td>
+            <td class="center"><span class="opp opp-nova">⬤ Mercado Novo</span></td>
+          </tr>
+          <tr>
+            <td><strong>EPS + D26 — 25cm</strong></td>
+            <td><span class="tipo-pill tipo-mola">Mola</span></td>
+            <td class="right">1</td>
+            <td class="right">1</td>
+            <td class="right">11</td>
+            <td class="right">R$ 6.518</td>
+            <td class="right" style="color:#aaa;">R$ 567</td>
+            <td class="right" style="color:#aaa;">R$ 597</td>
+            <td class="right" style="color:#aaa;">R$ 597</td>
+            <td class="center"><span class="opp opp-nova">⬤ Mercado Novo</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:8px;font-size:11px;color:#aaa;">P25/Mediana/P75 calculados sobre pedidos individuais jan–mai 2026. Mercado = MLB-MATTRESSES. Orthocrin não possui nenhum dos 7 tipos no portfólio atual.</div>
+  </div>
+
+  <!-- CARDS DETALHADOS -->
+  <div class="section">
+    <div class="section-title">Detalhamento por Especificação</div>
+    <div class="spec-grid">
+
+      <!-- D33 17cm -->
+      <div class="spec-card espuma">
+        <div class="spec-header">
+          <div>
+            <div class="spec-name">Espuma D33 — 17cm</div>
+            <div class="spec-sub">Maior volume do segmento espuma</div>
+          </div>
+          <span class="opp opp-alta">Alta</span>
+        </div>
+        <div class="spec-metrics">
+          <div class="spec-metric">
+            <div class="spec-metric-label">GMV Mercado</div>
+            <div class="spec-metric-val">R$ 3,1M</div>
+            <div class="spec-metric-sub">jan–mai 2026</div>
+          </div>
+          <div class="spec-metric">
+            <div class="spec-metric-label">Unidades</div>
+            <div class="spec-metric-val">6.264</div>
+            <div class="spec-metric-sub">57 sellers ativos</div>
+          </div>
+        </div>
+        <div class="ticket-visual">
+          <div class="ticket-visual-title">Faixa de Ticket Médio no Mercado</div>
+          <div class="ticket-vals-row">
+            <div class="ticket-val-item"><div class="ticket-val-num">R$ 272</div><div class="ticket-val-lbl">Mínimo</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 379</div><div class="ticket-val-lbl">P25</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#1a1a1a;font-size:16px;">R$ 464</div><div class="ticket-val-lbl">Mediana</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 550</div><div class="ticket-val-lbl">P75</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num">R$ 2.101</div><div class="ticket-val-lbl">Máximo</div></div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:#555;line-height:1.5;">Segmento mais competitivo — 57 sellers, 185 SKUs. Entrada entre R$400–550 posiciona no quartil superior sem ser o mais caro. Ticket alta no portfólio Orthocrin atual vs. mediana do mercado.</div>
+      </div>
+
+      <!-- D45 17cm -->
+      <div class="spec-card espuma">
+        <div class="spec-header">
+          <div>
+            <div class="spec-name">Espuma D45 — 17cm</div>
+            <div class="spec-sub">Menor concorrência, maior ticket</div>
+          </div>
+          <span class="opp opp-alta">Alta</span>
+        </div>
+        <div class="spec-metrics">
+          <div class="spec-metric">
+            <div class="spec-metric-label">GMV Mercado</div>
+            <div class="spec-metric-val">R$ 1,1M</div>
+            <div class="spec-metric-sub">jan–mai 2026</div>
+          </div>
+          <div class="spec-metric">
+            <div class="spec-metric-label">Unidades</div>
+            <div class="spec-metric-val">1.786</div>
+            <div class="spec-metric-sub">apenas 9 sellers</div>
+          </div>
+        </div>
+        <div class="ticket-visual">
+          <div class="ticket-visual-title">Faixa de Ticket Médio no Mercado</div>
+          <div class="ticket-vals-row">
+            <div class="ticket-val-item"><div class="ticket-val-num">R$ 331</div><div class="ticket-val-lbl">Mínimo</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 500</div><div class="ticket-val-lbl">P25</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#1a1a1a;font-size:16px;">R$ 629</div><div class="ticket-val-lbl">Mediana</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 649</div><div class="ticket-val-lbl">P75</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num">R$ 1.667</div><div class="ticket-val-lbl">Máximo</div></div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:#555;line-height:1.5;">Apenas 9 sellers no mercado — baixa concorrência. Ticket mais alto que D33 (R$629 mediana). Orthocrin já tem brand equity em colchões de espuma D45 no portfólio atual (ticket ~R$1.466). Entrada natural.</div>
+      </div>
+
+      <!-- D28 17cm -->
+      <div class="spec-card espuma">
+        <div class="spec-header">
+          <div>
+            <div class="spec-name">Espuma D28 — 17cm</div>
+            <div class="spec-sub">Nicho com preços surpreendentemente altos</div>
+          </div>
+          <span class="opp opp-media">Média</span>
+        </div>
+        <div class="spec-metrics">
+          <div class="spec-metric">
+            <div class="spec-metric-label">GMV Mercado</div>
+            <div class="spec-metric-val">R$ 891K</div>
+            <div class="spec-metric-sub">jan–mai 2026</div>
+          </div>
+          <div class="spec-metric">
+            <div class="spec-metric-label">Unidades</div>
+            <div class="spec-metric-val">1.020</div>
+            <div class="spec-metric-sub">11 sellers ativos</div>
+          </div>
+        </div>
+        <div class="ticket-visual">
+          <div class="ticket-visual-title">Faixa de Ticket Médio no Mercado</div>
+          <div class="ticket-vals-row">
+            <div class="ticket-val-item"><div class="ticket-val-num">R$ 288</div><div class="ticket-val-lbl">Mínimo</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 789</div><div class="ticket-val-lbl">P25</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#1a1a1a;font-size:16px;">R$ 949</div><div class="ticket-val-lbl">Mediana</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 999</div><div class="ticket-val-lbl">P75</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num">R$ 1.299</div><div class="ticket-val-lbl">Máximo</div></div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:#555;line-height:1.5;">Mediana de R$949 em D28 é alta — provavelmente produtos com pillow top ou acabamento diferenciado. Mercado menor (1K unidades). Validar posicionamento antes de priorizar.</div>
+      </div>
+
+      <!-- Mola Simples -->
+      <div class="spec-card mola">
+        <div class="spec-header">
+          <div>
+            <div class="spec-name">Mola — Categoria Geral</div>
+            <div class="spec-sub">Maior mercado de colchões no MLB</div>
+          </div>
+          <span class="opp opp-alta">Alta</span>
+        </div>
+        <div class="spec-metrics">
+          <div class="spec-metric">
+            <div class="spec-metric-label">GMV Mercado</div>
+            <div class="spec-metric-val">R$ 28,9M</div>
+            <div class="spec-metric-sub">jan–mai 2026</div>
+          </div>
+          <div class="spec-metric">
+            <div class="spec-metric-label">Unidades</div>
+            <div class="spec-metric-val">31.974</div>
+            <div class="spec-metric-sub">152 sellers ativos</div>
+          </div>
+        </div>
+        <div class="ticket-visual">
+          <div class="ticket-visual-title">Faixa de Ticket Médio no Mercado (Mola Geral)</div>
+          <div class="ticket-vals-row">
+            <div class="ticket-val-item"><div class="ticket-val-num">R$ 200</div><div class="ticket-val-lbl">Mínimo</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 559</div><div class="ticket-val-lbl">P25</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#1a1a1a;font-size:16px;">R$ 786</div><div class="ticket-val-lbl">Mediana</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 1.170</div><div class="ticket-val-lbl">P75</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num">R$ 12.183</div><div class="ticket-val-lbl">Máximo</div></div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:#555;line-height:1.5;">Maior oportunidade em volume absoluto. D65/D26 22cm e EPS+D26 25cm são subtipos dentro deste mercado. Referência de faixa para precificar os novos produtos mola.</div>
+      </div>
+
+      <!-- Pillow Visco 27cm -->
+      <div class="spec-card mola">
+        <div class="spec-header">
+          <div>
+            <div class="spec-name">Mola Pillow Visco — 27cm</div>
+            <div class="spec-sub">Premium — ticket alto, baixo volume</div>
+          </div>
+          <span class="opp opp-media">Média</span>
+        </div>
+        <div class="spec-metrics">
+          <div class="spec-metric">
+            <div class="spec-metric-label">GMV Mercado</div>
+            <div class="spec-metric-val">R$ 282K</div>
+            <div class="spec-metric-sub">jan–mai 2026</div>
+          </div>
+          <div class="spec-metric">
+            <div class="spec-metric-label">Unidades</div>
+            <div class="spec-metric-val">153</div>
+            <div class="spec-metric-sub">9 sellers ativos</div>
+          </div>
+        </div>
+        <div class="ticket-visual">
+          <div class="ticket-visual-title">Faixa de Ticket Médio no Mercado</div>
+          <div class="ticket-vals-row">
+            <div class="ticket-val-item"><div class="ticket-val-num">R$ 898</div><div class="ticket-val-lbl">Mínimo</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 1.619</div><div class="ticket-val-lbl">P25</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#1a1a1a;font-size:16px;">R$ 1.704</div><div class="ticket-val-lbl">Mediana</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 2.008</div><div class="ticket-val-lbl">P75</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num">R$ 4.815</div><div class="ticket-val-lbl">Máximo</div></div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:#555;line-height:1.5;">Ticket premium (R$1.704 mediana). Mercado pequeno mas bem definido. Boa opção para Orthocrin posicionar produto diferenciado acima de R$1.500, aproveitando reputação de marca.</div>
+      </div>
+
+      <!-- Visco D33 32cm -->
+      <div class="spec-card mola">
+        <div class="spec-header">
+          <div>
+            <div class="spec-name">Mola Visco/D33 — 32cm</div>
+            <div class="spec-sub">Ultra-premium — mercado nascente</div>
+          </div>
+          <span class="opp opp-media">Média</span>
+        </div>
+        <div class="spec-metrics">
+          <div class="spec-metric">
+            <div class="spec-metric-label">GMV Mercado</div>
+            <div class="spec-metric-val">R$ 93K</div>
+            <div class="spec-metric-sub">jan–mai 2026</div>
+          </div>
+          <div class="spec-metric">
+            <div class="spec-metric-label">Unidades</div>
+            <div class="spec-metric-val">49</div>
+            <div class="spec-metric-sub">6 sellers ativos</div>
+          </div>
+        </div>
+        <div class="ticket-visual">
+          <div class="ticket-visual-title">Faixa de Ticket Médio no Mercado</div>
+          <div class="ticket-vals-row">
+            <div class="ticket-val-item"><div class="ticket-val-num">R$ 829</div><div class="ticket-val-lbl">Mínimo</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 1.600</div><div class="ticket-val-lbl">P25</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#1a1a1a;font-size:16px;">R$ 2.099</div><div class="ticket-val-lbl">Mediana</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num" style="color:#f59e0b;">R$ 2.159</div><div class="ticket-val-lbl">P75</div></div>
+            <div class="ticket-val-item"><div class="ticket-val-num">R$ 3.119</div><div class="ticket-val-lbl">Máximo</div></div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:#555;line-height:1.5;">Menor mercado mapeado (49 unidades, 6 sellers). Ticket acima de R$2.000 — produto de alto valor mas demanda muito baixa. Avaliar como topo de linha após consolidar outros produtos.</div>
+      </div>
+
+    </div>
+
+    <!-- Cards especiais: mercado novo -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
+      <div class="spec-card mola-nova">
+        <div class="spec-header">
+          <div>
+            <div class="spec-name">Mola D65/D26 — 22cm</div>
+            <div class="spec-sub">Sem registro com essa nomenclatura no mercado</div>
+          </div>
+          <span class="opp opp-nova">Mercado Novo</span>
+        </div>
+        <div style="font-size:12px;color:#555;line-height:1.6;margin-top:8px;">
+          Não foram encontrados colchões de mola com densidade <strong>D65/D26 e 22cm</strong> descritos dessa forma nos títulos do MLB (jan–mai 2026). O mercado geral de mola simples (R$28,9M) serve como referência — a faixa de ticket para colchões de mola 20–24cm está entre <strong>R$559 (P25) e R$1.170 (P75)</strong>. Produto possivelmente novo no segmento ou com nomenclatura diferente nos anúncios.
+        </div>
+      </div>
+      <div class="spec-card mola-nova">
+        <div class="spec-header">
+          <div>
+            <div class="spec-name">Mola EPS + D26 — 25cm</div>
+            <div class="spec-sub">Mercado praticamente inexistente</div>
+          </div>
+          <span class="opp opp-nova">Mercado Novo</span>
+        </div>
+        <div style="font-size:12px;color:#555;line-height:1.6;margin-top:8px;">
+          Apenas <strong>1 seller, 11 unidades, GMV R$6.518</strong> em todo o período. Ticket médio de R$597. EPS (poliestireno expandido) em colchões de mola é raro no MLB. Pode representar uma inovação ou produto importado. Referência de mercado: mola simples 25cm opera entre <strong>R$559–R$1.170</strong>. Risco de demanda baixa no curto prazo.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIAGNÓSTICO -->
+  <div class="section">
+    <div class="section-title">Diagnóstico — Priorização dos 7 Produtos</div>
+    <div class="diag-list">
+      <div class="diag-item">
+        <div class="diag-num">1</div>
+        <div>
+          <div class="diag-title">Espuma D33 17cm — Maior Volume, Entrada Obrigatória</div>
+          <div class="diag-desc">Mercado de <strong>R$3,1M</strong> com 6.264 unidades vendidas em 5 meses — maior volume dos 7 tipos. Com 57 sellers e 185 SKUs, é o segmento mais competitivo mas também mais validado. Mediana de <strong>R$464</strong> é acessível e o P75 (R$550) indica espaço para produto de qualidade. Para Orthocrin, que já tem marca em espuma, este é o produto de entrada com menor risco e maior potencial de volume imediato.</div>
+        </div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-num">2</div>
+        <div>
+          <div class="diag-title">Espuma D45 17cm — Baixa Concorrência, Ticket Superior</div>
+          <div class="diag-desc">Apenas <strong>9 sellers</strong> no mercado com <strong>R$1,09M de GMV</strong> em 5 meses. Mediana de R$629 — 35% acima da D33. Orthocrin já tem expertise em D45 (portfólio atual com ticket médio de R$1.466 em modelos mais espessos). A versão 17cm pode ser um produto de entrada para novos clientes com preço mais acessível do que o portfólio atual de D45.</div>
+        </div>
+      </div>
+      <div class="diag-item">
+        <div class="diag-num">3</div>
+        <div>
+          <div class="diag-title">Mola — Grande Oportunidade, Exige Posicionamento Claro por Subtipo</div>
+          <div class="diag-desc">O mercado de mola simples tem <strong>R$28,9M</strong> em GMV — 5x maior que todo o segmento espuma 17cm. Com 152 sellers, é mais competitivo. A entrada ideal para Orthocrin é via diferenciação nos subtipos premium: <strong>Pillow Visco 27cm (R$1.704 mediana)</strong> ou <strong>Visco/D33 32cm (R$2.099 mediana)</strong>, onde a concorrência é menor (6–9 sellers) e o ticket justifica investimento em qualidade. Os tipos D65/D26 22cm e EPS+D26 25cm representam oportunidade de pioneirismo.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLANO DE ENTRADA -->
+  <div class="section">
+    <div class="section-title">Plano de Entrada — Sequência Recomendada</div>
+    <div class="plan-grid">
+      <div class="plan-card p1">
+        <div class="plan-badge badge-p1">Prioridade 1 — Imediato</div>
+        <div class="plan-title">Espuma D33 + D45 — 17cm</div>
+        <ul class="plan-bullets">
+          <li>D33 17cm: posicionar entre R$420–500 (P25–mediana do mercado)</li>
+          <li>D45 17cm: posicionar entre R$580–649 (mediana–P75 do mercado)</li>
+          <li>Começar com solteiro, casal e queen para cobrir faixas-alvo</li>
+          <li>Usar titulação clara com densidade + altura para capturar buscas específicas</li>
+          <li>Meta: primeiros 30 dias com volume orgânico para construir histórico</li>
+        </ul>
+      </div>
+      <div class="plan-card p2">
+        <div class="plan-badge badge-p2">Prioridade 2 — 1 a 2 meses</div>
+        <div class="plan-title">Mola Simples + Pillow Visco 27cm</div>
+        <ul class="plan-bullets">
+          <li>Mola simples: entrada entre R$700–900 (mediana R$786) para começar a construir histórico no segmento mola</li>
+          <li>Pillow Visco 27cm: precificar acima de R$1.500 — premium com baixa concorrência (9 sellers)</li>
+          <li>Validar logística (XD ou Full) para colchões de mola antes de escalar</li>
+          <li>D28 17cm: avaliar posicionamento — ticket alto (R$949) pode ser resultado de pillow top</li>
+        </ul>
+      </div>
+      <div class="plan-card p3">
+        <div class="plan-badge badge-p3">Prioridade 3 — 3+ meses</div>
+        <div class="plan-title">Visco/D33 32cm + D65/D26 + EPS+D26</div>
+        <ul class="plan-bullets">
+          <li>Visco/D33 32cm: topo de linha acima de R$2.000 — para após consolidar molas básicas</li>
+          <li>D65/D26 22cm: testar como produto novo no mercado — pioneirismo pode gerar tração orgânica</li>
+          <li>EPS+D26 25cm: mercado praticamente inexistente — validar demanda antes de produzir</li>
+          <li>Criar linha nomeada clara (ex: "Linha Premium Mola") para construir identidade</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Análise gerada em 17/06/2026 • Dados: BigQuery meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB • Período Jan–Mai 2026 • Seller Orthocrin #560912973
+</footer>
+
+</body>
+</html>
