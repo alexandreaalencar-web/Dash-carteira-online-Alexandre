@@ -411,7 +411,7 @@
 
     <div class="chart-card">
       <h3>Visitas vs Conversão vs Ticket Médio por Mês</h3>
-      <div class="chart-wrap" style="height:210px"><canvas id="chartFunnel"></canvas></div>
+      <div class="chart-wrap" style="height:280px"><canvas id="chartFunnel"></canvas></div>
     </div>
     <div class="insight-box" style="background:#fff7ed;border-color:#fed7aa">
       <strong style="color:#c2410c">Diagnóstico principal:</strong> O problema não é o produto — o ticket médio está em alta. O gargalo é <strong>tráfego + conversão</strong>. Visitas caindo ~10%/mês e conversão caindo de 0,288% → 0,224% indicam perda de visibilidade nos resultados de busca e/ou gap competitivo de preço nos itens de maior volume.
@@ -982,13 +982,16 @@ new Chart(document.getElementById('chartFunnel'), {
       {
         label: 'Visitas',
         data: [402961, 356562, 323926],
-        backgroundColor: 'rgba(52,131,250,0.15)',
+        backgroundColor: 'rgba(52,131,250,0.18)',
         borderColor: C.blue, borderWidth: 2, borderRadius: 4, yAxisID: 'y',
         datalabels: {
-          anchor: 'end', align: 'end',
-          formatter: v => (v/1000).toFixed(0) + 'k vis',
-          font: { size: 10, weight: '700' },
-          color: C.blue, offset: 2
+          anchor: 'end', align: 'start',
+          formatter: v => (v/1000).toFixed(0) + 'k visitas',
+          font: { size: 11, weight: '700' },
+          color: '#1e40af',
+          backgroundColor: 'rgba(219,234,254,0.9)',
+          borderRadius: 4, padding: { top: 3, bottom: 3, left: 7, right: 7 },
+          offset: 8
         }
       },
       {
@@ -996,15 +999,15 @@ new Chart(document.getElementById('chartFunnel'), {
         data: [0.288, 0.253, 0.224],
         type: 'line',
         borderColor: C.red, backgroundColor: C.red,
-        borderWidth: 2.5, pointRadius: 6, tension: 0.3, yAxisID: 'y2',
+        borderWidth: 2.5, pointRadius: 7, pointBackgroundColor: C.red, tension: 0.3, yAxisID: 'y2',
         datalabels: {
-          anchor: 'end', align: 'bottom',
-          formatter: v => v.toFixed(3) + '%',
-          font: { size: 10, weight: '700' },
-          color: C.red,
-          backgroundColor: '#fee2e2',
-          borderRadius: 4, padding: { top: 2, bottom: 2, left: 5, right: 5 },
-          offset: 4
+          anchor: 'center', align: 'bottom',
+          formatter: v => 'CVR: ' + v.toFixed(3) + '%',
+          font: { size: 11, weight: '700' },
+          color: '#991b1b',
+          backgroundColor: 'rgba(254,226,226,0.95)',
+          borderRadius: 4, padding: { top: 3, bottom: 3, left: 7, right: 7 },
+          offset: 14
         }
       },
       {
@@ -1012,22 +1015,22 @@ new Chart(document.getElementById('chartFunnel'), {
         data: [1237, 1200, 1280],
         type: 'line',
         borderColor: C.green, backgroundColor: C.green,
-        borderWidth: 2.5, pointRadius: 6, tension: 0.3, yAxisID: 'y3',
+        borderWidth: 2.5, pointRadius: 7, pointBackgroundColor: C.green, tension: 0.3, yAxisID: 'y3',
         datalabels: {
-          anchor: 'end', align: 'top',
-          formatter: v => 'R$' + v.toLocaleString('pt-BR'),
-          font: { size: 10, weight: '700' },
-          color: C.green,
-          backgroundColor: '#dcfce7',
-          borderRadius: 4, padding: { top: 2, bottom: 2, left: 5, right: 5 },
-          offset: 4
+          anchor: 'center', align: 'top',
+          formatter: v => 'Ticket: R$' + v.toLocaleString('pt-BR'),
+          font: { size: 11, weight: '700' },
+          color: '#14532d',
+          backgroundColor: 'rgba(220,252,231,0.95)',
+          borderRadius: 4, padding: { top: 3, bottom: 3, left: 7, right: 7 },
+          offset: 14
         }
       }
     ]
   },
   options: {
     responsive: true, maintainAspectRatio: false,
-    layout: { padding: { top: 36, bottom: 16 } },
+    layout: { padding: { top: 60, bottom: 30 } },
     plugins: {
       legend: { position: 'top' },
       tooltip: {}
@@ -1035,8 +1038,8 @@ new Chart(document.getElementById('chartFunnel'), {
     scales: {
       x: { grid: { display: false } },
       y: { grid: { color: C.gridColor }, ticks: { callback: v => (v/1000).toFixed(0) + 'k' }, position: 'left' },
-      y2: { position: 'right', grid: { display: false }, ticks: { callback: v => v.toFixed(3) + '%' }, display: false },
-      y3: { position: 'right', grid: { display: false }, ticks: { callback: v => 'R$' + v }, display: false }
+      y2: { position: 'right', grid: { display: false }, display: false },
+      y3: { position: 'right', grid: { display: false }, display: false }
     }
   }
 });
