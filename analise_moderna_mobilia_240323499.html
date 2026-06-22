@@ -6,6 +6,7 @@
   <title>Moderna Mobília — Análise Abr–Jun 2026 | #240323499</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     body{font-family:'Inter',sans-serif;background:#F0F0F0;color:#1a1a1a;font-size:14px}
@@ -848,8 +849,12 @@ const C = {
   gridColor: 'rgba(0,0,0,0.06)',
   font: "'Inter', sans-serif"
 };
+Chart.register(ChartDataLabels);
 Chart.defaults.font.family = C.font;
 Chart.defaults.font.size = 11;
+
+const fmtK  = v => 'R$' + (v/1000).toFixed(0) + 'k';
+const fmtKd = v => 'R$' + (v/1000).toFixed(0) + 'k/d';
 
 // Chart 1 — GMV Mensal
 new Chart(document.getElementById('chartGMV'), {
@@ -860,22 +865,26 @@ new Chart(document.getElementById('chartGMV'), {
       label: 'GMV (R$)',
       data: [1433964, 1084127, 928089, 1352000, 1432000, 1500000],
       backgroundColor: ['#1a1a1a', C.red, C.blue, C.gray, C.green, C.blue],
-      borderRadius: 6,
-      borderSkipped: false,
+      borderRadius: 6, borderSkipped: false,
     }]
   },
   options: {
     responsive: true, maintainAspectRatio: false,
+    layout: { padding: { top: 28 } },
     plugins: {
       legend: { display: false },
-      tooltip: { callbacks: { label: ctx => ' R$ ' + ctx.raw.toLocaleString('pt-BR') } }
+      tooltip: { callbacks: { label: ctx => ' R$ ' + ctx.raw.toLocaleString('pt-BR') } },
+      datalabels: {
+        anchor: 'end', align: 'end',
+        formatter: fmtK,
+        font: { size: 10, weight: '700' },
+        color: '#1a1a1a',
+        offset: 2
+      }
     },
     scales: {
       x: { grid: { display: false }, ticks: { font: { size: 10 } } },
-      y: {
-        grid: { color: C.gridColor },
-        ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' }
-      }
+      y: { grid: { color: C.gridColor }, ticks: { callback: fmtK } }
     }
   }
 });
@@ -894,21 +903,26 @@ new Chart(document.getElementById('chartDaily'), {
   },
   options: {
     responsive: true, maintainAspectRatio: false,
+    layout: { padding: { top: 28 } },
     plugins: {
       legend: { display: false },
-      tooltip: { callbacks: { label: ctx => ' R$ ' + ctx.raw.toLocaleString('pt-BR') + '/dia' } }
+      tooltip: { callbacks: { label: ctx => ' R$ ' + ctx.raw.toLocaleString('pt-BR') + '/dia' } },
+      datalabels: {
+        anchor: 'end', align: 'end',
+        formatter: fmtK,
+        font: { size: 10, weight: '700' },
+        color: '#1a1a1a',
+        offset: 2
+      }
     },
     scales: {
       x: { grid: { display: false }, ticks: { font: { size: 10 } } },
-      y: {
-        grid: { color: C.gridColor },
-        ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' }
-      }
+      y: { grid: { color: C.gridColor }, ticks: { callback: fmtK } }
     }
   }
 });
 
-// Chart 3 — Weeks
+// Chart 3 — Weeks (bar + line)
 new Chart(document.getElementById('chartWeeks'), {
   type: 'bar',
   data: {
@@ -918,70 +932,111 @@ new Chart(document.getElementById('chartWeeks'), {
         label: 'GMV Total',
         data: [269691, 294944, 329607, 33847],
         backgroundColor: [C.gray, C.gray, C.blue, C.green],
-        borderRadius: 6, borderSkipped: false, yAxisID: 'y'
+        borderRadius: 6, borderSkipped: false, yAxisID: 'y',
+        datalabels: {
+          anchor: 'end', align: 'end',
+          formatter: fmtK,
+          font: { size: 10, weight: '700' },
+          color: '#1a1a1a', offset: 2
+        }
       },
       {
         label: 'GMV/dia',
         data: [44948, 42135, 47087, 33847],
         type: 'line',
-        borderColor: C.yellow, backgroundColor: C.yellow,
-        borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#1a1a1a',
-        tension: 0.3, yAxisID: 'y2'
+        borderColor: '#ca8a04', backgroundColor: '#ca8a04',
+        borderWidth: 2.5, pointRadius: 6, pointBackgroundColor: '#1a1a1a',
+        tension: 0.3, yAxisID: 'y2',
+        datalabels: {
+          anchor: 'end', align: 'top',
+          formatter: fmtKd,
+          font: { size: 10, weight: '700' },
+          color: '#92400e', offset: 4,
+          backgroundColor: '#fef9c3',
+          borderRadius: 4, padding: { top: 2, bottom: 2, left: 5, right: 5 }
+        }
       }
     ]
   },
   options: {
     responsive: true, maintainAspectRatio: false,
+    layout: { padding: { top: 36 } },
     plugins: {
       legend: { position: 'top' },
       tooltip: { callbacks: { label: ctx => ' R$ ' + ctx.raw.toLocaleString('pt-BR') } }
     },
     scales: {
       x: { grid: { display: false } },
-      y: { grid: { color: C.gridColor }, ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' }, position: 'left' },
-      y2: { ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' }, position: 'right', grid: { display: false } }
+      y: { grid: { color: C.gridColor }, ticks: { callback: fmtK }, position: 'left' },
+      y2: { ticks: { callback: fmtK }, position: 'right', grid: { display: false } }
     }
   }
 });
 
-// Chart 4 — Funnel (visitas + CVR + ticket)
+// Chart 4 — Funnel (bar + 2 lines)
 new Chart(document.getElementById('chartFunnel'), {
   type: 'bar',
   data: {
     labels: ['Abril', 'Maio', 'Junho'],
     datasets: [
       {
-        label: 'Visitas (÷10)',
-        data: [40296, 35656, 32393],
+        label: 'Visitas',
+        data: [402961, 356562, 323926],
         backgroundColor: 'rgba(52,131,250,0.15)',
-        borderColor: C.blue, borderWidth: 2, borderRadius: 4, yAxisID: 'y'
+        borderColor: C.blue, borderWidth: 2, borderRadius: 4, yAxisID: 'y',
+        datalabels: {
+          anchor: 'end', align: 'end',
+          formatter: v => (v/1000).toFixed(0) + 'k vis',
+          font: { size: 10, weight: '700' },
+          color: C.blue, offset: 2
+        }
       },
       {
-        label: 'CVR (×1000, em ‰)',
-        data: [2.88, 2.53, 2.24],
+        label: 'CVR (%)',
+        data: [0.288, 0.253, 0.224],
         type: 'line',
         borderColor: C.red, backgroundColor: C.red,
-        borderWidth: 2.5, pointRadius: 5, tension: 0.3, yAxisID: 'y2'
+        borderWidth: 2.5, pointRadius: 6, tension: 0.3, yAxisID: 'y2',
+        datalabels: {
+          anchor: 'end', align: 'bottom',
+          formatter: v => v.toFixed(3) + '%',
+          font: { size: 10, weight: '700' },
+          color: C.red,
+          backgroundColor: '#fee2e2',
+          borderRadius: 4, padding: { top: 2, bottom: 2, left: 5, right: 5 },
+          offset: 4
+        }
       },
       {
-        label: 'Ticket Médio (÷10)',
-        data: [123.7, 120.0, 128.0],
+        label: 'Ticket Médio',
+        data: [1237, 1200, 1280],
         type: 'line',
         borderColor: C.green, backgroundColor: C.green,
-        borderWidth: 2.5, pointRadius: 5, tension: 0.3, yAxisID: 'y2'
+        borderWidth: 2.5, pointRadius: 6, tension: 0.3, yAxisID: 'y3',
+        datalabels: {
+          anchor: 'end', align: 'top',
+          formatter: v => 'R$' + v.toLocaleString('pt-BR'),
+          font: { size: 10, weight: '700' },
+          color: C.green,
+          backgroundColor: '#dcfce7',
+          borderRadius: 4, padding: { top: 2, bottom: 2, left: 5, right: 5 },
+          offset: 4
+        }
       }
     ]
   },
   options: {
     responsive: true, maintainAspectRatio: false,
+    layout: { padding: { top: 36, bottom: 16 } },
     plugins: {
       legend: { position: 'top' },
       tooltip: {}
     },
     scales: {
       x: { grid: { display: false } },
-      y: { grid: { color: C.gridColor }, ticks: { callback: v => (v*10/1000).toFixed(0) + 'k vis' } },
-      y2: { position: 'right', grid: { display: false }, ticks: { callback: v => v } }
+      y: { grid: { color: C.gridColor }, ticks: { callback: v => (v/1000).toFixed(0) + 'k' }, position: 'left' },
+      y2: { position: 'right', grid: { display: false }, ticks: { callback: v => v.toFixed(3) + '%' }, display: false },
+      y3: { position: 'right', grid: { display: false }, ticks: { callback: v => 'R$' + v }, display: false }
     }
   }
 });
@@ -1001,13 +1056,24 @@ new Chart(document.getElementById('chartCat'), {
     responsive: true, maintainAspectRatio: false,
     plugins: {
       legend: { position: 'bottom', labels: { padding: 16, font: { size: 11 } } },
-      tooltip: { callbacks: { label: ctx => ' ' + ctx.label + ': ' + ctx.raw + '%' } }
+      tooltip: { callbacks: { label: ctx => ' ' + ctx.label + ': ' + ctx.raw + '%' } },
+      datalabels: {
+        display: ctx => ctx.dataset.data[ctx.dataIndex] >= 5,
+        formatter: (v, ctx) => ctx.chart.data.labels[ctx.dataIndex].split(' ')[0] + '\n' + v + '%',
+        font: { size: 11, weight: '800' },
+        color: ctx => {
+          const colors = [C.blue, C.green, '#FFE600', C.gray];
+          const bg = colors[ctx.dataIndex];
+          return bg === '#FFE600' ? '#1a1a1a' : '#fff';
+        },
+        textAlign: 'center'
+      }
     },
-    cutout: '62%'
+    cutout: '55%'
   }
 });
 
-// Chart 6 — Geo
+// Chart 6 — Geo (horizontal bar)
 new Chart(document.getElementById('chartGeo'), {
   type: 'bar',
   data: {
@@ -1021,12 +1087,20 @@ new Chart(document.getElementById('chartGeo'), {
   },
   options: {
     responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    layout: { padding: { right: 56 } },
     plugins: {
       legend: { display: false },
-      tooltip: { callbacks: { label: ctx => ' R$ ' + ctx.raw.toLocaleString('pt-BR') } }
+      tooltip: { callbacks: { label: ctx => ' R$ ' + ctx.raw.toLocaleString('pt-BR') } },
+      datalabels: {
+        anchor: 'end', align: 'right',
+        formatter: fmtK,
+        font: { size: 10, weight: '700' },
+        color: '#1a1a1a',
+        offset: 4
+      }
     },
     scales: {
-      x: { grid: { color: C.gridColor }, ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' } },
+      x: { grid: { color: C.gridColor }, ticks: { callback: fmtK } },
       y: { grid: { display: false } }
     }
   }
