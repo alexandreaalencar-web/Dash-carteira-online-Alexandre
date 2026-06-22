@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moderna Mobília — Análise Abr–Jun 2026 | #240323499</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:#F0F0F0;color:#1a1a1a;font-size:14px}
+
+    header{background:#FFE600;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+    .header-left{display:flex;align-items:center;gap:14px}
+    .header-logo{width:38px;height:38px;border-radius:10px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;color:#FFE600}
+    header h1{font-size:19px;font-weight:800;color:#1a1a1a;line-height:1.2}
+    header h1 small{display:block;font-size:11px;font-weight:500;opacity:.55;margin-top:2px}
+    .header-right{display:flex;align-items:center;gap:10px}
+    .hbadge{background:#1a1a1a;color:#FFE600;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.03em}
+    .hbadge.period{background:rgba(0,0,0,.08);color:#1a1a1a}
+
+    .container{max-width:1300px;margin:0 auto;padding:28px 24px}
+    .section{margin-bottom:40px}
+    .section-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #FFE600;display:flex;align-items:center;gap:8px}
+    .section-title svg{opacity:.5}
+
+    /* KPI GRID */
+    .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:32px}
+    .kpi{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 1px 6px rgba(0,0,0,.07);position:relative;overflow:hidden}
+    .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#FFE600}
+    .kpi.blue::before{background:#3483FA}
+    .kpi.green::before{background:#00A650}
+    .kpi.red::before{background:#F23D4F}
+    .kpi.purple::before{background:#8B5CF6}
+    .kpi-label{font-size:10px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.07em}
+    .kpi-value{font-size:22px;font-weight:900;color:#1a1a1a;margin:6px 0 4px}
+    .kpi-sub{font-size:10px;color:#aaa}
+    .kpi-delta{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:700;padding:2px 7px;border-radius:20px;margin-top:4px}
+    .kpi-delta.up{background:#dcfce7;color:#16a34a}
+    .kpi-delta.down{background:#fee2e2;color:#dc2626}
+    .kpi-delta.flat{background:#f3f4f6;color:#6b7280}
+
+    /* MONTH CARDS */
+    .month-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+    .month-card{background:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+    .month-card h3{font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+    .month-card .big{font-size:26px;font-weight:900;color:#1a1a1a}
+    .month-card .meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}
+    .month-card .meta-item label{font-size:9px;font-weight:700;color:#bbb;text-transform:uppercase;display:block}
+    .month-card .meta-item span{font-size:13px;font-weight:700;color:#1a1a1a}
+    .month-badge{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700}
+    .mb-green{background:#dcfce7;color:#16a34a}
+    .mb-red{background:#fee2e2;color:#dc2626}
+    .mb-yellow{background:#fef9c3;color:#ca8a04}
+
+    /* CHART CARD */
+    .chart-card{background:#fff;border-radius:14px;padding:22px 24px;box-shadow:0 1px 6px rgba(0,0,0,.07);margin-bottom:20px}
+    .chart-card h3{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:18px}
+    .chart-wrap{position:relative}
+
+    /* PROJECTION */
+    .proj-grid{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+    .proj-scenarios{display:flex;flex-direction:column;gap:12px}
+    .proj-scenario{background:#fff;border-radius:14px;padding:18px 22px;box-shadow:0 1px 6px rgba(0,0,0,.07);display:flex;align-items:center;gap:16px;position:relative;overflow:hidden}
+    .proj-scenario::after{content:'';position:absolute;top:0;left:0;bottom:0;width:4px}
+    .proj-scenario.s1::after{background:#94a3b8}
+    .proj-scenario.s2::after{background:#3483FA}
+    .proj-scenario.s3::after{background:#00A650}
+    .proj-scenario .ps-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+    .s1 .ps-icon{background:#f1f5f9}
+    .s2 .ps-icon{background:#eff6ff}
+    .s3 .ps-icon{background:#f0fdf4}
+    .ps-info label{font-size:10px;font-weight:700;color:#999;text-transform:uppercase;display:block;margin-bottom:3px}
+    .ps-info .ps-value{font-size:20px;font-weight:900;color:#1a1a1a}
+    .ps-info .ps-delta{font-size:11px;color:#888;margin-top:2px}
+    .ps-bar-wrap{flex:1}
+    .ps-bar{height:8px;border-radius:4px;position:relative;background:#f1f5f9;overflow:visible}
+    .ps-bar-fill{height:100%;border-radius:4px;transition:width .6s}
+    .s1 .ps-bar-fill{background:#94a3b8}
+    .s2 .ps-bar-fill{background:#3483FA}
+    .s3 .ps-bar-fill{background:#00A650}
+    .ps-ref{font-size:10px;color:#bbb;margin-top:4px;text-align:right}
+
+    .proj-info-card{background:#fff;border-radius:14px;padding:22px;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+    .proj-info-card h4{font-size:12px;font-weight:700;color:#1a1a1a;margin-bottom:16px}
+    .proj-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:12px}
+    .proj-row:last-child{border-bottom:none}
+    .proj-row label{color:#888;font-weight:500}
+    .proj-row span{font-weight:700;color:#1a1a1a}
+    .proj-row span.hl{color:#3483FA}
+    .proj-row span.ok{color:#00A650}
+
+    /* FUNNEL */
+    .funnel-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+    .fc{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 1px 6px rgba(0,0,0,.07);text-align:center;position:relative}
+    .fc-arrow{position:absolute;right:-12px;top:50%;transform:translateY(-50%);width:24px;height:24px;background:#FFE600;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;z-index:2;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+    .fc-label{font-size:10px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+    .fc-val{font-size:22px;font-weight:900;color:#1a1a1a}
+    .fc-sub{font-size:10px;color:#aaa;margin-top:3px}
+    .fc-trend{display:flex;justify-content:center;gap:8px;margin-top:10px}
+    .fc-t{font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px}
+    .fc-t.down{background:#fee2e2;color:#dc2626}
+    .fc-t.up{background:#dcfce7;color:#16a34a}
+    .fc-t.flat{background:#f3f4f6;color:#6b7280}
+
+    /* TABLE */
+    .table-wrap{background:#fff;border-radius:14px;box-shadow:0 1px 6px rgba(0,0,0,.07);overflow:hidden}
+    table{width:100%;border-collapse:collapse}
+    thead{background:#1a1a1a}
+    thead th{color:#FFE600;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:12px 14px;text-align:left;white-space:nowrap}
+    thead th.right{text-align:right}
+    thead th.center{text-align:center}
+    tbody tr{border-bottom:1px solid #F5F5F5;transition:background .15s}
+    tbody tr:hover{background:#fafafa}
+    tbody td{padding:10px 14px;font-size:12px;vertical-align:middle}
+    tbody td.right{text-align:right;font-variant-numeric:tabular-nums}
+    tbody td.center{text-align:center}
+    .rank{width:24px;height:24px;border-radius:6px;background:#1a1a1a;color:#FFE600;font-size:10px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+    .rank.r1{background:#FFE600;color:#1a1a1a}
+    .rank.r2{background:#e5e7eb;color:#1a1a1a}
+    .rank.r3{background:#d97706;color:#fff}
+
+    /* BAR INLINE */
+    .bar-inline{height:6px;border-radius:3px;background:#3483FA;display:inline-block;vertical-align:middle;margin-right:6px}
+
+    /* GEO TABLE */
+    .geo-row-high td:first-child{font-weight:700}
+    .opp-pill{display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
+    .opp-alta{background:#dcfce7;color:#16a34a}
+    .opp-media{background:#fef3c7;color:#b45309}
+    .opp-baixa{background:#f3f4f6;color:#6b7280}
+    .opp-mta{background:#f0fdf4;color:#15803d;border:1px solid #86efac}
+
+    /* ACTION PLAN */
+    .action-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .action-card{background:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 1px 6px rgba(0,0,0,.07);border-left:4px solid #3483FA}
+    .action-card.green{border-left-color:#00A650}
+    .action-card.yellow{border-left-color:#FFE600}
+    .action-card.purple{border-left-color:#8B5CF6}
+    .action-card h4{font-size:13px;font-weight:800;color:#1a1a1a;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+    .action-card .priority{background:#3483FA;color:#fff;font-size:9px;font-weight:800;padding:2px 7px;border-radius:8px;text-transform:uppercase}
+    .action-card.green .priority{background:#00A650}
+    .action-card.yellow .priority{background:#ca8a04;color:#fff}
+    .action-card.purple .priority{background:#8B5CF6}
+    .action-card p{font-size:12px;color:#555;line-height:1.6;margin-bottom:8px}
+    .action-card .impact{font-size:11px;color:#3483FA;font-weight:700}
+    .action-card.green .impact{color:#00A650}
+
+    /* TICKER */
+    .ticker-bar{background:#1a1a1a;color:#FFE600;padding:8px 24px;font-size:11px;font-weight:600;display:flex;gap:32px;overflow:hidden}
+
+    /* WEEKTREND */
+    .week-trend-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+    .wt-card{background:#fff;border-radius:12px;padding:16px 18px;box-shadow:0 1px 6px rgba(0,0,0,.07);position:relative;overflow:hidden}
+    .wt-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#3483FA}
+    .wt-card:last-child::before{background:#00A650;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+    .wt-label{font-size:9px;font-weight:700;color:#bbb;text-transform:uppercase;margin-bottom:6px}
+    .wt-gmv{font-size:18px;font-weight:900;color:#1a1a1a}
+    .wt-sub{font-size:10px;color:#aaa;margin-top:2px}
+    .wt-day{font-size:10px;font-weight:600;margin-top:8px;padding-top:8px;border-top:1px solid #f0f0f0}
+    .live-badge{display:inline-block;padding:1px 6px;border-radius:6px;font-size:9px;font-weight:700;background:#dcfce7;color:#16a34a;margin-left:6px}
+
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+
+    .insight-box{background:#eff6ff;border:1px solid #bfdbfe;border-radius:12px;padding:14px 18px;margin-top:14px;font-size:12px;color:#1e40af;line-height:1.6}
+    .insight-box strong{font-weight:700}
+
+    .warn-box{background:#fef9c3;border:1px solid #fde047;border-radius:12px;padding:14px 18px;margin-top:14px;font-size:12px;color:#854d0e;line-height:1.6}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="header-logo">MM</div>
+    <h1>Moderna Mobília <small>#240323499 · Análise Abr–Jun 2026</small></h1>
+  </div>
+  <div class="header-right">
+    <span class="hbadge period">01/04/2026 – 21/06/2026</span>
+    <span class="hbadge">Gerado 22/06/2026</span>
+  </div>
+</header>
+
+<!-- Ticker -->
+<div class="ticker-bar">
+  <span>GMV Acumulado (Abr–21Jun): <strong>R$ 3.446.180</strong></span>
+  <span>Pedidos: <strong>2.787</strong></span>
+  <span>Ticket Médio: <strong>R$ 1.236</strong></span>
+  <span>Buybox Médio: <strong>68,2%</strong></span>
+  <span>Conversão Jun: <strong>0,224%</strong> ▼ vs Abr 0,288%</span>
+  <span>Top SKU: Mesa Alvorada 180 → 13,2% GMV</span>
+</div>
+
+<div class="container">
+
+  <!-- ============ VISÃO MENSAL ============ -->
+  <div class="section">
+    <div class="section-title">Desempenho Mensal</div>
+    <div class="month-row">
+      <!-- ABRIL -->
+      <div class="month-card">
+        <h3>Abril <span class="month-badge mb-yellow">Referência</span></h3>
+        <div class="big">R$ 1.433.964</div>
+        <div class="meta">
+          <div class="meta-item"><label>Pedidos</label><span>1.159</span></div>
+          <div class="meta-item"><label>Unidades</label><span>1.195</span></div>
+          <div class="meta-item"><label>GMV/dia</label><span>R$ 47.799</span></div>
+          <div class="meta-item"><label>Ticket Médio</label><span>R$ 1.237</span></div>
+          <div class="meta-item"><label>Visitas</label><span>402.961</span></div>
+          <div class="meta-item"><label>CVR</label><span>0,288%</span></div>
+          <div class="meta-item"><label>Buybox</label><span>62,2%</span></div>
+          <div class="meta-item"><label>Itens c/ venda</label><span>181</span></div>
+        </div>
+      </div>
+      <!-- MAIO -->
+      <div class="month-card">
+        <h3>Maio <span class="month-badge mb-red">Vale ▼ −24%</span></h3>
+        <div class="big" style="color:#F23D4F">R$ 1.084.127</div>
+        <div class="meta">
+          <div class="meta-item"><label>Pedidos</label><span>903</span></div>
+          <div class="meta-item"><label>Unidades</label><span>945</span></div>
+          <div class="meta-item"><label>GMV/dia</label><span style="color:#F23D4F">R$ 34.972</span></div>
+          <div class="meta-item"><label>Ticket Médio</label><span>R$ 1.200</span></div>
+          <div class="meta-item"><label>Visitas</label><span>356.562</span></div>
+          <div class="meta-item"><label>CVR</label><span style="color:#F23D4F">0,253%</span></div>
+          <div class="meta-item"><label>Buybox</label><span style="color:#00A650">71,4%</span></div>
+          <div class="meta-item"><label>Itens c/ venda</label><span>184</span></div>
+        </div>
+      </div>
+      <!-- JUNHO -->
+      <div class="month-card">
+        <h3>Junho (1–21) <span class="month-badge mb-green">Recuperando ▲</span></h3>
+        <div class="big" style="color:#3483FA">R$ 928.089</div>
+        <div class="meta">
+          <div class="meta-item"><label>Pedidos</label><span>725</span></div>
+          <div class="meta-item"><label>Unidades</label><span>738</span></div>
+          <div class="meta-item"><label>GMV/dia</label><span style="color:#00A650">R$ 44.195</span></div>
+          <div class="meta-item"><label>Ticket Médio</label><span style="color:#00A650">R$ 1.280</span></div>
+          <div class="meta-item"><label>Visitas</label><span>323.926</span></div>
+          <div class="meta-item"><label>CVR</label><span style="color:#F23D4F">0,224%</span></div>
+          <div class="meta-item"><label>Buybox</label><span style="color:#00A650">71,0%</span></div>
+          <div class="meta-item"><label>Itens c/ venda</label><span>165</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHARTS ROW -->
+    <div class="two-col">
+      <div class="chart-card">
+        <h3>GMV Mensal (R$) + Projeções Junho</h3>
+        <div class="chart-wrap" style="height:220px"><canvas id="chartGMV"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>GMV/dia Médio por Mês</h3>
+        <div class="chart-wrap" style="height:220px"><canvas id="chartDaily"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ TENDÊNCIA SEMANAL JUNHO ============ -->
+  <div class="section">
+    <div class="section-title">Tendência Semanal — Junho</div>
+    <div class="week-trend-row">
+      <div class="wt-card">
+        <div class="wt-label">Jun 01–06 (6 dias)</div>
+        <div class="wt-gmv">R$ 269.691</div>
+        <div class="wt-sub">212 pedidos</div>
+        <div class="wt-day" style="color:#888">R$ 44.948/dia</div>
+      </div>
+      <div class="wt-card">
+        <div class="wt-label">Jun 07–13 (7 dias)</div>
+        <div class="wt-gmv">R$ 294.944</div>
+        <div class="wt-sub">237 pedidos</div>
+        <div class="wt-day" style="color:#888">R$ 42.135/dia <span style="font-size:9px;color:#F23D4F">−6%</span></div>
+      </div>
+      <div class="wt-card">
+        <div class="wt-label">Jun 14–20 (7 dias)</div>
+        <div class="wt-gmv" style="color:#00A650">R$ 329.607</div>
+        <div class="wt-sub">251 pedidos</div>
+        <div class="wt-day" style="color:#00A650">R$ 47.087/dia <span style="font-size:9px;color:#00A650">+12%</span></div>
+      </div>
+      <div class="wt-card">
+        <div class="wt-label">Jun 21 (domingo) <span class="live-badge">ontem</span></div>
+        <div class="wt-gmv" style="color:#3483FA">R$ 33.847</div>
+        <div class="wt-sub">25 pedidos</div>
+        <div class="wt-day" style="color:#3483FA">1 dia · dom. típico</div>
+      </div>
+    </div>
+    <div class="chart-card">
+      <h3>GMV Diário — Semanas de Junho</h3>
+      <div class="chart-wrap" style="height:200px"><canvas id="chartWeeks"></canvas></div>
+    </div>
+    <div class="insight-box">
+      <strong>Momentum positivo:</strong> A semana de Jun 14–20 foi a melhor de junho, com R$47k/dia — praticamente o mesmo nível de Abril (R$47.799/dia). O crescimento semana a semana (+12%) indica que o seller está se recuperando organicamente.
+    </div>
+  </div>
+
+  <!-- ============ PROJEÇÃO DE FECHAMENTO ============ -->
+  <div class="section">
+    <div class="section-title">Projeção de Fechamento — Junho 2026</div>
+    <div class="proj-grid">
+      <div class="proj-scenarios">
+
+        <div class="proj-scenario s1">
+          <div class="ps-icon">📉</div>
+          <div class="ps-info">
+            <label>Conservador · sem ações</label>
+            <div class="ps-value">R$ 1.309.000</div>
+            <div class="ps-delta">R$42k/dia × 9 dias restantes</div>
+          </div>
+          <div class="ps-bar-wrap">
+            <div class="ps-bar"><div class="ps-bar-fill" style="width:91%"></div></div>
+            <div class="ps-ref">vs Abr: −8,7%</div>
+          </div>
+        </div>
+
+        <div class="proj-scenario s2">
+          <div class="ps-icon">📊</div>
+          <div class="ps-info">
+            <label>Base · pace atual</label>
+            <div class="ps-value">R$ 1.352.000</div>
+            <div class="ps-delta">R$47k/dia × 9 dias (semana passada)</div>
+          </div>
+          <div class="ps-bar-wrap">
+            <div class="ps-bar"><div class="ps-bar-fill" style="width:94%"></div></div>
+            <div class="ps-ref">vs Abr: −5,7%</div>
+          </div>
+        </div>
+
+        <div class="proj-scenario s3">
+          <div class="ps-icon">🚀</div>
+          <div class="ps-info">
+            <label>Com plano de ação</label>
+            <div class="ps-value" style="color:#00A650">R$ 1.432.000</div>
+            <div class="ps-delta">R$56k/dia (+20% vs pace) × 9 dias</div>
+          </div>
+          <div class="ps-bar-wrap">
+            <div class="ps-bar"><div class="ps-bar-fill" style="width:100%"></div></div>
+            <div class="ps-ref" style="color:#16a34a;font-weight:700">≈ Iguala Abril ✓</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="proj-info-card">
+        <h4>Dados da projeção</h4>
+        <div class="proj-row"><label>GMV acumulado (1–21 Jun)</label><span>R$ 928.089</span></div>
+        <div class="proj-row"><label>Dias restantes (22–30 Jun)</label><span>9 dias</span></div>
+        <div class="proj-row"><label>Pace última semana completa</label><span class="hl">R$ 47.087/dia</span></div>
+        <div class="proj-row"><label>Meta implícita (≈ Abril)</label><span>R$ 1.433.964</span></div>
+        <div class="proj-row"><label>Gap a fechar (pace base)</label><span style="color:#F23D4F">−R$ 82.000</span></div>
+        <div class="proj-row"><label>GMV/dia necessário p/ igualar</label><span class="hl">R$ 56.208</span></div>
+        <div class="proj-row"><label>Upside necessário vs pace atual</label><span>+19,4%</span></div>
+        <div class="proj-row"><label>Viável com plano de ação?</label><span class="ok">Sim ✓</span></div>
+        <div class="warn-box" style="margin-top:12px">
+          <strong>Atenção:</strong> Pico de ticket médio em Junho (R$1.280 vs R$1.237 em Abr) significa que o upside de +20% pode vir por mais volume, não por subir preço. Foco em visitas e conversão.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ FUNIL DE CONVERSÃO ============ -->
+  <div class="section">
+    <div class="section-title">Funil: Visitas → Conversão → GMV</div>
+    <div class="funnel-cards">
+      <div class="fc">
+        <div class="fc-label">Visitas/mês</div>
+        <div class="fc-val" style="color:#3483FA">402.961</div>
+        <div class="fc-sub">Abril (referência)</div>
+        <div class="fc-trend">
+          <span class="fc-t flat">Abr →</span>
+          <span class="fc-t down">Mai −11%</span>
+          <span class="fc-t down">Jun −9%</span>
+        </div>
+        <div class="fc-arrow">→</div>
+      </div>
+      <div class="fc">
+        <div class="fc-label">Taxa de Conversão</div>
+        <div class="fc-val" style="color:#F23D4F">0,224%</div>
+        <div class="fc-sub">Junho atual (pior do período)</div>
+        <div class="fc-trend">
+          <span class="fc-t flat">Abr 0,288%</span>
+          <span class="fc-t down">Jun −22%</span>
+        </div>
+        <div class="fc-arrow">→</div>
+      </div>
+      <div class="fc">
+        <div class="fc-label">Ticket Médio/Pedido</div>
+        <div class="fc-val" style="color:#00A650">R$ 1.280</div>
+        <div class="fc-sub">Junho · ponto mais alto</div>
+        <div class="fc-trend">
+          <span class="fc-t down">Abr 1.237</span>
+          <span class="fc-t down">Mai 1.200</span>
+          <span class="fc-t up">Jun ▲</span>
+        </div>
+        <div class="fc-arrow">→</div>
+      </div>
+      <div class="fc">
+        <div class="fc-label">GMV/dia</div>
+        <div class="fc-val" style="color:#3483FA">R$ 47.087</div>
+        <div class="fc-sub">Última semana completa</div>
+        <div class="fc-trend">
+          <span class="fc-t flat">Abr 47.799</span>
+          <span class="fc-t up">Rec ▲</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <h3>Visitas vs Conversão vs Ticket Médio por Mês</h3>
+      <div class="chart-wrap" style="height:210px"><canvas id="chartFunnel"></canvas></div>
+    </div>
+    <div class="insight-box" style="background:#fff7ed;border-color:#fed7aa">
+      <strong style="color:#c2410c">Diagnóstico principal:</strong> O problema não é o produto — o ticket médio está em alta. O gargalo é <strong>tráfego + conversão</strong>. Visitas caindo ~10%/mês e conversão caindo de 0,288% → 0,224% indicam perda de visibilidade nos resultados de busca e/ou gap competitivo de preço nos itens de maior volume.
+    </div>
+  </div>
+
+  <!-- ============ CATEGORIAS ============ -->
+  <div class="section">
+    <div class="section-title">Mix de Categorias · Abr–21 Jun acumulado</div>
+    <div class="two-col">
+      <div class="chart-card">
+        <h3>Share de GMV por Categoria</h3>
+        <div class="chart-wrap" style="height:220px"><canvas id="chartCat"></canvas></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Categoria</th>
+              <th class="right">GMV (R$)</th>
+              <th class="right">Pedidos</th>
+              <th class="right">Ticket Médio</th>
+              <th class="right">Share</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Conjuntos de Jantar</strong></td>
+              <td class="right">1.549.912</td>
+              <td class="right">959</td>
+              <td class="right" style="color:#00A650;font-weight:700">R$ 1.616</td>
+              <td class="right"><span class="bar-inline" style="width:45px;background:#3483FA"></span>45,0%</td>
+            </tr>
+            <tr>
+              <td><strong>Guarda-Roupas</strong></td>
+              <td class="right">1.343.782</td>
+              <td class="right">1.169</td>
+              <td class="right">R$ 1.149</td>
+              <td class="right"><span class="bar-inline" style="width:39px;background:#00A650"></span>39,0%</td>
+            </tr>
+            <tr>
+              <td><strong>Mesas de Jantar/Cozinha</strong></td>
+              <td class="right">502.867</td>
+              <td class="right">624</td>
+              <td class="right">R$ 806</td>
+              <td class="right"><span class="bar-inline" style="width:15px;background:#FFE600"></span>14,6%</td>
+            </tr>
+            <tr>
+              <td>Cadeiras de Jantar</td>
+              <td class="right">24.453</td>
+              <td class="right">15</td>
+              <td class="right">R$ 1.630</td>
+              <td class="right">0,7%</td>
+            </tr>
+            <tr>
+              <td>Aparadores</td>
+              <td class="right">16.429</td>
+              <td class="right">13</td>
+              <td class="right">R$ 1.264</td>
+              <td class="right">0,5%</td>
+            </tr>
+            <tr>
+              <td>Móveis Jardim + Sapateiras</td>
+              <td class="right">8.738</td>
+              <td class="right">7</td>
+              <td class="right">R$ 1.249</td>
+              <td class="right">0,3%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="insight-box" style="margin-top:16px">
+      <strong>Risco de concentração:</strong> 84% do GMV está em apenas 2 categorias. Conjuntos de jantar têm ticket 41% maior que guarda-roupas e devem receber prioridade máxima em visibilidade, buybox e estoque. Mesas de jantar standalone (14,6%) têm ticket baixo (R$806) mas alto volume — oportunidade de upsell para o combo.
+    </div>
+  </div>
+
+  <!-- ============ TOP ITENS ============ -->
+  <div class="section">
+    <div class="section-title">Top 10 Itens por GMV · Abr–21 Jun</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="center">#</th>
+            <th>Item ID</th>
+            <th>Título</th>
+            <th class="right">GMV (R$)</th>
+            <th class="right">Pedidos</th>
+            <th class="right">Ticket Médio</th>
+            <th class="right">Share GMV</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center"><span class="rank r1">1</span></td>
+            <td><a href="https://www.mercadolivre.com.br/p/MLB4462388928" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">4462388928</a></td>
+            <td style="font-size:11px">Mesa Alvorada 180 MDF Vidro Canto Reto + 6 Cadeiras Rufato</td>
+            <td class="right" style="font-weight:700">456.380</td>
+            <td class="right">245</td>
+            <td class="right" style="color:#00A650;font-weight:700">R$ 1.863</td>
+            <td class="right"><span class="bar-inline" style="width:26px;background:#F23D4F"></span><strong>13,2%</strong></td>
+          </tr>
+          <tr>
+            <td class="center"><span class="rank r2">2</span></td>
+            <td><a href="https://www.mercadolivre.com.br/p/MLB4245486217" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">4245486217</a></td>
+            <td style="font-size:11px">Guarda-Roupa Casal Toronto 100% MDF 8 Portas Mobília</td>
+            <td class="right" style="font-weight:700">236.577</td>
+            <td class="right">176</td>
+            <td class="right">R$ 1.344</td>
+            <td class="right"><span class="bar-inline" style="width:14px;background:#3483FA"></span>6,9%</td>
+          </tr>
+          <tr>
+            <td class="center"><span class="rank r3">3</span></td>
+            <td><a href="https://www.mercadolivre.com.br/p/MLB3925662097" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">3925662097</a></td>
+            <td style="font-size:11px">Sala de Jantar Olímpia MDF+Vidro c/ 4 Cadeiras Carol</td>
+            <td class="right" style="font-weight:700">185.230</td>
+            <td class="right">147</td>
+            <td class="right">R$ 1.260</td>
+            <td class="right"><span class="bar-inline" style="width:11px;background:#00A650"></span>5,4%</td>
+          </tr>
+          <tr>
+            <td class="center"><span class="rank">4</span></td>
+            <td><a href="https://www.mercadolivre.com.br/p/MLB3360556635" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">3360556635</a></td>
+            <td style="font-size:11px">Mesa Aster 180 MDF+Vidro + 6 Cadeiras Liz Grafite/Imbuia</td>
+            <td class="right">155.651</td>
+            <td class="right">87</td>
+            <td class="right" style="color:#00A650;font-weight:700">R$ 1.789</td>
+            <td class="right">4,5%</td>
+          </tr>
+          <tr>
+            <td class="center"><span class="rank">5</span></td>
+            <td><a href="https://www.mercadolivre.com.br/p/MLB3878556525" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">3878556525</a></td>
+            <td style="font-size:11px">Guarda-Roupa Toronto MDF 8 Portas Mobília Naturale/Off White</td>
+            <td class="right">121.008</td>
+            <td class="right">91</td>
+            <td class="right">R$ 1.330</td>
+            <td class="right">3,5%</td>
+          </tr>
+          <tr>
+            <td class="center"><span class="rank">6</span></td>
+            <td style="font-size:11px;color:#888">3604123805</td>
+            <td style="font-size:11px">Mesa Alvorada 180 MDF Vidro Canto Reto + 6 Cad. Rufato (var.)</td>
+            <td class="right">112.265</td>
+            <td class="right">62</td>
+            <td class="right" style="color:#00A650;font-weight:700">R$ 1.811</td>
+            <td class="right">3,3%</td>
+          </tr>
+          <tr>
+            <td class="center"><span class="rank">7</span></td>
+            <td style="font-size:11px;color:#888">3878505765</td>
+            <td style="font-size:11px">Guarda-Roupa Toronto MDF 8 Portas Mobília Naturalle</td>
+            <td class="right">97.576</td>
+            <td class="right">73</td>
+            <td class="right">R$ 1.337</td>
+            <td class="right">2,8%</td>
+          </tr>
+          <tr>
+            <td class="center"><span class="rank">8</span></td>
+            <td style="font-size:11px;color:#888">5197644524</td>
+            <td style="font-size:11px">Mesa Jantar 6 Lugares Rufato Alvorada Londrina Cap./Off White</td>
+            <td class="right">90.554</td>
+            <td class="right">57</td>
+            <td class="right">R$ 1.589</td>
+            <td class="right">2,6%</td>
+          </tr>
+          <tr>
+            <td class="center"><span class="rank">9</span></td>
+            <td style="font-size:11px;color:#888">4381888317</td>
+            <td style="font-size:11px">Guarda-Roupa Toronto MDF 8 Portas Mobília Naturalle (var.)</td>
+            <td class="right">63.499</td>
+            <td class="right">48</td>
+            <td class="right">R$ 1.323</td>
+            <td class="right">1,8%</td>
+          </tr>
+          <tr>
+            <td class="center"><span class="rank">10</span></td>
+            <td style="font-size:11px;color:#888">3919339177</td>
+            <td style="font-size:11px">Mesa Jantar 6 Lugares Rufato Alvorada Londrina Marrom/Off White</td>
+            <td class="right">59.016</td>
+            <td class="right">38</td>
+            <td class="right">R$ 1.553</td>
+            <td class="right">1,7%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn-box" style="margin-top:12px">
+      <strong>Alerta de concentração:</strong> O item 4462388928 (Mesa Alvorada) responde por 13,2% do GMV total do período. Qualquer instabilidade de estoque, buybox ou precificação nesse item impacta diretamente o resultado mensal. Monitorar com prioridade máxima.
+    </div>
+  </div>
+
+  <!-- ============ GEOGRAFIA ============ -->
+  <div class="section">
+    <div class="section-title">Share Geográfico + Oportunidades por Região</div>
+    <div class="two-col">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Estado</th>
+              <th class="right">GMV (R$)</th>
+              <th class="right">Pedidos</th>
+              <th class="right">Ticket Médio</th>
+              <th class="right">Share GMV</th>
+              <th class="center">Oportunidade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#fffbeb">
+              <td><strong>SP</strong></td>
+              <td class="right">847.331</td><td class="right">715</td>
+              <td class="right">R$ 1.185</td>
+              <td class="right"><span class="bar-inline" style="width:24px"></span>24,6%</td>
+              <td class="center"><span class="opp-pill opp-baixa">Defender</span></td>
+            </tr>
+            <tr style="background:#fffbeb">
+              <td><strong>RJ</strong></td>
+              <td class="right">642.424</td><td class="right">548</td>
+              <td class="right">R$ 1.172</td>
+              <td class="right"><span class="bar-inline" style="width:19px"></span>18,6%</td>
+              <td class="center"><span class="opp-pill opp-baixa">Defender</span></td>
+            </tr>
+            <tr style="background:#fffbeb">
+              <td><strong>MG</strong></td>
+              <td class="right">480.472</td><td class="right">380</td>
+              <td class="right">R$ 1.264</td>
+              <td class="right"><span class="bar-inline" style="width:14px"></span>13,9%</td>
+              <td class="center"><span class="opp-pill opp-baixa">Defender</span></td>
+            </tr>
+            <tr style="background:#f0fdf4">
+              <td><strong>BA</strong></td>
+              <td class="right">440.456</td><td class="right">330</td>
+              <td class="right" style="font-weight:700;color:#16a34a">R$ 1.335</td>
+              <td class="right">12,8%</td>
+              <td class="center"><span class="opp-pill opp-media">Ampliar</span></td>
+            </tr>
+            <tr>
+              <td>PR</td>
+              <td class="right">162.930</td><td class="right">131</td>
+              <td class="right">R$ 1.244</td>
+              <td class="right">4,7%</td>
+              <td class="center"><span class="opp-pill opp-baixa">Manter</span></td>
+            </tr>
+            <tr style="background:#f0fdf4">
+              <td><strong>GO</strong></td>
+              <td class="right">99.811</td><td class="right">76</td>
+              <td class="right" style="font-weight:700;color:#16a34a">R$ 1.313</td>
+              <td class="right">2,9%</td>
+              <td class="center"><span class="opp-pill opp-alta">Alta ▲</span></td>
+            </tr>
+            <tr>
+              <td>RS</td>
+              <td class="right">95.816</td><td class="right">78</td>
+              <td class="right">R$ 1.228</td>
+              <td class="right">2,8%</td>
+              <td class="center"><span class="opp-pill opp-baixa">Manter</span></td>
+            </tr>
+            <tr>
+              <td>CE</td>
+              <td class="right">74.859</td><td class="right">61</td>
+              <td class="right">R$ 1.227</td>
+              <td class="right">2,2%</td>
+              <td class="center"><span class="opp-pill opp-media">Ampliar</span></td>
+            </tr>
+            <tr>
+              <td>SC</td>
+              <td class="right">72.422</td><td class="right">64</td>
+              <td class="right">R$ 1.132</td>
+              <td class="right">2,1%</td>
+              <td class="center"><span class="opp-pill opp-baixa">Manter</span></td>
+            </tr>
+            <tr style="background:#f0fdf4">
+              <td><strong>TO</strong></td>
+              <td class="right">66.811</td><td class="right">43</td>
+              <td class="right" style="font-weight:800;color:#15803d">R$ 1.554</td>
+              <td class="right">1,9%</td>
+              <td class="center"><span class="opp-pill opp-mta">Muito Alta ★</span></td>
+            </tr>
+            <tr>
+              <td>PE</td>
+              <td class="right">56.356</td><td class="right">48</td>
+              <td class="right">R$ 1.174</td>
+              <td class="right">1,6%</td>
+              <td class="center"><span class="opp-pill opp-media">Ampliar</span></td>
+            </tr>
+            <tr style="background:#f0fdf4">
+              <td><strong>DF</strong></td>
+              <td class="right">51.344</td><td class="right">39</td>
+              <td class="right" style="font-weight:700;color:#16a34a">R$ 1.317</td>
+              <td class="right">1,5%</td>
+              <td class="center"><span class="opp-pill opp-alta">Alta ▲</span></td>
+            </tr>
+            <tr>
+              <td>MA</td>
+              <td class="right">49.463</td><td class="right">38</td>
+              <td class="right">R$ 1.302</td>
+              <td class="right">1,4%</td>
+              <td class="center"><span class="opp-pill opp-media">Ampliar</span></td>
+            </tr>
+            <tr style="background:#f0fdf4">
+              <td><strong>MT</strong></td>
+              <td class="right">46.165</td><td class="right">34</td>
+              <td class="right" style="font-weight:700;color:#16a34a">R$ 1.358</td>
+              <td class="right">1,3%</td>
+              <td class="center"><span class="opp-pill opp-alta">Alta ▲</span></td>
+            </tr>
+            <tr style="background:#f0fdf4">
+              <td><strong>MS</strong></td>
+              <td class="right">44.602</td><td class="right">33</td>
+              <td class="right" style="font-weight:700;color:#16a34a">R$ 1.352</td>
+              <td class="right">1,3%</td>
+              <td class="center"><span class="opp-pill opp-alta">Alta ▲</span></td>
+            </tr>
+            <tr>
+              <td>Outros 9 estados</td>
+              <td class="right">183.498</td><td class="right">141</td>
+              <td class="right">—</td>
+              <td class="right">5,3%</td>
+              <td class="center">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div class="chart-card">
+          <h3>GMV por Região (R$)</h3>
+          <div class="chart-wrap" style="height:220px"><canvas id="chartGeo"></canvas></div>
+        </div>
+        <div style="margin-top:16px;display:flex;flex-direction:column;gap:12px">
+          <div style="background:#fff;border-radius:12px;padding:16px 18px;box-shadow:0 1px 4px rgba(0,0,0,.07)">
+            <div style="font-size:10px;font-weight:800;text-transform:uppercase;color:#888;margin-bottom:12px">Top Oportunidades Regionais</div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+                <div><strong>Norte (TO+PA+RO)</strong><br><span style="color:#888;font-size:10px">Ticket R$1.440–1.600 · share 2,8%</span></div>
+                <span class="opp-pill opp-mta">★ Maior ticket</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+                <div><strong>Centro-Oeste (GO+DF+MT+MS)</strong><br><span style="color:#888;font-size:10px">Ticket R$1.313–1.358 · share 7%</span></div>
+                <span class="opp-pill opp-alta">Alta</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
+                <div><strong>Nordeste além de BA</strong><br><span style="color:#888;font-size:10px">CE+PE+MA+AL+SE → share ~6%</span></div>
+                <span class="opp-pill opp-media">Média</span>
+              </div>
+            </div>
+          </div>
+          <div class="insight-box">
+            <strong>Por que o Norte converte com ticket tão alto?</strong> Móveis sob encomenda/montados têm menor oferta local no Norte. O comprador aceita pagar mais pelo produto e frete. A fricção não é de demanda — é de prazo percebido. Relâmpago com prazo garantido pode destravar esse mercado.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PLANO DE AÇÃO ============ -->
+  <div class="section">
+    <div class="section-title">Plano de Ação — Até 30 de Junho</div>
+    <div style="background:#fff;border-radius:14px;padding:20px 24px;box-shadow:0 1px 6px rgba(0,0,0,.07);margin-bottom:20px">
+      <div style="font-size:12px;color:#555;margin-bottom:14px">Gap para igualar Abril: <strong>R$ 82.000</strong> em 9 dias · upside necessário no pace: <strong>+19,4%</strong></div>
+      <div style="display:flex;gap:10px;font-size:11px">
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:3px;background:#3483FA;display:inline-block"></span>Visibilidade/Tráfego</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:3px;background:#00A650;display:inline-block"></span>Conversão/Oferta</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:3px;background:#FFE600;display:inline-block"></span>Regional</span>
+        <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:3px;background:#8B5CF6;display:inline-block"></span>Produto/Catálogo</span>
+      </div>
+    </div>
+    <div class="action-grid">
+
+      <div class="action-card">
+        <h4><span class="priority">P1 · Hoje</span> Verificar PADS nos top 5 itens</h4>
+        <p>Confirmar se Product ADS está ativo nos itens #4462388928, #4245486217, #3925662097, #3360556635 e #3604123805. Visitas caindo ~10%/mês sem PADS ativo significa zero recuperação de tráfego pago. Mesmo para F&H é necessário verificar elegibilidade.</p>
+        <div class="impact">↗ Impacto esperado: +10–15% em visitas nos itens top</div>
+      </div>
+
+      <div class="action-card green">
+        <h4><span class="priority">P1 · Hoje</span> Cupom de 5–8% nos Guarda-Roupas</h4>
+        <p>Categoria com maior volume de pedidos (1.169) mas ticket mais baixo (R$1.149) e conversão em queda. Cupom de 5–8% destrancando 30–40 pedidos adicionais por semana = R$35–50k de GMV incremental. Focar nos itens Toronto (SKUs 2, 5 e 7 do ranking).</p>
+        <div class="impact">↗ Impacto esperado: +R$35.000–50.000 até 30 Jun</div>
+      </div>
+
+      <div class="action-card yellow">
+        <h4><span class="priority">P2 · 23–24 Jun</span> Relâmpago Centro-Oeste + Norte</h4>
+        <p>GO, DF, MT, MS e TO têm ticket médio 6–25% acima da média nacional mas share combinado de apenas 9%. Oferta Relâmpago de 48h nos conjuntos de jantar (item top R$1.863 de ticket) para esses estados. Fricciona demanda reprimida e gera volume incremental rápido.</p>
+        <div class="impact">↗ Impacto esperado: +15–25 pedidos nessas regiões</div>
+      </div>
+
+      <div class="action-card purple">
+        <h4><span class="priority">P2 · 23–24 Jun</span> Revisar título e imagem — item #4462388928</h4>
+        <p>O SKU que representa 13,2% do GMV total. Se CTR está caindo (visitas caindo sem queda de buybox), o título ou a imagem principal pode estar perdendo competitividade. Testar imagem de lifestyle vs fundo branco e revisar primeiras palavras do título para match com busca.</p>
+        <div class="impact">↗ Impacto esperado: +5–8% de CTR no item principal</div>
+      </div>
+
+      <div class="action-card green">
+        <h4><span class="priority">P3 · 25 Jun</span> Frete subsidiado Nordeste expandido</h4>
+        <p>BA já converte bem (12,8% do GMV, ticket R$1.335). Expandir política de frete para CE, PE e MA — ticket nesses estados é R$1.174–1.302, acima do ticket de SP e RJ. Diferença de prazo percebido limita demanda. Frete com subsídio parcial pode aumentar volume em ~20 pedidos/semana.</p>
+        <div class="impact">↗ Impacto esperado: +R$25.000–35.000 incrementais</div>
+      </div>
+
+      <div class="action-card">
+        <h4><span class="priority">P3 · Monitor</span> Buybox nos itens de alta concentração</h4>
+        <p>Buybox subiu de 62,2% (Abr) para 71% (Jun) mas a conversão caiu — sinal de que estão ganhando o buybox em itens de menor demanda. Verificar se o item #4462388928 mantém buybox consistente. Perda de 5pp de buybox nesse item = ~R$20k de GMV mensal perdido.</p>
+        <div class="impact">↗ Monitorar diariamente até 30 Jun</div>
+      </div>
+
+    </div>
+
+    <!-- RESUMO PROJEÇÃO COM AÇÕES -->
+    <div style="background:#1a1a1a;border-radius:14px;padding:24px 28px;margin-top:20px;color:#fff;display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px">
+      <div>
+        <div style="font-size:10px;font-weight:700;color:#FFE600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Cenário Base (sem ações)</div>
+        <div style="font-size:28px;font-weight:900">R$ 1.352.000</div>
+        <div style="font-size:11px;color:#888;margin-top:4px">−5,7% vs Abril</div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:#00A650;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Com Plano de Ação (P1+P2)</div>
+        <div style="font-size:28px;font-weight:900;color:#00A650">R$ 1.432.000</div>
+        <div style="font-size:11px;color:#666;margin-top:4px">≈ Iguala Abril ✓ (−0,1%)</div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:#3483FA;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Stretch (todos os planos)</div>
+        <div style="font-size:28px;font-weight:900;color:#3483FA">R$ 1.500.000</div>
+        <div style="font-size:11px;color:#666;margin-top:4px">+4,6% vs Abril · record mensal</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const C = {
+  yellow: '#FFE600', blue: '#3483FA', green: '#00A650', red: '#F23D4F',
+  gray: '#94a3b8', purple: '#8B5CF6',
+  gridColor: 'rgba(0,0,0,0.06)',
+  font: "'Inter', sans-serif"
+};
+Chart.defaults.font.family = C.font;
+Chart.defaults.font.size = 11;
+
+// Chart 1 — GMV Mensal
+new Chart(document.getElementById('chartGMV'), {
+  type: 'bar',
+  data: {
+    labels: ['Abril', 'Maio', 'Jun (1-21)', 'Jun Base', 'Jun c/ Ações', 'Jun Stretch'],
+    datasets: [{
+      label: 'GMV (R$)',
+      data: [1433964, 1084127, 928089, 1352000, 1432000, 1500000],
+      backgroundColor: ['#1a1a1a', C.red, C.blue, C.gray, C.green, C.blue],
+      borderRadius: 6,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ' R$ ' + ctx.raw.toLocaleString('pt-BR') } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+      y: {
+        grid: { color: C.gridColor },
+        ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' }
+      }
+    }
+  }
+});
+
+// Chart 2 — GMV/dia
+new Chart(document.getElementById('chartDaily'), {
+  type: 'bar',
+  data: {
+    labels: ['Abril', 'Maio', 'Jun (1-21)', 'Jun sem ações', 'Jun c/ ações'],
+    datasets: [{
+      label: 'GMV/dia médio',
+      data: [47799, 34972, 44195, 47000, 56208],
+      backgroundColor: ['#1a1a1a', C.red, C.blue, C.gray, C.green],
+      borderRadius: 6, borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ' R$ ' + ctx.raw.toLocaleString('pt-BR') + '/dia' } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+      y: {
+        grid: { color: C.gridColor },
+        ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' }
+      }
+    }
+  }
+});
+
+// Chart 3 — Weeks
+new Chart(document.getElementById('chartWeeks'), {
+  type: 'bar',
+  data: {
+    labels: ['Jun 01–06 (6d)', 'Jun 07–13 (7d)', 'Jun 14–20 (7d)', 'Jun 21 (1d)'],
+    datasets: [
+      {
+        label: 'GMV Total',
+        data: [269691, 294944, 329607, 33847],
+        backgroundColor: [C.gray, C.gray, C.blue, C.green],
+        borderRadius: 6, borderSkipped: false, yAxisID: 'y'
+      },
+      {
+        label: 'GMV/dia',
+        data: [44948, 42135, 47087, 33847],
+        type: 'line',
+        borderColor: C.yellow, backgroundColor: C.yellow,
+        borderWidth: 2.5, pointRadius: 5, pointBackgroundColor: '#1a1a1a',
+        tension: 0.3, yAxisID: 'y2'
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: ctx => ' R$ ' + ctx.raw.toLocaleString('pt-BR') } }
+    },
+    scales: {
+      x: { grid: { display: false } },
+      y: { grid: { color: C.gridColor }, ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' }, position: 'left' },
+      y2: { ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' }, position: 'right', grid: { display: false } }
+    }
+  }
+});
+
+// Chart 4 — Funnel (visitas + CVR + ticket)
+new Chart(document.getElementById('chartFunnel'), {
+  type: 'bar',
+  data: {
+    labels: ['Abril', 'Maio', 'Junho'],
+    datasets: [
+      {
+        label: 'Visitas (÷10)',
+        data: [40296, 35656, 32393],
+        backgroundColor: 'rgba(52,131,250,0.15)',
+        borderColor: C.blue, borderWidth: 2, borderRadius: 4, yAxisID: 'y'
+      },
+      {
+        label: 'CVR (×1000, em ‰)',
+        data: [2.88, 2.53, 2.24],
+        type: 'line',
+        borderColor: C.red, backgroundColor: C.red,
+        borderWidth: 2.5, pointRadius: 5, tension: 0.3, yAxisID: 'y2'
+      },
+      {
+        label: 'Ticket Médio (÷10)',
+        data: [123.7, 120.0, 128.0],
+        type: 'line',
+        borderColor: C.green, backgroundColor: C.green,
+        borderWidth: 2.5, pointRadius: 5, tension: 0.3, yAxisID: 'y2'
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: {}
+    },
+    scales: {
+      x: { grid: { display: false } },
+      y: { grid: { color: C.gridColor }, ticks: { callback: v => (v*10/1000).toFixed(0) + 'k vis' } },
+      y2: { position: 'right', grid: { display: false }, ticks: { callback: v => v } }
+    }
+  }
+});
+
+// Chart 5 — Categorias (donut)
+new Chart(document.getElementById('chartCat'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Conjuntos Jantar', 'Guarda-Roupas', 'Mesas Jantar', 'Outros'],
+    datasets: [{
+      data: [45, 39, 14.6, 1.4],
+      backgroundColor: [C.blue, C.green, C.yellow, C.gray],
+      borderWidth: 0, hoverOffset: 8
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16, font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ' ' + ctx.label + ': ' + ctx.raw + '%' } }
+    },
+    cutout: '62%'
+  }
+});
+
+// Chart 6 — Geo
+new Chart(document.getElementById('chartGeo'), {
+  type: 'bar',
+  data: {
+    labels: ['SP','RJ','MG','BA','PR','GO','RS','CE','SC','TO','Outros'],
+    datasets: [{
+      label: 'GMV (R$)',
+      data: [847331, 642424, 480472, 440456, 162930, 99811, 95816, 74859, 72422, 66811, 461857],
+      backgroundColor: ['#1a1a1a','#1a1a1a','#1a1a1a',C.green,C.gray,C.blue,C.gray,C.gray,C.gray,C.green,C.gray],
+      borderRadius: 4, borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ' R$ ' + ctx.raw.toLocaleString('pt-BR') } }
+    },
+    scales: {
+      x: { grid: { color: C.gridColor }, ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+</script>
+</body>
+</html>
