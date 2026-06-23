@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Easy House - 23/06/2026</title><script src='https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js'></script><style>*{box-sizing:border-box;margin:0;padding:0}
+<!DOCTYPE html><html lang='pt-BR'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Easy House - 23/06/2026</title><script src='https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js'></script>
+<script>Chart.register(ChartDataLabels);</script><style>*{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
 .hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
 .hdr h1{font-size:26px;font-weight:900}.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
@@ -45,9 +47,33 @@ a{color:#3483FA;text-decoration:none}a:hover{text-decoration:underline}
 <div class='card'><div class='lbl'>Pace Jun (30d)</div><div class='val'><span style='color:#E67E00'>R$ 2,17M</span></div><div class='sub'>vs Mai: <span class='pos'>&#9650; 20.7%</span> &nbsp;|&nbsp; ritmo atual</div></div>
 </div>
 <div class='sec'><div class='sec-ttl'>Evolução GMV Mensal — 2026 vs 2025</div><div class='chart-box' style='height:360px'><canvas id='cGmv'></canvas></div></div>
-<script>(function(){new Chart(document.getElementById('cGmv'),{type:'line',data:{labels:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],datasets:[{label:'2026',data:[2137092,2013607,1707635,1221757,1793957,1660521,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},{label:'2025',data:[1654451,1167531,1061412,1198285,1372632,1735059,3297551,3230834,2910734,3167109,4706560,1696673],borderColor:'#bbb',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:30}},plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');}}}},scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}}});})();</script>
+<script>(function(){
+function fk(v){if(v>=1e6)return'R$'+(v/1e6).toFixed(1)+'M';if(v>=1e3)return'R$'+(v/1e3).toFixed(0)+'K';return'R$'+v;}
+new Chart(document.getElementById('cGmv'),{type:'line',
+data:{labels:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+datasets:[
+{label:'2026',data:[2137092,2013607,1707635,1221757,1793957,1660521,null,null,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5,
+datalabels:{align:'top',anchor:'end',color:'#1A5CC9',font:{weight:'bold',size:11},formatter:function(v){return v==null?'':fk(v);}}},
+{label:'2025',data:[1654451,1167531,1061412,1198285,1372632,1735059,3297551,3230834,2910734,3167109,4706560,1696673],borderColor:'#bbb',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,
+datalabels:{display:false}}
+]},
+options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:40,bottom:10}},
+plugins:{legend:{position:'top'},datalabels:{},tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');}}}},
+scales:{y:{ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}}});
+})();</script>
 <div class='sec'><div class='sec-ttl'>Volume de Itens Vendidos (SIs) — 2026 vs 2025</div><div class='chart-box'><canvas id='cSI'></canvas></div></div>
-<script>new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],datasets:[{label:'2026',data:[2062,2093,1674,1236,1849,1688,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},{label:'2025',data:[2063,1450,1168,1282,1343,1711,3012,2978,2551,2762,4257,1576],backgroundColor:'#DDE8FF',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}});</script>
+<script>new Chart(document.getElementById('cSI'),{type:'bar',
+data:{labels:['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'],
+datasets:[
+{label:'2026',data:[2062,2093,1674,1236,1849,1688,null,null,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4,
+datalabels:{anchor:'end',align:'top',color:'#1A5CC9',font:{weight:'bold',size:10},formatter:function(v){return v==null?'':Number(v).toLocaleString('pt-BR');}}},
+{label:'2025',data:[2063,1450,1168,1282,1343,1711,3012,2978,2551,2762,4257,1576],backgroundColor:'#DDE8FF',borderRadius:4,
+datalabels:{anchor:'end',align:'top',color:'#888',font:{size:9},formatter:function(v){return v==null?'':Number(v).toLocaleString('pt-BR');}}}
+]},
+options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:24}},
+plugins:{legend:{position:'top'},datalabels:{}},
+scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}
+}});</script>
 <div class='sec'><div class='sec-ttl'>Top 10 Itens por NMV — Jun MTD (1-23)</div><div style='overflow-x:auto'><table><thead><tr><th>Produto</th><th style='text-align:right'>NMV Jun MTD</th><th style='text-align:right'>Share</th><th style='text-align:right'>MoM vs Mai</th><th style='text-align:right'>SIs</th><th style='text-align:right'>Ticket</th><th style='text-align:right'>Visitas 90d</th><th style='text-align:right'>CVR</th></tr></thead><tbody><tr><td><a href='https://produto.mercadolivre.com.br/MLB-5445396068' target='_blank'>GUARDA-ROUPA CASAL EASY SLIM 8 PORTAS C/ ESPELHO AMÊND…</a><br><span style='font-size:10px;color:#999'>MLB5445396068</span></td><td style='text-align:right;font-weight:700'>R$ 442K</td><td style='text-align:right'>26.6%</td><td style='text-align:right'><span class="pos">&#9650; 23.6%</span></td><td style='text-align:right'>409</td><td style='text-align:right'>R$&nbsp;1.081,14</td><td style='text-align:right'>393.270</td><td style='text-align:right'>0.10%</td></tr>
 <tr><td><a href='https://produto.mercadolivre.com.br/MLB-3644997279' target='_blank'>GUARDA-ROUPA CASAL MDF 2 PORTAS CORREDIÇAS BRANCO 6 GA…</a><br><span style='font-size:10px;color:#999'>MLB3644997279</span></td><td style='text-align:right;font-weight:700'>R$ 213K</td><td style='text-align:right'>12.8%</td><td style='text-align:right'><span class="pos">&#9650; 40.3%</span></td><td style='text-align:right'>123</td><td style='text-align:right'>R$&nbsp;1.728,01</td><td style='text-align:right'>118.671</td><td style='text-align:right'>0.10%</td></tr>
 <tr><td><a href='https://produto.mercadolivre.com.br/MLB-5580461866' target='_blank'>GUARDA-ROUPA CASAL EASY SLIM 8 PORTAS COM ESPELHO BRAN…</a><br><span style='font-size:10px;color:#999'>MLB5580461866</span></td><td style='text-align:right;font-weight:700'>R$ 134K</td><td style='text-align:right'>8.1%</td><td style='text-align:right'><span class="pos">&#9650; 15.1%</span></td><td style='text-align:right'>124</td><td style='text-align:right'>R$&nbsp;1.084,38</td><td style='text-align:right'>90.214</td><td style='text-align:right'>0.14%</td></tr>
@@ -96,7 +122,22 @@ a{color:#3483FA;text-decoration:none}a:hover{text-decoration:underline}
 <div class='card'><div class='lbl'>Camp. Automáticas YTD</div><div class='val'>R$ 13K</div><div class='sub'>PADs: R$ 0</div></div>
 </div>
 <div class='chart-box' style='height:260px;margin-bottom:16px'><canvas id='cAds'></canvas></div>
-<script>new Chart(document.getElementById('cAds'),{type:'bar',data:{labels:['Jan','Fev','Mar','Abr','Mai','Jun'],datasets:[{label:'DXI (MeLi)',data:[158261,156261,96020,38722,80999,84589],backgroundColor:'#3483FA',borderRadius:4},{label:'Cupons',data:[6269,20663,7603,9731,23262,22189],backgroundColor:'#FFE600',borderRadius:4},{label:'Camp. Auto',data:[867,487,6882,3824,544,255],backgroundColor:'#00A650',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}}}});</script>
+<script>(function(){
+function fkads(v){if(v>=1e3)return'R$'+(v/1e3).toFixed(0)+'K';return v>0?'R$'+v:'';}
+new Chart(document.getElementById('cAds'),{type:'bar',
+data:{labels:['Jan','Fev','Mar','Abr','Mai','Jun'],
+datasets:[
+{label:'DXI (MeLi)',data:[158261,156261,96020,38722,80999,84589],backgroundColor:'#3483FA',borderRadius:4,
+datalabels:{color:'#fff',font:{weight:'bold',size:10},formatter:fkads,display:function(ctx){return ctx.dataset.data[ctx.dataIndex]>10000;}}},
+{label:'Cupons',data:[6269,20663,7603,9731,23262,22189],backgroundColor:'#E6B800',borderRadius:4,
+datalabels:{color:'#333',font:{weight:'bold',size:10},formatter:fkads,display:function(ctx){return ctx.dataset.data[ctx.dataIndex]>8000;}}},
+{label:'Camp. Auto',data:[867,487,6882,3824,544,255],backgroundColor:'#00A650',borderRadius:4,
+datalabels:{color:'#fff',font:{size:9},formatter:fkads,display:function(ctx){return ctx.dataset.data[ctx.dataIndex]>3000;}}}
+]},
+options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:10}},
+plugins:{legend:{position:'top'},datalabels:{}},
+scales:{x:{stacked:true},y:{stacked:true,ticks:{callback:function(v){return 'R$'+Number(v/1000).toFixed(0)+'K';}}}}
+}});})()</script>
 <div class='sec-ttl' style='margin-top:8px'>Top Itens com DXI — YTD 2026</div><div style='overflow-x:auto'><table><thead><tr><th>Produto</th><th style='text-align:right'>DXI MeLi (R$)</th><th style='text-align:right'>DXI Seller (R$)</th><th style='text-align:right'>GMV YTD</th><th style='text-align:right'>ACOS MeLi</th></tr></thead><tbody><tr><td><a href='https://produto.mercadolivre.com.br/MLB-5445396068' target='_blank'>GUARDA-ROUPA CASAL EASY SLIM 8 PORTAS C/ ESPELHO AMÊND…</a><br><span style='font-size:10px;color:#999'>MLB5445396068</span></td><td style='text-align:right;font-weight:700'>R$ 172K</td><td style='text-align:right'>R$ 756K</td><td style='text-align:right'>R$ 2.3M</td><td style='text-align:right'>7.3%</td></tr>
 <tr><td><a href='https://produto.mercadolivre.com.br/MLB-3644997279' target='_blank'>GUARDA-ROUPA CASAL MDF 2 PORTAS CORREDIÇAS BRANCO 6 GA…</a><br><span style='font-size:10px;color:#999'>MLB3644997279</span></td><td style='text-align:right;font-weight:700'>R$ 157K</td><td style='text-align:right'>R$ 936K</td><td style='text-align:right'>R$ 2.1M</td><td style='text-align:right'>7.5%</td></tr>
 <tr><td><a href='https://produto.mercadolivre.com.br/MLB-5580461866' target='_blank'>GUARDA-ROUPA CASAL EASY SLIM 8 PORTAS COM ESPELHO BRAN…</a><br><span style='font-size:10px;color:#999'>MLB5580461866</span></td><td style='text-align:right;font-weight:700'>R$ 50K</td><td style='text-align:right'>R$ 232K</td><td style='text-align:right'>R$ 706K</td><td style='text-align:right'>7.1%</td></tr>
