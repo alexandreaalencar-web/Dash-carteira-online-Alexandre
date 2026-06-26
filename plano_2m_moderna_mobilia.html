@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plano R$2M — Moderna Mobília #240323499</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',sans-serif;background:#F0F0F0;color:#1a1a1a;font-size:14px}
+
+    header{background:#FFE600;padding:18px 32px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+    .header-left{display:flex;align-items:center;gap:14px}
+    .header-logo{width:38px;height:38px;border-radius:10px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#FFE600}
+    header h1{font-size:19px;font-weight:800;color:#1a1a1a;line-height:1.2}
+    header h1 small{display:block;font-size:11px;font-weight:500;opacity:.55;margin-top:2px}
+    .hbadge{background:#1a1a1a;color:#FFE600;padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700}
+    .hbadge.alt{background:rgba(0,0,0,.10);color:#1a1a1a}
+
+    .container{max-width:1300px;margin:0 auto;padding:28px 24px}
+    .section{margin-bottom:44px}
+    .section-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#888;margin-bottom:18px;padding-bottom:8px;border-bottom:2px solid #FFE600;display:flex;align-items:center;gap:8px}
+
+    /* HERO META */
+    .hero{background:#1a1a1a;border-radius:18px;padding:36px 40px;margin-bottom:36px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;position:relative;overflow:hidden}
+    .hero::before{content:'R$2M';position:absolute;right:32px;top:50%;transform:translateY(-50%);font-size:160px;font-weight:900;color:rgba(255,230,0,0.06);letter-spacing:-8px;pointer-events:none}
+    .hero-item{padding:0 32px;border-right:1px solid rgba(255,255,255,.1)}
+    .hero-item:first-child{padding-left:0}
+    .hero-item:last-child{border-right:none}
+    .hero-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.45);margin-bottom:10px}
+    .hero-val{font-size:34px;font-weight:900;color:#fff;letter-spacing:-1px}
+    .hero-sub{font-size:12px;color:rgba(255,255,255,.45);margin-top:5px}
+    .hero-val.yellow{color:#FFE600}
+    .hero-val.green{color:#4ade80}
+
+    /* CARDS */
+    .kpi-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:28px}
+    .kpi{background:#fff;border-radius:14px;padding:18px 20px;box-shadow:0 1px 6px rgba(0,0,0,.07);position:relative;overflow:hidden}
+    .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+    .kpi.blue::before{background:#3483FA}
+    .kpi.green::before{background:#00A650}
+    .kpi.red::before{background:#F23D4F}
+    .kpi.yellow::before{background:#FFE600}
+    .kpi.purple::before{background:#8B5CF6}
+    .kpi-label{font-size:10px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:.07em}
+    .kpi-value{font-size:22px;font-weight:900;margin:6px 0 2px}
+    .kpi-sub{font-size:10px;color:#aaa;line-height:1.4}
+
+    .chart-card{background:#fff;border-radius:14px;padding:22px 24px;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+    .chart-card h3{font-size:13px;font-weight:700;margin-bottom:18px}
+
+    /* PILLAR CARDS */
+    .pillars{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:28px}
+    .pillar{background:#fff;border-radius:16px;padding:20px 18px;box-shadow:0 1px 6px rgba(0,0,0,.07);display:flex;flex-direction:column;gap:10px}
+    .pillar-icon{font-size:28px}
+    .pillar-num{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#bbb}
+    .pillar-title{font-size:14px;font-weight:800;color:#1a1a1a;line-height:1.3}
+    .pillar-impact{background:#f0fdf4;border-radius:8px;padding:8px 12px}
+    .pillar-impact label{font-size:9px;font-weight:700;text-transform:uppercase;color:#16a34a;display:block}
+    .pillar-impact span{font-size:15px;font-weight:900;color:#15803d}
+    .pillar-desc{font-size:11px;color:#666;line-height:1.5}
+    .pillar-actions{display:flex;flex-direction:column;gap:4px;margin-top:4px}
+    .pa{font-size:11px;color:#444;display:flex;align-items:flex-start;gap:6px;line-height:1.4}
+    .pa::before{content:'→';color:#3483FA;font-weight:700;flex-shrink:0;margin-top:0}
+
+    /* TIMELINE */
+    .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .tl-month{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+    .tl-header{padding:18px 22px;display:flex;align-items:center;justify-content:space-between}
+    .tl-header.m1{background:#1a1a1a}
+    .tl-header.m2{background:#1e3a5f}
+    .tl-header.m3{background:#14532d}
+    .tl-month-name{font-size:16px;font-weight:900;color:#fff}
+    .tl-target{text-align:right}
+    .tl-target label{font-size:9px;font-weight:700;text-transform:uppercase;color:rgba(255,255,255,.5);display:block}
+    .tl-target span{font-size:20px;font-weight:900;color:#FFE600}
+    .tl-body{padding:18px 22px}
+    .tl-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid #f5f5f5;font-size:12px}
+    .tl-item:last-child{border-bottom:none}
+    .tl-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px}
+    .dot-blue{background:#3483FA}
+    .dot-green{background:#00A650}
+    .dot-yellow{background:#ca8a04}
+    .dot-purple{background:#8B5CF6}
+    .dot-red{background:#F23D4F}
+    .tl-text{line-height:1.5;color:#444}
+    .tl-text strong{color:#1a1a1a;font-weight:700}
+    .tl-kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px;padding-top:14px;border-top:2px solid #f0f0f0}
+    .tl-kpi label{font-size:9px;font-weight:700;text-transform:uppercase;color:#bbb;display:block}
+    .tl-kpi span{font-size:13px;font-weight:800;color:#1a1a1a}
+
+    /* LEVER TABLE */
+    .lever-table{background:#fff;border-radius:14px;box-shadow:0 1px 6px rgba(0,0,0,.07);overflow:hidden}
+    table{width:100%;border-collapse:collapse}
+    thead{background:#1a1a1a}
+    thead th{color:#FFE600;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:12px 16px;text-align:left;white-space:nowrap}
+    thead th.right{text-align:right}
+    tbody tr{border-bottom:1px solid #f5f5f5;transition:background .15s}
+    tbody tr:hover{background:#fafafa}
+    tbody td{padding:12px 16px;font-size:12px;vertical-align:middle}
+    tbody td.right{text-align:right;font-variant-numeric:tabular-nums}
+    .tag{display:inline-block;padding:2px 8px;border-radius:8px;font-size:10px;font-weight:700}
+    .tag-high{background:#dcfce7;color:#16a34a}
+    .tag-med{background:#fef3c7;color:#b45309}
+    .tag-low{background:#f3f4f6;color:#6b7280}
+    .tag-blue{background:#dbeafe;color:#1d4ed8}
+    .tag-now{background:#fce7f3;color:#be185d}
+    .tag-q3{background:#ede9fe;color:#6d28d9}
+    .bar-h{height:7px;border-radius:4px;background:#e5e7eb;overflow:hidden;margin-top:5px}
+    .bar-h-fill{height:100%;border-radius:4px}
+
+    /* MATH BOX */
+    .math-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .math-box{background:#fff;border-radius:14px;padding:20px 22px;box-shadow:0 1px 6px rgba(0,0,0,.07)}
+    .math-box h4{font-size:11px;font-weight:800;text-transform:uppercase;color:#888;letter-spacing:.07em;margin-bottom:14px}
+    .math-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid #f5f5f5;font-size:12px}
+    .math-row:last-child{border-bottom:none;padding-top:10px}
+    .math-row label{color:#888}
+    .math-row span{font-weight:700}
+    .math-row.total{background:#f0fdf4;margin:0 -22px -20px;padding:12px 22px;border-radius:0 0 14px 14px;margin-top:4px}
+    .math-row.total label{color:#15803d;font-weight:700}
+    .math-row.total span{color:#15803d;font-size:16px}
+
+    /* ALERT BOX */
+    .alert-box{border-radius:12px;padding:16px 20px;margin-bottom:16px;font-size:12px;line-height:1.6}
+    .alert-warn{background:#fef9c3;border:1px solid #fde047;color:#854d0e}
+    .alert-info{background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af}
+    .alert-danger{background:#fef2f2;border:1px solid #fecaca;color:#991b1b}
+    .alert-success{background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d}
+
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+
+    /* RISK */
+    .risk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .risk-card{background:#fff;border-radius:12px;padding:16px 18px;box-shadow:0 1px 4px rgba(0,0,0,.07);border-left:4px solid #F23D4F;font-size:12px}
+    .risk-card.medium{border-left-color:#f59e0b}
+    .risk-card.low{border-left-color:#94a3b8}
+    .risk-card h5{font-weight:700;color:#1a1a1a;margin-bottom:5px;font-size:12px}
+    .risk-card p{color:#666;line-height:1.5}
+    .risk-label{display:inline-block;padding:1px 7px;border-radius:6px;font-size:9px;font-weight:700;margin-bottom:6px}
+    .rl-high{background:#fee2e2;color:#dc2626}
+    .rl-med{background:#fef3c7;color:#b45309}
+    .rl-low{background:#f3f4f6;color:#6b7280}
+
+    /* SUMMARY STRIP */
+    .summary-strip{background:#1a1a1a;border-radius:16px;padding:28px 32px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+    .ss-item label{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.4);display:block;margin-bottom:6px}
+    .ss-item span{font-size:22px;font-weight:900;color:#fff}
+    .ss-item span.yellow{color:#FFE600}
+    .ss-item span.green{color:#4ade80}
+    .ss-item .ss-sub{font-size:11px;color:rgba(255,255,255,.35);margin-top:3px}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="header-logo">2M</div>
+    <h1>Plano R$ 2 Milhões/mês — Moderna Mobília <small>#240323499 · Roadmap Jul–Set 2026</small></h1>
+  </div>
+  <div style="display:flex;gap:10px">
+    <span class="hbadge alt">Gerado 26/06/2026</span>
+    <span class="hbadge">Meta: Set/2026</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-item">
+      <div class="hero-label">Melhor mês histórico (Abr/26)</div>
+      <div class="hero-val">R$ 1,43M</div>
+      <div class="hero-sub">1.159 pedidos · R$47.799/dia</div>
+    </div>
+    <div class="hero-item">
+      <div class="hero-label">Gap até a meta</div>
+      <div class="hero-val yellow">+R$ 566 mil</div>
+      <div class="hero-sub">+39,5% acima do melhor mês</div>
+    </div>
+    <div class="hero-item">
+      <div class="hero-label">Meta mensal</div>
+      <div class="hero-val green">R$ 2,0M</div>
+      <div class="hero-sub">R$66.667/dia · ~1.480 pedidos/mês</div>
+    </div>
+  </div>
+
+  <!-- DIAGNÓSTICO -->
+  <div class="section">
+    <div class="section-title">Diagnóstico — O que está faltando hoje</div>
+
+    <div class="alert-danger" style="margin-bottom:14px">
+      <strong>Correlação crítica detectada:</strong> A queda de maio (−24% de GMV) foi diretamente causada pela queda de DXI de R$48.523 → R$6.644 (−86%). O seller tem dependência estrutural de um único investimento sem ferramentas de backup.
+    </div>
+
+    <div class="kpi-row">
+      <div class="kpi red">
+        <div class="kpi-label">PADS</div>
+        <div class="kpi-value" style="color:#F23D4F">R$ 0</div>
+        <div class="kpi-sub">Product ADS nunca ativado. Zero tráfego pago direto.</div>
+      </div>
+      <div class="kpi red">
+        <div class="kpi-label">Relâmpago</div>
+        <div class="kpi-value" style="color:#F23D4F">R$ 0</div>
+        <div class="kpi-sub">Nunca usado em 2026 (Jan–Jun). Ferramenta inexplorada.</div>
+      </div>
+      <div class="kpi red">
+        <div class="kpi-label">Oferta do Dia (DOD)</div>
+        <div class="kpi-value" style="color:#F23D4F">R$ 0</div>
+        <div class="kpi-sub">Nunca usado em 2026. Alto potencial em conjuntos de jantar.</div>
+      </div>
+      <div class="kpi red">
+        <div class="kpi-label">Logística Full/XD</div>
+        <div class="kpi-value" style="color:#F23D4F">0%</div>
+        <div class="kpi-sub">100% OTHER. Sem Full = sem prioridade de ranking na busca.</div>
+      </div>
+      <div class="kpi yellow">
+        <div class="kpi-label">Categorias ativas</div>
+        <div class="kpi-value" style="color:#ca8a04">7</div>
+        <div class="kpi-sub">3 categorias = 98% do GMV. Alto risco de concentração.</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="chart-card">
+        <h3>GMV Mensal 2026 vs DXI — Correlação da Queda de Maio</h3>
+        <div style="height:220px"><canvas id="chartCorr"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <h3>Histórico GMV 2026 e Trajetória até R$2M</h3>
+        <div style="height:220px"><canvas id="chartTraj"></canvas></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATH -->
+  <div class="section">
+    <div class="section-title">A matemática do R$2M — Como chegar lá</div>
+    <div class="math-grid">
+      <div class="math-box">
+        <h4>Cenário atual (Junho projetado)</h4>
+        <div class="math-row"><label>Visitas/mês</label><span>~330.000</span></div>
+        <div class="math-row"><label>Conversão</label><span>0,224%</span></div>
+        <div class="math-row"><label>Pedidos/mês</label><span>~740</span></div>
+        <div class="math-row"><label>Ticket médio</label><span>R$ 1.280</span></div>
+        <div class="math-row total"><label>GMV projetado</label><span>R$ 1.352.000</span></div>
+      </div>
+      <div class="math-box">
+        <h4>Meta Setembro 2026</h4>
+        <div class="math-row"><label>Visitas/mês</label><span style="color:#3483FA">~528.000 (+60%)</span></div>
+        <div class="math-row"><label>Conversão</label><span style="color:#3483FA">0,280% (≈ Abril)</span></div>
+        <div class="math-row"><label>Pedidos/mês</label><span style="color:#3483FA">~1.478 (+100%)</span></div>
+        <div class="math-row"><label>Ticket médio</label><span style="color:#3483FA">R$ 1.353 (+5,7%)</span></div>
+        <div class="math-row total"><label>GMV projetado</label><span>R$ 2.000.000</span></div>
+      </div>
+      <div class="math-box">
+        <h4>Incremento necessário por alavanca</h4>
+        <div class="math-row"><label>Visitas: +198.000</label><span style="color:#3483FA">Full + PADS</span></div>
+        <div class="math-row"><label>CVR: +0,056 pp</label><span style="color:#00A650">Recuperar Abril</span></div>
+        <div class="math-row"><label>Ticket: +R$73</label><span style="color:#8B5CF6">Combos premium</span></div>
+        <div class="math-row"><label>Prazo para atingir</label><span>90 dias (Set/26)</span></div>
+        <div class="math-row total"><label>Viabilidade</label><span>Alta ✓</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 PILARES -->
+  <div class="section">
+    <div class="section-title">5 Pilares de Crescimento</div>
+    <div class="pillars">
+
+      <div class="pillar">
+        <div class="pillar-icon">🚚</div>
+        <div class="pillar-num">Pilar 1</div>
+        <div class="pillar-title">Logística Full</div>
+        <div class="pillar-impact"><label>Impacto estimado</label><span>+R$400–500k</span></div>
+        <div class="pillar-desc">O maior alavanca única. Sellers Full ganham ranking prioritário na busca orgânica. Para móveis, o prazo de entrega é fator decisivo de compra.</div>
+        <div class="pillar-actions">
+          <div class="pa">Habilitar Full nas SKUs top 10</div>
+          <div class="pa">Enviar estoque para CDs MeLi</div>
+          <div class="pa">Gain de visibilidade orgânica +30–40%</div>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-icon">📢</div>
+        <div class="pillar-num">Pilar 2</div>
+        <div class="pillar-title">Ativação de Ferramentas Inexploradas</div>
+        <div class="pillar-impact"><label>Impacto estimado</label><span>+R$100–150k</span></div>
+        <div class="pillar-desc">PADS, Relâmpago e DOD = R$0 investido em 2026. Três ferramentas de alta alavancagem nunca ativadas.</div>
+        <div class="pillar-actions">
+          <div class="pa">PADS: ativar nos top 15 itens</div>
+          <div class="pa">Relâmpago: 2x/mês nos conjuntos jantar</div>
+          <div class="pa">DOD: 1x/mês na categoria guarda-roupas</div>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-icon">📍</div>
+        <div class="pillar-num">Pilar 3</div>
+        <div class="pillar-title">Expansão Geográfica</div>
+        <div class="pillar-impact"><label>Impacto estimado</label><span>+R$80–120k</span></div>
+        <div class="pillar-desc">57% do GMV concentrado em SP+RJ+MG. Norte (ticket R$1.500+) e Centro-Oeste (ticket R$1.313–1.358) quase inexplorados.</div>
+        <div class="pillar-actions">
+          <div class="pa">Frete diferenciado Norte + C-Oeste</div>
+          <div class="pa">Relâmpago regional TO, GO, DF, PA</div>
+          <div class="pa">Cupom Nordeste (CE, PE, MA)</div>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-icon">📦</div>
+        <div class="pillar-num">Pilar 4</div>
+        <div class="pillar-title">Expansão de Catálogo</div>
+        <div class="pillar-impact"><label>Impacto estimado</label><span>+R$100–150k</span></div>
+        <div class="pillar-desc">Só 7 categorias ativas, 3 com 98% do GMV. Categorias adjacentes sem exploração: camas, sofás, estantes, racks de TV, home office.</div>
+        <div class="pillar-actions">
+          <div class="pa">+30 SKUs em categorias adjacentes</div>
+          <div class="pa">Combos premium (mesa + cadeiras + aparador)</div>
+          <div class="pa">Linha com ticket acima de R$2.000</div>
+        </div>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-icon">🔒</div>
+        <div class="pillar-num">Pilar 5</div>
+        <div class="pillar-title">Estabilidade de DXI + CVR</div>
+        <div class="pillar-impact"><label>Impacto estimado</label><span>+R$80–100k</span></div>
+        <div class="pillar-desc">A queda de maio foi 100% causada por DXI caindo de R$48k para R$6k. CVR caindo de 0,288% → 0,224% adiciona perda estrutural.</div>
+        <div class="pillar-actions">
+          <div class="pa">Negociar DXI mínimo mensal garantido</div>
+          <div class="pa">Recuperar CVR para nível de Abril</div>
+          <div class="pa">Fotos lifestyle nos itens top 5</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- LEVER TABLE -->
+    <div class="lever-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Alavanca</th>
+            <th>Status atual</th>
+            <th class="right">GMV incremental/mês</th>
+            <th>Prazo implementação</th>
+            <th>Esforço</th>
+            <th>Impacto</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Full Logistics (top 10 SKUs)</strong></td>
+            <td><span class="tag tag-now">Não ativo</span></td>
+            <td class="right"><strong style="color:#00A650">+R$ 400–500k</strong></td>
+            <td>45–60 dias</td>
+            <td><span class="tag tag-med">Médio</span></td>
+            <td>
+              <div class="bar-h"><div class="bar-h-fill" style="width:95%;background:#00A650"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>PADS — top 15 itens</strong></td>
+            <td><span class="tag tag-now">Nunca usado</span></td>
+            <td class="right"><strong style="color:#3483FA">+R$ 80–120k</strong></td>
+            <td>Imediato</td>
+            <td><span class="tag tag-high">Baixo</span></td>
+            <td>
+              <div class="bar-h"><div class="bar-h-fill" style="width:70%;background:#3483FA"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Relâmpago 2×/mês (conjuntos jantar)</strong></td>
+            <td><span class="tag tag-now">Nunca usado</span></td>
+            <td class="right"><strong style="color:#3483FA">+R$ 40–60k</strong></td>
+            <td>Imediato</td>
+            <td><span class="tag tag-high">Baixo</span></td>
+            <td>
+              <div class="bar-h"><div class="bar-h-fill" style="width:45%;background:#3483FA"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>DOD 1×/mês (guarda-roupas)</strong></td>
+            <td><span class="tag tag-now">Nunca usado</span></td>
+            <td class="right"><strong style="color:#3483FA">+R$ 30–50k</strong></td>
+            <td>1–2 semanas</td>
+            <td><span class="tag tag-high">Baixo</span></td>
+            <td>
+              <div class="bar-h"><div class="bar-h-fill" style="width:38%;background:#3483FA"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Expansão geográfica Norte + C-Oeste</strong></td>
+            <td><span class="tag tag-med">Parcial</span></td>
+            <td class="right"><strong style="color:#8B5CF6">+R$ 80–120k</strong></td>
+            <td>2–3 semanas</td>
+            <td><span class="tag tag-high">Baixo</span></td>
+            <td>
+              <div class="bar-h"><div class="bar-h-fill" style="width:55%;background:#8B5CF6"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Novos SKUs (30+ em categorias adjacentes)</strong></td>
+            <td><span class="tag tag-med">Em aberto</span></td>
+            <td class="right"><strong style="color:#8B5CF6">+R$ 100–150k</strong></td>
+            <td>30–45 dias</td>
+            <td><span class="tag tag-med">Médio</span></td>
+            <td>
+              <div class="bar-h"><div class="bar-h-fill" style="width:60%;background:#8B5CF6"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>DXI estabilização (piso garantido)</strong></td>
+            <td><span class="tag tag-med">Volátil</span></td>
+            <td class="right"><strong style="color:#ca8a04">+R$ 60–100k</strong></td>
+            <td>Negociação</td>
+            <td><span class="tag tag-med">Médio</span></td>
+            <td>
+              <div class="bar-h"><div class="bar-h-fill" style="width:50%;background:#ca8a04"></div></div>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Combos premium (ticket > R$2.000)</strong></td>
+            <td><span class="tag tag-low">Não existe</span></td>
+            <td class="right"><strong style="color:#ca8a04">+R$ 40–60k</strong></td>
+            <td>30 dias</td>
+            <td><span class="tag tag-med">Médio</span></td>
+            <td>
+              <div class="bar-h"><div class="bar-h-fill" style="width:32%;background:#ca8a04"></div></div>
+            </td>
+          </tr>
+          <tr style="background:#f0fdf4">
+            <td><strong>TOTAL (soma dos cenários base)</strong></td>
+            <td>—</td>
+            <td class="right"><strong style="color:#15803d;font-size:14px">+R$ 830k–1.060k</strong></td>
+            <td>90 dias</td>
+            <td>—</td>
+            <td>
+              <div class="bar-h"><div class="bar-h-fill" style="width:100%;background:#00A650"></div></div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert-info" style="margin-top:14px">
+      <strong>Nota:</strong> O somatório de alavancas pode parecer superior a R$566k necessários, mas há correlação entre elas (Full aumenta visitas que já são contadas no PADS). O GMV incremental líquido realista é de R$600–750k, suficiente para superar R$2M.
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section">
+    <div class="section-title">Roadmap — 3 meses para R$2M</div>
+    <div class="timeline">
+
+      <div class="tl-month">
+        <div class="tl-header m1">
+          <div class="tl-month-name">Julho 2026</div>
+          <div class="tl-target"><label>Meta GMV</label><span>R$ 1,60M</span></div>
+        </div>
+        <div class="tl-body">
+          <div style="font-size:10px;font-weight:700;color:#bbb;text-transform:uppercase;margin-bottom:10px">Quick wins + fundação</div>
+          <div class="tl-item"><div class="tl-dot dot-blue"></div><div class="tl-text"><strong>PADS:</strong> ativar nos top 15 SKUs (Mesa Alvorada, Sala Olímpia, Toronto, Aster)</div></div>
+          <div class="tl-item"><div class="tl-dot dot-yellow"></div><div class="tl-text"><strong>Relâmpago #1:</strong> conjuntos jantar com ticket &gt; R$1.800 — 48h em GO, DF, TO, PA</div></div>
+          <div class="tl-item"><div class="tl-dot dot-green"></div><div class="tl-text"><strong>Full logistics:</strong> iniciar processo de onboarding com top 10 SKUs</div></div>
+          <div class="tl-item"><div class="tl-dot dot-blue"></div><div class="tl-text"><strong>DXI:</strong> garantir mínimo de R$40k/mês negociado</div></div>
+          <div class="tl-item"><div class="tl-dot dot-purple"></div><div class="tl-text"><strong>Catálogo:</strong> mapear e cadastrar 15 novos SKUs adjacentes (aparadores, racks TV)</div></div>
+          <div class="tl-item"><div class="tl-dot dot-yellow"></div><div class="tl-text"><strong>Cupom:</strong> 6% nos guarda-roupas Toronto para CE, PE, MA</div></div>
+          <div class="tl-item"><div class="tl-dot dot-red"></div><div class="tl-text"><strong>CVR:</strong> revisão de fotos e título nos top 5 itens</div></div>
+          <div class="tl-kpis">
+            <div class="tl-kpi"><label>Visits alvo</label><span>~380k</span></div>
+            <div class="tl-kpi"><label>CVR alvo</label><span>0,260%</span></div>
+            <div class="tl-kpi"><label>Ticket alvo</label><span>R$1.295</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-month">
+        <div class="tl-header m2">
+          <div class="tl-month-name">Agosto 2026</div>
+          <div class="tl-target"><label>Meta GMV</label><span>R$ 1,80M</span></div>
+        </div>
+        <div class="tl-body">
+          <div style="font-size:10px;font-weight:700;color:#bbb;text-transform:uppercase;margin-bottom:10px">Scaling + novos canais</div>
+          <div class="tl-item"><div class="tl-dot dot-green"></div><div class="tl-text"><strong>Full ativo:</strong> primeiros SKUs no CD MeLi, início do impacto de ranking</div></div>
+          <div class="tl-item"><div class="tl-dot dot-yellow"></div><div class="tl-text"><strong>Relâmpago #2 e #3:</strong> guarda-roupas (semana 1) + conjuntos (semana 3)</div></div>
+          <div class="tl-item"><div class="tl-dot dot-blue"></div><div class="tl-text"><strong>DOD #1:</strong> primeira Oferta do Dia na categoria guarda-roupas Toronto</div></div>
+          <div class="tl-item"><div class="tl-dot dot-purple"></div><div class="tl-text"><strong>Catálogo:</strong> +15 SKUs adicionais (camas casal, sofás 2–3 lugares)</div></div>
+          <div class="tl-item"><div class="tl-dot dot-yellow"></div><div class="tl-text"><strong>Combos premium:</strong> lançar 3–5 SKUs com ticket &gt; R$2.000 (mesa + cadeiras + aparador)</div></div>
+          <div class="tl-item"><div class="tl-dot dot-blue"></div><div class="tl-text"><strong>PADS:</strong> expandir para novos SKUs lançados em julho</div></div>
+          <div class="tl-item"><div class="tl-dot dot-red"></div><div class="tl-text"><strong>Q4 prep:</strong> planejar estoque para pico out/nov</div></div>
+          <div class="tl-kpis">
+            <div class="tl-kpi"><label>Visits alvo</label><span>~450k</span></div>
+            <div class="tl-kpi"><label>CVR alvo</label><span>0,270%</span></div>
+            <div class="tl-kpi"><label>Ticket alvo</label><span>R$1.320</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-month">
+        <div class="tl-header m3">
+          <div class="tl-month-name">Setembro 2026</div>
+          <div class="tl-target"><label>Meta GMV</label><span>R$ 2,0M ★</span></div>
+        </div>
+        <div class="tl-body">
+          <div style="font-size:10px;font-weight:700;color:#bbb;text-transform:uppercase;margin-bottom:10px">Aceleração + consolidação</div>
+          <div class="tl-item"><div class="tl-dot dot-green"></div><div class="tl-text"><strong>Full consolidado:</strong> top 20 SKUs em Full, impacto pleno de ranking (+30–40% visitas)</div></div>
+          <div class="tl-item"><div class="tl-dot dot-yellow"></div><div class="tl-text"><strong>Relâmpago #4 e #5:</strong> 2 ativações no mês em regiões prioritárias</div></div>
+          <div class="tl-item"><div class="tl-dot dot-blue"></div><div class="tl-text"><strong>DOD #2:</strong> segunda ativação com combo premium &gt; R$2.000</div></div>
+          <div class="tl-item"><div class="tl-dot dot-purple"></div><div class="tl-text"><strong>Catálogo completo:</strong> 40+ novos SKUs ativos, 10+ categorias com vendas</div></div>
+          <div class="tl-item"><div class="tl-dot dot-green"></div><div class="tl-text"><strong>Nordeste sólido:</strong> BA + CE + PE + MA com frete ativo e CVR &gt; 0,25%</div></div>
+          <div class="tl-item"><div class="tl-dot dot-yellow"></div><div class="tl-text"><strong>Q4 setup:</strong> estoque preparado para escalar Oct–Nov (pico histórico móveis)</div></div>
+          <div class="tl-item"><div class="tl-dot dot-blue"></div><div class="tl-text"><strong>PADS:</strong> 30+ itens com campanha ativa, ROAS monitorado</div></div>
+          <div class="tl-kpis">
+            <div class="tl-kpi"><label>Visits alvo</label><span>~528k</span></div>
+            <div class="tl-kpi"><label>CVR alvo</label><span>0,280%</span></div>
+            <div class="tl-kpi"><label>Ticket alvo</label><span>R$1.353</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHART PROJEÇÃO -->
+  <div class="section">
+    <div class="section-title">Projeção de GMV — Caminho para R$2M</div>
+    <div class="chart-card">
+      <h3>GMV Mensal Real + Projeção com Plano (R$)</h3>
+      <div style="height:260px"><canvas id="chartProj"></canvas></div>
+    </div>
+  </div>
+
+  <!-- RISCOS -->
+  <div class="section">
+    <div class="section-title">Riscos e Mitigações</div>
+    <div class="risk-grid">
+      <div class="risk-card">
+        <span class="risk-label rl-high">Alto</span>
+        <h5>Full pode não ser aprovado para móveis grandes</h5>
+        <p>Itens de grande volume/peso têm restrições no Full. Se reprovado para os itens principais, o ganho de ranking não se materializa. <strong>Mitigação:</strong> priorizar itens médios (cadeiras, sapateiras) primeiro para ganhar reputação Full e desbloquear itens maiores.</p>
+      </div>
+      <div class="risk-card">
+        <span class="risk-label rl-high">Alto</span>
+        <h5>DXI volátil pode repetir o colapso de Maio</h5>
+        <p>A queda de R$48k para R$6k em DXI derrubou 24% do GMV em um mês. Sem diversificação de investimentos, qualquer interrupção tem impacto direto. <strong>Mitigação:</strong> ativar PADS e Relâmpago como substitutos parciais do DXI.</p>
+      </div>
+      <div class="risk-card medium">
+        <span class="risk-label rl-med">Médio</span>
+        <h5>Estoque insuficiente para suportar dobrar volume</h5>
+        <p>Dobrar pedidos (de ~740 para ~1.480/mês) exige estoque preparado. Top 3 SKUs (Mesa Alvorada, Toronto, Olímpia) precisam de cobertura de 60+ dias. <strong>Mitigação:</strong> planejar compras para julho com base no target de Set.</p>
+      </div>
+      <div class="risk-card medium">
+        <span class="risk-label rl-med">Médio</span>
+        <h5>Competidores reagem ao crescimento</h5>
+        <p>Ganho agressivo de buybox e ranking pode provocar reação de preço dos competidores. <strong>Mitigação:</strong> competir em serviço (Full, prazo) e não só preço — diferenciação sustentável.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary-strip">
+    <div class="ss-item">
+      <label>Prazo para R$2M</label>
+      <span class="yellow">90 dias</span>
+      <div class="ss-sub">Meta: Setembro 2026</div>
+    </div>
+    <div class="ss-item">
+      <label>Maior alavanca</label>
+      <span>Full Logistics</span>
+      <div class="ss-sub">+R$400–500k est. sozinho</div>
+    </div>
+    <div class="ss-item">
+      <label>Quick win imediato</label>
+      <span>PADS + Relâmpago</span>
+      <div class="ss-sub">R$0 investido hoje → ativar agora</div>
+    </div>
+    <div class="ss-item">
+      <label>Upside adicional (Q4)</label>
+      <span class="green">R$ 2,5M+</span>
+      <div class="ss-sub">Out/Nov — pico histórico de móveis</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+Chart.register(ChartDataLabels);
+const C = { blue:'#3483FA', green:'#00A650', red:'#F23D4F', yellow:'#FFE600', gray:'#94a3b8', dark:'#1a1a1a' };
+Chart.defaults.font.family = "'Inter', sans-serif";
+
+// Chart 1 — Correlação GMV vs DXI
+new Chart(document.getElementById('chartCorr'), {
+  type: 'bar',
+  data: {
+    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
+    datasets: [
+      {
+        label: 'GMV (R$)',
+        data: [1237134, 895312, 993220, 1433964, 1084127, 910273],
+        backgroundColor: ['rgba(52,131,250,.3)','rgba(52,131,250,.3)','rgba(52,131,250,.3)','rgba(52,131,250,.8)','rgba(242,61,79,.7)','rgba(52,131,250,.5)'],
+        borderRadius: 5, borderSkipped: false, yAxisID: 'y',
+        datalabels: {
+          anchor: 'end', align: 'end',
+          formatter: v => 'R$' + (v/1000).toFixed(0) + 'k',
+          font: { size: 10, weight: '700' }, color: '#1a1a1a', offset: 2
+        }
+      },
+      {
+        label: 'DXI (R$)',
+        data: [44584, 27743, 18254, 48523, 6644, 37645],
+        type: 'line',
+        borderColor: '#FFE600', backgroundColor: '#1a1a1a',
+        borderWidth: 2.5, pointRadius: 7, pointBackgroundColor: '#1a1a1a',
+        tension: 0.3, yAxisID: 'y2',
+        datalabels: {
+          anchor: 'center', align: 'top',
+          formatter: v => 'DXI\nR$' + (v/1000).toFixed(0) + 'k',
+          font: { size: 9, weight: '700' }, color: '#92400e',
+          backgroundColor: 'rgba(254,243,199,0.95)',
+          borderRadius: 4, padding: { top:2, bottom:2, left:5, right:5 }, offset: 12,
+          textAlign: 'center'
+        }
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    layout: { padding: { top: 50 } },
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: ctx => ' R$ ' + ctx.raw.toLocaleString('pt-BR') } }
+    },
+    scales: {
+      x: { grid: { display: false } },
+      y: { grid: { color: 'rgba(0,0,0,.05)' }, ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' } },
+      y2: { position: 'right', grid: { display: false }, ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' } }
+    }
+  }
+});
+
+// Chart 2 — Trajetória até R$2M
+new Chart(document.getElementById('chartTraj'), {
+  type: 'bar',
+  data: {
+    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun*', 'Jul ▶', 'Ago ▶', 'Set ▶'],
+    datasets: [
+      {
+        label: 'GMV Real',
+        data: [1237134, 895312, 993220, 1433964, 1084127, 1352000, null, null, null],
+        backgroundColor: ['#e5e7eb','#e5e7eb','#e5e7eb',C.dark,'#fee2e2',C.blue, null, null, null],
+        borderRadius: 5, borderSkipped: false,
+        datalabels: {
+          anchor: 'end', align: 'end',
+          formatter: (v, ctx) => v ? 'R$' + (v/1000).toFixed(0) + 'k' : '',
+          font: { size: 9, weight: '700' }, color: '#1a1a1a', offset: 2
+        }
+      },
+      {
+        label: 'Projeção com Plano',
+        data: [null, null, null, null, null, null, 1600000, 1800000, 2000000],
+        backgroundColor: ['transparent','transparent','transparent','transparent','transparent','transparent', 'rgba(0,166,80,.25)', 'rgba(0,166,80,.5)', 'rgba(0,166,80,.85)'],
+        borderRadius: 5, borderSkipped: false,
+        datalabels: {
+          anchor: 'end', align: 'end',
+          formatter: (v, ctx) => v ? 'R$' + (v/1000000).toFixed(1) + 'M' : '',
+          font: { size: 11, weight: '900' }, color: '#14532d', offset: 2
+        }
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    layout: { padding: { top: 36 } },
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: ctx => ctx.raw ? ' R$ ' + ctx.raw.toLocaleString('pt-BR') : '' } },
+      annotation: {}
+    },
+    scales: {
+      x: { grid: { display: false } },
+      y: { grid: { color: 'rgba(0,0,0,.05)' }, ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' } }
+    }
+  }
+});
+
+// Chart 3 — Projeção 90 dias
+new Chart(document.getElementById('chartProj'), {
+  type: 'bar',
+  data: {
+    labels: ['Jan/26', 'Fev/26', 'Mar/26', 'Abr/26\n(pico)', 'Mai/26\n(vale)', 'Jun/26\n(proj)', 'Jul/26\n▶ plano', 'Ago/26\n▶ plano', 'Set/26\n▶ META'],
+    datasets: [
+      {
+        label: 'GMV Real',
+        data: [1237134, 895312, 993220, 1433964, 1084127, 1352000, null, null, null],
+        backgroundColor: ['#d1d5db','#d1d5db','#d1d5db','#1a1a1a','#fca5a5','#93c5fd', null, null, null],
+        borderRadius: 6, borderSkipped: false,
+        datalabels: {
+          anchor: 'end', align: 'end',
+          formatter: v => v ? 'R$' + (v/1000).toFixed(0) + 'k' : '',
+          font: { size: 10, weight: '700' }, color: '#374151', offset: 3
+        }
+      },
+      {
+        label: 'Projeção (plano)',
+        data: [null, null, null, null, null, null, 1600000, 1800000, 2000000],
+        backgroundColor: [null,null,null,null,null,null, 'rgba(0,166,80,.3)', 'rgba(0,166,80,.6)', '#00A650'],
+        borderRadius: 6, borderSkipped: false,
+        datalabels: {
+          anchor: 'end', align: 'end',
+          formatter: v => v ? 'R$' + (v/1000000).toFixed(1) + 'M' : '',
+          font: { size: 13, weight: '900' }, color: '#14532d', offset: 4
+        }
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    layout: { padding: { top: 40 } },
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: ctx => ctx.raw ? ' R$ ' + ctx.raw.toLocaleString('pt-BR') : '' } }
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+      y: {
+        grid: { color: 'rgba(0,0,0,.05)' },
+        ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'k' },
+        max: 2200000
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
