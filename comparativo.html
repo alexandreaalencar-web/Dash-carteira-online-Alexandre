@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Comparativo 01/Mai vs 01/Jun vs 01/Jul</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; background:#F0F0F0; color:#222; padding:24px; font-size:13px; }
+  .header { background:#FFE600; border-radius:10px; padding:18px 24px; margin-bottom:20px; display:flex; align-items:center; justify-content:space-between; }
+  .header h1 { font-size:16px; font-weight:800; color:#1A1A1A; }
+  .header .sub { font-size:11px; color:#555; }
+  .card { background:#fff; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.06); padding:20px 24px; margin-bottom:20px; overflow-x:auto; }
+  .card-title { font-size:12px; font-weight:700; color:#1A1A1A; text-transform:uppercase; letter-spacing:.5px; border-bottom:2px solid #FFE600; padding-bottom:8px; margin-bottom:16px; }
+  table { width:100%; border-collapse:collapse; min-width:900px; }
+  thead th { background:#F8F8F8; color:#888; font-size:10px; text-transform:uppercase; letter-spacing:.4px; padding:10px 10px; text-align:left; border-bottom:2px solid #EEE; }
+  thead th.date-header { background:#F0F0F0; font-size:11px; font-weight:700; color:#333; text-align:center; border-bottom:2px solid #3483FA; }
+  thead .th-05 { border-bottom-color:#888; }
+  thead .th-06 { border-bottom-color:#3483FA; }
+  thead .th-07 { border-bottom-color:#00A650; }
+  tbody tr { border-bottom:1px solid #F5F5F5; transition:background .1s; }
+  tbody tr:hover { background:#FAFAFA; }
+  tbody td { padding:9px 10px; }
+  .kpi-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:20px; }
+  .kpi { background:#fff; border-radius:10px; padding:16px 20px; border-top:4px solid #FFE600; box-shadow:0 2px 6px rgba(0,0,0,.05); text-align:center; }
+  .kpi.jun { border-top-color:#3483FA; }
+  .kpi.jul { border-top-color:#00A650; }
+  .kpi .lbl { font-size:11px; color:#888; text-transform:uppercase; letter-spacing:.5px; margin-bottom:6px; }
+  .kpi .val { font-size:22px; font-weight:800; color:#1A1A1A; }
+  .kpi .sub { font-size:11px; color:#AAA; margin-top:4px; }
+  .legend { font-size:11px; color:#888; margin-bottom:12px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>Comparativo Diário — 01/Mai · 01/Jun · 01/Jul</h1>
+    <div class="sub">Carteira Online · Alexandre Alencar · MercadoLibre Brasil</div>
+  </div>
+  <div style="font-size:11px;color:#555">GMV · Visitas · CVR por Seller e Anúncio</div>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="lbl">01/Mai — GMV Total</div>
+    <div class="val">R$ 874K</div>
+    <div class="sub">Carteira completa</div>
+  </div>
+  <div class="kpi jun">
+    <div class="lbl">01/Jun — GMV Total</div>
+    <div class="val">R$ 1.2M</div>
+    <div class="sub"><span style="color:#00A650;font-size:11px;font-weight:600">▲36.8%</span> vs Mai</div>
+  </div>
+  <div class="kpi jul">
+    <div class="lbl">01/Jul — GMV Total</div>
+    <div class="val">R$ 1.4M</div>
+    <div class="sub"><span style="color:#00A650;font-size:11px;font-weight:600">▲19.3%</span> vs Jun &nbsp;·&nbsp; <span style="color:#00A650;font-size:11px;font-weight:600">▲63.3%</span> vs Mai</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">GMV por Seller — Comparativo 01/Mai · 01/Jun · 01/Jul</div>
+  <table>
+    <thead>
+      <tr>
+        <th rowspan="2">Seller</th>
+        <th colspan="2" class="date-header th-05">01/Mai</th>
+        <th colspan="2" class="date-header th-06">01/Jun</th>
+        <th colspan="2" class="date-header th-07">01/Jul</th>
+        <th rowspan="2" style="text-align:center">Jun→Jul</th>
+        <th rowspan="2" style="text-align:center">Mai→Jul</th>
+      </tr>
+      <tr>
+        <th style="text-align:right">GMV</th><th style="text-align:right">SIs</th>
+        <th style="text-align:right">GMV</th><th style="text-align:right">SIs</th>
+        <th style="text-align:right">GMV</th><th style="text-align:right">SIs</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr style="border-left:4px solid #3483FA">
+      <td style="padding-left:10px"><b>ESPLANADA MÓVEIS</b></td>
+      <td style="text-align:right">R$ 539K</td>
+      <td style="text-align:right;color:#888;font-size:11px">585</td>
+      <td style="text-align:right">R$ 621K</td>
+      <td style="text-align:right;color:#888;font-size:11px">684</td>
+      <td style="text-align:right;font-weight:700">R$ 698K</td>
+      <td style="text-align:right;color:#888;font-size:11px">739</td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲12.5%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲29.6%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #FFB900">
+      <td style="padding-left:10px"><b>EMMA BRASIL</b></td>
+      <td style="text-align:right">R$ 112K</td>
+      <td style="text-align:right;color:#888;font-size:11px">72</td>
+      <td style="text-align:right">R$ 265K</td>
+      <td style="text-align:right;color:#888;font-size:11px">149</td>
+      <td style="text-align:right;font-weight:700">R$ 263K</td>
+      <td style="text-align:right;color:#888;font-size:11px">154</td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-size:11px;font-weight:600">▼0.4%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲135.1%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #FF7A00">
+      <td style="padding-left:10px"><b>ORTOBOM</b></td>
+      <td style="text-align:right">R$ 68K</td>
+      <td style="text-align:right;color:#888;font-size:11px">93</td>
+      <td style="text-align:right">R$ 87K</td>
+      <td style="text-align:right;color:#888;font-size:11px">133</td>
+      <td style="text-align:right;font-weight:700">R$ 251K</td>
+      <td style="text-align:right;color:#888;font-size:11px">372</td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲189.8%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲269.2%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #F23D4F">
+      <td style="padding-left:10px"><b>COSTA RICA COLCHOES</b></td>
+      <td style="text-align:right">R$ 36K</td>
+      <td style="text-align:right;color:#888;font-size:11px">52</td>
+      <td style="text-align:right">R$ 68K</td>
+      <td style="text-align:right;color:#888;font-size:11px">77</td>
+      <td style="text-align:right;font-weight:700">R$ 54K</td>
+      <td style="text-align:right;color:#888;font-size:11px">64</td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-size:11px;font-weight:600">▼21.0%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲48.7%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #00BCD4">
+      <td style="padding-left:10px"><b>KEIKO COLCHÔES</b></td>
+      <td style="text-align:right">R$ 25K</td>
+      <td style="text-align:right;color:#888;font-size:11px">13</td>
+      <td style="text-align:right">R$ 33K</td>
+      <td style="text-align:right;color:#888;font-size:11px">18</td>
+      <td style="text-align:right;font-weight:700">R$ 52K</td>
+      <td style="text-align:right;color:#888;font-size:11px">32</td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲59.3%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲108.1%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #9B59B6">
+      <td style="padding-left:10px"><b>MODERNA MOBILIA</b></td>
+      <td style="text-align:right">R$ 28K</td>
+      <td style="text-align:right;color:#888;font-size:11px">24</td>
+      <td style="text-align:right">R$ 43K</td>
+      <td style="text-align:right;color:#888;font-size:11px">34</td>
+      <td style="text-align:right;font-weight:700">R$ 44K</td>
+      <td style="text-align:right;color:#888;font-size:11px">46</td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲3.1%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲59.4%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #009688">
+      <td style="padding-left:10px"><b>EASY HOUSE</b></td>
+      <td style="text-align:right">R$ 46K</td>
+      <td style="text-align:right;color:#888;font-size:11px">49</td>
+      <td style="text-align:right">R$ 55K</td>
+      <td style="text-align:right;color:#888;font-size:11px">55</td>
+      <td style="text-align:right;font-weight:700">R$ 39K</td>
+      <td style="text-align:right;color:#888;font-size:11px">36</td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-size:11px;font-weight:600">▼29.5%</span></td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-size:11px;font-weight:600">▼16.1%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #00A650">
+      <td style="padding-left:10px"><b>SLEEPCALMBR</b></td>
+      <td style="text-align:right">R$ 16K</td>
+      <td style="text-align:right;color:#888;font-size:11px">15</td>
+      <td style="text-align:right">R$ 13K</td>
+      <td style="text-align:right;color:#888;font-size:11px">13</td>
+      <td style="text-align:right;font-weight:700">R$ 11K</td>
+      <td style="text-align:right;color:#888;font-size:11px">12</td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-size:11px;font-weight:600">▼19.0%</span></td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-size:11px;font-weight:600">▼33.2%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #E91E63">
+      <td style="padding-left:10px"><b>KING STAR</b></td>
+      <td style="text-align:right">—</td>
+      <td style="text-align:right;color:#888;font-size:11px">—</td>
+      <td style="text-align:right">R$ 3K</td>
+      <td style="text-align:right;color:#888;font-size:11px">3</td>
+      <td style="text-align:right;font-weight:700">R$ 8K</td>
+      <td style="text-align:right;color:#888;font-size:11px">7</td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲143.9%</span></td>
+      <td style="text-align:center"></td>
+    </tr>
+    <tr style="border-left:4px solid #FF5722">
+      <td style="padding-left:10px"><b>ORTHOCRIN</b></td>
+      <td style="text-align:right">R$ 4K</td>
+      <td style="text-align:right;color:#888;font-size:11px">5</td>
+      <td style="text-align:right">R$ 8K</td>
+      <td style="text-align:right;color:#888;font-size:11px">13</td>
+      <td style="text-align:right;font-weight:700">R$ 6K</td>
+      <td style="text-align:right;color:#888;font-size:11px">15</td>
+      <td style="text-align:center"><span style="color:#F23D4F;font-size:11px;font-weight:600">▼26.0%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲74.6%</span></td>
+    </tr>
+    <tr style="border-top:2px solid #E8E8E8;font-weight:700;background:#F8F8F8;border-left:4px solid #FFE600">
+      <td style="padding-left:10px">TOTAL CARTEIRA</td>
+      <td style="text-align:right">R$ 874K</td><td></td>
+      <td style="text-align:right">R$ 1.2M</td><td></td>
+      <td style="text-align:right;font-weight:700">R$ 1.4M</td><td></td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲19.3%</span></td>
+      <td style="text-align:center"><span style="color:#00A650;font-size:11px;font-weight:600">▲63.3%</span></td>
+    </tr></tbody>
+  </table>
+</div>
+
+<div class="card">
+  <div class="card-title">Top Anúncios em Vendas — 01/Mai · 01/Jun · 01/Jul (lado a lado)</div>
+  <div class="legend">CVR: <span style="color:#00A650;font-weight:600">≥3% ótimo</span> · <span style="color:#F5A623;font-weight:600">1–3% regular</span> · <span style="color:#F23D4F;font-weight:600">&lt;1% baixo</span> · — = item não estava no top 10 naquela data</div>
+  <table>
+    <thead>
+      <tr>
+        <th rowspan="2">#</th>
+        <th rowspan="2">Item</th>
+        <th rowspan="2" style="min-width:200px">Título</th>
+        <th rowspan="2">Seller</th>
+        <th colspan="4" class="date-header th-05">01/Mai</th>
+        <th colspan="4" class="date-header th-06">01/Jun</th>
+        <th colspan="4" class="date-header th-07">01/Jul</th>
+      </tr>
+      <tr>
+        <th style="text-align:right">GMV</th><th style="text-align:right">SIs</th><th style="text-align:right">Vis</th><th style="text-align:right">CVR%</th>
+        <th style="text-align:right">GMV</th><th style="text-align:right">SIs</th><th style="text-align:right">Vis</th><th style="text-align:right">CVR%</th>
+        <th style="text-align:right">GMV</th><th style="text-align:right">SIs</th><th style="text-align:right">Vis</th><th style="text-align:right">CVR%</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr style="border-left:4px solid #FFB900">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">1</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB2171387384" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB2171387384</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="COLCH�O EMMA QUEEN - TECNOLOGIA ALEM� COR BRANCO/CINZA">COLCH�O EMMA QUEEN - TECNOLOGIA ALEM� COR BRANCO/CINZA</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FFB900;margin-right:4px"></span>EMMA BRASIL</td>
+      
+            <td style="text-align:right;font-weight:600">R$ 13K</td>
+            <td style="text-align:right;color:#555">5</td>
+            <td style="text-align:right;color:#888">3,425</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.15%</span></td>
+            <td style="text-align:right;font-weight:600">R$ 58K</td>
+            <td style="text-align:right;color:#555">24</td>
+            <td style="text-align:right;color:#888">23,856</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.10%</span></td>
+            <td style="text-align:right;font-weight:600">R$ 64K</td>
+            <td style="text-align:right;color:#555">26</td>
+            <td style="text-align:right;color:#888">42,796</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.06%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #FFB900">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">2</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB2171368181" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB2171368181</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="COLCH�O EMMA ORIGINAL CASAL - TECNOLOGIA ALEM� COR BRANCO/CINZA">COLCH�O EMMA ORIGINAL CASAL - TECNOLOGIA ALEM� COR BRANCO/CINZA</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FFB900;margin-right:4px"></span>EMMA BRASIL</td>
+      
+            <td style="text-align:right;font-weight:600">R$ 17K</td>
+            <td style="text-align:right;color:#555">7</td>
+            <td style="text-align:right;color:#888">5,880</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.12%</span></td>
+            <td style="text-align:right;font-weight:600">R$ 63K</td>
+            <td style="text-align:right;color:#555">30</td>
+            <td style="text-align:right;color:#888">35,970</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.08%</span></td>
+            <td style="text-align:right;font-weight:600">R$ 64K</td>
+            <td style="text-align:right;color:#555">29</td>
+            <td style="text-align:right;color:#888">45,385</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.06%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #3483FA">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">3</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB5318608904" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB5318608904</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="CAMA BOX BA� CASAL COLCH�O GAZIN MOLAS FLORA BEGE 138X188X63CM">CAMA BOX BA� CASAL COLCH�O GAZIN MOLAS FLORA BEGE 138X188X63CM</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483FA;margin-right:4px"></span>ESPLANADA MÓVEIS</td>
+      
+            <td style="text-align:right;font-weight:600">R$ 62K</td>
+            <td style="text-align:right;color:#555">56</td>
+            <td style="text-align:right;color:#888">327,880</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.02%</span></td>
+            <td style="text-align:right;font-weight:600">R$ 51K</td>
+            <td style="text-align:right;color:#555">43</td>
+            <td style="text-align:right;color:#888">193,027</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.02%</span></td>
+            <td style="text-align:right;font-weight:600">R$ 13K</td>
+            <td style="text-align:right;color:#555">10</td>
+            <td style="text-align:right;color:#888">18,590</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.05%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #3483FA">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">4</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB5732465216" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB5732465216</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="COLCH�O SOLTEIRO ESPUMA D33 PILLOW TOP NEW MILLENIUM BRANCO">COLCH�O SOLTEIRO ESPUMA D33 PILLOW TOP NEW MILLENIUM BRANCO</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483FA;margin-right:4px"></span>ESPLANADA MÓVEIS</td>
+      
+            <td style="text-align:right;font-weight:600">R$ 13K</td>
+            <td style="text-align:right;color:#555">24</td>
+            <td style="text-align:right;color:#888">28,680</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.08%</span></td>
+            <td style="text-align:right;font-weight:600">R$ 18K</td>
+            <td style="text-align:right;color:#555">36</td>
+            <td style="text-align:right;color:#888">76,752</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.05%</span></td>
+            <td style="text-align:right;font-weight:600">R$ 30K</td>
+            <td style="text-align:right;color:#555">55</td>
+            <td style="text-align:right;color:#888">109,065</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.05%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #3483FA">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">5</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB3647902117" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB3647902117</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="CAMA BOX BA� COLCH�O CASAL MOLAS ENSACADAS CITY PILLOW TOP 138X18">CAMA BOX BA� COLCH�O CASAL MOLAS ENSACADAS CITY PILLOW TOP 138X18</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483FA;margin-right:4px"></span>ESPLANADA MÓVEIS</td>
+      
+            <td style="text-align:right;font-weight:600">R$ 20K</td>
+            <td style="text-align:right;color:#555">14</td>
+            <td style="text-align:right;color:#888">23,439</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.06%</span></td>
+            <td style="text-align:right;font-weight:600">R$ 22K</td>
+            <td style="text-align:right;color:#555">16</td>
+            <td style="text-align:right;color:#888">42,304</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.04%</span></td>
+            <td style="text-align:right;font-weight:600">R$ 29K</td>
+            <td style="text-align:right;color:#555">20</td>
+            <td style="text-align:right;color:#888">80,750</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.02%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #3483FA">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">6</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB4381888457" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB4381888457</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="CAMA BOX BA� COLCH�O CASAL MOLAS ENSACADAS CITY PILLOW TOP 138X18">CAMA BOX BA� COLCH�O CASAL MOLAS ENSACADAS CITY PILLOW TOP 138X18</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483FA;margin-right:4px"></span>ESPLANADA MÓVEIS</td>
+      
+            <td style="text-align:right;font-weight:600">R$ 24K</td>
+            <td style="text-align:right;color:#555">17</td>
+            <td style="text-align:right;color:#888">66,368</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.03%</span></td>
+            <td style="text-align:right;font-weight:600">R$ 27K</td>
+            <td style="text-align:right;color:#555">19</td>
+            <td style="text-align:right;color:#888">90,630</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.02%</span></td>
+            <td style="text-align:right;font-weight:600">R$ 14K</td>
+            <td style="text-align:right;color:#555">10</td>
+            <td style="text-align:right;color:#888">4,050</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.25%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #FFB900">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">7</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB4959690446" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB4959690446</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="COLCH�O EMMA KING- TECNOLOGIA ALEM� COR BRANCO/CINZA">COLCH�O EMMA KING- TECNOLOGIA ALEM� COR BRANCO/CINZA</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FFB900;margin-right:4px"></span>EMMA BRASIL</td>
+      <td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+            <td style="text-align:right;font-weight:600">R$ 25K</td>
+            <td style="text-align:right;color:#555">8</td>
+            <td style="text-align:right;color:#888">3,192</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.25%</span></td><td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+    </tr>
+    <tr style="border-left:4px solid #3483FA">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">8</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB4111944180" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB4111944180</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="CAMA BOX CASAL COLCH�O GAZIN MOLAS ENSACADAS PILLOW MAXIMUS CINZA">CAMA BOX CASAL COLCH�O GAZIN MOLAS ENSACADAS PILLOW MAXIMUS CINZA</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483FA;margin-right:4px"></span>ESPLANADA MÓVEIS</td>
+      <td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+            <td style="text-align:right;font-weight:600">R$ 15K</td>
+            <td style="text-align:right;color:#555">16</td>
+            <td style="text-align:right;color:#888">60,512</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.03%</span></td>
+            <td style="text-align:right;font-weight:600">R$ 23K</td>
+            <td style="text-align:right;color:#555">23</td>
+            <td style="text-align:right;color:#888">100,191</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.02%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #3483FA">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">9</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB4264906587" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB4264906587</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="COLCH�O SOLTEIRO MOLAS QATAR 88X188X22CM BEGE/BRANCO INDUCOL COR ">COLCH�O SOLTEIRO MOLAS QATAR 88X188X22CM BEGE/BRANCO INDUCOL COR </td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483FA;margin-right:4px"></span>ESPLANADA MÓVEIS</td>
+      <td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+            <td style="text-align:right;font-weight:600">R$ 20K</td>
+            <td style="text-align:right;color:#555">35</td>
+            <td style="text-align:right;color:#888">88,970</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.04%</span></td><td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+    </tr>
+    <tr style="border-left:4px solid #FFB900">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">10</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB6235816512" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB6235816512</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="COLCH�O QUEEN EMMA PREMIUM HYBRID 2.0 (158CMX198CM) CINZA">COLCH�O QUEEN EMMA PREMIUM HYBRID 2.0 (158CMX198CM) CINZA</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FFB900;margin-right:4px"></span>EMMA BRASIL</td>
+      
+            <td style="text-align:right;font-weight:600">R$ 15K</td>
+            <td style="text-align:right;color:#555">4</td>
+            <td style="text-align:right;color:#888">762</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.52%</span></td><td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+            <td style="text-align:right;font-weight:600">R$ 19K</td>
+            <td style="text-align:right;color:#555">5</td>
+            <td style="text-align:right;color:#888">2,395</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.21%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #3483FA">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">11</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB5386034426" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB5386034426</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="COLCH�O CASAL MOLAS QATAR 138X188X22CM BEGE/BRANCO INDUCOL COR BE">COLCH�O CASAL MOLAS QATAR 138X188X22CM BEGE/BRANCO INDUCOL COR BE</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483FA;margin-right:4px"></span>ESPLANADA MÓVEIS</td>
+      <td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+            <td style="text-align:right;font-weight:600">R$ 18K</td>
+            <td style="text-align:right;color:#555">23</td>
+            <td style="text-align:right;color:#888">53,130</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.04%</span></td><td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+    </tr>
+    <tr style="border-left:4px solid #3483FA">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">12</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB4302583577" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB4302583577</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="COLCH�O CASAL ESPUMA D33 FORT 138X188X21CM CINZA BRANCO COR CINZA">COLCH�O CASAL ESPUMA D33 FORT 138X188X21CM CINZA BRANCO COR CINZA</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483FA;margin-right:4px"></span>ESPLANADA MÓVEIS</td>
+      <td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td><td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+            <td style="text-align:right;font-weight:600">R$ 16K</td>
+            <td style="text-align:right;color:#555">21</td>
+            <td style="text-align:right;color:#888">31,227</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.07%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #3483FA">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">13</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB4580394518" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB4580394518</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="CAMA BOX CASAL GAZIN MAXIMUS MOLAS ENSACADAS CINZA/PRETO CINZA/BR">CAMA BOX CASAL GAZIN MAXIMUS MOLAS ENSACADAS CINZA/PRETO CINZA/BR</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483FA;margin-right:4px"></span>ESPLANADA MÓVEIS</td>
+      <td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+            <td style="text-align:right;font-weight:600">R$ 15K</td>
+            <td style="text-align:right;color:#555">16</td>
+            <td style="text-align:right;color:#888">46,864</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.03%</span></td><td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+    </tr>
+    <tr style="border-left:4px solid #FFB900">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">14</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB3324961547" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB3324961547</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="COLCH�O CASAL EMMA ONE ORTOP�DICO - COR BRANCO">COLCH�O CASAL EMMA ONE ORTOP�DICO - COR BRANCO</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FFB900;margin-right:4px"></span>EMMA BRASIL</td>
+      
+            <td style="text-align:right;font-weight:600">R$ 14K</td>
+            <td style="text-align:right;color:#555">11</td>
+            <td style="text-align:right;color:#888">8,085</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.14%</span></td><td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td><td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+    </tr>
+    <tr style="border-left:4px solid #3483FA">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">15</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB3504071515" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB3504071515</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="COLCH�O CASAL MOLAS ENSACADAS EURO PILLOW MAXIMUS 138 X 188 X 24 ">COLCH�O CASAL MOLAS ENSACADAS EURO PILLOW MAXIMUS 138 X 188 X 24 </td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#3483FA;margin-right:4px"></span>ESPLANADA MÓVEIS</td>
+      <td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td><td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+            <td style="text-align:right;font-weight:600">R$ 14K</td>
+            <td style="text-align:right;color:#555">14</td>
+            <td style="text-align:right;color:#888">9,968</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.14%</span></td>
+    </tr>
+    <tr style="border-left:4px solid #FFB900">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">16</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB2171381925" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB2171381925</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="COLCH�O EMMA ORIGINAL SOLTEIRO - TECNOLOGIA ALEM� COR BRANCO/CINZ">COLCH�O EMMA ORIGINAL SOLTEIRO - TECNOLOGIA ALEM� COR BRANCO/CINZ</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FFB900;margin-right:4px"></span>EMMA BRASIL</td>
+      
+            <td style="text-align:right;font-weight:600">R$ 13K</td>
+            <td style="text-align:right;color:#555">9</td>
+            <td style="text-align:right;color:#888">5,814</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.15%</span></td><td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td><td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+    </tr>
+    <tr style="border-left:4px solid #009688">
+      <td style="color:#AAA;font-size:11px;padding-left:10px">17</td>
+      <td><a href="https://www.mercadolivre.com.br/MLB5445396068" target="_blank" style="color:#3483FA;text-decoration:none;font-size:11px">MLB5445396068</a></td>
+      <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px" title="GUARDA-ROUPA CASAL EASY SLIM 8 PORTAS C/ ESPELHO AMENDOA/OFF AM�N">GUARDA-ROUPA CASAL EASY SLIM 8 PORTAS C/ ESPELHO AMENDOA/OFF AM�N</td>
+      <td style="font-size:11px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#009688;margin-right:4px"></span>EASY HOUSE</td>
+      
+            <td style="text-align:right;font-weight:600">R$ 12K</td>
+            <td style="text-align:right;color:#555">11</td>
+            <td style="text-align:right;color:#888">48,488</td>
+            <td style="text-align:right"><span style="color:#F23D4F;font-weight:600">0.02%</span></td><td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td><td colspan="4" style="text-align:center;color:#DDD;font-size:11px">—</td>
+    </tr></tbody>
+  </table>
+</div>
+
+</body>
+</html>
