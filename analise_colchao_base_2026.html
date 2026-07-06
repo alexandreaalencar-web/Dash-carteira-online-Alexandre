@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análise de Mercado — Conjuntos Colchão + Base 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Proxima Nova', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f5f5; color: #333; font-size: 14px; line-height: 1.5;
+  }
+  .header {
+    background: linear-gradient(135deg, #ffe600 0%, #ffdf00 60%, #ffd000 100%);
+    padding: 28px 40px 24px;
+    border-bottom: 3px solid #e6c800;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .header-left h1 { font-size: 22px; font-weight: 700; color: #111; letter-spacing: -0.3px; }
+  .header-left p { font-size: 13px; color: #444; margin-top: 4px; }
+  .seller-badge { background: #111; color: #ffe600; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; }
+  .date-badge { font-size: 11px; color: #555; margin-top: 6px; text-align:right; }
+  .container { max-width: 1300px; margin: 0 auto; padding: 28px 24px; }
+  .section-title {
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+    color: #888; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: #e0e0e0; }
+
+  /* KPI */
+  .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 28px; }
+  .kpi-card { background: #fff; border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 3px solid #ffe600; }
+  .kpi-card.blue { border-top-color: #3483fa; }
+  .kpi-card.green { border-top-color: #00a650; }
+  .kpi-card.orange { border-top-color: #ff6c00; }
+  .kpi-card.purple { border-top-color: #8b5cf6; }
+  .kpi-label { font-size: 11px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .kpi-value { font-size: 26px; font-weight: 700; color: #111; line-height: 1; }
+  .kpi-sub { font-size: 11px; color: #aaa; margin-top: 6px; }
+
+  /* ALERT */
+  .alert { background: #fff3e0; border: 1px solid #ffe0b2; border-radius: 8px; padding: 10px 16px; font-size: 12px; color: #6d4c41; margin-bottom: 20px; }
+  .alert strong { color: #bf360c; }
+
+  /* CHARTS */
+  .charts-row { display: grid; grid-template-columns: 1.4fr 0.6fr; gap: 16px; margin-bottom: 28px; }
+  .chart-card { background: #fff; border-radius: 10px; padding: 20px 22px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .chart-card h3 { font-size: 13px; font-weight: 700; color: #333; margin-bottom: 16px; }
+
+  /* TABLE */
+  .table-card { background: #fff; border-radius: 10px; padding: 20px 22px; box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 28px; overflow-x: auto; }
+  .table-card h3 { font-size: 13px; font-weight: 700; color: #333; margin-bottom: 4px; }
+  .table-card .sub { font-size: 11px; color: #aaa; margin-bottom: 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  thead th { background: #f8f8f8; color: #666; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; padding: 9px 11px; text-align: left; border-bottom: 2px solid #eee; white-space: nowrap; }
+  tbody td { padding: 9px 11px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #fafafa; }
+  tbody tr.hl { background: #fffde7; }
+
+  .rank { font-weight: 700; color: #bbb; }
+  .rank-gold { color: #f59e0b; background: #fffbeb; border-radius: 4px; padding: 2px 7px; }
+  .rank-silver { color: #94a3b8; background: #f1f5f9; border-radius: 4px; padding: 2px 7px; }
+  .rank-bronze { color: #cd7c2b; background: #fef3c7; border-radius: 4px; padding: 2px 7px; }
+
+  .share-wrap { display: flex; align-items: center; gap: 7px; }
+  .share-bar { height: 6px; border-radius: 3px; background: #3483fa; min-width: 3px; }
+  .share-txt { font-size: 12px; font-weight: 700; color: #3483fa; white-space: nowrap; }
+
+  .asp-badge { padding: 2px 9px; border-radius: 12px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .asp-low { background: #fce4ec; color: #b71c1c; }
+  .asp-mid { background: #e8f5e9; color: #1b5e20; }
+  .asp-high { background: #e3f2fd; color: #0d47a1; }
+  .asp-prem { background: #ede7f6; color: #4527a0; }
+
+  .rep { font-size: 11px; font-weight: 700; padding: 2px 7px; border-radius: 10px; }
+  .rep-platinum { background: #e0e0e0; color: #333; }
+  .rep-gold { background: #fff8e1; color: #f57f17; }
+  .rep-green { background: #e8f5e9; color: #2e7d32; }
+  .rep-yellow { background: #fffde7; color: #f9a825; }
+  .rep-orange { background: #fff3e0; color: #e65100; }
+  .rep-nd { background: #f5f5f5; color: #9e9e9e; }
+
+  .log-tag { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
+  .log-xd { background: #fce4ec; color: #c62828; }
+  .log-full { background: #e3f2fd; color: #1565c0; }
+
+  /* OPPS */
+  .opps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+  .opp-card { background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,.08); border-left: 4px solid #ffe600; }
+  .opp-card.green { border-left-color: #00a650; }
+  .opp-card.blue { border-left-color: #3483fa; }
+  .opp-card.red { border-left-color: #e53935; }
+  .opp-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 8px; }
+  .opp-title { font-size: 14px; font-weight: 700; color: #111; margin-bottom: 8px; line-height: 1.3; }
+  .opp-body { font-size: 12px; color: #555; line-height: 1.7; }
+  .opp-body strong { color: #111; }
+
+  .footer { text-align: center; font-size: 11px; color: #aaa; padding: 20px 0 32px; }
+
+  .brand-tag { font-size: 11px; background: #f0f0f0; color: #555; padding: 2px 7px; border-radius: 8px; margin-left: 4px; }
+
+  @media (max-width: 900px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .charts-row { grid-template-columns: 1fr; }
+    .opps-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>Análise de Mercado — Conjuntos Colchão + Base</h1>
+    <p>Mapeamento competitivo para entrada no segmento · MercadoLivre Brasil · Jan–Jul 2026</p>
+  </div>
+  <div class="header-right">
+    <div class="seller-badge">Seller #1497628317</div>
+    <div class="date-badge">Dados reais BigQuery · 03/07/2026</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- KPIs -->
+  <div class="section-title">Visão Geral do Mercado · Jan–Jul 2026</div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">GMV Total do Segmento</div>
+      <div class="kpi-value">R$ 114,7M</div>
+      <div class="kpi-sub">Jan–Jul/2026 (acumulado)</div>
+    </div>
+    <div class="kpi-card blue">
+      <div class="kpi-label">GMV Conjuntos Reais (ASP≥R$500)</div>
+      <div class="kpi-value">R$ 99,2M</div>
+      <div class="kpi-sub">Excluindo acessórios/capas</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Sellers Ativos</div>
+      <div class="kpi-value">935</div>
+      <div class="kpi-sub">Logística XD/ME1 dominante</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="kpi-label">ASP Médio (conjuntos)</div>
+      <div class="kpi-value">R$ 1.247</div>
+      <div class="kpi-sub">Faixa R$1.000–R$1.499 lidera GMV</div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="kpi-label">Share Top-3 Sellers</div>
+      <div class="kpi-value">46,3%</div>
+      <div class="kpi-sub">Mercado concentrado no topo</div>
+    </div>
+  </div>
+
+  <div class="alert">
+    <strong>Nota metodológica:</strong> Filtro por título de item com <em>"colchão + (base | box | conjunto | cama box)"</em>. Excluídos do ranking itens com ASP abaixo de R$500 (capas e acessórios). Identidades dos concorrentes omitidas por compliance.
+  </div>
+
+  <!-- CHARTS ROW -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <h3>Evolução Mensal GMV 2026 — Segmento Colchão + Base (R$ mi)</h3>
+      <canvas id="chartMensal" height="130"></canvas>
+    </div>
+    <div class="chart-card">
+      <h3>GMV por Faixa de ASP</h3>
+      <canvas id="chartAsp" height="130"></canvas>
+    </div>
+  </div>
+
+  <!-- TOP SELLERS -->
+  <div class="section-title">Ranking de Concorrentes · GMV 2026</div>
+  <div class="table-card">
+    <h3>Top 10 Concorrentes — Conjuntos Colchão + Base</h3>
+    <p class="sub">Fonte: DM_EFICIENCIA_MLB · ORD_STATUS = 'paid' · Jan–Jul 2026 · Somente conjuntos reais (ASP ≥ R$500)</p>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Concorrente</th>
+          <th>GMV R$</th>
+          <th>Market Share</th>
+          <th>Pedidos</th>
+          <th>Unidades</th>
+          <th>ASP Médio</th>
+          <th>Faixa ASP</th>
+          <th>Reputação</th>
+          <th>SKUs</th>
+          <th>Logística</th>
+        </tr>
+      </thead>
+      <tbody id="sellersTbody"></tbody>
+    </table>
+  </div>
+
+  <!-- ASP TABLE -->
+  <div class="section-title">Distribuição por Faixa de Preço (ASP)</div>
+  <div class="table-card">
+    <h3>Volume e GMV por Faixa de Ticket Médio — Dados Reais BQ</h3>
+    <p class="sub">Cada linha = pedidos cujo ASP (GMV/unidades) cai nessa faixa</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Faixa ASP</th>
+          <th>Sellers</th>
+          <th>Pedidos</th>
+          <th>Unidades</th>
+          <th>GMV R$</th>
+          <th>ASP Médio R$</th>
+          <th>% GMV</th>
+          <th>Sinal</th>
+        </tr>
+      </thead>
+      <tbody id="aspTbody"></tbody>
+    </table>
+  </div>
+
+
+  <!-- PERFIL DO SELLER -->
+  <div class="section-title">Perfil Atual · Dados Reais BQ Jan–Jul 2026</div>
+  <div class="kpi-grid" style="grid-template-columns:repeat(5,1fr);margin-bottom:16px">
+    <div class="kpi-card">
+      <div class="kpi-label">GMV 2026 YTD</div>
+      <div class="kpi-value">R$ 2,97M</div>
+      <div class="kpi-sub">100% via MLB-MATTRESSES</div>
+    </div>
+    <div class="kpi-card blue">
+      <div class="kpi-label">ASP Atual</div>
+      <div class="kpi-value">R$ 963</div>
+      <div class="kpi-sub">Faixa entry/mid — abaixo do ideal</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">% Full</div>
+      <div class="kpi-value">90,3%</div>
+      <div class="kpi-sub">Diferencial raro na categoria</div>
+    </div>
+    <div class="kpi-card orange">
+      <div class="kpi-label">SKUs ativos</div>
+      <div class="kpi-value">44</div>
+      <div class="kpi-sub">34 colchões · 1 kit cama box</div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="kpi-label">Pedidos</div>
+      <div class="kpi-value">3.083</div>
+      <div class="kpi-sub">Jan–Jul 2026</div>
+    </div>
+  </div>
+
+  <!-- PLANO DE AÇÃO -->
+  <div class="section-title">Plano de Ação — Entrada em Conjuntos Colchão + Base</div>
+  <div class="opps-grid">
+
+    <div class="opp-card green">
+      <div class="opp-tag">ASP Ideal de Entrada</div>
+      <div class="opp-title">Faixa R$1.000–R$1.500 — maior GMV, 92 sellers</div>
+      <div class="opp-body">
+        Seu ASP atual é <strong>R$963</strong> em colchões isolados. Ao vender o conjunto (colchão + base), o ticket sobe naturalmente para <strong>R$1.200–R$1.400</strong> sem sair do posicionamento de entrada.
+        <br><br>
+        Essa faixa concentra <strong>R$35,9M de GMV</strong> (36% do mercado) e é a mais equilibrada entre volume e competição. Evite entrar abaixo de R$800 onde margem é mínima.
+      </div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-tag">Diferencial Competitivo</div>
+      <div class="opp-title">Você tem 90% Full — nenhum top 10 oferece isso</div>
+      <div class="opp-body">
+        Todos os 10 principais concorrentes operam via <strong>XD/ME1</strong> (0% Full). Você tem <strong>90,3% Full</strong> — uma vantagem que pode ser usada como argumento de conversão: entrega mais rápida e previsível para um produto de alto peso.
+        <br><br>
+        Destaque o Full na ficha do produto como diferencial de frete e prazo.
+      </div>
+    </div>
+
+    <div class="opp-card blue">
+      <div class="opp-tag">Portfólio — Quick Win</div>
+      <div class="opp-title">Você já tem 1 SKU de kit cama box — expanda agora</div>
+      <div class="opp-body">
+        O domínio <strong>MLB-MASSAGING_BOX_SPRING_AND_MATTRESS_KITS</strong> já está no seu catálogo com 1 SKU e 5 pedidos. É a prova de que o cadastro funciona.
+        <br><br>
+        Prioridade: cadastrar versões <strong>casal e queen</strong> dos seus colchões de maior giro emparelhados com base box na faixa R$1.000–R$1.500.
+      </div>
+    </div>
+
+    <div class="opp-card green">
+      <div class="opp-tag">Sazonalidade</div>
+      <div class="opp-title">Entrar agora: +19% de crescimento até junho</div>
+      <div class="opp-body">
+        O segmento cresceu de <strong>R$17,8M (Jan)</strong> para <strong>R$21,3M (Jun)</strong>. A tendência é de alta até o pico de novembro (Black Friday).
+        <br><br>
+        Cadastrar em <strong>Julho/2026</strong> dá tempo de acumular reviews e otimizar conversão antes do pico. Sellers que entram em outubro chegam ao BF sem histórico.
+      </div>
+    </div>
+
+    <div class="opp-card">
+      <div class="opp-tag">Premium — Fase 2</div>
+      <div class="opp-title">Faixa R$2.000–R$3.000 como próximo passo</div>
+      <div class="opp-body">
+        Após estabilizar na faixa de entrada, a faixa <strong>R$2.000–R$2.999</strong> tem apenas 62 sellers com R$15,9M de GMV. ASP médio de R$2.456.
+        <br><br>
+        Conjuntos <strong>King + Molas Ensacadas</strong> ou <strong>Pillow Top</strong> nessa faixa têm baixa concorrência e margem significativamente maior.
+      </div>
+    </div>
+
+    <div class="opp-card blue">
+      <div class="opp-tag">Roadmap</div>
+      <div class="opp-title">Jul–Nov 2026 — 5 etapas</div>
+      <div class="opp-body">
+        <strong>Jul:</strong> Cadastrar 3–5 SKUs (casal + queen) na faixa R$1.000–R$1.500 no domínio kit cama box<br>
+        <strong>Ago:</strong> Conteúdo de item (fotos em ambiente, dimensões, specs)<br>
+        <strong>Set:</strong> Monitorar conversão e ajustar pricing vs. top-3<br>
+        <strong>Out:</strong> Ampliar portfólio com king + faixa R$2k<br>
+        <strong>Nov:</strong> Black Friday com oferta preparada e reviews acumuladas
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  Análise com dados reais BigQuery · Alexandre Alencar · MercadoLivre Brasil · <code>meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB</code> · Jan–Jul/2026
+</div>
+
+<script>
+const fmtBRL = v => 'R$ ' + Number(v).toLocaleString('pt-BR', {minimumFractionDigits:0, maximumFractionDigits:0});
+const fmtM   = v => 'R$ ' + (v/1e6).toLocaleString('pt-BR', {minimumFractionDigits:1, maximumFractionDigits:1}) + 'M';
+
+// ── TOP 10 CONCORRENTES (anonimizados — compliance MeLi) ────────────────────
+const sellersRaw = [
+  {label:'Concorrente 1',  gmv:33780642.96, share:29.45, pedidos:27623, unidades:28718, asp:1176.29, rep:'',       skus:494, pctFull:0  },
+  {label:'Concorrente 2',  gmv:11219494.17, share: 9.78, pedidos: 9080, unidades: 9500, asp:1181.00, rep:'',       skus:615, pctFull:0  },
+  {label:'Concorrente 3',  gmv: 8168039.79, share: 7.12, pedidos: 9963, unidades:10222, asp: 799.06, rep:'',       skus:190, pctFull:0  },
+  {label:'Concorrente 4',  gmv: 7671736.37, share: 6.69, pedidos: 9222, unidades:10035, asp: 764.50, rep:'',       skus:341, pctFull:0  },
+  {label:'Concorrente 5',  gmv: 5993132.02, share: 5.23, pedidos: 5594, unidades: 5668, asp:1057.36, rep:'',       skus:237, pctFull:0  },
+  {label:'Concorrente 6',  gmv: 5857931.48, share: 5.11, pedidos: 2511, unidades: 2544, asp:2302.65, rep:'',       skus: 57, pctFull:0  },
+  {label:'Concorrente 7',  gmv: 4848308.58, share: 4.23, pedidos: 2803, unidades: 2899, asp:1672.41, rep:'',       skus:223, pctFull:0  },
+  {label:'Concorrente 8',  gmv: 4329643.62, share: 3.77, pedidos: 3657, unidades: 4046, asp:1070.10, rep:'',       skus:122, pctFull:0  },
+  {label:'Concorrente 9',  gmv: 1616671.50, share: 1.41, pedidos:  583, unidades:  587, asp:2754.13, rep:'',       skus:142, pctFull:0  },
+  {label:'Concorrente 10', gmv: 1550383.69, share: 1.35, pedidos:  522, unidades:  526, asp:2947.50, rep:'',       skus:117, pctFull:0  },
+];
+
+const gmvMax = sellersRaw[0].gmv;
+
+function aspBadge(asp) {
+  if (asp < 1000) return ['Entrada <R$1k',   'asp-low'];
+  if (asp < 2000) return ['Mid R$1k–2k',     'asp-mid'];
+  if (asp < 4000) return ['Premium R$2k–4k', 'asp-high'];
+  return                  ['Super-Prem R$4k+','asp-prem'];
+}
+
+function repBadge(r) {
+  const m = {
+    '': ['N/D', 'rep-nd'],
+    'GREEN_PLATINUM': ['Platinum', 'rep-platinum'],
+    'GREEN_GOLD':     ['Gold',     'rep-gold'],
+    'GREEN':          ['Verde',    'rep-green'],
+    'YELLOW':         ['Amarelo',  'rep-yellow'],
+    'ORANGE':         ['Laranja',  'rep-orange'],
+  };
+  const [l, c] = m[r.toUpperCase()] || ['N/D', 'rep-nd'];
+  return `<span class="rep ${c}">${l}</span>`;
+}
+
+const tbody = document.getElementById('sellersTbody');
+sellersRaw.forEach((s, i) => {
+  const [aspLbl, aspCls] = aspBadge(s.asp);
+  const barW = Math.round(s.gmv / gmvMax * 120);
+  const rankCell = i===0 ? `<span class="rank-gold">1</span>`
+                 : i===1 ? `<span class="rank-silver">2</span>`
+                 : i===2 ? `<span class="rank-bronze">3</span>`
+                 : `<span class="rank">${i+1}</span>`;
+  const logCell = s.pctFull >= 50
+    ? `<span class="log-tag log-full">Full ${s.pctFull}%</span>`
+    : `<span class="log-tag log-xd">XD</span>`;
+
+  tbody.innerHTML += `
+    <tr>
+      <td>${rankCell}</td>
+      <td><strong>${s.label}</strong></td>
+      <td><strong>${fmtBRL(s.gmv)}</strong></td>
+      <td>
+        <div class="share-wrap">
+          <div class="share-bar" style="width:${barW}px"></div>
+          <span class="share-txt">${s.share}%</span>
+        </div>
+      </td>
+      <td>${s.pedidos.toLocaleString('pt-BR')}</td>
+      <td>${s.unidades.toLocaleString('pt-BR')}</td>
+      <td><strong>${fmtBRL(s.asp)}</strong></td>
+      <td><span class="asp-badge ${aspCls}">${aspLbl}</span></td>
+      <td>${repBadge(s.rep)}</td>
+      <td>${s.skus}</td>
+      <td>${logCell}</td>
+    </tr>`;
+});
+
+// ── ASP FAIXAS (real data) ──────────────────────────────────────────────────
+const aspData = [
+  {faixa:'Até R$500 (acessórios)',    sellers:793, pedidos:248588, units:280609, gmv:15453439.89, aspMedio: 56.31, signal:'⚠ Saturado — capas/protetoras, não conjuntos'},
+  {faixa:'R$500 – R$999',             sellers:146, pedidos: 34406, units: 36646, gmv:29320873.03, aspMedio:802.97, signal:'🟡 Alta competição, entry-level'},
+  {faixa:'R$1.000 – R$1.499',         sellers: 92, pedidos: 28127, units: 28772, gmv:35868904.04, aspMedio:1247,   signal:'🟢 Principal oportunidade — maior GMV'},
+  {faixa:'R$1.500 – R$1.999',         sellers: 77, pedidos:  7645, units:  7791, gmv:13490584.96, aspMedio:1732,   signal:'🟢 Boa oportunidade — menos sellers'},
+  {faixa:'R$2.000 – R$2.999',         sellers: 62, pedidos:  6415, units:  6491, gmv:15939943.34, aspMedio:2456,   signal:'🔵 Premium — pouca concorrência'},
+  {faixa:'R$3.000 – R$4.999',         sellers: 31, pedidos:  1192, units:  1201, gmv: 4342729.07, aspMedio:3616,   signal:'🔵 Nicho super-premium'},
+  {faixa:'R$5.000+',                  sellers: 11, pedidos:    51, units:    51, gmv:  282249.52, aspMedio:5534,   signal:'⚪ Volume muito baixo'},
+];
+
+const gmvTotalAsp = aspData.reduce((a,b) => a + b.gmv, 0);
+const aspTbody = document.getElementById('aspTbody');
+aspData.forEach(a => {
+  const pct = (a.gmv / gmvTotalAsp * 100).toFixed(1);
+  const isAcessorio = a.faixa.includes('acessórios');
+  aspTbody.innerHTML += `
+    <tr${isAcessorio ? ' class="hl"':''}>
+      <td><strong>${a.faixa}</strong></td>
+      <td>${a.sellers}</td>
+      <td>${a.pedidos.toLocaleString('pt-BR')}</td>
+      <td>${a.units.toLocaleString('pt-BR')}</td>
+      <td><strong>${fmtBRL(a.gmv)}</strong></td>
+      <td>${fmtBRL(a.aspMedio)}</td>
+      <td><strong>${pct}%</strong></td>
+      <td style="font-size:12px">${a.signal}</td>
+    </tr>`;
+});
+
+
+// ── CHART: Evolução Mensal ──────────────────────────────────────────────────
+Chart.register(ChartDataLabels);
+new Chart(document.getElementById('chartMensal'), {
+  type: 'bar',
+  data: {
+    labels: ['Jan','Fev','Mar','Abr','Mai','Jun','Jul*'],
+    datasets: [{
+      label: 'GMV R$ mi',
+      data: [17.82, 16.01, 19.10, 17.76, 20.65, 21.27, 2.09],
+      backgroundColor: ['#ffe600','#ffe600','#ffe600','#ffe600','#ffe600','#ffe600','#ddd'],
+      borderColor:     ['#e6c800','#e6c800','#e6c800','#e6c800','#e6c800','#e6c800','#bbb'],
+      borderWidth: 1, borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true,
+    layout: { padding: { top: 24 } },
+    plugins: {
+      legend: { display: false },
+      tooltip: { enabled: false },
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+        offset: 2,
+        formatter: v => `R$${v}M`,
+        font: { size: 11, weight: '700' },
+        color: ctx => ctx.dataIndex === 6 ? '#999' : '#555',
+      }
+    },
+    scales: {
+      y: { beginAtZero: true, ticks: { callback: v => `R$${v}M`, font:{size:10} }, grid:{color:'#f0f0f0'} },
+      x: { ticks: { font:{size:10} }, grid:{ display:false } }
+    }
+  }
+});
+
+// ── CHART: ASP Faixas (excluindo acessórios <R$500) ────────────────────────
+new Chart(document.getElementById('chartAsp'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Acessórios <R$500', 'R$500–R$999', 'R$1k–R$1.5k', 'R$1.5k–R$2k', 'R$2k–R$3k', 'R$3k+'],
+    datasets: [{
+      data: [15.5, 29.3, 35.9, 13.5, 15.9, 4.6],
+      backgroundColor: ['#e0e0e0','#ffb74d','#ffe600','#66bb6a','#42a5f5','#ab47bc'],
+      borderWidth: 2, borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true, cutout: '60%',
+    plugins: {
+      legend: { position:'bottom', labels: { font:{size:10}, padding:8, boxWidth:12 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: R$ ${ctx.raw}M` } }
+    }
+  }
+});
+</script>
+</body>
+</html>
