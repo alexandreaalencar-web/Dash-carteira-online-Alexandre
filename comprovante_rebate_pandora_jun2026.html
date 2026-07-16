@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comprovante de Rebate Comercial — Pandora Jun/2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Proxima Nova', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f5f5f5; color: #333; font-size: 14px; line-height: 1.6;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #ffe600 0%, #ffd000 100%);
+    padding: 28px 40px 22px;
+    border-bottom: 3px solid #e6c800;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .header-left h1 { font-size: 20px; font-weight: 700; color: #111; }
+  .header-left p { font-size: 13px; color: #555; margin-top: 4px; }
+  .header-right { text-align: right; }
+  .doc-badge {
+    background: #111; color: #ffe600;
+    padding: 6px 14px; border-radius: 20px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+  }
+  .doc-date { font-size: 11px; color: #666; margin-top: 6px; }
+
+  .container { max-width: 1000px; margin: 0 auto; padding: 28px 24px; }
+
+  /* AVISO LEGAL */
+  .aviso {
+    background: #fff8e1; border: 1px solid #ffecb3; border-left: 4px solid #f59e0b;
+    border-radius: 8px; padding: 14px 18px; margin-bottom: 24px;
+    font-size: 12.5px; color: #78350f; line-height: 1.7;
+  }
+  .aviso strong { color: #92400e; }
+
+  /* SECTION TITLE */
+  .section-title {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; color: #999; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: #e0e0e0; }
+
+  /* KPI CARDS */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+  .kpi-card {
+    background: #fff; border-radius: 10px; padding: 18px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08); border-top: 3px solid #ffe600;
+  }
+  .kpi-card.green { border-top-color: #00a650; }
+  .kpi-card.blue  { border-top-color: #3483fa; }
+  .kpi-card.red   { border-top-color: #e53935; }
+  .kpi-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #999; margin-bottom: 8px; }
+  .kpi-value { font-size: 24px; font-weight: 700; color: #111; line-height: 1; }
+  .kpi-sub   { font-size: 11px; color: #aaa; margin-top: 5px; }
+
+  /* CONFIRMAÇÃO */
+  .confirm-box {
+    background: #f0fdf4; border: 2px solid #00a650; border-radius: 10px;
+    padding: 18px 22px; margin-bottom: 28px;
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .confirm-icon {
+    font-size: 28px; line-height: 1; flex-shrink: 0; margin-top: 2px;
+  }
+  .confirm-text h3 { font-size: 14px; font-weight: 700; color: #166534; margin-bottom: 6px; }
+  .confirm-text p  { font-size: 13px; color: #15803d; line-height: 1.6; }
+  .confirm-text code { background: #dcfce7; padding: 1px 6px; border-radius: 4px; font-size: 12px; }
+
+  /* TABLE */
+  .table-card {
+    background: #fff; border-radius: 10px; padding: 20px 22px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 28px; overflow-x: auto;
+  }
+  .table-card h3 { font-size: 13px; font-weight: 700; color: #333; margin-bottom: 4px; }
+  .table-card .sub { font-size: 11px; color: #aaa; margin-bottom: 14px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  thead th {
+    background: #f8f8f8; color: #666; font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.4px; padding: 9px 11px;
+    text-align: left; border-bottom: 2px solid #eee; white-space: nowrap;
+  }
+  tbody td { padding: 8px 11px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: #fafafa; }
+  .tag-ok { background: #dcfce7; color: #166534; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
+  .tag-full { background: #dbeafe; color: #1e40af; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
+  .tag-xd { background: #fce7f3; color: #9d174d; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 8px; }
+
+  /* RESUMO POR PRODUTO */
+  .prod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 28px; }
+  .prod-card {
+    background: #fff; border-radius: 10px; padding: 16px 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.08); border-left: 3px solid #ffe600;
+  }
+  .prod-title { font-size: 12px; font-weight: 700; color: #111; margin-bottom: 8px; }
+  .prod-row { display: flex; justify-content: space-between; font-size: 12px; color: #555; padding: 3px 0; border-bottom: 1px dashed #f0f0f0; }
+  .prod-row:last-child { border-bottom: none; }
+  .prod-row strong { color: #111; }
+
+  /* FONTE */
+  .fonte-box {
+    background: #f8f8f8; border: 1px solid #e0e0e0; border-radius: 8px;
+    padding: 14px 18px; font-size: 11.5px; color: #666; line-height: 1.8;
+  }
+  .fonte-box code { background: #efefef; padding: 1px 5px; border-radius: 3px; font-size: 11px; }
+
+  .footer { text-align: center; font-size: 11px; color: #bbb; padding: 20px 0 32px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>Comprovante de Rebate Comercial — Campanha Pandora</h1>
+    <p>Seller SLEEPCALM · Campanha P-MLB17511068 · Junho 2026 · Dados extraídos do BigQuery MeLi</p>
+  </div>
+  <div class="header-right">
+    <div class="doc-badge">COMPROVANTE OFICIAL</div>
+    <div class="doc-date">Emitido em 03/07/2026 · alexandre.aalencar@mercadolivre.com</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="aviso">
+    <strong>Uso interno MercadoLivre:</strong> Este documento é gerado a partir dos sistemas oficiais de dados MeLi (<code>meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB</code>) e tem como finalidade comprovar ao seller a existência e os valores do rebate comercial atrelado à campanha Pandora de pré-acordo. As informações são de caráter confidencial e destinadas exclusivamente ao relacionamento comercial entre MercadoLivre e o seller identificado.
+  </div>
+
+  <!-- CONFIRMAÇÃO -->
+  <div class="confirm-box">
+    <div class="confirm-icon">✅</div>
+    <div class="confirm-text">
+      <h3>Rebate Comercial Confirmado — Campanha P-MLB17511068 ativa em Junho/2026</h3>
+      <p>
+        Os dados do sistema BigQuery MeLi confirmam que <strong>329 pedidos pagos</strong> do seller SLEEPCALM foram vinculados à campanha Pandora <code>P-MLB17511068</code> no mês de junho de 2026.
+        Em <strong>100% dos pedidos</strong>, o campo <code>TRACK_IMPOSITIVO_FLG = true</code>, comprovando que o pré-acordo de DXI estava ativo e as regras de rebate comercial foram aplicadas a cada transação.
+        O valor total de rebate comercial a ser creditado ao seller é de <strong>R$ 214.193,61</strong>.
+      </p>
+    </div>
+  </div>
+
+  <!-- KPIs -->
+  <div class="section-title">Resumo Financeiro · Junho 2026</div>
+  <div class="kpi-grid">
+    <div class="kpi-card green">
+      <div class="kpi-label">Rebate ao Seller (DXI)</div>
+      <div class="kpi-value">R$ 214.193</div>
+      <div class="kpi-sub">DXI_INVESTMENT_SELLER_LC</div>
+    </div>
+    <div class="kpi-card blue">
+      <div class="kpi-label">GMV Vinculado à Campanha</div>
+      <div class="kpi-value">R$ 336.566</div>
+      <div class="kpi-sub">329 pedidos pagos</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">% Rebate sobre GMV</div>
+      <div class="kpi-value">6,17%</div>
+      <div class="kpi-sub">Conforme acordo comercial</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Contrapartida MeLi (DXI)</div>
+      <div class="kpi-value">R$ 20.762</div>
+      <div class="kpi-sub">DXI_INVESTMENT_LC</div>
+    </div>
+  </div>
+
+  <!-- DETALHES DA CAMPANHA -->
+  <div class="section-title">Dados da Campanha</div>
+  <div class="table-card">
+    <h3>Identificação da Campanha Pandora</h3>
+    <p class="sub">Campos extraídos de <code>meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB</code></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Campo BQ</th>
+          <th>Valor</th>
+          <th>Descrição</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>DXI_CAMPAIGN_ID</code></td><td><strong>P-MLB17511068</strong></td><td>ID da campanha Pandora (pré-acordo)</td></tr>
+        <tr><td><code>CUS_CUST_ID_SEL</code></td><td><strong>1497628317</strong></td><td>ID do seller (SLEEPCALM)</td></tr>
+        <tr><td><code>ORD_CLOSED_DT</code></td><td><strong>01/06/2026 – 30/06/2026</strong></td><td>Período de fechamento dos pedidos</td></tr>
+        <tr><td><code>ORD_STATUS</code></td><td><strong>paid</strong></td><td>Somente pedidos pagos foram contabilizados</td></tr>
+        <tr><td><code>TRACK_IMPOSITIVO_FLG</code></td><td><strong>true (100% dos pedidos)</strong></td><td>Flag de pré-acordo DXI ativo</td></tr>
+        <tr><td><code>TRACK_IMPOSITIVO_INVESTMENT_LC</code></td><td><strong>R$ 20.762,39</strong></td><td>Valor do DXI pré-acordo acumulado</td></tr>
+        <tr><td><code>DXI_INVESTMENT_LC</code></td><td><strong>R$ 20.762,39</strong></td><td>Investimento MeLi via DXI</td></tr>
+        <tr><td><code>DXI_INVESTMENT_SELLER_LC</code></td><td><strong>R$ 214.193,61</strong></td><td>Rebate comercial ao seller</td></tr>
+        <tr><td><code>REBATES_MANUAIS_LC</code></td><td><strong>R$ 0,00</strong></td><td>Rebates manuais (Salesforce) — nenhum neste período</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RESUMO POR PRODUTO -->
+  <div class="section-title">Rebate por Produto — Top SKUs Vinculados à Campanha</div>
+  <div class="prod-grid">
+    <div class="prod-card">
+      <div class="prod-title">Colchão Sleepcalm Elemental Casal 138x188 (Caixa)</div>
+      <div class="prod-row"><span>Pedidos com campanha</span><strong>~180 pedidos</strong></div>
+      <div class="prod-row"><span>ASP médio</span><strong>R$ 1.018</strong></div>
+      <div class="prod-row"><span>Rebate unitário ao seller</span><strong>R$ 645,90 – R$ 667,66</strong></div>
+      <div class="prod-row"><span>Flag pré-acordo</span><span class="tag-ok">TRACK_IMPOSITIVO = true</span></div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-title">Colchão Sleep Calm Espuma Casal 138x188 (Caixa)</div>
+      <div class="prod-row"><span>Pedidos com campanha</span><strong>~50 pedidos</strong></div>
+      <div class="prod-row"><span>ASP médio</span><strong>R$ 1.540</strong></div>
+      <div class="prod-row"><span>Rebate unitário ao seller</span><strong>R$ 1.159,36 – R$ 1.193,96</strong></div>
+      <div class="prod-row"><span>Flag pré-acordo</span><span class="tag-ok">TRACK_IMPOSITIVO = true</span></div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-title">Colchão Sleepcalm Elemental Solteiro 88x188 (Caixa)</div>
+      <div class="prod-row"><span>Pedidos com campanha</span><strong>~70 pedidos</strong></div>
+      <div class="prod-row"><span>ASP médio</span><strong>R$ 742</strong></div>
+      <div class="prod-row"><span>Rebate unitário ao seller</span><strong>R$ 413,06 – R$ 466,06</strong></div>
+      <div class="prod-row"><span>Flag pré-acordo</span><span class="tag-ok">TRACK_IMPOSITIVO = true</span></div>
+    </div>
+    <div class="prod-card">
+      <div class="prod-title">Colchão Sleepcalm Elemental Queen 158x198 (Caixa)</div>
+      <div class="prod-row"><span>Pedidos com campanha</span><strong>~20 pedidos</strong></div>
+      <div class="prod-row"><span>ASP médio</span><strong>R$ 1.308</strong></div>
+      <div class="prod-row"><span>Rebate unitário ao seller</span><strong>R$ 870,55 – R$ 965,97</strong></div>
+      <div class="prod-row"><span>Flag pré-acordo</span><span class="tag-ok">TRACK_IMPOSITIVO = true</span></div>
+    </div>
+  </div>
+
+  <!-- TABELA DE AMOSTRAGEM -->
+  <div class="section-title">Amostra de Pedidos Vinculados — Primeiros Registros</div>
+  <div class="table-card">
+    <h3>Pedidos com Rebate Pandora P-MLB17511068 — Junho 2026</h3>
+    <p class="sub">Amostra dos primeiros 20 pedidos · Total confirmado: 329 pedidos · Fonte: BQ DM_EFICIENCIA_MLB</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Pedido</th>
+          <th>Data</th>
+          <th>Produto</th>
+          <th>GMV (R$)</th>
+          <th>Rebate Seller (R$)</th>
+          <th>Rebate MeLi (R$)</th>
+          <th>Pré-Acordo</th>
+          <th>Log.</th>
+        </tr>
+      </thead>
+      <tbody id="tblPedidos"></tbody>
+    </table>
+    <p style="font-size:11px;color:#aaa;margin-top:10px;">* Exibindo 20 de 329 pedidos. Relatório completo disponível via BigQuery com a query fornecida.</p>
+  </div>
+
+  <!-- FONTE DOS DADOS -->
+  <div class="section-title">Fonte e Metodologia</div>
+  <div class="fonte-box">
+    <strong>Query executada em:</strong> <code>meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB</code><br>
+    <strong>Filtros aplicados:</strong>
+    <code>ORD_CLOSED_DT BETWEEN '2026-06-01' AND '2026-06-30'</code> ·
+    <code>ORD_STATUS = 'paid'</code> ·
+    <code>CUS_CUST_ID_SEL = 1497628317</code> ·
+    <code>DXI_CAMPAIGN_ID = 'P-MLB17511068'</code><br>
+    <strong>Executado por:</strong> Alexandre Alencar · alexandre.aalencar@mercadolivre.com · 03/07/2026<br>
+    <strong>Campos de rebate validados:</strong> <code>DXI_INVESTMENT_LC</code> (MeLi) · <code>DXI_INVESTMENT_SELLER_LC</code> (Seller) · <code>TRACK_IMPOSITIVO_FLG</code> (Flag pré-acordo)
+  </div>
+
+</div>
+
+<div class="footer">
+  Documento gerado via BigQuery MeLi · meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB · Uso interno e relacionamento comercial
+</div>
+
+<script>
+const fmtBRL = v => 'R$ ' + Number(v).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2});
+const fmtDate = d => d.split('-').reverse().join('/');
+
+const pedidos = [
+  {id:'2000016711108902', dt:'2026-06-01', prod:'Colchão Sleepcalm Elemental Casal 138x188',    gmv:1035,   rs:645.90,  rm:62.10,  log:'FBM'},
+  {id:'2000016718727872', dt:'2026-06-01', prod:'Colchão Sleep Calm Espuma Casal 138x188',      gmv:1569,   rs:1159.36, rm:94.14,  log:'FBM'},
+  {id:'2000016719350742', dt:'2026-06-01', prod:'Colchão Sleepcalm Elemental Casal 138x188',    gmv:1035,   rs:645.90,  rm:62.10,  log:'FBM'},
+  {id:'2000016725633810', dt:'2026-06-01', prod:'Colchão Sleepcalm Elemental Casal 138x188',    gmv:1035,   rs:645.90,  rm:62.10,  log:'FBM'},
+  {id:'2000016726788262', dt:'2026-06-01', prod:'Colchão Sleepcalm Elemental Casal 138x188',    gmv:1035,   rs:645.90,  rm:62.10,  log:'FBM'},
+  {id:'2000016727635374', dt:'2026-06-01', prod:'Colchão Sleep Calm Espuma Casal 138x188',      gmv:1569,   rs:1159.36, rm:94.14,  log:'FBM'},
+  {id:'2000016728745240', dt:'2026-06-01', prod:'Colchão Sleepcalm Elemental Casal 138x188',    gmv:1035,   rs:645.90,  rm:62.10,  log:'FBM'},
+  {id:'2000016733326448', dt:'2026-06-02', prod:'Colchão Sleepcalm Elemental Casal 138x188',    gmv:1035,   rs:645.90,  rm:62.10,  log:'FBM'},
+  {id:'2000016733330134', dt:'2026-06-02', prod:'Colchão Sleep Calm Espuma Casal 138x188',      gmv:1569,   rs:1159.36, rm:94.14,  log:'FBM'},
+  {id:'2000016734108520', dt:'2026-06-02', prod:'Colchão Sleepcalm Elemental Queen 158x198',    gmv:1379,   rs:870.55,  rm:68.95,  log:'FBM'},
+  {id:'2000016735749452', dt:'2026-06-02', prod:'Colchão Sleepcalm Elemental Queen 158x198',    gmv:1379,   rs:870.55,  rm:68.95,  log:'FBM'},
+  {id:'2000016737430086', dt:'2026-06-02', prod:'Colchão Sleepcalm Elemental Casal 138x188',    gmv:1035,   rs:645.90,  rm:62.10,  log:'FBM'},
+  {id:'2000016740310532', dt:'2026-06-02', prod:'Colchão Sleepcalm Elemental Casal 138x188',    gmv:1035,   rs:645.90,  rm:62.10,  log:'FBM'},
+  {id:'2000016742211676', dt:'2026-06-02', prod:'Colchão Sleepcalm Elemental Casal 138x188',    gmv:1035,   rs:645.90,  rm:62.10,  log:'FBM'},
+  {id:'2000016744741860', dt:'2026-06-02', prod:'Colchão Sleepcalm Elemental Casal 138x188',    gmv:1035,   rs:645.90,  rm:62.10,  log:'FBM'},
+  {id:'2000016746763352', dt:'2026-06-02', prod:'Colchão Sleepcalm Elemental Casal 138x188',    gmv:1035,   rs:645.90,  rm:62.10,  log:'FBM'},
+  {id:'2000016748943630', dt:'2026-06-02', prod:'Colchão Sleepcalm Elemental Casal 138x188',    gmv:1035,   rs:645.90,  rm:62.10,  log:'FBM'},
+  {id:'2000016801128642', dt:'2026-06-05', prod:'Colchão Sleepcalm Elemental Solteiro 88x188',  gmv:742,    rs:466.06,  rm:51.94,  log:'FBM'},
+  {id:'2000016847791498', dt:'2026-06-08', prod:'Colchão Sleepcalm Elemental Solteiro 88x188',  gmv:718,    rs:435.93,  rm:43.07,  log:'XD'},
+  {id:'2000016929709394', dt:'2026-06-14', prod:'Colchão Sleepcalm Espuma Queen 158x198',       gmv:1960,   rs:1267.00, rm:98.00,  log:'XD'},
+];
+
+const tbody = document.getElementById('tblPedidos');
+pedidos.forEach(p => {
+  const logTag = p.log === 'FBM'
+    ? `<span class="tag-full">Full</span>`
+    : `<span class="tag-xd">XD</span>`;
+  tbody.innerHTML += `
+    <tr>
+      <td><code style="font-size:11px">${p.id}</code></td>
+      <td>${fmtDate(p.dt)}</td>
+      <td style="max-width:240px;font-size:12px">${p.prod}</td>
+      <td>${fmtBRL(p.gmv)}</td>
+      <td><strong style="color:#166534">${fmtBRL(p.rs)}</strong></td>
+      <td>${fmtBRL(p.rm)}</td>
+      <td><span class="tag-ok">✓ true</span></td>
+      <td>${logTag}</td>
+    </tr>`;
+});
+</script>
+</body>
+</html>
