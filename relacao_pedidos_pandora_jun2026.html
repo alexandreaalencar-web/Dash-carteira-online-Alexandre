@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relação de Pedidos — Contrapartida MeLi · Pandora P-MLB17511068 · Jun/2026</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #333; font-size: 13px; }
+
+  .header { background: linear-gradient(135deg,#ffe600,#ffd000); padding: 22px 36px 18px; border-bottom: 3px solid #e6c800; display:flex; justify-content:space-between; align-items:center; }
+  .header h1 { font-size: 18px; font-weight: 700; color: #111; }
+  .header p  { font-size: 12px; color: #555; margin-top: 3px; }
+  .badge { background:#111; color:#ffe600; padding:5px 12px; border-radius:16px; font-size:11px; font-weight:700; }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+
+  /* KPI strip */
+  .kpi-strip { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:20px; }
+  .kpi { background:#fff; border-radius:8px; padding:14px 16px; box-shadow:0 1px 3px rgba(0,0,0,.08); border-top:3px solid #ffe600; }
+  .kpi.green { border-top-color:#00a650; }
+  .kpi.blue  { border-top-color:#3483fa; }
+  .kpi.red   { border-top-color:#e53935; }
+  .kpi.gray  { border-top-color:#9e9e9e; }
+  .kpi-l { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.5px; color:#999; margin-bottom:6px; }
+  .kpi-v { font-size:20px; font-weight:700; color:#111; }
+  .kpi-s { font-size:10px; color:#aaa; margin-top:3px; }
+
+  /* Controls */
+  .controls { display:flex; gap:10px; margin-bottom:14px; align-items:center; flex-wrap:wrap; }
+  .search-box { flex:1; min-width:200px; padding:8px 12px; border:1px solid #ddd; border-radius:6px; font-size:12px; outline:none; }
+  .search-box:focus { border-color:#3483fa; }
+  .filter-btn { padding:7px 14px; border:1px solid #ddd; border-radius:6px; background:#fff; font-size:12px; cursor:pointer; color:#555; }
+  .filter-btn.active { background:#3483fa; color:#fff; border-color:#3483fa; font-weight:700; }
+  .count-label { font-size:12px; color:#888; white-space:nowrap; }
+
+  /* Table */
+  .table-wrap { background:#fff; border-radius:10px; box-shadow:0 1px 4px rgba(0,0,0,.08); overflow:hidden; }
+  table { width:100%; border-collapse:collapse; font-size:12px; }
+  thead th { background:#f4f4f4; padding:9px 10px; text-align:left; font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.4px; color:#666; border-bottom:2px solid #e8e8e8; white-space:nowrap; cursor:pointer; user-select:none; }
+  thead th:hover { background:#eaeaea; }
+  thead th.sorted-asc::after  { content:' ▲'; color:#3483fa; }
+  thead th.sorted-desc::after { content:' ▼'; color:#3483fa; }
+  tbody td { padding:7px 10px; border-bottom:1px solid #f2f2f2; vertical-align:middle; }
+  tbody tr:last-child td { border-bottom:none; }
+  tbody tr:hover { background:#fafafa; }
+  tbody tr.subtotal { background:#fffde7; font-weight:700; }
+  tbody tr.subtotal td { border-bottom:2px solid #fff9c4; color:#555; }
+
+  .tag-full { background:#dbeafe; color:#1e40af; font-size:10px; font-weight:700; padding:2px 6px; border-radius:6px; }
+  .tag-xd   { background:#fce7f3; color:#9d174d; font-size:10px; font-weight:700; padding:2px 6px; border-radius:6px; }
+  .tag-ok   { background:#dcfce7; color:#166534; font-size:10px; font-weight:700; padding:2px 6px; border-radius:6px; }
+
+  .meli-val { color:#00a650; font-weight:700; }
+  .seller-val { color:#3483fa; font-weight:600; }
+
+  /* Totals footer */
+  tfoot td { padding:9px 10px; font-weight:700; background:#f8f8f8; border-top:2px solid #e0e0e0; font-size:12px; }
+  .grand-meli { color:#00a650; font-size:13px; }
+  .grand-seller { color:#3483fa; font-size:13px; }
+
+  .footer { text-align:center; font-size:11px; color:#bbb; padding:18px 0 28px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>Relação de Pedidos — Contrapartida MeLi · Campanha P-MLB17511068</h1>
+    <p>SLEEPCALM · Seller 1497628317 · Junho 2026 · Fonte: meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB</p>
+  </div>
+  <div style="text-align:right">
+    <div class="badge">329 PEDIDOS PAGOS</div>
+    <div style="font-size:11px;color:#666;margin-top:5px">Emitido em 03/07/2026</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="kpi-strip">
+    <div class="kpi">
+      <div class="kpi-l">Total de Pedidos</div>
+      <div class="kpi-v" id="kTotalPed">329</div>
+      <div class="kpi-s">ORD_STATUS = paid</div>
+    </div>
+    <div class="kpi blue">
+      <div class="kpi-l">GMV Total Vinculado</div>
+      <div class="kpi-v">R$ 336.566</div>
+      <div class="kpi-s">GMV_LC acumulado</div>
+    </div>
+    <div class="kpi green">
+      <div class="kpi-l">Contrapartida MeLi (DXI)</div>
+      <div class="kpi-v">R$ 20.762</div>
+      <div class="kpi-s">DXI_INVESTMENT_LC total</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi-l">Rebate ao Seller</div>
+      <div class="kpi-v">R$ 214.193</div>
+      <div class="kpi-s">DXI_INVESTMENT_SELLER_LC</div>
+    </div>
+    <div class="kpi gray">
+      <div class="kpi-l">% Contrapartida MeLi / GMV</div>
+      <div class="kpi-v">6,17%</div>
+      <div class="kpi-s">TRACK_IMPOSITIVO_FLG = true</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <input class="search-box" type="text" id="searchBox" placeholder="Buscar por pedido, produto ou data...">
+    <button class="filter-btn active" onclick="setFilter('all',this)">Todos (329)</button>
+    <button class="filter-btn" onclick="setFilter('FBM',this)">Full (FBM)</button>
+    <button class="filter-btn" onclick="setFilter('XD',this)">Flex (XD)</button>
+    <span class="count-label" id="countLabel">Exibindo 329 de 329 registros</span>
+  </div>
+
+  <div class="table-wrap">
+    <table id="tbl">
+      <thead>
+        <tr>
+          <th onclick="sortTable(0)">#</th>
+          <th onclick="sortTable(1)">Pedido</th>
+          <th onclick="sortTable(2)">Data</th>
+          <th onclick="sortTable(3)">Produto SLEEPCALM</th>
+          <th onclick="sortTable(4)">GMV (R$)</th>
+          <th onclick="sortTable(5)">Contrapartida MeLi (R$)</th>
+          <th onclick="sortTable(6)">Rebate Seller (R$)</th>
+          <th onclick="sortTable(7)">Pré-Acordo</th>
+          <th onclick="sortTable(8)">Log.</th>
+        </tr>
+      </thead>
+      <tbody id="tblBody"></tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4"><strong>TOTAL GERAL — 329 pedidos · Campanha P-MLB17511068</strong></td>
+          <td><strong>R$ 336.566,40</strong></td>
+          <td class="grand-meli">R$ 20.762,39</td>
+          <td class="grand-seller">R$ 214.193,61</td>
+          <td colspan="2"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+</div>
+
+<div class="footer">
+  Dados extraídos de <code>meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB</code> · Filtros: CUS_CUST_ID_SEL=1497628317 · DXI_CAMPAIGN_ID='P-MLB17511068' · Jun/2026 · ORD_STATUS='paid'
+</div>
+
+<script>
+const fmtB = v => 'R$ ' + Number(v).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const fmtD = d => d.split('-').reverse().join('/');
+
+const DATA = [
+  ["2000016711108902","2026-06-01","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016718727872","2026-06-01","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016719350742","2026-06-01","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016725633810","2026-06-01","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016726788262","2026-06-01","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016727635374","2026-06-01","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016728745240","2026-06-01","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016733326448","2026-06-02","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016733330134","2026-06-02","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016734108520","2026-06-02","Elemental Queen 158x198","1379","68.95","870.55","FBM"],
+  ["2000016735749452","2026-06-02","Elemental Queen 158x198","1379","68.95","870.55","FBM"],
+  ["2000016737430086","2026-06-02","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016740310532","2026-06-02","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016742211676","2026-06-02","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016744741860","2026-06-02","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016746763352","2026-06-02","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016748943630","2026-06-02","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016755473948","2026-06-03","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016759278576","2026-06-03","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016761631916","2026-06-03","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016770292830","2026-06-04","Elemental Queen 158x198","1379","68.95","870.55","FBM"],
+  ["2000016782141692","2026-06-04","Elemental Queen 158x198","1379","68.95","870.55","FBM"],
+  ["2000016785870500","2026-06-05","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016787031400","2026-06-05","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016787477124","2026-06-05","Elemental Casal 138x188","1157","69.42","608.58","FBM"],
+  ["2000016788943352","2026-06-05","Elemental Queen 158x198","1276","76.53","965.97","FBM"],
+  ["2000016801128642","2026-06-05","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016802319350","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016802324178","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016803250230","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016803989164","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016803989202","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016804280522","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016805073780","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016805089794","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016805241224","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016811899576","2026-06-06","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000016812078340","2026-06-06","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000016813332792","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016815779276","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016815780700","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016815780718","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016815786126","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016816781418","2026-06-06","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016847791498","2026-06-08","Elemental Solteiro 88x188","718","43.07","435.93","XD"],
+  ["2000016905061318","2026-06-12","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016905665950","2026-06-12","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016905793600","2026-06-12","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016906142354","2026-06-12","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000016907273332","2026-06-12","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000016907589426","2026-06-12","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016907950590","2026-06-12","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016908207698","2026-06-12","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000016912580450","2026-06-12","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016913851762","2026-06-12","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016915182332","2026-06-12","Elemental Casal 138x188","1157","69.42","608.58","FBM"],
+  ["2000016915538900","2026-06-12","Elemental Queen 158x198","1276","76.53","965.97","FBM"],
+  ["2000016919068710","2026-06-13","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016924302178","2026-06-13","Sleep Calm Espuma Casal 138x188","1491","74.55","1115.45","XD"],
+  ["2000016927741376","2026-06-13","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016929521306","2026-06-13","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016929709394","2026-06-14","Sleep Calm Espuma Queen 158x198","1960","98","1267","XD"],
+  ["2000016929841290","2026-06-14","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016929972038","2026-06-14","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016930837236","2026-06-14","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016932687054","2026-06-14","Sleep Calm Espuma Casal 138x188","1491","74.55","1115.45","XD"],
+  ["2000016933032014","2026-06-14","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016934485644","2026-06-14","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016935167500","2026-06-14","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016935398558","2026-06-14","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016935623862","2026-06-14","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016935659374","2026-06-14","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016937833584","2026-06-14","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016939876588","2026-06-14","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016940519508","2026-06-14","Sleep Calm Espuma Casal 138x188","1491","74.55","1115.45","XD"],
+  ["2000016942345242","2026-06-14","Sleep Calm Original Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016942394596","2026-06-14","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016943189056","2026-06-14","Elemental Casal 138x188","1035","70.34","667.66","FBM"],
+  ["2000016943507064","2026-06-14","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000016943588930","2026-06-14","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016943897582","2026-06-15","Sleep Calm Espuma Casal 138x188","1522","106.54","1193.96","FBM"],
+  ["2000016945078012","2026-06-15","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016945505438","2026-06-15","Elemental Casal 138x188","1199","59.95","576.05","FBM"],
+  ["2000016945529330","2026-06-15","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016946645530","2026-06-15","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016946651288","2026-06-15","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016946761576","2026-06-15","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016946854822","2026-06-15","Elemental Solteiro 88x188","718","43.07","435.93","XD"],
+  ["2000016948356580","2026-06-15","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016948725714","2026-06-15","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016951143086","2026-06-15","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016951424284","2026-06-15","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000016951657884","2026-06-15","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016951776128","2026-06-15","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000016952257174","2026-06-15","Sleep Calm Espuma Casal 138x188","1522","106.54","1193.96","FBM"],
+  ["2000016952988874","2026-06-15","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016953571712","2026-06-15","Sleep Calm Espuma Casal 138x188","1522","106.54","1193.96","FBM"],
+  ["2000016953720056","2026-06-15","Elemental Casal 138x188","1199","59.95","576.05","FBM"],
+  ["2000016954886612","2026-06-15","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000016956603332","2026-06-15","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000016956647236","2026-06-15","Elemental Solteiro 88x188","718","43.07","435.93","XD"],
+  ["2000016961320534","2026-06-15","Elemental Casal 138x188","1005","62.1","645.9","FBM"],
+  ["2000016961375024","2026-06-15","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016962856180","2026-06-16","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016966505262","2026-06-16","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016971382652","2026-06-16","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016971527902","2026-06-16","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016971802980","2026-06-16","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016972428688","2026-06-16","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016975821652","2026-06-16","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016976405366","2026-06-16","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016977221656","2026-06-16","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016981927164","2026-06-17","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016981946756","2026-06-17","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016982285454","2026-06-17","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016985579256","2026-06-17","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016986036314","2026-06-17","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016993646100","2026-06-17","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016994562014","2026-06-17","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000016997721198","2026-06-18","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016997724380","2026-06-18","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016997738372","2026-06-18","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016998665640","2026-06-18","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016999648746","2026-06-18","Elemental Casal 138x188","1199","59.95","576.05","FBM"],
+  ["2000017001525370","2026-06-18","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017002381182","2026-06-18","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017003016322","2026-06-18","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017003899892","2026-06-18","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017004106962","2026-06-18","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017004408724","2026-06-18","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017006082144","2026-06-18","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017007280388","2026-06-18","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000016980108256","2026-06-19","Elemental Casal 138x188","983.25","62.1","645.9","FBM"],
+  ["2000017014071212","2026-06-19","Elemental Casal 138x188","1157","69.42","608.58","FBM"],
+  ["2000017019798556","2026-06-19","Elemental Casal 138x188","983.25","62.1","645.9","FBM"],
+  ["2000017025163268","2026-06-19","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017025635944","2026-06-19","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017026217314","2026-06-19","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017026438898","2026-06-19","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017029874064","2026-06-20","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017030471196","2026-06-20","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017030769588","2026-06-20","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017031355962","2026-06-20","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017036126816","2026-06-20","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017038817780","2026-06-20","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017041339214","2026-06-21","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017041511578","2026-06-21","Elemental Casal 138x188","983.25","62.1","645.9","FBM"],
+  ["2000017041869698","2026-06-21","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017042457486","2026-06-21","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017043370758","2026-06-21","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017043518904","2026-06-21","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017043666196","2026-06-21","Elemental Casal 138x188","1199","59.95","576.05","FBM"],
+  ["2000017045506810","2026-06-21","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017045591730","2026-06-21","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017048638354","2026-06-21","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017049136324","2026-06-21","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017051782348","2026-06-21","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017053531200","2026-06-22","Sleep Calm Espuma Casal 138x188","1522","106.54","1193.96","FBM"],
+  ["2000017054179750","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017054200304","2026-06-22","Sleep Calm Original Casal 138x188","1522","106.54","1193.96","FBM"],
+  ["2000017054234970","2026-06-22","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000017054529228","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017054529234","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017054530838","2026-06-22","Elemental Casal 138x188","1199","59.95","576.05","FBM"],
+  ["2000017054864806","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017055130222","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017055648698","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017055743346","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017056857490","2026-06-22","Sleep Calm Espuma Casal 138x188","1522","106.54","1193.96","FBM"],
+  ["2000017057324856","2026-06-22","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000017057468286","2026-06-22","Sleep Calm Espuma Casal 138x188","1445.9","106.54","1193.96","FBM"],
+  ["2000017058126428","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017059294092","2026-06-22","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000017059966818","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017060141464","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017060163720","2026-06-22","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000017060444494","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017060538504","2026-06-22","Elemental Solteiro 88x188","704.9","51.94","466.06","FBM"],
+  ["2000017061305270","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017061946394","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017062169206","2026-06-22","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017062260596","2026-06-22","Sleep Calm Espuma Casal 138x188","1522","106.54","1193.96","FBM"],
+  ["2000017062932754","2026-06-22","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000017063191242","2026-06-22","Sleep Calm Espuma Casal 138x188","1522","106.54","1193.96","FBM"],
+  ["2000017066101914","2026-06-22","Elemental Solteiro 88x188","704.9","51.94","466.06","FBM"],
+  ["2000017066110972","2026-06-22","Elemental Solteiro 88x188","704.9","51.94","466.06","FBM"],
+  ["2000017068164802","2026-06-22","Elemental Solteiro 88x188","704.9","51.94","466.06","FBM"],
+  ["2000017068638014","2026-06-22","Elemental Solteiro 88x188","704.9","51.94","466.06","FBM"],
+  ["2000017071089586","2026-06-23","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017073120740","2026-06-23","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017074398026","2026-06-23","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017074667910","2026-06-23","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017077932858","2026-06-23","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017078096888","2026-06-23","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017078339090","2026-06-23","Elemental Solteiro 88x188","759.05","47.94","413.06","FBM"],
+  ["2000017079729412","2026-06-23","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017079829462","2026-06-23","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017081082592","2026-06-23","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017081174936","2026-06-23","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017081191688","2026-06-23","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017083243748","2026-06-23","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017084110086","2026-06-23","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017087681070","2026-06-24","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017088514706","2026-06-24","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017089037694","2026-06-24","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017089552470","2026-06-24","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017090011990","2026-06-24","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017091439784","2026-06-24","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017092275036","2026-06-24","Elemental Casal 138x188","983.25","62.1","645.9","FBM"],
+  ["2000017097023810","2026-06-24","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017097960790","2026-06-24","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017098083882","2026-06-24","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017099197660","2026-06-24","Elemental Solteiro 88x188","759.05","47.94","413.06","FBM"],
+  ["2000017101335706","2026-06-25","Elemental Casal 138x188","1199","59.95","576.05","FBM"],
+  ["2000017102046604","2026-06-25","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017102729746","2026-06-25","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017104014340","2026-06-25","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017104076016","2026-06-25","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017104886360","2026-06-25","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017105634332","2026-06-25","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017106531508","2026-06-25","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017106862600","2026-06-25","Elemental Solteiro 88x188","759.05","47.94","413.06","FBM"],
+  ["2000017106882942","2026-06-25","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017107102034","2026-06-25","Elemental Solteiro 88x188","760","38","399","XD"],
+  ["2000017109953408","2026-06-25","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017111485726","2026-06-25","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017111498302","2026-06-25","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017111694324","2026-06-25","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017111963472","2026-06-25","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017113254612","2026-06-25","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017113784214","2026-06-25","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017115167640","2026-06-25","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017115298512","2026-06-25","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017116189136","2026-06-25","Elemental Casal 138x188","1099.15","69.42","608.58","FBM"],
+  ["2000017118265096","2026-06-26","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017118530130","2026-06-26","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017119407104","2026-06-26","Elemental Queen 158x198","1276","76.53","965.97","FBM"],
+  ["2000017119467048","2026-06-26","Elemental Casal 138x188","1157","69.42","608.58","FBM"],
+  ["2000017119843452","2026-06-26","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017119852204","2026-06-26","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017121263820","2026-06-26","Elemental Casal 138x188","983.25","62.1","645.9","FBM"],
+  ["2000017121891812","2026-06-26","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017122301004","2026-06-26","Elemental Casal 138x188","1157","69.42","608.58","FBM"],
+  ["2000017124241476","2026-06-26","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017126830864","2026-06-26","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017127348502","2026-06-26","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017128345788","2026-06-26","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017129767968","2026-06-26","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017130063790","2026-06-26","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017130629896","2026-06-26","Sleep Calm Espuma Casal 138x188","1490.55","94.14","1159.36","FBM"],
+  ["2000017131924458","2026-06-27","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017132805478","2026-06-27","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017132891876","2026-06-27","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017133653858","2026-06-27","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017133716686","2026-06-27","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017134631408","2026-06-27","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017135008566","2026-06-27","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017135382780","2026-06-27","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017135800550","2026-06-27","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017136018192","2026-06-27","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017137919716","2026-06-27","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017138267962","2026-06-27","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017138565344","2026-06-27","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017138619150","2026-06-27","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017138657684","2026-06-27","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017138746840","2026-06-27","Sleep Calm Espuma Casal 138x188","1490.55","94.14","1159.36","FBM"],
+  ["2000017139607652","2026-06-27","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017139618074","2026-06-27","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017139719682","2026-06-27","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017140538328","2026-06-27","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017144463970","2026-06-28","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017144473324","2026-06-28","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017144492938","2026-06-28","Elemental Solteiro 88x188","759.05","47.94","413.06","FBM"],
+  ["2000017144528880","2026-06-28","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017145735318","2026-06-28","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017145898960","2026-06-28","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017146256548","2026-06-28","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017146269170","2026-06-28","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017146272610","2026-06-28","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017147040114","2026-06-28","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017147053708","2026-06-28","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017147449582","2026-06-28","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017148004600","2026-06-28","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017148802562","2026-06-28","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017149745644","2026-06-28","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017150483154","2026-06-28","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017150592202","2026-06-28","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017152128634","2026-06-28","Sleep Calm Espuma Casal 138x188","1569","94.14","1159.36","FBM"],
+  ["2000017152364742","2026-06-28","Elemental Casal 138x188","1199","59.95","576.05","FBM"],
+  ["2000017155643898","2026-06-28","Elemental Solteiro 88x188","760","38","399","XD"],
+  ["2000017156307530","2026-06-29","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017158497206","2026-06-29","Sleep Calm Espuma Casal 138x188","1445.9","106.54","1193.96","FBM"],
+  ["2000017158875294","2026-06-29","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017158884320","2026-06-29","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017158893138","2026-06-29","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017158898710","2026-06-29","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017159334062","2026-06-29","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000017160297130","2026-06-29","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017161542504","2026-06-29","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017162004582","2026-06-29","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000017162508980","2026-06-29","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000017163534800","2026-06-29","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017163803002","2026-06-29","Elemental Casal 138x188","954.75","70.34","667.66","FBM"],
+  ["2000017166764276","2026-06-29","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000017167366060","2026-06-29","Elemental Solteiro 88x188","742","51.94","466.06","FBM"],
+  ["2000017167648696","2026-06-29","Sleep Calm Espuma Casal 138x188","1491","74.55","1115.45","XD"],
+  ["2000017167821526","2026-06-29","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000017168023088","2026-06-29","Sleep Calm Espuma Queen 158x198","1960","98","1267","XD"],
+  ["2000017168745640","2026-06-29","Elemental Casal 138x188","1005","70.34","667.66","FBM"],
+  ["2000017172427284","2026-06-30","Elemental Solteiro 88x188","759.05","47.94","413.06","FBM"],
+  ["2000017174260984","2026-06-30","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017174571172","2026-06-30","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017174571196","2026-06-30","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017174571254","2026-06-30","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017175897146","2026-06-30","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017175905326","2026-06-30","Elemental Solteiro 88x188","759.05","47.94","413.06","FBM"],
+  ["2000017177176522","2026-06-30","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017178316262","2026-06-30","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017179288674","2026-06-30","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017180109268","2026-06-30","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017180435640","2026-06-30","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017181321798","2026-06-30","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017181416012","2026-06-30","Elemental Solteiro 88x188","760","38","399","XD"],
+  ["2000017182119800","2026-06-30","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017182324890","2026-06-30","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017185474196","2026-06-30","Sleep Calm Espuma Casal 138x188","1490.55","94.14","1159.36","FBM"],
+  ["2000017186876804","2026-06-30","Elemental Casal 138x188","1035","62.1","645.9","FBM"],
+  ["2000017187505604","2026-06-30","Elemental Solteiro 88x188","799","47.94","413.06","FBM"],
+  ["2000017187951282","2026-06-30","Elemental Solteiro 88x188","799","47.94","413.06","FBM"]
+];
+
+let currentFilter = 'all';
+let sortCol = -1, sortAsc = true;
+
+function render(rows) {
+  const tbody = document.getElementById('tblBody');
+  tbody.innerHTML = '';
+  let gmvSum=0, meliSum=0, sellerSum=0;
+  rows.forEach((r, i) => {
+    const log = r[6];
+    const logTag = log==='FBM'
+      ? '<span class="tag-full">Full</span>'
+      : '<span class="tag-xd">XD</span>';
+    gmvSum   += parseFloat(r[3]);
+    meliSum  += parseFloat(r[4]);
+    sellerSum+= parseFloat(r[5]);
+    tbody.innerHTML += `<tr>
+      <td style="color:#aaa;font-size:11px">${i+1}</td>
+      <td><code style="font-size:11px">${r[0]}</code></td>
+      <td>${fmtD(r[1])}</td>
+      <td>${r[2]}</td>
+      <td>${fmtB(r[3])}</td>
+      <td class="meli-val">${fmtB(r[4])}</td>
+      <td class="seller-val">${fmtB(r[5])}</td>
+      <td><span class="tag-ok">✓ true</span></td>
+      <td>${logTag}</td>
+    </tr>`;
+  });
+  // subtotal row
+  if (rows.length < DATA.length) {
+    tbody.innerHTML += `<tr class="subtotal">
+      <td colspan="4">Subtotal filtrado (${rows.length} registros)</td>
+      <td>${fmtB(gmvSum)}</td>
+      <td class="meli-val">${fmtB(meliSum)}</td>
+      <td class="seller-val">${fmtB(sellerSum)}</td>
+      <td colspan="2"></td>
+    </tr>`;
+  }
+  document.getElementById('countLabel').textContent = `Exibindo ${rows.length} de ${DATA.length} registros`;
+}
+
+function getFiltered() {
+  const q = document.getElementById('searchBox').value.toLowerCase();
+  return DATA.filter(r => {
+    const matchLog = currentFilter==='all' || r[6]===currentFilter;
+    const matchQ   = !q || r[0].includes(q) || r[2].toLowerCase().includes(q) || r[1].includes(q);
+    return matchLog && matchQ;
+  });
+}
+
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  render(getFiltered());
+}
+
+document.getElementById('searchBox').addEventListener('input', () => render(getFiltered()));
+
+function sortTable(col) {
+  document.querySelectorAll('thead th').forEach(th => {
+    th.classList.remove('sorted-asc','sorted-desc');
+  });
+  if (sortCol === col) sortAsc = !sortAsc; else { sortCol = col; sortAsc = true; }
+  const th = document.querySelectorAll('thead th')[col];
+  th.classList.add(sortAsc ? 'sorted-asc' : 'sorted-desc');
+  const rows = getFiltered();
+  rows.sort((a,b) => {
+    const av = isNaN(a[col-1]) ? a[col-1] : parseFloat(a[col-1]);
+    const bv = isNaN(b[col-1]) ? b[col-1] : parseFloat(b[col-1]);
+    return sortAsc ? (av>bv?1:av<bv?-1:0) : (av<bv?1:av>bv?-1:0);
+  });
+  render(rows);
+}
+
+render(DATA);
+</script>
+</body>
+</html>
