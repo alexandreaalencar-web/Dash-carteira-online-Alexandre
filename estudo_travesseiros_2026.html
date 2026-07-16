@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estudo de Mercado — Travesseiros MLB 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #F0F0F0; color: #333; font-size: 14px; }
+
+  /* HEADER */
+  .header {
+    background: #FFE600;
+    padding: 0 32px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .header-logo { font-size: 22px; font-weight: 700; color: #333; letter-spacing: -0.5px; }
+  .header-title { font-size: 15px; font-weight: 600; color: #333; border-left: 2px solid #333; padding-left: 12px; }
+  .header-badge {
+    background: #333;
+    color: #FFE600;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  /* NAV TABS */
+  .nav-tabs {
+    background: #fff;
+    padding: 0 32px;
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid #E8E8E8;
+    overflow-x: auto;
+  }
+  .nav-tab {
+    padding: 14px 20px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    white-space: nowrap;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .nav-tab:hover { color: #3483FA; }
+  .nav-tab.active { color: #3483FA; border-bottom-color: #3483FA; font-weight: 600; }
+
+  /* CONTENT */
+  .content { max-width: 1280px; margin: 0 auto; padding: 28px 32px; }
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* SECTION HEADER */
+  .section-header { margin-bottom: 20px; }
+  .section-header h2 { font-size: 18px; font-weight: 700; color: #333; }
+  .section-header p { font-size: 13px; color: #666; margin-top: 4px; }
+  .data-date { font-size: 11px; color: #999; margin-top: 4px; }
+
+  /* KPI CARDS */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 24px; }
+  .kpi-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    border-top: 3px solid #3483FA;
+  }
+  .kpi-card.green { border-top-color: #00A650; }
+  .kpi-card.yellow { border-top-color: #FFE600; }
+  .kpi-card.red { border-top-color: #F23D4F; }
+  .kpi-card.purple { border-top-color: #8B5CF6; }
+  .kpi-label { font-size: 11px; font-weight: 600; color: #999; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .kpi-value { font-size: 24px; font-weight: 700; color: #333; line-height: 1; }
+  .kpi-sub { font-size: 11px; color: #666; margin-top: 4px; }
+
+  /* CARDS / PANELS */
+  .card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #F0F0F0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-header h3 { font-size: 14px; font-weight: 700; color: #333; }
+  .card-body { padding: 20px; }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: #F8F8F8;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    border-bottom: 1px solid #E8E8E8;
+    white-space: nowrap;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #F4F4F4;
+    vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #FAFAFA; }
+
+  /* RANK BADGE */
+  .rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    background: #F0F0F0;
+    color: #666;
+  }
+  .rank-badge.gold { background: #FFE600; color: #333; }
+  .rank-badge.silver { background: #E8E8E8; color: #555; }
+  .rank-badge.bronze { background: #FDE68A; color: #92400E; }
+
+  /* FALSO POSITIVO */
+  .fp-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+    background: #F23D4F;
+    padding: 2px 7px;
+    border-radius: 4px;
+    letter-spacing: 0.3px;
+    margin-left: 6px;
+  }
+  .fp-row td { opacity: 0.55; }
+  .fp-row td:first-child { opacity: 1; }
+
+  /* ORTHOCRIN HIGHLIGHT */
+  .orthocrin-row td { background: #FFFBEB !important; font-weight: 600; }
+  .orthocrin-row td:first-child { border-left: 3px solid #FFE600; }
+
+  /* EXPANDABLE ROWS */
+  .seller-row { cursor: pointer; }
+  .seller-row:hover td { background: #F5F9FF !important; }
+  .seller-row td:first-child { display: flex; align-items: center; gap: 8px; }
+  .expand-icon { font-size: 12px; color: #3483FA; transition: transform 0.2s; flex-shrink: 0; }
+  .expand-icon.open { transform: rotate(90deg); }
+  .detail-row { display: none; }
+  .detail-row.open { display: table-row; }
+  .detail-inner {
+    padding: 16px 20px 20px 36px;
+    background: #F8FBFF;
+    border-bottom: 1px solid #E8E8E8;
+  }
+  .detail-inner table { font-size: 12px; }
+  .detail-inner th { font-size: 10px; }
+  .detail-inner td { padding: 8px 10px; }
+
+  /* BRAND TAG */
+  .brand-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: #EFF6FF;
+    color: #1D4ED8;
+    margin-left: 6px;
+  }
+
+  /* DIFERENCIAL TAGS */
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin: 2px;
+  }
+  .tag-blue { background: #DBEAFE; color: #1E40AF; }
+  .tag-green { background: #D1FAE5; color: #065F46; }
+  .tag-purple { background: #EDE9FE; color: #5B21B6; }
+  .tag-red { background: #FEE2E2; color: #991B1B; }
+  .tag-yellow { background: #FEF3C7; color: #92400E; }
+  .tag-gray { background: #F3F4F6; color: #374151; }
+  .tag-pink { background: #FCE7F3; color: #9D174D; }
+
+  /* SHARE BAR */
+  .share-bar { width: 100%; background: #E8E8E8; border-radius: 3px; height: 6px; overflow: hidden; }
+  .share-fill { height: 100%; background: #3483FA; border-radius: 3px; }
+  .share-fill.green { background: #00A650; }
+
+  /* GAP TABLE */
+  .gap-icon { font-size: 16px; }
+  .gap-yes { color: #00A650; font-weight: 600; }
+  .gap-no { color: #F23D4F; font-weight: 600; }
+  .gap-weak { color: #F59E0B; font-weight: 600; }
+
+  /* ALERT BOX */
+  .alert {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .alert-yellow { background: #FFFBEB; border: 1px solid #FDE68A; color: #92400E; }
+  .alert-blue { background: #EFF6FF; border: 1px solid #BFDBFE; color: #1E40AF; }
+  .alert-green { background: #F0FDF4; border: 1px solid #BBF7D0; color: #065F46; }
+
+  /* PRIORITY CARDS */
+  .priority-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px; }
+  .priority-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    border-left: 4px solid;
+  }
+  .priority-card.p1 { border-left-color: #F23D4F; }
+  .priority-card.p2 { border-left-color: #F59E0B; }
+  .priority-card.p3 { border-left-color: #3483FA; }
+  .priority-card.p4 { border-left-color: #00A650; }
+  .priority-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .priority-card.p1 .priority-label { color: #F23D4F; }
+  .priority-card.p2 .priority-label { color: #F59E0B; }
+  .priority-card.p3 .priority-label { color: #3483FA; }
+  .priority-card.p4 .priority-label { color: #00A650; }
+  .priority-title { font-size: 14px; font-weight: 700; color: #333; margin-bottom: 6px; }
+  .priority-desc { font-size: 12px; color: #666; line-height: 1.6; }
+  .priority-ref { font-size: 11px; color: #999; margin-top: 8px; }
+
+  /* SCROLL */
+  .table-scroll { overflow-x: auto; }
+
+  /* FOOTER */
+  .footer { text-align: center; padding: 24px; color: #999; font-size: 11px; margin-top: 20px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .content { padding: 16px; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .header { padding: 0 16px; }
+    .header-title { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <span class="header-logo">mercadolivre</span>
+    <span class="header-title">Estudo de Mercado — Travesseiros</span>
+  </div>
+  <span class="header-badge">YTD 2026 · 01/jan – 16/jul</span>
+</div>
+
+<!-- NAV TABS -->
+<div class="nav-tabs">
+  <div class="nav-tab active" onclick="showSection('visao-geral', this)">Visão Geral</div>
+  <div class="nav-tab" onclick="showSection('ranking', this)">Top 20 Sellers</div>
+  <div class="nav-tab" onclick="showSection('portfolio', this)">Portfólio Detalhado</div>
+  <div class="nav-tab" onclick="showSection('orthocrin', this)">Análise Orthocrin</div>
+</div>
+
+<!-- ======================== VISÃO GERAL ======================== -->
+<div class="content">
+<div id="visao-geral" class="section active">
+
+  <div class="section-header">
+    <h2>Mercado de Travesseiros — MLB Brasil</h2>
+    <p>Consolidado do mercado com base nos top 20 sellers por GMV</p>
+    <div class="data-date">Dados extraídos de DM_EFICIENCIA_MLB · Período 01/01/2026 – 16/07/2026 · ORD_STATUS = paid</div>
+  </div>
+
+  <!-- KPI GERAL -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">GMV Top 20 Sellers</div>
+      <div class="kpi-value">R$62M</div>
+      <div class="kpi-sub">soma dos 20 maiores</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">GMV Líder (#1 OAKTEX)</div>
+      <div class="kpi-value">R$7,5M</div>
+      <div class="kpi-sub">140.650 unidades</div>
+    </div>
+    <div class="kpi-card yellow">
+      <div class="kpi-label">20º Colocado</div>
+      <div class="kpi-value">R$1,5M</div>
+      <div class="kpi-sub">34.338 unidades</div>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">Orthocrin (pos. 129)</div>
+      <div class="kpi-value">R$222K</div>
+      <div class="kpi-sub">1.531 unidades · R$145 ticket</div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="kpi-label">Gap pro Top 20</div>
+      <div class="kpi-value">7x</div>
+      <div class="kpi-sub">vs. o 20º colocado</div>
+    </div>
+  </div>
+
+  <!-- SEGMENTAÇÃO DO MERCADO -->
+  <div class="card">
+    <div class="card-header">
+      <h3>Segmentação dos Top 20 por Estratégia</h3>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+
+        <div style="background:#F8FBFF;border-radius:8px;padding:16px;border:1px solid #DBEAFE;">
+          <div style="font-size:11px;font-weight:700;color:#1E40AF;text-transform:uppercase;margin-bottom:8px;">Volume / Popular</div>
+          <div style="font-size:13px;color:#333;line-height:1.8;">
+            <b>#1 OAKTEX</b> — Kit fibra toque pluma<br>
+            <b>#2</b> — Impermeável lavável kits<br>
+            <b>#13</b> — Matelado fibra barato<br>
+            <b>#20 LARIBABY</b> — Corpo/xuxão silicone
+          </div>
+          <div style="margin-top:10px;font-size:11px;color:#666;">Ticket: R$37–97 · Kits 2/4/6</div>
+        </div>
+
+        <div style="background:#F0FDF4;border-radius:8px;padding:16px;border:1px solid #BBF7D0;">
+          <div style="font-size:11px;font-weight:700;color:#065F46;text-transform:uppercase;margin-bottom:8px;">NASA Viscoelástico</div>
+          <div style="font-size:13px;color:#333;line-height:1.8;">
+            <b>#5 HUG COMFORT</b><br>
+            <b>#7 DUOFLEX</b><br>
+            <b>#14 NASA-X</b><br>
+            <b>#16 DUOFLEX</b><br>
+            <b>#17</b> — NASA genérico popular
+          </div>
+          <div style="margin-top:10px;font-size:11px;color:#666;">Ticket: R$65–199</div>
+        </div>
+
+        <div style="background:#FDF4FF;border-radius:8px;padding:16px;border:1px solid #E9D5FF;">
+          <div style="font-size:11px;font-weight:700;color:#5B21B6;text-transform:uppercase;margin-bottom:8px;">Cervical / Premium</div>
+          <div style="font-size:13px;color:#333;line-height:1.8;">
+            <b>#6 I WANNA SLEEP</b> — Ajustável + Gel<br>
+            <b>#9 WING PILLOW</b> — Infravermelho<br>
+            <b>#11 RELAX COLUNA</b> — Anti-ronco<br>
+            <b>#19 COLUNA RELAX</b> — Carvão ativado
+          </div>
+          <div style="margin-top:10px;font-size:11px;color:#666;">Ticket: R$178–458</div>
+        </div>
+
+        <div style="background:#FFFBEB;border-radius:8px;padding:16px;border:1px solid #FDE68A;">
+          <div style="font-size:11px;font-weight:700;color:#92400E;text-transform:uppercase;margin-bottom:8px;">Marcas / Especial</div>
+          <div style="font-size:13px;color:#333;line-height:1.8;">
+            <b>#4 SELECT</b> — Hotel + ajustável<br>
+            <b>#12 DAUNE</b> — Pena ganso puro<br>
+            <b>#15 ALTENBURG</b> — Carbono + percal
+          </div>
+          <div style="margin-top:10px;font-size:11px;color:#666;">Ticket: R$76–705</div>
+        </div>
+
+        <div style="background:#FFF1F2;border-radius:8px;padding:16px;border:1px solid #FECDD3;">
+          <div style="font-size:11px;font-weight:700;color:#9F1239;text-transform:uppercase;margin-bottom:8px;">⚠️ Falsos Positivos</div>
+          <div style="font-size:13px;color:#333;line-height:1.8;">
+            <b>#3</b> — Colchão inflável + travesseiro<br>
+            <b>#8</b> — Cobre-leito porta-travesseiro<br>
+            <b>#10</b> — Colchão inflável JOYFOX<br>
+            <b>#18</b> — Capas protetoras TEMIMA
+          </div>
+          <div style="margin-top:10px;font-size:11px;color:#666;">Não são concorrentes diretos</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- DIFERENCIAIS DO MERCADO -->
+  <div class="card">
+    <div class="card-header">
+      <h3>Diferenciais Mais Presentes nos Top Sellers</h3>
+    </div>
+    <div class="card-body">
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Diferencial</th>
+            <th>Sellers que usam</th>
+            <th>GMV estimado</th>
+            <th>Ticket médio</th>
+            <th>Orthocrin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag tag-blue">Kit 2/4/6 peças</span></td>
+            <td>#1 #2 #4 #5 #7 #12 #14</td>
+            <td>Dominante — +60% do volume</td>
+            <td>Variado</td>
+            <td><span class="gap-no">✗ Não</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-purple">Ajustável com zíper</span></td>
+            <td>#4 #6 #13</td>
+            <td>~R$2M combinado</td>
+            <td>R$76–333</td>
+            <td><span class="gap-no">✗ Não</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-red">Anti-ronco e apneia</span></td>
+            <td>#11</td>
+            <td>~R$2M nicho exclusivo</td>
+            <td>R$210</td>
+            <td><span class="gap-no">✗ Não</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-gray">Carvão ativado</span></td>
+            <td>#6 #19</td>
+            <td>~R$2,6M combinado</td>
+            <td>R$204</td>
+            <td><span class="gap-no">✗ Não</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-green">Impermeável lavável</span></td>
+            <td>#1 #2</td>
+            <td>~R$7M+</td>
+            <td>R$63–120</td>
+            <td><span class="gap-no">✗ Não</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-blue">Cervical premium</span></td>
+            <td>#6 #9 #11 #19</td>
+            <td>~R$5M+</td>
+            <td>R$160–458</td>
+            <td><span class="gap-weak">~ Fraco</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-pink">Infravermelho/magnético</span></td>
+            <td>#9</td>
+            <td>~R$2,6M</td>
+            <td>R$160</td>
+            <td><span class="gap-no">✗ Não</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-yellow">Pena/Pluma de ganso</span></td>
+            <td>#12</td>
+            <td>~R$1,9M</td>
+            <td>R$170–705</td>
+            <td><span class="gap-no">✗ Não</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-gray">Fios de carbono / antistress</span></td>
+            <td>#15</td>
+            <td>~R$185K (crescendo)</td>
+            <td>R$162</td>
+            <td><span class="gap-no">✗ Não</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-blue">Toque de pluma de ganso</span></td>
+            <td>#1 #4</td>
+            <td>~R$4M+</td>
+            <td>R$62–135</td>
+            <td><span class="gap-no">✗ Não</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-green">NASA viscoelástico</span></td>
+            <td>#5 #6 #7 #9 #14 #16 #17</td>
+            <td>~R$12M+</td>
+            <td>R$65–199</td>
+            <td><span class="gap-yes">✓ Sim</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-green">Travesseiro infantil/bebê visco</span></td>
+            <td>Orthocrin domina</td>
+            <td>R$65,8K (Orthocrin)</td>
+            <td>R$113</td>
+            <td><span class="gap-yes">✓ Forte</span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end visao-geral -->
+
+
+<!-- ======================== RANKING ======================== -->
+<div id="ranking" class="section">
+
+  <div class="section-header">
+    <h2>Top 20 Sellers — Travesseiros MLB</h2>
+    <p>Ordenado por GMV decrescente · YTD 2026 · Pedidos pagos</p>
+  </div>
+
+  <div class="card">
+    <div class="card-body" style="padding:0;">
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Seller ID</th>
+            <th>Marca / Referência</th>
+            <th>GMV (R$)</th>
+            <th>Share GMV</th>
+            <th>Unidades</th>
+            <th>Ticket Médio</th>
+            <th>Pedidos</th>
+            <th>SKUs</th>
+            <th>Segmento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="rank-badge gold">1</span></td>
+            <td>94647179</td>
+            <td><b>OAKTEX</b></td>
+            <td><b>R$7.524.599</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:100%"></div></div></td>
+            <td>140.650</td>
+            <td>R$53</td>
+            <td>132.103</td>
+            <td>55</td>
+            <td><span class="tag tag-blue">Volume / Fibra Kit</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge silver">2</span></td>
+            <td>152508647</td>
+            <td><b>—</b></td>
+            <td><b>R$6.809.586</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:90%"></div></div></td>
+            <td>69.937</td>
+            <td>R$97</td>
+            <td>65.872</td>
+            <td>68</td>
+            <td><span class="tag tag-blue">Impermeável Lavável</span></td>
+          </tr>
+          <tr class="fp-row">
+            <td><span class="rank-badge bronze">3</span></td>
+            <td>2448392127</td>
+            <td><b>NEPUL</b><span class="fp-tag">FALSO POSITIVO</span></td>
+            <td><b>R$3.915.490</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:52%"></div></div></td>
+            <td>11.683</td>
+            <td>R$335</td>
+            <td>11.606</td>
+            <td>6</td>
+            <td><span class="tag tag-red">Colchão Inflável</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">4</span></td>
+            <td>556579070</td>
+            <td><b>SELECT</b></td>
+            <td><b>R$3.621.363</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:48%"></div></div></td>
+            <td>40.130</td>
+            <td>R$90</td>
+            <td>34.870</td>
+            <td>144</td>
+            <td><span class="tag tag-yellow">Hotel + Ajustável</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">5</span></td>
+            <td>568484074</td>
+            <td><b>HUG COMFORT</b></td>
+            <td><b>R$3.425.420</b></td>
+            <td><div class="share-bar"><div class="share-fill green" style="width:45%"></div></div></td>
+            <td>46.147</td>
+            <td>R$74</td>
+            <td>37.924</td>
+            <td>37</td>
+            <td><span class="tag tag-green">NASA Visco Vol.</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">6</span></td>
+            <td>1238801769</td>
+            <td><b>I WANNA SLEEP</b></td>
+            <td><b>R$3.193.996</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:42%"></div></div></td>
+            <td>12.020</td>
+            <td>R$266</td>
+            <td>11.003</td>
+            <td>76</td>
+            <td><span class="tag tag-purple">Cervical Premium</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">7</span></td>
+            <td>361841053</td>
+            <td><b>DUOFLEX</b></td>
+            <td><b>R$3.127.476</b></td>
+            <td><div class="share-bar"><div class="share-fill green" style="width:42%"></div></div></td>
+            <td>22.336</td>
+            <td>R$140</td>
+            <td>19.672</td>
+            <td>62</td>
+            <td><span class="tag tag-green">NASA Visco Marca</span></td>
+          </tr>
+          <tr class="fp-row">
+            <td><span class="rank-badge">8</span></td>
+            <td>46874279</td>
+            <td><b>—</b><span class="fp-tag">FALSO POSITIVO</span></td>
+            <td><b>R$3.073.294</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:41%"></div></div></td>
+            <td>37.058</td>
+            <td>R$83</td>
+            <td>36.419</td>
+            <td>135</td>
+            <td><span class="tag tag-red">Cobre-Leito</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">9</span></td>
+            <td>1135453407</td>
+            <td><b>WING PILLOW</b></td>
+            <td><b>R$2.579.660</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:34%"></div></div></td>
+            <td>15.388</td>
+            <td>R$168</td>
+            <td>13.948</td>
+            <td>360</td>
+            <td><span class="tag tag-pink">Infravermelho/Mag.</span></td>
+          </tr>
+          <tr class="fp-row">
+            <td><span class="rank-badge">10</span></td>
+            <td>461592200</td>
+            <td><b>JOYFOX</b><span class="fp-tag">FALSO POSITIVO</span></td>
+            <td><b>R$2.486.046</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:33%"></div></div></td>
+            <td>8.934</td>
+            <td>R$278</td>
+            <td>8.830</td>
+            <td>88</td>
+            <td><span class="tag tag-red">Colchão Inflável</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">11</span></td>
+            <td>2490757919</td>
+            <td><b>RELAX COLUNA</b></td>
+            <td><b>R$1.995.923</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:27%"></div></div></td>
+            <td>11.184</td>
+            <td>R$178</td>
+            <td>9.716</td>
+            <td>46</td>
+            <td><span class="tag tag-red">Anti-Ronco Apneia</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">12</span></td>
+            <td>1034552318</td>
+            <td><b>DAUNE</b></td>
+            <td><b>R$1.933.154</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:26%"></div></div></td>
+            <td>10.514</td>
+            <td>R$184</td>
+            <td>8.511</td>
+            <td>48</td>
+            <td><span class="tag tag-yellow">Pena/Pluma Ganso</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">13</span></td>
+            <td>440197672</td>
+            <td><b>—</b></td>
+            <td><b>R$1.840.206</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:24%"></div></div></td>
+            <td>34.050</td>
+            <td>R$54</td>
+            <td>31.610</td>
+            <td>78</td>
+            <td><span class="tag tag-blue">Fibra Matelada Vol.</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">14</span></td>
+            <td>66303643</td>
+            <td><b>NASA-X</b></td>
+            <td><b>R$1.823.943</b></td>
+            <td><div class="share-bar"><div class="share-fill green" style="width:24%"></div></div></td>
+            <td>11.968</td>
+            <td>R$152</td>
+            <td>11.246</td>
+            <td>31</td>
+            <td><span class="tag tag-green">NASA Especialista</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">15</span></td>
+            <td>184496876</td>
+            <td><b>ALTENBURG</b></td>
+            <td><b>R$1.815.988</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:24%"></div></div></td>
+            <td>15.714</td>
+            <td>R$116</td>
+            <td>13.165</td>
+            <td>95</td>
+            <td><span class="tag tag-gray">Marca Tradicional</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">16</span></td>
+            <td>611938834</td>
+            <td><b>DUOFLEX</b></td>
+            <td><b>R$1.696.690</b></td>
+            <td><div class="share-bar"><div class="share-fill green" style="width:23%"></div></div></td>
+            <td>10.942</td>
+            <td>R$155</td>
+            <td>9.724</td>
+            <td>87</td>
+            <td><span class="tag tag-green">NASA Térmico</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">17</span></td>
+            <td>1085584531</td>
+            <td><b>—</b></td>
+            <td><b>R$1.672.878</b></td>
+            <td><div class="share-bar"><div class="share-fill green" style="width:22%"></div></div></td>
+            <td>19.657</td>
+            <td>R$85</td>
+            <td>15.499</td>
+            <td>85</td>
+            <td><span class="tag tag-green">NASA Popular</span></td>
+          </tr>
+          <tr class="fp-row">
+            <td><span class="rank-badge">18</span></td>
+            <td>480923446</td>
+            <td><b>TEMIMA</b><span class="fp-tag">FALSO POSITIVO</span></td>
+            <td><b>R$1.615.029</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:21%"></div></div></td>
+            <td>20.976</td>
+            <td>R$77</td>
+            <td>18.292</td>
+            <td>18</td>
+            <td><span class="tag tag-red">Capas Protetoras</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">19</span></td>
+            <td>1453624811</td>
+            <td><b>COLUNA RELAX</b></td>
+            <td><b>R$1.561.025</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:21%"></div></div></td>
+            <td>7.729</td>
+            <td>R$202</td>
+            <td>7.049</td>
+            <td>6</td>
+            <td><span class="tag tag-purple">Cervical Carvão</span></td>
+          </tr>
+          <tr>
+            <td><span class="rank-badge">20</span></td>
+            <td>395963053</td>
+            <td><b>LARIBABY</b></td>
+            <td><b>R$1.545.769</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:21%"></div></div></td>
+            <td>34.338</td>
+            <td>R$45</td>
+            <td>30.862</td>
+            <td>90</td>
+            <td><span class="tag tag-blue">Corpo/Gestante</span></td>
+          </tr>
+          <tr class="orthocrin-row">
+            <td><span class="rank-badge" style="background:#FFE600;color:#333;font-size:10px;width:32px;">129</span></td>
+            <td>560912973</td>
+            <td><b>ORTHOCRIN</b> ⬅</td>
+            <td><b>R$221.778</b></td>
+            <td><div class="share-bar"><div class="share-fill" style="width:3%;background:#FFE600;"></div></div></td>
+            <td>1.531</td>
+            <td>R$145</td>
+            <td>1.344</td>
+            <td>74</td>
+            <td><span class="tag tag-green">NASA + Visco Infantil</span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end ranking -->
+
+
+<!-- ======================== PORTFÓLIO DETALHADO ======================== -->
+<div id="portfolio" class="section">
+
+  <div class="section-header">
+    <h2>Portfólio Detalhado — Top 5 Produtos por Seller</h2>
+    <p>Clique em cada seller para expandir os produtos mais vendidos</p>
+  </div>
+
+  <div class="alert alert-blue">
+    <span>ℹ️</span>
+    <span>Sellers marcados como <b>⚠️ Falso Positivo</b> aparecem no ranking por terem "travesseiro" no título, mas seu produto principal é outro (colchão inflável, cobre-leito, capas). Estão incluídos para referência.</span>
+  </div>
+
+  <div class="card">
+    <div class="card-body" style="padding:0;">
+      <div class="table-scroll">
+      <table id="portfolio-table">
+        <thead>
+          <tr>
+            <th style="width:36px;"></th>
+            <th>#</th>
+            <th>Seller / Marca</th>
+            <th>GMV Total</th>
+            <th>Unid.</th>
+            <th>Ticket Médio</th>
+            <th>Principal Diferencial</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- SELLER 1: OAKTEX -->
+          <tr class="seller-row" onclick="toggleDetail('s1')">
+            <td><span class="expand-icon" id="icon-s1">▶</span></td>
+            <td><span class="rank-badge gold">1</span></td>
+            <td><b>OAKTEX</b> <small style="color:#999">94647179</small></td>
+            <td>R$7.524.599</td><td>140.650</td><td>R$53</td>
+            <td><span class="tag tag-blue">Fibra Siliconada Toque Pluma · Kits 2/4</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s1"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Kit 2 Travesseiros Fibra Siliconada Toque de Pluma de Ganso 70x50 Antialérgico Lavável</td><td>R$3.062.844</td><td>82.827</td><td>R$37</td><td>40,7%</td></tr>
+                  <tr><td>2</td><td>Kit 4 Travesseiros 50x70 Antialérgico Fibra Siliconada</td><td>R$2.271.379</td><td>23.436</td><td>R$97</td><td>30,2%</td></tr>
+                  <tr><td>3</td><td>Kit 2 Luxo Matelado Fibra Antialérgica 50x70</td><td>R$1.691.162</td><td>26.957</td><td>R$63</td><td>22,5%</td></tr>
+                  <tr><td>4</td><td>Kit 2 Antialérgico Impermeável Lavável 50x70</td><td>R$230.748</td><td>3.691</td><td>R$63</td><td>3,1%</td></tr>
+                  <tr><td>5</td><td>Kit 2 Travesseiro Prime Percal 200 Fios Firme Padrão Hotel</td><td>R$69.486</td><td>1.353</td><td>R$51</td><td>0,9%</td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:12px;font-size:12px;color:#555;"><b>Análise:</b> 93% do GMV em apenas 3 SKUs. Estratégia de kits com fibra siliconada toque pluma é imbatível em custo × percepção de valor. O produto campeão (R$3M, 82K unidades) tem ticket de R$37.</div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 2 -->
+          <tr class="seller-row" onclick="toggleDetail('s2')">
+            <td><span class="expand-icon" id="icon-s2">▶</span></td>
+            <td><span class="rank-badge silver">2</span></td>
+            <td><b>—</b> <small style="color:#999">152508647</small></td>
+            <td>R$6.809.586</td><td>69.937</td><td>R$97</td>
+            <td><span class="tag tag-blue">Impermeável Lavável · Kits 2/4/6 · Gestante</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s2"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Kit 4 Travesseiros Antialérgico Impermeável 50x70 Super Macio</td><td>R$2.927.084</td><td>24.412</td><td>R$120</td><td>43%</td></tr>
+                  <tr><td>2</td><td>Kit 2 Antialérgico Impermeável 50x70 Lavável</td><td>R$1.276.052</td><td>16.735</td><td>R$76</td><td>18,7%</td></tr>
+                  <tr><td>3</td><td>Kit 6 Antialérgico Impermeável 50x70 Lavável</td><td>R$747.714</td><td>4.016</td><td>R$186</td><td>11%</td></tr>
+                  <tr><td>4</td><td>Kit 2 Travesseiro Antialérgico 50x70 Extra Firme</td><td>R$459.143</td><td>6.569</td><td>R$70</td><td>6,7%</td></tr>
+                  <tr><td>5</td><td>Travesseiro de Corpo Gestante U com Fronha 100% Algodão</td><td>R$380.176</td><td>3.000</td><td>R$127</td><td>5,6%</td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:12px;font-size:12px;color:#555;"><b>Análise:</b> Impermeável + lavável é o atributo central. Kit de 4 unidades é o carro-chefe (R$2,9M). Também cobre nicho de gestante (travesseiro U).</div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 3: FALSO POSITIVO -->
+          <tr class="seller-row fp-row" onclick="toggleDetail('s3')">
+            <td><span class="expand-icon" id="icon-s3">▶</span></td>
+            <td><span class="rank-badge bronze">3</span></td>
+            <td><b>NEPUL</b> <small style="color:#999">2448392127</small> <span class="fp-tag">FALSO POSITIVO</span></td>
+            <td>R$3.915.490</td><td>11.683</td><td>R$335</td>
+            <td><span class="tag tag-red">Colchão Inflável + Travesseiro Incluso</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s3"><td colspan="7">
+            <div class="detail-inner">
+              <div class="alert alert-yellow" style="margin-bottom:8px;"><span>⚠️</span><span>Este seller vende <b>colchões infláveis de camping</b> que incluem travesseiro inflável no kit. O termo "travesseiro" aparece no título mas não é o produto principal.</span></div>
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Colchão Inflável Queen Duplo com 2 Travesseiro Inflável</td><td>R$2.292.327</td><td>6.107</td><td>R$375</td></tr>
+                  <tr><td>2</td><td>Colchão Inflável Casal Queen com Travesseiro e Bomba 4000mA</td><td>R$685.154</td><td>2.641</td><td>R$259</td></tr>
+                  <tr><td>3</td><td>Colchão Inflável Queen Nepul Duplo com 2 Travesseiro NE-999</td><td>R$549.130</td><td>1.663</td><td>R$330</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 4: SELECT -->
+          <tr class="seller-row" onclick="toggleDetail('s4')">
+            <td><span class="expand-icon" id="icon-s4">▶</span></td>
+            <td><span class="rank-badge">4</span></td>
+            <td><b>SELECT</b> <small style="color:#999">556579070</small></td>
+            <td>R$3.621.363</td><td>40.130</td><td>R$90</td>
+            <td><span class="tag tag-yellow">Toque de Plumas Hotel</span> <span class="tag tag-purple">Ajustável com Zíper</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s4"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Kit 2 Travesseiros Royal Toque de Plumas Linha Hotel</td><td>R$1.257.894</td><td>9.320</td><td>R$135</td><td>34,7%</td></tr>
+                  <tr><td>2</td><td><b>Kit 2 Travesseiros Fibra Siliconada Ajustável Zíper Macio — Select Luxo</b></td><td>R$1.221.960</td><td>16.185</td><td>R$76</td><td>33,7%</td></tr>
+                  <tr><td>3</td><td>Travesseiro Royal Toque de Plumas Linha Hotel (unitário)</td><td>R$490.138</td><td>7.922</td><td>R$62</td><td>13,5%</td></tr>
+                  <tr><td>4</td><td>Kit 2 Travesseiros Royal Toque de Pluma 50x70</td><td>R$94.651</td><td>704</td><td>R$134</td><td>2,6%</td></tr>
+                  <tr><td>5</td><td>Travesseiro Infantil Criança 100% Algodão Fibra</td><td>R$72.408</td><td>1.923</td><td>R$38</td><td>2%</td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:12px;font-size:12px;color:#555;"><b>Análise:</b> Dois produtos com GMV quase idêntico (~R$1,2M cada) — Linha Hotel e Ajustável com Zíper. O ajustável (altura regulável via enchimento) gera R$1,2M com ticket de R$76 e 16K unidades — gap direto da Orthocrin.</div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 5: HUG COMFORT -->
+          <tr class="seller-row" onclick="toggleDetail('s5')">
+            <td><span class="expand-icon" id="icon-s5">▶</span></td>
+            <td><span class="rank-badge">5</span></td>
+            <td><b>HUG COMFORT</b> <small style="color:#999">568484074</small></td>
+            <td>R$3.425.420</td><td>46.147</td><td>R$74</td>
+            <td><span class="tag tag-green">NASA Viscoelástico</span> <span class="tag tag-green">Antialérgico</span> <span class="tag tag-green">Kits</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s5"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Travesseiro NASA Alto Visco 13cm HUG COMFORT PREMIUM</td><td>R$927.864</td><td>13.748</td><td>R$67</td><td>27,1%</td></tr>
+                  <tr><td>2</td><td>Kit 2 Travesseiros NASA Alto Visco 13cm HUG COMFORT Padrão</td><td>R$584.311</td><td>3.733</td><td>R$157</td><td>17,1%</td></tr>
+                  <tr><td>3</td><td>Travesseiro HUG NASA Viscoelástico Antialérgico</td><td>R$525.047</td><td>10.634</td><td>R$49</td><td>15,3%</td></tr>
+                  <tr><td>4</td><td>Kit 2 NASA Viscoelástico Antialérgico</td><td>R$381.759</td><td>3.411</td><td>R$112</td><td>11,1%</td></tr>
+                  <tr><td>5</td><td>Kit 2 Viscoelástico HUG NASA Alto 60x40x17cm</td><td>R$246.275</td><td>1.254</td><td>R$196</td><td>7,2%</td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:12px;font-size:12px;color:#555;"><b>Análise:</b> Concorrente direto da Orthocrin na linha NASA adulto. Opera com ticket 2x menor (R$74 vs R$159) e volume 30x maior (46K vs 1,5K unidades). Escala via preço mais agressivo + kit.</div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 6: I WANNA SLEEP -->
+          <tr class="seller-row" onclick="toggleDetail('s6')">
+            <td><span class="expand-icon" id="icon-s6">▶</span></td>
+            <td><span class="rank-badge">6</span></td>
+            <td><b>I WANNA SLEEP / COLUNA RELAX</b> <small style="color:#999">1238801769</small></td>
+            <td>R$3.193.996</td><td>12.020</td><td>R$266</td>
+            <td><span class="tag tag-gray">Carvão Ativado</span> <span class="tag tag-purple">Ajustável Premium</span> <span class="tag tag-blue">AIRGELLY Gel</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s6"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Travesseiro Cervical NASA — Carvão Ativado (Coluna Relax)</td><td>R$1.126.125</td><td>5.582</td><td>R$202</td><td>35,3%</td></tr>
+                  <tr><td>2</td><td><b>Travesseiro Ajustável — I Wanna Sleep — Snow</b></td><td>R$761.130</td><td>2.288</td><td>R$333</td><td>23,8%</td></tr>
+                  <tr><td>3</td><td><b>Kit 2 Travesseiros Ajustáveis — I Wanna Sleep — Snow</b></td><td>R$214.962</td><td>346</td><td>R$621</td><td>6,7%</td></tr>
+                  <tr><td>4</td><td>Travesseiro Cervical AIRGELLY 2.0 — I Wanna Sleep</td><td>R$141.110</td><td>308</td><td>R$458</td><td>4,4%</td></tr>
+                  <tr><td>5</td><td>Travesseiro Cervical Neck Plus Gel — I Wanna Sleep</td><td>R$125.270</td><td>339</td><td>R$370</td><td>3,9%</td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:12px;font-size:12px;color:#555;"><b>Análise:</b> Seller premium — o kit de 2 ajustáveis chega a R$621. Combina múltiplas inovações: carvão ativado, gel AIRGELLY, altura ajustável. Ticket médio de R$266 é o mais alto entre sellers de travesseiro real.</div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 7: DUOFLEX -->
+          <tr class="seller-row" onclick="toggleDetail('s7')">
+            <td><span class="expand-icon" id="icon-s7">▶</span></td>
+            <td><span class="rank-badge">7</span></td>
+            <td><b>DUOFLEX</b> <small style="color:#999">361841053</small></td>
+            <td>R$3.127.476</td><td>22.336</td><td>R$140</td>
+            <td><span class="tag tag-green">NASA Viscoelástico</span> <span class="tag tag-gray">Anti-ácaro</span> <span class="tag tag-gray">Cervical Onda</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s7"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Duoflex NASA-X Alto 60x40 — Kit 2 Unidades</td><td>R$632.875</td><td>3.179</td><td>R$199</td><td>20,2%</td></tr>
+                  <tr><td>2</td><td>Duoflex NASA Alto Viscoelástico Confort 50x70</td><td>R$382.070</td><td>3.734</td><td>R$102</td><td>12,2%</td></tr>
+                  <tr><td>3</td><td>Kit 2 NASA-X Alto 13cm Viscoelástico Duoflex</td><td>R$225.271</td><td>1.141</td><td>R$197</td><td>7,2%</td></tr>
+                  <tr><td>4</td><td>Travesseiro NASA Onda Cervical Ortopédico Ergonômico B&G Premium</td><td>R$188.769</td><td>1.886</td><td>R$100</td><td>6%</td></tr>
+                  <tr><td>5</td><td>Duoflex NASA-X Alto 13cm Anti-ácaro Malha 100% Algodão</td><td>R$167.205</td><td>1.671</td><td>R$100</td><td>5,3%</td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:12px;font-size:12px;color:#555;"><b>Análise:</b> Marca consolidada, ticket médio alto (R$140). Destaques: formato Onda Cervical, anti-ácaro com malha 100% algodão. Portfólio coeso focado em qualidade percebida.</div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 8: FALSO POSITIVO -->
+          <tr class="seller-row fp-row" onclick="toggleDetail('s8')">
+            <td><span class="expand-icon" id="icon-s8">▶</span></td>
+            <td><span class="rank-badge">8</span></td>
+            <td><b>—</b> <small style="color:#999">46874279</small> <span class="fp-tag">FALSO POSITIVO</span></td>
+            <td>R$3.073.294</td><td>37.058</td><td>R$83</td>
+            <td><span class="tag tag-red">Cobre-Leito com Porta-Travesseiro incluso</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s8"><td colspan="7">
+            <div class="detail-inner">
+              <div class="alert alert-yellow"><span>⚠️</span><span>Produto real: <b>Kit Cobre-Leito / Colcha</b> 3 peças com porta-travesseiro (aba americana). Não é concorrente de travesseiro.</span></div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 9: WING PILLOW -->
+          <tr class="seller-row" onclick="toggleDetail('s9')">
+            <td><span class="expand-icon" id="icon-s9">▶</span></td>
+            <td><span class="rank-badge">9</span></td>
+            <td><b>WING PILLOW</b> <small style="color:#999">1135453407</small></td>
+            <td>R$2.579.660</td><td>15.388</td><td>R$168</td>
+            <td><span class="tag tag-pink">Infravermelho</span> <span class="tag tag-pink">Magnético</span> <span class="tag tag-green">NASA Cervical</span> <span class="tag tag-pink">Íons</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s9"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Travesseiro Infravermelho Wing Pillow Comfort NASA Cervical Íons</td><td>R$276.043</td><td>1.729</td><td>R$160</td><td>10,7%</td></tr>
+                  <tr><td>2</td><td>Travesseiro Magnético Premium Wing Pillow Suporte Cervical</td><td>R$240.057</td><td>1.494</td><td>R$161</td><td>9,3%</td></tr>
+                  <tr><td>3</td><td>Travesseiro Ortopédico Apoio Cervical Lombar Wing Pillow NASA</td><td>R$221.089</td><td>1.390</td><td>R$159</td><td>8,6%</td></tr>
+                  <tr><td>4</td><td>Travesseiro Cervical Ortopédico Visco Wing Pillow NASA</td><td>R$218.774</td><td>1.386</td><td>R$158</td><td>8,5%</td></tr>
+                  <tr><td>5</td><td>Travesseiro Cervical Alívio Dores Pescoço Ombros Coluna</td><td>R$137.606</td><td>557</td><td>R$247</td><td>5,3%</td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:12px;font-size:12px;color:#555;"><b>Análise:</b> Nicho terapêutico exclusivo — 360 SKUs com ticket muito uniforme (~R$160). Sem concorrente direto nesse posicionamento. Infravermelho e magnético são os diferenciais mais únicos do top 20.</div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 10: FALSO POSITIVO -->
+          <tr class="seller-row fp-row" onclick="toggleDetail('s10')">
+            <td><span class="expand-icon" id="icon-s10">▶</span></td>
+            <td><span class="rank-badge">10</span></td>
+            <td><b>JOYFOX</b> <small style="color:#999">461592200</small> <span class="fp-tag">FALSO POSITIVO</span></td>
+            <td>R$2.486.046</td><td>8.934</td><td>R$278</td>
+            <td><span class="tag tag-red">Colchão Inflável + Travesseiro Inflável</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s10"><td colspan="7">
+            <div class="detail-inner">
+              <div class="alert alert-yellow"><span>⚠️</span><span>Produto real: <b>Colchão inflável JOYFOX</b> com travesseiro inflável incluso no kit. Não é concorrente de travesseiro.</span></div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 11: RELAX COLUNA -->
+          <tr class="seller-row" onclick="toggleDetail('s11')">
+            <td><span class="expand-icon" id="icon-s11">▶</span></td>
+            <td><span class="rank-badge">11</span></td>
+            <td><b>RELAX COLUNA</b> <small style="color:#999">2490757919</small></td>
+            <td>R$1.995.923</td><td>11.184</td><td>R$178</td>
+            <td><span class="tag tag-red">Anti-Ronco</span> <span class="tag tag-red">Anti-Apneia</span> <span class="tag tag-green">Cervical NASA Visco</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s11"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td><b>Travesseiro Anti-Ronco e Apneia Relax Coluna Cervical</b></td><td>R$639.736</td><td>2.909</td><td>R$220</td><td>32,1%</td></tr>
+                  <tr><td>2</td><td>Travesseiro Cervical Ortopédico Anti-Ronco e Apneia</td><td>R$175.987</td><td>918</td><td>R$192</td><td>8,8%</td></tr>
+                  <tr><td>3</td><td>Anti-Ronco e Apneia Relax Coluna Cervical Cinza Escuro</td><td>R$112.301</td><td>531</td><td>R$211</td><td>5,6%</td></tr>
+                  <tr><td>4</td><td>Travesseiro NASA Viscoelástico Ortopédico Cervical</td><td>R$105.647</td><td>469</td><td>R$225</td><td>5,3%</td></tr>
+                  <tr><td>5</td><td>Anti-Ronco e Apneia Relax Coluna Cervical Cinza Claro</td><td>R$94.192</td><td>465</td><td>R$203</td><td>4,7%</td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:12px;font-size:12px;color:#555;"><b>Análise:</b> Nicho de saúde do sono — anti-ronco e apneia. Ticket consistente R$192–225. R$2M com zero concorrência da Orthocrin nesse sub-segmento.</div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 12: DAUNE -->
+          <tr class="seller-row" onclick="toggleDetail('s12')">
+            <td><span class="expand-icon" id="icon-s12">▶</span></td>
+            <td><span class="rank-badge">12</span></td>
+            <td><b>DAUNE</b> <small style="color:#999">1034552318</small></td>
+            <td>R$1.933.154</td><td>10.514</td><td>R$184</td>
+            <td><span class="tag tag-yellow">100% Pena de Ganso</span> <span class="tag tag-yellow">100% Pluma de Ganso</span> <span class="tag tag-yellow">King</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s12"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Kit 2 Daune 100% Pena de Ganso Antialérgico 70x50</td><td>R$521.325</td><td>3.065</td><td>R$170</td><td>27%</td></tr>
+                  <tr><td>2</td><td>Kit 2 Daune 50% Pena + 50% Pluma de Ganso 50x70 Hipoalergênico</td><td>R$232.365</td><td>664</td><td>R$350</td><td>12%</td></tr>
+                  <tr><td>3</td><td>Kit 2 Daune 100% Pluma de Ganso Antialérgico 50x70</td><td>R$173.548</td><td>246</td><td>R$705</td><td>9%</td></tr>
+                  <tr><td>4</td><td>Daune 100% Plumas de Ganso 50x90 King</td><td>R$141.193</td><td>251</td><td>R$563</td><td>7,3%</td></tr>
+                  <tr><td>5</td><td>Travesseiros Daune 100% Pena de Ganso 50x70</td><td>R$125.137</td><td>1.506</td><td>R$83</td><td>6,5%</td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:12px;font-size:12px;color:#555;"><b>Análise:</b> Ticket mais alto da categoria — kit de 100% pluma chega a R$705. Segmento natural/luxo completamente fora do alcance da Orthocrin.</div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 13 -->
+          <tr class="seller-row" onclick="toggleDetail('s13')">
+            <td><span class="expand-icon" id="icon-s13">▶</span></td>
+            <td><span class="rank-badge">13</span></td>
+            <td><b>—</b> <small style="color:#999">440197672</small></td>
+            <td>R$1.840.206</td><td>34.050</td><td>R$54</td>
+            <td><span class="tag tag-blue">Fibra Matelada</span> <span class="tag tag-gray">Regulável</span> <span class="tag tag-blue">Volume Baixo Custo</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s13"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Kit 2 Luxo Matelado Fibra Antialérgica 70x50</td><td>R$951.433</td><td>16.158</td><td>R$59</td><td>51,7%</td></tr>
+                  <tr><td>2</td><td>Travesseiro Luxo Matelado Fibra 70x50</td><td>R$153.811</td><td>4.584</td><td>R$34</td><td>8,4%</td></tr>
+                  <tr><td>3</td><td>Kit 4 Select Premium Luxo Fibra Antialérgica</td><td>R$145.128</td><td>1.097</td><td>R$132</td><td>7,9%</td></tr>
+                  <tr><td>4</td><td>Kit 2 Fronha Travesseiro de Corpo/Xuxão 130x40</td><td>R$111.049</td><td>3.677</td><td>R$30</td><td>6%</td></tr>
+                  <tr><td>5</td><td>Kit 2 Travesseiro Regulável Super Macio Fibra Antialérgica</td><td>R$63.108</td><td>1.176</td><td>R$54</td><td>3,4%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 14: NASA-X -->
+          <tr class="seller-row" onclick="toggleDetail('s14')">
+            <td><span class="expand-icon" id="icon-s14">▶</span></td>
+            <td><span class="rank-badge">14</span></td>
+            <td><b>NASA-X</b> <small style="color:#999">66303643</small></td>
+            <td>R$1.823.943</td><td>11.968</td><td>R$152</td>
+            <td><span class="tag tag-green">NASA-X Especialista</span> <span class="tag tag-green">3D · Múltiplas Alturas</span> <span class="tag tag-green">Kits 2/4</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s14"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Kit 2 NASA-X Original Viscoelástico 40x60x16cm — Alívio Dores</td><td>R$441.708</td><td>3.066</td><td>R$144</td><td>24,2%</td></tr>
+                  <tr><td>2</td><td>Kit 4 NASA-X Original Viscoelástico Alívio Dores 40x60x16</td><td>R$263.366</td><td>973</td><td>R$271</td><td>14,4%</td></tr>
+                  <tr><td>3</td><td>Kit 2 NASA Original Viscoelástico Suporte Coluna 40x60x13</td><td>R$200.149</td><td>1.635</td><td>R$122</td><td>11%</td></tr>
+                  <tr><td>4</td><td>Kit 4 NASA-X Original Viscoelástico 38x58x10</td><td>R$164.913</td><td>863</td><td>R$191</td><td>9%</td></tr>
+                  <tr><td>5</td><td>Kit 2 NASA-X 3D Original Viscoelástico 40x60x13</td><td>R$102.749</td><td>866</td><td>R$119</td><td>5,6%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 15: ALTENBURG -->
+          <tr class="seller-row" onclick="toggleDetail('s15')">
+            <td><span class="expand-icon" id="icon-s15">▶</span></td>
+            <td><span class="rank-badge">15</span></td>
+            <td><b>ALTENBURG</b> <small style="color:#999">184496876</small></td>
+            <td>R$1.815.988</td><td>15.714</td><td>R$116</td>
+            <td><span class="tag tag-gray">Fios de Carbono</span> <span class="tag tag-gray">Antistress</span> <span class="tag tag-yellow">Toque de Plumas</span> <span class="tag tag-gray">Percal Firme</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s15"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Kit 2 Extra Firme Percal Altenburg 50x70</td><td>R$211.682</td><td>1.639</td><td>R$129</td><td>11,7%</td></tr>
+                  <tr><td>2</td><td>Kit 2 Extra Firme Percal Altenburg</td><td>R$191.939</td><td>1.491</td><td>R$129</td><td>10,6%</td></tr>
+                  <tr><td>3</td><td><b>Kit 2 Antistress Fios de Carbono Altenburg</b></td><td>R$185.855</td><td>1.145</td><td>R$162</td><td>10,2%</td></tr>
+                  <tr><td>4</td><td>Kit 2 Plumi Gold Toque Plumas 180 Fios</td><td>R$121.252</td><td>526</td><td>R$230</td><td>6,7%</td></tr>
+                  <tr><td>5</td><td>Altenburg Antistress Tech 50x70</td><td>R$100.996</td><td>1.344</td><td>R$75</td><td>5,6%</td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:12px;font-size:12px;color:#555;"><b>Análise:</b> Única marca com fios de carbono no portfólio — diferencial técnico único entre os top 20. Marca estabelecida facilita percepção de qualidade.</div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 16: DUOFLEX -->
+          <tr class="seller-row" onclick="toggleDetail('s16')">
+            <td><span class="expand-icon" id="icon-s16">▶</span></td>
+            <td><span class="rank-badge">16</span></td>
+            <td><b>DUOFLEX</b> <small style="color:#999">611938834</small></td>
+            <td>R$1.696.690</td><td>10.942</td><td>R$155</td>
+            <td><span class="tag tag-green">NASA Macio Térmico</span> <span class="tag tag-green">NASA Viscoelástico</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s16"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Duoflex NASA Macio Térmico Travesseiro Inteligente 58x40x10cm — Kit 2</td><td>R$229.237</td><td>1.469</td><td>R$156</td><td>13,5%</td></tr>
+                  <tr><td>2</td><td>Duoflex NASA Alto Viscoelástico Confort 40x60</td><td>R$201.457</td><td>1.905</td><td>R$106</td><td>11,9%</td></tr>
+                  <tr><td>3</td><td>Duoflex NASA Alto X Viscoelástico 50x70</td><td>R$149.345</td><td>1.393</td><td>R$107</td><td>8,8%</td></tr>
+                  <tr><td>4</td><td>Kit 2 NASA-X Viscoelástico Anti-ácaro Duoflex</td><td>R$100.740</td><td>660</td><td>R$153</td><td>5,9%</td></tr>
+                  <tr><td>5</td><td>Kit 2 NASA-X Alto 13cm Viscoelástico Duoflex</td><td>R$81.018</td><td>409</td><td>R$198</td><td>4,8%</td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:12px;font-size:12px;color:#555;"><b>Análise:</b> Destaque para o <b>Travesseiro Térmico Inteligente</b> — regulação de temperatura é o diferencial único aqui dentro da linha Duoflex.</div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 17 -->
+          <tr class="seller-row" onclick="toggleDetail('s17')">
+            <td><span class="expand-icon" id="icon-s17">▶</span></td>
+            <td><span class="rank-badge">17</span></td>
+            <td><b>—</b> <small style="color:#999">1085584531</small></td>
+            <td>R$1.672.878</td><td>19.657</td><td>R$85</td>
+            <td><span class="tag tag-green">NASA Popular Barato</span> <span class="tag tag-green">Extra Alto 17cm</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s17"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Travesseiro NASA Viscoelástico Confortável Extra Alto 17cm</td><td>R$217.204</td><td>2.924</td><td>R$74</td><td>13%</td></tr>
+                  <tr><td>2</td><td>Travesseiro NASA Viscoelástico Cervical Anatômico Ortopédico</td><td>R$212.761</td><td>3.051</td><td>R$70</td><td>12,7%</td></tr>
+                  <tr><td>3</td><td>Travesseiro NASA Viscoelástico Confortável Alto 14cm</td><td>R$160.524</td><td>2.472</td><td>R$65</td><td>9,6%</td></tr>
+                  <tr><td>4</td><td>Travesseiro NASA Viscoelástico Confortável Alto 13cm</td><td>R$139.678</td><td>2.154</td><td>R$65</td><td>8,3%</td></tr>
+                  <tr><td>5</td><td>Kit 2 Travesseiros NASA Viscoelástico Alto 13cm</td><td>R$106.151</td><td>733</td><td>R$145</td><td>6,3%</td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:12px;font-size:12px;color:#555;"><b>Análise:</b> NASA popular com ticket R$65–74 — 2x mais barato que Orthocrin. Compete por volume no mesmo segmento adulto visco.</div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 18: FALSO POSITIVO -->
+          <tr class="seller-row fp-row" onclick="toggleDetail('s18')">
+            <td><span class="expand-icon" id="icon-s18">▶</span></td>
+            <td><span class="rank-badge">18</span></td>
+            <td><b>TEMIMA</b> <small style="color:#999">480923446</small> <span class="fp-tag">FALSO POSITIVO</span></td>
+            <td>R$1.615.029</td><td>20.976</td><td>R$77</td>
+            <td><span class="tag tag-red">Capas Protetoras Impermeáveis para Travesseiro</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s18"><td colspan="7">
+            <div class="detail-inner">
+              <div class="alert alert-yellow"><span>⚠️</span><span>Produto real: <b>Capas protetoras impermeáveis</b> para travesseiro (marca TEMIMA). Complemento do travesseiro, não o produto em si.</span></div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 19: COLUNA RELAX -->
+          <tr class="seller-row" onclick="toggleDetail('s19')">
+            <td><span class="expand-icon" id="icon-s19">▶</span></td>
+            <td><span class="rank-badge">19</span></td>
+            <td><b>COLUNA RELAX</b> <small style="color:#999">1453624811</small></td>
+            <td>R$1.561.025</td><td>7.729</td><td>R$202</td>
+            <td><span class="tag tag-gray">Carvão Ativado</span> <span class="tag tag-green">Cervical NASA</span> <span class="tag tag-gray">1 SKU Hero</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s19"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td><b>Travesseiro Cervical NASA — Carvão Ativado (Coluna Relax)</b></td><td>R$1.510.379</td><td>7.394</td><td>R$204</td><td>96,8%</td></tr>
+                  <tr><td>2</td><td>Travesseiro de Joelho — Coluna Relax — Tecnologia NASA</td><td>R$40.775</td><td>292</td><td>R$140</td><td>2,6%</td></tr>
+                  <tr><td>3</td><td>Travesseiro Cervical NASA — Carvão Ativado (variante)</td><td>R$7.828</td><td>37</td><td>R$212</td><td>0,5%</td></tr>
+                </tbody>
+              </table>
+              <div style="margin-top:12px;font-size:12px;color:#555;"><b>Análise:</b> R$1,5M com <b>um único SKU</b> (96,8% do GMV). Prova de que um produto hero bem posicionado no nicho certo supera portfólios de 74 SKUs.</div>
+            </div>
+          </td></tr>
+
+          <!-- SELLER 20: LARIBABY -->
+          <tr class="seller-row" onclick="toggleDetail('s20')">
+            <td><span class="expand-icon" id="icon-s20">▶</span></td>
+            <td><span class="rank-badge">20</span></td>
+            <td><b>LARIBABY</b> <small style="color:#999">395963053</small></td>
+            <td>R$1.545.769</td><td>34.338</td><td>R$45</td>
+            <td><span class="tag tag-blue">Corpo/Xuxão Silicone</span> <span class="tag tag-blue">Fronha Inclusa</span> <span class="tag tag-blue">Gestante</span></td>
+          </tr>
+          <tr class="detail-row" id="detail-s20"><td colspan="7">
+            <div class="detail-inner">
+              <table>
+                <thead><tr><th>#</th><th>Produto</th><th>GMV</th><th>Unid.</th><th>Ticket</th><th>Share</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>Travesseiro de Corpo Laribaby Xuxão 1,35x0,40m 100% Silicone Antialérgico com Fronha Zíper</td><td>R$448.445</td><td>11.315</td><td>R$40</td><td>29%</td></tr>
+                  <tr><td>2</td><td>Travesseiro de Corpo Xuxão 135cm 100% Silicone Antialérgico Fronha Zíper Luxo Lavável</td><td>R$150.706</td><td>3.845</td><td>R$39</td><td>9,7%</td></tr>
+                  <tr><td>3</td><td>Kit 2 Travesseiros Fronha Zíper Matelados Impermeáveis</td><td>R$130.489</td><td>2.235</td><td>R$58</td><td>8,4%</td></tr>
+                  <tr><td>4</td><td>Kit 2 Travesseiros 400 Fios Fronha Zíper Matelado Impermeável Premium</td><td>R$98.744</td><td>1.907</td><td>R$52</td><td>6,4%</td></tr>
+                  <tr><td>5</td><td>Kit 2 Travesseiros Matelados Impermeáveis com Fronha Zíper</td><td>R$88.977</td><td>1.470</td><td>R$61</td><td>5,8%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </td></tr>
+
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end portfolio -->
+
+
+<!-- ======================== ANÁLISE ORTHOCRIN ======================== -->
+<div id="orthocrin" class="section">
+
+  <div class="section-header">
+    <h2>Análise Estratégica — Orthocrin (560912973)</h2>
+    <p>Posição no mercado, gaps e prioridades de ação</p>
+  </div>
+
+  <!-- KPI ORTHOCRIN -->
+  <div class="kpi-grid">
+    <div class="kpi-card red">
+      <div class="kpi-label">Posição no Ranking</div>
+      <div class="kpi-value">#129</div>
+      <div class="kpi-sub">entre todos os sellers de travesseiro</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">GMV YTD 2026</div>
+      <div class="kpi-value">R$222K</div>
+      <div class="kpi-sub">janeiro – 16 julho</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Unidades Vendidas</div>
+      <div class="kpi-value">1.531</div>
+      <div class="kpi-sub">R$145 ticket médio</div>
+    </div>
+    <div class="kpi-card yellow">
+      <div class="kpi-label">Gap pro Top 20</div>
+      <div class="kpi-value">7x</div>
+      <div class="kpi-sub">R$1,5M vs R$222K</div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="kki-label" style="font-size:11px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">SKUs Ativos</div>
+      <div class="kpi-value">74</div>
+      <div class="kpi-sub">68% GMV nos top 10 SKUs</div>
+    </div>
+  </div>
+
+  <!-- PORTFÓLIO ORTHOCRIN -->
+  <div class="card">
+    <div class="card-header">
+      <h3>Portfólio Orthocrin — Desempenho por Linha (YTD 2026)</h3>
+    </div>
+    <div class="card-body" style="padding:0;">
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Linha</th>
+            <th>GMV (R$)</th>
+            <th>Share GMV</th>
+            <th>Unidades</th>
+            <th>Ticket Médio</th>
+            <th>Observação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag tag-blue">Infantil Visco (Meu Orthocrin)</span></td>
+            <td>R$65.817</td>
+            <td><div class="share-bar"><div class="share-fill" style="width:100%"></div></div> 29,7%</td>
+            <td>582</td>
+            <td>R$113</td>
+            <td>Motor de volume do portfólio — maior GMV absoluto</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-purple">Viscopillow Adulto</span></td>
+            <td>R$45.357</td>
+            <td><div class="share-bar"><div class="share-fill" style="width:69%"></div></div> 20,5%</td>
+            <td>193</td>
+            <td>R$235</td>
+            <td>Ticket mais alto da carteira — maior margem</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-green">NASA Visco Soft Adulto</span></td>
+            <td>R$38.484</td>
+            <td><div class="share-bar"><div class="share-fill green" style="width:58%"></div></div> 17,4%</td>
+            <td>242</td>
+            <td>R$159</td>
+            <td>Ticket 2x maior que HUG COMFORT (#5)</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-gray">Stillo Látex HR</span></td>
+            <td>R$22.154</td>
+            <td><div class="share-bar"><div class="share-fill" style="width:34%"></div></div> 10,0%</td>
+            <td>101</td>
+            <td>R$219</td>
+            <td>Espuma HR firme — sem concorrente direto no top 20</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-red">Antirrefluxo</span></td>
+            <td>R$18.358</td>
+            <td><div class="share-bar"><div class="share-fill" style="width:28%"></div></div> 8,3%</td>
+            <td>109</td>
+            <td>R$168</td>
+            <td>Adulto + Bebê — nicho próprio com boa cobertura</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-yellow">Bebê Látex</span></td>
+            <td>R$10.429</td>
+            <td><div class="share-bar"><div class="share-fill" style="width:16%"></div></div> 4,7%</td>
+            <td>93</td>
+            <td>R$112</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-blue">Fibra Siliconada</span></td>
+            <td>R$8.370</td>
+            <td><div class="share-bar"><div class="share-fill" style="width:13%"></div></div> 3,8%</td>
+            <td>103</td>
+            <td>R$81</td>
+            <td>Mercado dominado por sellers de volume — difícil competir</td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-blue">Gel FreshPillow</span></td>
+            <td>R$3.854</td>
+            <td><div class="share-bar"><div class="share-fill" style="width:6%"></div></div> 1,7%</td>
+            <td>23</td>
+            <td>R$168</td>
+            <td>Ticket alto (R$378 unitário) — sub-explorado</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAP ANÁLISE -->
+  <div class="card">
+    <div class="card-header">
+      <h3>Mapa de Gaps — Diferenciais do Mercado vs. Orthocrin</h3>
+    </div>
+    <div class="card-body" style="padding:0;">
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Diferencial</th>
+            <th>Orthocrin tem?</th>
+            <th>GMV de mercado</th>
+            <th>Quem explora</th>
+            <th>Ticket referência</th>
+            <th>Dificuldade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Kit 2/4/6 peças</b></td>
+            <td><span class="gap-no">✗ Não</span></td>
+            <td>+60% do volume top 20</td>
+            <td>#1 #2 #5 #7 #14</td>
+            <td>2x ticket unitário</td>
+            <td><span class="tag tag-green">Baixa — só precisa criar</span></td>
+          </tr>
+          <tr style="background:#FFFBEB;">
+            <td><b>Ajustável com zíper/flocos visco</b></td>
+            <td><span class="gap-no">✗ Não</span></td>
+            <td>~R$2M combinado</td>
+            <td>#4 SELECT · #6 I Wanna Sleep</td>
+            <td>R$76–333</td>
+            <td><span class="tag tag-yellow">Média — novo produto</span></td>
+          </tr>
+          <tr>
+            <td><b>Anti-ronco e apneia</b></td>
+            <td><span class="gap-no">✗ Não</span></td>
+            <td>~R$2M nicho exclusivo</td>
+            <td>#11 RELAX COLUNA</td>
+            <td>R$210</td>
+            <td><span class="tag tag-yellow">Média — novo produto</span></td>
+          </tr>
+          <tr>
+            <td><b>Carvão ativado</b></td>
+            <td><span class="gap-no">✗ Não</span></td>
+            <td>~R$2,6M combinado</td>
+            <td>#6 · #19 COLUNA RELAX</td>
+            <td>R$202–204</td>
+            <td><span class="tag tag-yellow">Média</span></td>
+          </tr>
+          <tr>
+            <td><b>Impermeável lavável</b></td>
+            <td><span class="gap-no">✗ Não</span></td>
+            <td>~R$7M+</td>
+            <td>#1 OAKTEX · #2</td>
+            <td>R$63–120</td>
+            <td><span class="tag tag-red">Alta — escala de volume</span></td>
+          </tr>
+          <tr>
+            <td><b>Cervical premium bem posicionado</b></td>
+            <td><span class="gap-weak">~ Fraco</span></td>
+            <td>~R$5M+</td>
+            <td>#6 #9 #11 #19</td>
+            <td>R$160–458</td>
+            <td><span class="tag tag-yellow">Média — tem produto, falta posicionamento</span></td>
+          </tr>
+          <tr>
+            <td><b>NASA viscoelástico adulto</b></td>
+            <td><span class="gap-yes">✓ Tem</span></td>
+            <td>~R$12M+ mercado total</td>
+            <td>#5 #7 #14 #16 #17</td>
+            <td>R$65–199</td>
+            <td>Ticket mais alto, volume baixo</td>
+          </tr>
+          <tr>
+            <td><b>Infantil/Bebê visco</b></td>
+            <td><span class="gap-yes">✓ Forte</span></td>
+            <td>Orthocrin lidera nesse sub</td>
+            <td>Orthocrin domina</td>
+            <td>R$113</td>
+            <td>Manter e escalar</td>
+          </tr>
+          <tr>
+            <td><b>Toque de pluma de ganso</b></td>
+            <td><span class="gap-no">✗ Não</span></td>
+            <td>~R$4M+</td>
+            <td>#1 #4</td>
+            <td>R$62–135</td>
+            <td><span class="tag tag-red">Alta — custo de produção</span></td>
+          </tr>
+          <tr>
+            <td><b>Pena/Pluma de ganso natural</b></td>
+            <td><span class="gap-no">✗ Não</span></td>
+            <td>~R$1,9M</td>
+            <td>#12 DAUNE</td>
+            <td>R$170–705</td>
+            <td><span class="tag tag-red">Alta — segmento diferente</span></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIORIDADES -->
+  <div class="section-header" style="margin-top:8px;">
+    <h2>Prioridades de Ação para Subir no Ranking</h2>
+  </div>
+
+  <div class="priority-grid">
+    <div class="priority-card p1">
+      <div class="priority-label">Prioridade 1 — Imediato</div>
+      <div class="priority-title">Criar Kits 2 e 4 nas linhas NASA e Viscopillow</div>
+      <div class="priority-desc">Todos os sellers acima de R$1,5M usam bundles como carro-chefe. Não requer novo produto — só nova listagem. Kit 2 NASA médio (~R$315) e Kit 2 Viscopillow Alto (~R$480) podem dobrar o GMV em volume sem alterar o preço unitário.</div>
+      <div class="priority-ref">Referência: #7 DUOFLEX Kit 2 → R$632K · #5 HUG Kit 2 → R$584K</div>
+    </div>
+    <div class="priority-card p2">
+      <div class="priority-label">Prioridade 2 — Curto Prazo</div>
+      <div class="priority-title">Lançar linha ajustável com enchimento e zíper</div>
+      <div class="priority-desc">Travesseiro com flocos de visco ou fibra regulável via zíper — o produto que o usuário mencionou. Seller #4 (SELECT) faz R$1,2M com esse diferencial. Seller #6 chega a R$333 unitário. Gap direto da Orthocrin com tecnologia acessível.</div>
+      <div class="priority-ref">Referência: SELECT ajustável zíper → R$1,2M · I Wanna Sleep Snow → R$761K</div>
+    </div>
+    <div class="priority-card p3">
+      <div class="priority-label">Prioridade 3 — Médio Prazo</div>
+      <div class="priority-title">Posicionar Viscopillow Anatômico como cervical premium</div>
+      <div class="priority-desc">Orthocrin já tem o produto (R$241 ticket, apoio cervical). O problema é posicionamento — não aparece no contexto de "dores, pescoço, coluna". Sellers #11 e #19 faturam R$3,5M com esse posicionamento. Mudar título e estratégia de palavras-chave.</div>
+      <div class="priority-ref">Referência: COLUNA RELAX 1 SKU → R$1,5M · RELAX COLUNA → R$640K</div>
+    </div>
+    <div class="priority-card p4">
+      <div class="priority-label">Prioridade 4 — Análise</div>
+      <div class="priority-title">Consolidar SKUs duplicados e escalar Gel FreshPillow</div>
+      <div class="priority-desc">74 SKUs com vários títulos quase idênticos prejudicam ranqueamento orgânico. Consolidar em menos itens com mais vendas por SKU melhora posição. Paralelamente, o FreshPillow Gel tem ticket de R$378 — o mais alto do portfólio adulto — com apenas 23 unidades vendidas. Testar aceleração via DXI ou Pandora.</div>
+      <div class="priority-ref">COLUNA RELAX: 6 SKUs → R$1,5M vs Orthocrin: 74 SKUs → R$222K</div>
+    </div>
+  </div>
+
+</div><!-- end orthocrin -->
+
+</div><!-- end .content -->
+
+<div class="footer">
+  Dados: meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB · ORD_STATUS = 'paid' · Período 01/01/2026 – 16/07/2026<br>
+  Gerado em 16/07/2026 · Alexandre A. Alencar — Analista MeLi Brasil
+</div>
+
+<script>
+  function showSection(id, tab) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    tab.classList.add('active');
+  }
+
+  function toggleDetail(id) {
+    const detail = document.getElementById('detail-' + id);
+    const icon = document.getElementById('icon-' + id);
+    const isOpen = detail.classList.contains('open');
+    detail.classList.toggle('open', !isOpen);
+    icon.classList.toggle('open', !isOpen);
+  }
+</script>
+</body>
+</html>
