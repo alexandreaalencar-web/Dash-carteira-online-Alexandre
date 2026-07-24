@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análise de Mercado — Conjuntos de Mesa de Jantar MLB 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --yellow: #FFE600;
+    --yellow-dark: #F0D800;
+    --blue: #2D3277;
+    --blue-light: #3D44A8;
+    --teal: #00A0DF;
+    --green: #00C07F;
+    --orange: #FF6B35;
+    --red: #E53935;
+    --gray-50: #F8F9FA;
+    --gray-100: #F1F3F5;
+    --gray-200: #E9ECEF;
+    --gray-400: #ADB5BD;
+    --gray-600: #6C757D;
+    --gray-800: #343A40;
+    --gray-900: #212529;
+    --white: #FFFFFF;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,.10);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,.12);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-900);
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--blue);
+    color: var(--white);
+    padding: 32px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    right: -60px; top: -60px;
+    width: 300px; height: 300px;
+    background: var(--yellow);
+    border-radius: 50%;
+    opacity: .08;
+  }
+  .header-tag {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--blue);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+    margin-bottom: 6px;
+  }
+  .header p {
+    color: rgba(255,255,255,.65);
+    font-size: 13px;
+  }
+  .header-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 20px;
+  }
+  .header-meta span {
+    font-size: 12px;
+    color: rgba(255,255,255,.55);
+  }
+  .header-meta strong { color: var(--yellow); font-weight: 600; }
+
+  /* LAYOUT */
+  .container { max-width: 1280px; margin: 0 auto; padding: 32px 48px; }
+
+  /* SECTION */
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gray-200);
+  }
+
+  /* KPI CARDS */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .kpi {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px 20px 16px;
+    box-shadow: var(--shadow-sm);
+    border-top: 3px solid var(--gray-200);
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi.accent-yellow { border-top-color: var(--yellow); }
+  .kpi.accent-blue { border-top-color: var(--blue); }
+  .kpi.accent-teal { border-top-color: var(--teal); }
+  .kpi.accent-green { border-top-color: var(--green); }
+  .kpi.accent-orange { border-top-color: var(--orange); }
+  .kpi-label { font-size: 11px; color: var(--gray-400); font-weight: 600; text-transform: uppercase; letter-spacing: .8px; }
+  .kpi-value { font-size: 24px; font-weight: 800; margin: 6px 0 2px; color: var(--gray-900); letter-spacing: -1px; }
+  .kpi-sub { font-size: 11px; color: var(--gray-600); }
+  .kpi-badge {
+    position: absolute; top: 14px; right: 14px;
+    background: var(--gray-100);
+    border-radius: 20px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gray-600);
+  }
+  .kpi-badge.up { background: #E6F9F2; color: var(--green); }
+  .kpi-badge.warn { background: #FFF3E0; color: var(--orange); }
+
+  /* CARDS GRID */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+  .grid-65-35 { display: grid; grid-template-columns: 65fr 35fr; gap: 20px; margin-bottom: 24px; }
+  .grid-35-65 { display: grid; grid-template-columns: 35fr 65fr; gap: 20px; margin-bottom: 24px; }
+
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow-sm);
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .icon {
+    width: 28px; height: 28px;
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .icon-blue { background: #EEF0FF; }
+  .icon-green { background: #E6F9F2; }
+  .icon-yellow { background: #FFFDE7; }
+  .icon-orange { background: #FFF3E0; }
+  .icon-teal { background: #E0F5FF; }
+  .icon-red { background: #FDEAEA; }
+
+  /* CHART WRAPPER */
+  .chart-wrapper { position: relative; }
+
+  /* TABLE */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .data-table th {
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .data-table td {
+    padding: 10px 10px;
+    border-bottom: 1px solid var(--gray-100);
+    color: var(--gray-800);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--gray-50); }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .badge-blue { background: #EEF0FF; color: var(--blue); }
+  .badge-green { background: #E6F9F2; color: var(--green); }
+  .badge-yellow { background: #FFFDE7; color: #B8A000; }
+  .badge-orange { background: #FFF3E0; color: var(--orange); }
+  .badge-red { background: #FDEAEA; color: var(--red); }
+  .badge-gray { background: var(--gray-100); color: var(--gray-600); }
+
+  .num { font-weight: 700; }
+  .num-green { color: var(--green); font-weight: 700; }
+  .num-blue { color: var(--blue); font-weight: 700; }
+  .num-orange { color: var(--orange); font-weight: 700; }
+  .num-red { color: var(--red); font-weight: 700; }
+  .num-teal { color: var(--teal); font-weight: 700; }
+
+  /* HIGHLIGHT ROW */
+  .row-highlight td { background: #FFFDE7 !important; }
+  .row-seller td { background: #EEF0FF !important; }
+
+  /* PROGRESS BAR */
+  .progress-wrap { display: flex; align-items: center; gap: 8px; }
+  .progress-bar { flex: 1; height: 6px; background: var(--gray-200); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 3px; }
+  .fill-blue { background: var(--blue); }
+  .fill-yellow { background: var(--yellow-dark); }
+  .fill-teal { background: var(--teal); }
+  .fill-green { background: var(--green); }
+  .fill-orange { background: var(--orange); }
+  .fill-gray { background: var(--gray-400); }
+  .progress-val { font-size: 11px; font-weight: 700; color: var(--gray-800); min-width: 36px; text-align: right; }
+
+  /* TICKET SEGMENT */
+  .ticket-grid { display: flex; flex-direction: column; gap: 10px; }
+  .ticket-row { display: flex; align-items: center; gap: 10px; }
+  .ticket-label { font-size: 11px; color: var(--gray-600); min-width: 90px; }
+  .ticket-bar { flex: 1; height: 20px; border-radius: 4px; display: flex; align-items: center; padding: 0 8px; font-size: 11px; font-weight: 700; color: var(--white); }
+
+  /* OPPORTUNITY CARDS */
+  .opp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .opp-card {
+    border-radius: var(--radius);
+    padding: 20px;
+    border: 1.5px solid var(--gray-200);
+    position: relative;
+    overflow: hidden;
+  }
+  .opp-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px;
+  }
+  .opp-card.opp-high::before { background: var(--green); }
+  .opp-card.opp-med::before { background: var(--teal); }
+  .opp-card.opp-low::before { background: var(--orange); }
+  .opp-priority {
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .opp-high .opp-priority { color: var(--green); }
+  .opp-med .opp-priority { color: var(--teal); }
+  .opp-low .opp-priority { color: var(--orange); }
+  .opp-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .opp-desc { font-size: 12px; color: var(--gray-600); margin-bottom: 10px; }
+  .opp-metric { font-size: 11px; color: var(--gray-400); }
+  .opp-metric strong { color: var(--gray-900); }
+
+  /* PLANO DE ACAO */
+  .plan-section { margin-bottom: 32px; }
+  .plan-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding: 16px 20px;
+    border-radius: var(--radius);
+  }
+  .plan-header.short { background: linear-gradient(135deg, #E6F9F2, #D0F5E8); border: 1px solid #A8EBD0; }
+  .plan-header.mid { background: linear-gradient(135deg, #EEF0FF, #E2E5FF); border: 1px solid #C5CAFF; }
+  .plan-header.long { background: linear-gradient(135deg, #FFF3E0, #FFE8C8); border: 1px solid #FFD09A; }
+  .plan-period {
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .short .plan-period { color: var(--green); }
+  .mid .plan-period { color: var(--blue); }
+  .long .plan-period { color: var(--orange); }
+  .plan-title { font-size: 16px; font-weight: 800; }
+  .short .plan-title { color: #006845; }
+  .mid .plan-title { color: var(--blue); }
+  .long .plan-title { color: #C04A00; }
+
+  .action-list { display: flex; flex-direction: column; gap: 10px; }
+  .action-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+  }
+  .action-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .short .action-num { background: var(--green); color: var(--white); }
+  .mid .action-num { background: var(--blue); color: var(--white); }
+  .long .action-num { background: var(--orange); color: var(--white); }
+  .action-content {}
+  .action-title { font-size: 13px; font-weight: 700; margin-bottom: 3px; }
+  .action-desc { font-size: 12px; color: var(--gray-600); }
+  .action-kpi {
+    margin-top: 6px;
+    display: inline-block;
+    background: var(--gray-100);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gray-600);
+  }
+  .short .action-kpi { background: #E6F9F2; color: var(--green); }
+  .mid .action-kpi { background: #EEF0FF; color: var(--blue); }
+  .long .action-kpi { background: #FFF3E0; color: var(--orange); }
+
+  /* INSIGHT BOX */
+  .insight-box {
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    border: 1.5px solid;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .insight-box.insight-blue { background: #EEF0FF; border-color: #C5CAFF; }
+  .insight-box.insight-green { background: #E6F9F2; border-color: #A8EBD0; }
+  .insight-box.insight-yellow { background: #FFFDE7; border-color: #FFF176; }
+  .insight-box.insight-orange { background: #FFF3E0; border-color: #FFD09A; }
+  .insight-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+  .insight-content {}
+  .insight-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .insight-blue .insight-title { color: var(--blue); }
+  .insight-green .insight-title { color: #006845; }
+  .insight-yellow .insight-title { color: #8A7000; }
+  .insight-orange .insight-title { color: #C04A00; }
+  .insight-text { font-size: 12px; color: var(--gray-700); line-height: 1.6; }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 24px 48px;
+    color: var(--gray-400);
+    font-size: 11px;
+    border-top: 1px solid var(--gray-200);
+    margin-top: 16px;
+  }
+
+  /* SELLER POSITION */
+  .seller-position {
+    background: linear-gradient(135deg, var(--blue), var(--blue-light));
+    color: var(--white);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+  }
+  .seller-rank {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--yellow);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .seller-rank-label { font-size: 11px; color: rgba(255,255,255,.5); margin-top: 2px; }
+  .seller-metrics { display: flex; gap: 24px; flex: 1; flex-wrap: wrap; }
+  .seller-metric {}
+  .seller-metric-val { font-size: 22px; font-weight: 800; letter-spacing: -.5px; }
+  .seller-metric-val.yellow { color: var(--yellow); }
+  .seller-metric-val.teal { color: var(--teal); }
+  .seller-metric-label { font-size: 11px; color: rgba(255,255,255,.5); }
+
+  /* COMPETITOR MAP */
+  .comp-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .comp-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .comp-name {
+    font-size: 11px;
+    color: var(--gray-600);
+    min-width: 100px;
+    font-weight: 600;
+  }
+  .comp-bar-wrap { flex: 1; }
+  .comp-fill {
+    height: 22px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--white);
+    min-width: 40px;
+  }
+  .comp-val { font-size: 11px; font-weight: 700; min-width: 60px; text-align: right; color: var(--gray-800); }
+  .comp-ticket { font-size: 10px; color: var(--gray-400); min-width: 60px; text-align: right; }
+
+  /* DIVIDER */
+  .divider { height: 1px; background: var(--gray-200); margin: 32px 0; }
+
+  /* TOP ITEMS */
+  .item-title-cell { max-width: 280px; }
+  .item-title-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+
+  /* GAP ANALYSIS */
+  .gap-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .gap-item {
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+    border: 1.5px dashed var(--gray-200);
+    background: var(--gray-50);
+  }
+  .gap-item.has { border-color: #A8EBD0; background: #F0FBF7; }
+  .gap-item.missing { border-color: #FFD09A; background: #FFF9F3; }
+  .gap-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .8px; margin-bottom: 4px; }
+  .has .gap-label { color: var(--green); }
+  .missing .gap-label { color: var(--orange); }
+  .gap-text { font-size: 12px; font-weight: 600; }
+  .gap-sub { font-size: 11px; color: var(--gray-600); margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-tag">Análise de Mercado · Inteligência MeLi</div>
+  <h1>Conjuntos de Mesa de Jantar · MLB 2026</h1>
+  <p>Análise de Mercado + Oportunidades para Moderna Mobília</p>
+  <div class="header-meta">
+    <span>Período: <strong>Jan–Jul 2026</strong></span>
+    <span>Domínio: <strong>MLB-DINING_KITS</strong></span>
+    <span>Fonte: <strong>DM_EFICIENCIA_MLB · meli-bi-data</strong></span>
+    <span>Data de extração: <strong>24/07/2026</strong></span>
+  </div>
+</div>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div class="container">
+
+  <!-- 1. KPIs MERCADO -->
+  <div class="section-title">Visão Geral do Mercado — Jan a Jul 2026</div>
+  <div class="kpi-grid">
+    <div class="kpi accent-yellow">
+      <div class="kpi-label">GMV Total Mercado</div>
+      <div class="kpi-value">R$ 111M</div>
+      <div class="kpi-sub">Jan–Jul 2026 · DINING KITS</div>
+    </div>
+    <div class="kpi accent-blue">
+      <div class="kpi-label">Pedidos</div>
+      <div class="kpi-value">131,5K</div>
+      <div class="kpi-sub">Pedidos pagos no período</div>
+    </div>
+    <div class="kpi accent-teal">
+      <div class="kpi-label">Ticket Médio Mercado</div>
+      <div class="kpi-value">R$ 821</div>
+      <div class="kpi-sub">Por unidade vendida</div>
+    </div>
+    <div class="kpi accent-green">
+      <div class="kpi-label">Pico de GMV</div>
+      <div class="kpi-value">R$ 18,8M</div>
+      <div class="kpi-sub">Maio 2026 — maior mês</div>
+    </div>
+    <div class="kpi accent-orange">
+      <div class="kpi-label">Sellers Ativos</div>
+      <div class="kpi-value">Top 15</div>
+      <div class="kpi-sub">Respondem por ~70% do GMV</div>
+    </div>
+  </div>
+
+  <!-- 2. EVOLUÇÃO MENSAL + TICKET -->
+  <div class="grid-65-35">
+    <div class="card">
+      <div class="card-title"><span class="icon icon-blue">📈</span>Evolução Mensal — GMV e Ticket Médio</div>
+      <div class="chart-wrapper" style="height:220px;">
+        <canvas id="chartMensal"></canvas>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon icon-yellow">💰</span>Distribuição por Faixa de Ticket</div>
+      <div class="ticket-grid" style="margin-top: 4px;">
+        <div class="ticket-row">
+          <div class="ticket-label">Até R$ 500</div>
+          <div style="flex:1">
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill fill-gray" style="width:29%"></div></div>
+              <div class="progress-val">29%</div>
+            </div>
+            <div style="font-size:10px;color:var(--gray-400);margin-top:2px">36.8K pedidos · R$ 15,7M GMV</div>
+          </div>
+        </div>
+        <div class="ticket-row">
+          <div class="ticket-label">R$ 500–800</div>
+          <div style="flex:1">
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill fill-teal" style="width:33%"></div></div>
+              <div class="progress-val">33%</div>
+            </div>
+            <div style="font-size:10px;color:var(--gray-400);margin-top:2px">43.8K pedidos · R$ 28,9M GMV</div>
+          </div>
+        </div>
+        <div class="ticket-row">
+          <div class="ticket-label">R$ 800–1.200</div>
+          <div style="flex:1">
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill fill-blue" style="width:23%"></div></div>
+              <div class="progress-val">23%</div>
+            </div>
+            <div style="font-size:10px;color:var(--gray-400);margin-top:2px">30.1K pedidos · R$ 29,3M GMV</div>
+          </div>
+        </div>
+        <div class="ticket-row">
+          <div class="ticket-label">R$ 1.200–1.800</div>
+          <div style="flex:1">
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill fill-blue" style="width:11%"></div></div>
+              <div class="progress-val">11%</div>
+            </div>
+            <div style="font-size:10px;color:var(--gray-400);margin-top:2px">14.4K pedidos · R$ 20,8M GMV</div>
+          </div>
+        </div>
+        <div class="ticket-row">
+          <div class="ticket-label">R$ 1.800–2.500</div>
+          <div style="flex:1">
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill fill-orange" style="width:4%"></div></div>
+              <div class="progress-val">4%</div>
+            </div>
+            <div style="font-size:10px;color:var(--gray-400);margin-top:2px">4.6K pedidos · R$ 9,6M GMV</div>
+          </div>
+        </div>
+        <div class="ticket-row">
+          <div class="ticket-label">Acima R$ 2.500</div>
+          <div style="flex:1">
+            <div class="progress-wrap">
+              <div class="progress-bar"><div class="progress-fill fill-orange" style="width:1%"></div></div>
+              <div class="progress-val">1%</div>
+            </div>
+            <div style="font-size:10px;color:var(--gray-400);margin-top:2px">1.7K pedidos · R$ 6,9M GMV</div>
+          </div>
+        </div>
+      </div>
+      <div class="insight-box insight-yellow" style="margin-top:14px; margin-bottom:0; padding: 12px 14px;">
+        <div class="insight-icon">💡</div>
+        <div class="insight-text" style="font-size:11px;">Segmento R$1.200+ representa apenas <strong>16% dos pedidos</strong> mas gera <strong>34% do GMV total</strong>. Alta oportunidade com baixa concorrência de volume.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. ANÁLISE DE CARACTERÍSTICAS DO MERCADO -->
+  <div class="section-title">Anatomia do Mercado — Características dos Produtos</div>
+
+  <div class="grid-3">
+    <!-- Nº Cadeiras -->
+    <div class="card">
+      <div class="card-title"><span class="icon icon-teal">🪑</span>Por Nº de Cadeiras</div>
+      <div class="chart-wrapper" style="height:240px;">
+        <canvas id="chartCadeiras"></canvas>
+      </div>
+      <div style="margin-top:12px;">
+        <table class="data-table">
+          <tr><th>Config.</th><th>Pedidos</th><th>GMV</th><th>Ticket</th></tr>
+          <tr><td>4 cadeiras</td><td>67.2K</td><td class="num">R$ 53.4M</td><td class="num-blue">R$ 772</td></tr>
+          <tr><td>6 cadeiras</td><td>26.5K</td><td class="num">R$ 31.5M</td><td class="num-blue">R$ 1.165</td></tr>
+          <tr><td>Outros</td><td>36.0K</td><td class="num">R$ 23.0M</td><td>R$ 591</td></tr>
+          <tr><td>8 cadeiras</td><td>1.8K</td><td class="num">R$ 3.4M</td><td class="num-orange">R$ 1.980</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tamanho / Formato -->
+    <div class="card">
+      <div class="card-title"><span class="icon icon-green">📐</span>Por Tamanho da Mesa</div>
+      <div class="chart-wrapper" style="height:180px;">
+        <canvas id="chartTamanho"></canvas>
+      </div>
+      <div style="margin-top:12px;">
+        <table class="data-table">
+          <tr><th>Tamanho</th><th>GMV</th><th>Ticket</th><th>Detalhe</th></tr>
+          <tr><td>Não informado</td><td class="num">R$ 95M</td><td>R$ 816</td><td><span class="badge badge-gray">gap título</span></td></tr>
+          <tr><td>120 cm</td><td class="num">R$ 9.0M</td><td>R$ 826</td><td><span class="badge badge-gray">4 lugares</span></td></tr>
+          <tr><td>160 cm</td><td class="num">R$ 3.0M</td><td>R$ 1.388</td><td><span class="badge badge-blue">6 lugares</span></td></tr>
+          <tr><td>180 cm</td><td class="num">R$ 2.1M</td><td class="num-orange">R$ 1.567</td><td><span class="badge badge-orange">6 lugares</span></td></tr>
+          <tr><td>200 cm+</td><td class="num">R$ 1.6M</td><td class="num-red">R$ 2.287</td><td><span class="badge badge-red">8 lugares</span></td></tr>
+          <tr><td>140 cm</td><td class="num">R$ 0.5M</td><td>R$ 854</td><td><span class="badge badge-gray">4–6 lugares</span></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Material / Tampo -->
+    <div class="card">
+      <div class="card-title"><span class="icon icon-orange">🪵</span>Por Material do Tampo</div>
+      <div class="chart-wrapper" style="height:240px;">
+        <canvas id="chartMaterial"></canvas>
+      </div>
+      <div style="margin-top:12px;">
+        <table class="data-table">
+          <tr><th>Material</th><th>GMV</th><th>% Mkt</th><th>Ticket</th></tr>
+          <tr><td>Outros/MDF</td><td class="num">R$ 69.6M</td><td><span class="badge badge-gray">63%</span></td><td>R$ 650</td></tr>
+          <tr><td>MDF + Vidro</td><td class="num">R$ 35.6M</td><td><span class="badge badge-teal">32%</span></td><td class="num-blue">R$ 1.045</td></tr>
+          <tr><td><strong>Madeira Maciça</strong></td><td><strong>R$ 6.1M</strong></td><td><span class="badge badge-orange">5,5%</span></td><td class="num-orange">R$ 522*</td></tr>
+        </table>
+        <div style="font-size:10px;color:var(--gray-400);margin-top:8px;">*Ticket baixo puxado por bistrôs e mesas pequenas. Premium madeira maciça chega a R$ 6.890.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSIGHT MADEIRA MACIÇA -->
+  <div class="insight-box insight-orange">
+    <div class="insight-icon">🌳</div>
+    <div class="insight-content">
+      <div class="insight-title">Madeira Maciça Premium — Mercado Subexplorado e Altamente Lucrativo</div>
+      <div class="insight-text">
+        Conjuntos em madeira maciça com ticket acima de R$ 1.200 representam apenas <strong>~15 sellers</strong> ativos com itens de alto valor (R$ 1.200 a R$ 6.890 por conjunto). O dominante (<strong>Vitalline Móveis</strong>) vende conjuntos a <strong>R$ 4.438–R$ 6.675</strong> com 3 a 34 pedidos por item — volume menor, mas GMV expressivo. A <strong>Moderna Mobília</strong>, com linha de madeira maciça de qualidade, tem <strong>vantagem competitiva real</strong> para capturar esse segmento. Apenas 3 sellers competem de forma consistente nessa faixa.
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. POSIÇÃO COMPETITIVA DO SELLER -->
+  <div class="section-title">Posição Competitiva — Moderna Mobília</div>
+
+  <div class="seller-position">
+    <div>
+      <div class="seller-rank">#4</div>
+      <div class="seller-rank-label">Rank DINING KITS</div>
+    </div>
+    <div class="seller-metrics">
+      <div class="seller-metric">
+        <div class="seller-metric-val yellow">R$ 3,79M</div>
+        <div class="seller-metric-label">GMV Jan–Jul 2026</div>
+      </div>
+      <div class="seller-metric">
+        <div class="seller-metric-val teal">R$ 1.615</div>
+        <div class="seller-metric-label">Ticket médio (2x mercado)</div>
+      </div>
+      <div class="seller-metric">
+        <div class="seller-metric-val">2.340</div>
+        <div class="seller-metric-label">Pedidos pagos</div>
+      </div>
+      <div class="seller-metric">
+        <div class="seller-metric-val">3,4%</div>
+        <div class="seller-metric-label">Share de GMV</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mapa competitivo -->
+  <div class="grid-65-35">
+    <div class="card">
+      <div class="card-title"><span class="icon icon-blue">🏆</span>Ranking de Sellers — DINING KITS (Jan–Jul 2026)</div>
+      <div class="comp-bar">
+        <div class="comp-row">
+          <div class="comp-name">Vitalline Móveis</div>
+          <div class="comp-bar-wrap"><div class="comp-fill" style="width:100%;background:#2D3277;">R$ 24,7M</div></div>
+          <div class="comp-val num-blue">R$ 24,7M</div>
+          <div class="comp-ticket">Ticket R$ 1.341</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-name">Arte &amp; Casa</div>
+          <div class="comp-bar-wrap"><div class="comp-fill" style="width:84%;background:#5C6BC0;">R$ 20,8M</div></div>
+          <div class="comp-val">R$ 20,8M</div>
+          <div class="comp-ticket">Ticket R$ 738</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-name">Nobile Home</div>
+          <div class="comp-bar-wrap"><div class="comp-fill" style="width:24%;background:#7986CB;">R$ 5,9M</div></div>
+          <div class="comp-val">R$ 5,9M</div>
+          <div class="comp-ticket">Ticket R$ 1.051</div>
+        </div>
+        <div class="comp-row" style="background:#FFFDE7; border-radius:6px; padding: 2px 0;">
+          <div class="comp-name" style="font-weight:800;color:#B8A000;">✦ Moderna Mobília</div>
+          <div class="comp-bar-wrap"><div class="comp-fill" style="width:15%;background:#FFE600;color:#333;">R$ 3,8M</div></div>
+          <div class="comp-val num-orange">R$ 3,8M</div>
+          <div class="comp-ticket" style="color:#B8A000;font-weight:700;">Ticket R$ 1.615</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-name">CasaFácil</div>
+          <div class="comp-bar-wrap"><div class="comp-fill" style="width:15%;background:#90A4AE;"></div></div>
+          <div class="comp-val">R$ 3,7M</div>
+          <div class="comp-ticket">Ticket R$ 387</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-name">Gardênia Decor</div>
+          <div class="comp-bar-wrap"><div class="comp-fill" style="width:7%;background:#B0BEC5;"></div></div>
+          <div class="comp-val">R$ 1,8M</div>
+          <div class="comp-ticket">Ticket R$ 1.359</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-name">Reale Premium</div>
+          <div class="comp-bar-wrap"><div class="comp-fill" style="width:7%;background:#CFD8DC;"></div></div>
+          <div class="comp-val">R$ 1,6M</div>
+          <div class="comp-ticket" style="color:#E53935;font-weight:700;">Ticket R$ 1.724</div>
+        </div>
+      </div>
+      <div style="font-size:10px;color:var(--gray-400);margin-top:12px;">★ Moderna Mobília tem o maior ticket médio entre os top 4 sellers — excelente posicionamento premium.</div>
+    </div>
+
+    <!-- GMV por categoria do seller -->
+    <div class="card">
+      <div class="card-title"><span class="icon icon-green">📂</span>GMV do Seller por Categoria</div>
+      <div style="margin-top:8px;">
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <span style="font-size:12px;font-weight:600;">Conjuntos Mesa Jantar</span>
+            <span class="num-blue">R$ 3,79M</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill fill-blue" style="width:100%;height:8px;border-radius:4px;"></div></div>
+          <span style="font-size:10px;color:var(--gray-400);">MLB-DINING_KITS · 47% do total</span>
+        </div>
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <span style="font-size:12px;font-weight:600;">Guarda-Roupas / Closets</span>
+            <span class="num">R$ 3,14M</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill fill-gray" style="width:83%;height:8px;border-radius:4px;"></div></div>
+          <span style="font-size:10px;color:var(--gray-400);">MLB-WARDROBES · 39% do total</span>
+        </div>
+        <div style="margin-bottom:14px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <span style="font-size:12px;font-weight:600;">Mesas Avulsas</span>
+            <span class="num">R$ 1,19M</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill fill-teal" style="width:31%;height:8px;border-radius:4px;"></div></div>
+          <span style="font-size:10px;color:var(--gray-400);">MLB-DINING_AND_KITCHEN_TABLES · 15%</span>
+        </div>
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+            <span style="font-size:12px;font-weight:600;">Cadeiras e Outros</span>
+            <span class="num">R$ 144K</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill fill-orange" style="width:4%;height:8px;border-radius:4px;"></div></div>
+          <span style="font-size:10px;color:var(--gray-400);">Cadeiras, Aparadores, etc.</span>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding:12px;background:var(--gray-50);border-radius:8px;">
+        <div style="font-size:11px;font-weight:700;color:var(--gray-800);margin-bottom:4px;">Total GMV Seller 2026</div>
+        <div style="font-size:22px;font-weight:800;color:var(--blue);">R$ 8,07M</div>
+        <div style="font-size:10px;color:var(--gray-400);">Jan–Jul 2026 · Todas categorias</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP ITEMS DO SELLER -->
+  <div class="card" style="margin-bottom:24px;">
+    <div class="card-title"><span class="icon icon-yellow">⭐</span>Top Produtos — Moderna Mobília · 2026</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Produto</th>
+          <th>GMV</th>
+          <th>Unidades</th>
+          <th>Ticket Médio</th>
+          <th>Categoria</th>
+          <th>Material</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-highlight">
+          <td class="num">1</td>
+          <td class="item-title-cell"><div class="item-title-text">Mesa Alvorada 180 TP MDF Vidro Canto Reto 6 Cadeiras Rufato</div></td>
+          <td class="num-blue">R$ 1,29M</td>
+          <td>688</td>
+          <td class="num-orange">R$ 1.875</td>
+          <td><span class="badge badge-blue">DINING KITS</span></td>
+          <td><span class="badge badge-teal">MDF+Vidro</span></td>
+        </tr>
+        <tr>
+          <td class="num">2</td>
+          <td class="item-title-cell"><div class="item-title-text">Guarda Roupa Casal Toronto MDF 8 Portas Moderna Mobília</div></td>
+          <td class="num">R$ 456K</td>
+          <td>350</td>
+          <td>R$ 1.303</td>
+          <td><span class="badge badge-gray">WARDROBES</span></td>
+          <td><span class="badge badge-gray">MDF</span></td>
+        </tr>
+        <tr>
+          <td class="num">3</td>
+          <td class="item-title-cell"><div class="item-title-text">Mesa Aster 180 MDF + Vidro + 6 Cadeiras LIZ Moderna · Grafite/Imbuia</div></td>
+          <td class="num">R$ 446K</td>
+          <td>254</td>
+          <td class="num-orange">R$ 1.757</td>
+          <td><span class="badge badge-blue">DINING KITS</span></td>
+          <td><span class="badge badge-teal">MDF+Vidro</span></td>
+        </tr>
+        <tr>
+          <td class="num">4</td>
+          <td class="item-title-cell"><div class="item-title-text">Sala de Jantar Olímpia MDF + Vidro 4 Cadeiras Carol · Turim/Off White</div></td>
+          <td class="num">R$ 392K</td>
+          <td>318</td>
+          <td>R$ 1.232</td>
+          <td><span class="badge badge-blue">DINING KITS</span></td>
+          <td><span class="badge badge-teal">MDF+Vidro</span></td>
+        </tr>
+        <tr>
+          <td class="num">5</td>
+          <td class="item-title-cell"><div class="item-title-text">Mesa de Jantar 6 Lugares Retangular Rufato Alvorada Londrina — Vel. Capuccino</div></td>
+          <td class="num">R$ 296K</td>
+          <td>187</td>
+          <td class="num-orange">R$ 1.584</td>
+          <td><span class="badge badge-blue">DINING KITS</span></td>
+          <td><span class="badge badge-teal">MDF+Vidro</span></td>
+        </tr>
+        <tr>
+          <td class="num">6</td>
+          <td class="item-title-cell"><div class="item-title-text">Mesa Sala de Jantar LIZ 180CM MDF + Vidro Canto Copo · Off White/Imbuia</div></td>
+          <td class="num">R$ 171K</td>
+          <td>193</td>
+          <td>R$ 888</td>
+          <td><span class="badge badge-gray">TABLES</span></td>
+          <td><span class="badge badge-teal">MDF+Vidro</span></td>
+        </tr>
+        <tr>
+          <td class="num">7</td>
+          <td class="item-title-cell"><div class="item-title-text">Mesa Aster 180 MDF + 6 Cadeiras LIZ — Sem Vidro — Grafite/Imbuia</div></td>
+          <td class="num">R$ 151K</td>
+          <td>94</td>
+          <td class="num-orange">R$ 1.605</td>
+          <td><span class="badge badge-blue">DINING KITS</span></td>
+          <td><span class="badge badge-gray">MDF</span></td>
+        </tr>
+        <tr>
+          <td class="num">8</td>
+          <td class="item-title-cell"><div class="item-title-text">Conjunto Sala de Jantar 6 Cadeiras Kate Espresso Móveis</div></td>
+          <td class="num">R$ 92K</td>
+          <td>59</td>
+          <td class="num-orange">R$ 1.554</td>
+          <td><span class="badge badge-blue">DINING KITS</span></td>
+          <td><span class="badge badge-gray">MDF</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="insight-box insight-blue" style="margin-top:16px;margin-bottom:0;padding:12px 14px;">
+      <div class="insight-icon">🔍</div>
+      <div class="insight-text" style="font-size:11px;">O item <strong>Mesa Alvorada 180</strong> sozinho representa <strong>34% do GMV do seller em DINING KITS</strong>. Alta dependência de 1 SKU = risco de ruptura de mercado. Diversificação é crítica, especialmente na linha premium.</div>
+    </div>
+  </div>
+
+  <!-- 5. ANÁLISE DE GAPS -->
+  <div class="section-title">Análise de Gaps — Sortimento Atual vs. Mercado</div>
+
+  <div class="gap-grid" style="margin-bottom:24px;">
+    <div class="gap-item has">
+      <div class="gap-label">✓ Seller Possui</div>
+      <div class="gap-text">Mesa MDF+Vidro 180cm · 6 cadeiras</div>
+      <div class="gap-sub">Principal força — ticket R$ 1.600–1.900</div>
+    </div>
+    <div class="gap-item missing">
+      <div class="gap-label">✗ Gap Identificado</div>
+      <div class="gap-text">Mesa Madeira Maciça 160–180cm · 6 cadeiras</div>
+      <div class="gap-sub">Mercado: R$ 2.000–R$ 5.000 · poucos concorrentes</div>
+    </div>
+    <div class="gap-item has">
+      <div class="gap-label">✓ Seller Possui</div>
+      <div class="gap-text">Mesa MDF+Vidro 120cm · 4 cadeiras</div>
+      <div class="gap-sub">Olímpia 120 — ticket R$ 1.000–1.250</div>
+    </div>
+    <div class="gap-item missing">
+      <div class="gap-label">✗ Gap Identificado</div>
+      <div class="gap-text">Mesa Madeira Maciça 120cm Redonda · 4 cadeiras</div>
+      <div class="gap-sub">Mercado: ticket R$ 2.680 · apenas 1 seller ativo</div>
+    </div>
+    <div class="gap-item missing">
+      <div class="gap-label">✗ Gap Crítico</div>
+      <div class="gap-text">Conjunto 8 cadeiras · 200cm</div>
+      <div class="gap-sub">Ticket R$ 2.100–R$ 6.890 · seller ausente nesse formato</div>
+    </div>
+    <div class="gap-item missing">
+      <div class="gap-label">✗ Gap de Expansão</div>
+      <div class="gap-text">Cadeiras avulsas Madeira Maciça</div>
+      <div class="gap-sub">Apenas R$ 66K nessa categoria — cross-sell natural</div>
+    </div>
+    <div class="gap-item has">
+      <div class="gap-label">✓ Seller Possui</div>
+      <div class="gap-text">Portfólio de Madeira Maciça (qualidade premium)</div>
+      <div class="gap-sub">Vantagem competitiva real — ainda não explorada em DINING KITS</div>
+    </div>
+    <div class="gap-item missing">
+      <div class="gap-label">✗ Gap de Listing</div>
+      <div class="gap-text">Madeira Maciça sem presença em DINING KITS</div>
+      <div class="gap-sub">Nenhum item de madeira maciça detectado na categoria principal</div>
+    </div>
+  </div>
+
+  <!-- 6. OPORTUNIDADES -->
+  <div class="section-title">Oportunidades Prioritárias</div>
+
+  <div class="opp-grid" style="margin-bottom:24px;">
+    <div class="opp-card opp-high">
+      <div class="opp-priority">🔥 Alta Prioridade</div>
+      <div class="opp-title">Ativar linha Madeira Maciça em DINING KITS</div>
+      <div class="opp-desc">O seller tem a linha, o mercado tem demanda não atendida. Conjuntos madeira maciça premium (R$2.000–R$4.000) têm apenas 3 sellers ativos. Baixíssima concorrência para um produto de alta percepção de valor.</div>
+      <div class="opp-metric">Potencial estimado: <strong>R$ 600K–R$ 1,2M GMV/ano</strong> · Ticket alvo: <strong>R$ 2.500–R$ 3.800</strong></div>
+    </div>
+    <div class="opp-card opp-high">
+      <div class="opp-priority">🔥 Alta Prioridade</div>
+      <div class="opp-title">Conjunto 8 lugares — Madeira Maciça Premium</div>
+      <div class="opp-desc">A Moderna Mobília é ausente em produtos de 8 cadeiras. O mercado paga R$ 1.920 de ticket médio para 8 cadeiras com MDF — madeira maciça pode chegar a R$ 4.500–R$ 6.000. Vitalline Móveis fatura R$ 226K com 1 SKU nesse formato.</div>
+      <div class="opp-metric">Ticket referência mercado: <strong>R$ 4.438–R$ 6.675</strong> · volume baixo, GMV alto</div>
+    </div>
+    <div class="opp-card opp-med">
+      <div class="opp-priority">📈 Média Prioridade</div>
+      <div class="opp-title">Mesa Redonda Madeira Maciça · 4 lugares</div>
+      <div class="opp-desc">Formato diferenciado para apartamentos e decoração rústica/boho. Quase inexistente no mercado. 1 seller (<strong>Ateliê Casa</strong>) com ticket de R$ 2.680. A linha madeira maciça da Moderna Mobília pode suprir essa demanda com diferencial estético.</div>
+      <div class="opp-metric">Mercado a ser criado · Ticket potencial: <strong>R$ 2.200–R$ 3.200</strong></div>
+    </div>
+    <div class="opp-card opp-med">
+      <div class="opp-priority">📈 Média Prioridade</div>
+      <div class="opp-title">Otimização de Títulos — Incluir Tamanho em cm</div>
+      <div class="opp-desc">95% dos produtos do mercado NÃO informam o tamanho da mesa no título. Incluir "120cm", "160cm", "180cm" melhora busca e conversão — especialmente para quem busca por medida. Diferencial de SEO imediato sem custo.</div>
+      <div class="opp-metric">Ação low-cost · Impacto estimado: <strong>+8–15% conversão orgânica</strong></div>
+    </div>
+    <div class="opp-card opp-low">
+      <div class="opp-priority">⏳ Médio Prazo</div>
+      <div class="opp-title">Expansão: Cadeiras Avulsas Madeira Maciça</div>
+      <div class="opp-desc">Venda de cadeiras avulsas como complemento e reposição dos conjuntos. Seller tem apenas R$ 66K nessa categoria. Cadeiras de madeira maciça têm ticket R$ 400–R$ 800/unidade com demanda estável de reposição.</div>
+      <div class="opp-metric">Cross-sell natural · Ticket unitário: <strong>R$ 400–R$ 800</strong></div>
+    </div>
+    <div class="opp-card opp-low">
+      <div class="opp-priority">⏳ Médio Prazo</div>
+      <div class="opp-title">Diversificação: Reduzir Dependência de 1 SKU</div>
+      <div class="opp-desc">A Mesa Alvorada 180 representa 34% do GMV de DINING KITS. Se esse item sair do ar, tiver ruptura ou perder buybox, o faturamento colapsa. Ampliar portfólio para 8–12 SKUs ativos é uma ação de resiliência imediata.</div>
+      <div class="opp-metric">Risco atual: <strong>alta concentração</strong> · Mitigação via novos SKUs</div>
+    </div>
+  </div>
+
+  <!-- 7. PLANO DE AÇÃO -->
+  <div class="section-title">Plano de Ação — Moderna Mobília · Linha Madeira Maciça</div>
+
+  <!-- CURTO PRAZO -->
+  <div class="plan-section short">
+    <div class="plan-header short">
+      <div>
+        <div class="plan-period">Curto Prazo</div>
+        <div class="plan-title">Ativar e Posicionar · 0 a 60 dias</div>
+      </div>
+      <div style="margin-left:auto;font-size:12px;color:#006845;font-weight:600;background:#D0F5E8;padding:6px 12px;border-radius:20px;">Quick Wins</div>
+    </div>
+    <div class="action-list short">
+      <div class="action-item">
+        <div class="action-num">1</div>
+        <div class="action-content">
+          <div class="action-title">Listar produtos de Madeira Maciça existentes no portfólio em MLB-DINING_KITS</div>
+          <div class="action-desc">Verificar quais SKUs de madeira maciça estão em outras categorias ou inativos. Relançar/mover para o domínio DINING_KITS. Títulos devem conter: "Madeira Maciça", nº de cadeiras, tamanho em cm e cor.</div>
+          <div class="action-kpi">Meta: 3–5 SKUs ativos em DINING KITS em até 30 dias</div>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">2</div>
+        <div class="action-content">
+          <div class="action-title">Revisão e otimização de títulos — informar tamanho da mesa em todos os itens</div>
+          <div class="action-desc">95% do mercado não informa o tamanho no título. Adicionar "180cm", "160cm", "120cm" nos títulos dos produtos existentes melhora posição orgânica imediatamente. Adicionar também "tampo de vidro", "canto copo", "6 lugares" onde aplicável.</div>
+          <div class="action-kpi">Custo: zero · Impacto esperado: +10–15% visitas orgânicas</div>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">3</div>
+        <div class="action-content">
+          <div class="action-title">Ativar Product Ads (PADS) nos novos SKUs de madeira maciça e nos top performers</div>
+          <div class="action-desc">Fazer bid competitivo nas palavras-chave "conjunto mesa jantar madeira maciça", "mesa jantar 6 cadeiras madeira", "sala de jantar madeira maciça". Aproveitar o excelente histórico de conversão dos SKUs existentes para criar relevância nos novos.</div>
+          <div class="action-kpi">Orçamento sugerido: R$ 3.000–R$ 5.000/mês inicial</div>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">4</div>
+        <div class="action-content">
+          <div class="action-title">Fotos premium e descrição com percepção de valor agregado para a linha de madeira maciça</div>
+          <div class="action-desc">Fotos em ambiente decorado (lifestyle), detalhe de textura e veio da madeira, close do acabamento. Descrição destacando origem da madeira, resistência, longevidade. Diferencial frente ao MDF: durabilidade e unicidade de cada peça.</div>
+          <div class="action-kpi">Investimento em produção: R$ 2.000–R$ 4.000 por linha</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:20px;"></div>
+
+  <!-- MÉDIO PRAZO -->
+  <div class="plan-section mid">
+    <div class="plan-header mid">
+      <div>
+        <div class="plan-period">Médio Prazo</div>
+        <div class="plan-title">Expandir Sortimento e Capturar Premium · 60 a 180 dias</div>
+      </div>
+      <div style="margin-left:auto;font-size:12px;color:var(--blue);font-weight:600;background:#E2E5FF;padding:6px 12px;border-radius:20px;">Crescimento</div>
+    </div>
+    <div class="action-list mid">
+      <div class="action-item">
+        <div class="action-num">1</div>
+        <div class="action-content">
+          <div class="action-title">Lançar SKU: Conjunto 6 cadeiras Madeira Maciça 160cm — ticket R$ 2.500–R$ 3.500</div>
+          <div class="action-desc">Mesa retangular 160x80cm + 6 cadeiras em madeira maciça. Esse segmento (6 cadeiras + 160cm) gera ticket médio de R$ 1.522 com MDF+Vidro. Em madeira maciça, o prêmio pode elevar para R$ 2.500–R$ 3.500. Concorrentes: apenas 2–3 sellers no mercado.</div>
+          <div class="action-kpi">Potencial: R$ 200–400K GMV nos primeiros 6 meses com 5–8 pedidos/mês</div>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">2</div>
+        <div class="action-content">
+          <div class="action-title">Lançar SKU: Mesa Redonda Madeira Maciça 120cm · 4 cadeiras — ticket R$ 2.200–R$ 3.000</div>
+          <div class="action-desc">Formato redondo tem diferencial para apartamentos e decoração escandinava/rústica. Praticamente inexistente no mercado. O único concorrente ativo (<strong>Ateliê Casa</strong>) tem ticket de R$ 2.680. Alta demanda reprimida identificada nas buscas do título.</div>
+          <div class="action-kpi">Blue ocean: &lt;2 concorrentes · Domínio de nicho possível</div>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">3</div>
+        <div class="action-content">
+          <div class="action-title">Criar linha de cadeiras avulsas de madeira maciça — cross-sell e reposição</div>
+          <div class="action-desc">Clientes que compraram o conjunto voltam para repor ou adicionar cadeiras. Seller tem apenas R$ 66K em MLB-DINING_CHAIRS. Cadeiras avulsas madeira maciça ticket R$ 400–R$ 800/un com margem melhor. Estratégia de fidelização e LTV do cliente.</div>
+          <div class="action-kpi">Meta: R$ 300K GMV adicional em cadeiras avulsas em 6 meses</div>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">4</div>
+        <div class="action-content">
+          <div class="action-title">Diversificar portfólio DINING KITS para 8–12 SKUs ativos — reduzir dependência</div>
+          <div class="action-desc">A Mesa Alvorada 180 representa 34% do GMV de DINING KITS. Lançar variações: cores diferentes, tecidos de cadeira, combinações de tamanho. Meta: nenhum SKU > 20% do GMV da categoria. Isso melhora resiliência e score de portfólio no algoritmo do MeLi.</div>
+          <div class="action-kpi">Diversificação = resiliência · Reduzir concentração para &lt;20% por SKU</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="height:20px;"></div>
+
+  <!-- LONGO PRAZO -->
+  <div class="plan-section long">
+    <div class="plan-header long">
+      <div>
+        <div class="plan-period">Longo Prazo</div>
+        <div class="plan-title">Liderança no Segmento Premium · 6 a 12 meses</div>
+      </div>
+      <div style="margin-left:auto;font-size:12px;color:#C04A00;font-weight:600;background:#FFE8C8;padding:6px 12px;border-radius:20px;">Consolidação</div>
+    </div>
+    <div class="action-list long">
+      <div class="action-item">
+        <div class="action-num">1</div>
+        <div class="action-content">
+          <div class="action-title">Lançar "SKU Halo": Conjunto 8 lugares 200cm Madeira Maciça — ticket R$ 4.500–R$ 6.500</div>
+          <div class="action-desc">O produto halo posiciona a marca no topo do mercado e eleva a percepção de todos os outros SKUs. Vitalline Móveis fatura R$ 226K com 1 SKU de 8 lugares em madeira maciça a R$ 6.480. Esse produto não precisa ter alto volume — ele ancora o portfólio premium.</div>
+          <div class="action-kpi">Ticket referência: R$ 4.438–R$ 6.890 · Alto GMV por unidade · Imagem de marca</div>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">2</div>
+        <div class="action-content">
+          <div class="action-title">Construir presença em MLB-DINING_AND_KITCHEN_TABLES com linha madeira maciça avulsa</div>
+          <div class="action-desc">Mesas avulsas (sem cadeiras) atraem renovação de ambientes e consumidores que já têm cadeiras. Seller tem R$ 1.19M nessa categoria, mas tudo em MDF. Mesas madeira maciça 140–180cm podem chegar a R$ 1.800–R$ 3.500 avulsas. Novo canal de receita sem canibalização do DINING KITS.</div>
+          <div class="action-kpi">Meta: R$ 500K–R$ 800K adicional em TABLES em 12 meses</div>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">3</div>
+        <div class="action-content">
+          <div class="action-title">Programa de reconhecimento de marca — "Linha Madeira Maciça Premium" como identidade</div>
+          <div class="action-desc">Criar consistência visual e de título entre todos os produtos madeira maciça: nomenclatura padrão, fotos no mesmo estilo, descrições com os mesmos diferenciais. Objetivo: quando o comprador busca madeira maciça premium no MeLi, encontra o seller como referência.</div>
+          <div class="action-kpi">KPI: review médio &gt;4.6 · % perguntas respondidas &gt;95% · NPS positivo</div>
+        </div>
+      </div>
+      <div class="action-item">
+        <div class="action-num">4</div>
+        <div class="action-content">
+          <div class="action-title">Metas de GMV e posição competitiva — Top 3 em DINING KITS até Dez 2026</div>
+          <div class="action-desc">Com os movimentos de curto e médio prazo, a Moderna Mobília tem condição de crescer de R$ 3,79M (Jan–Jul) para R$ 7–8M anuais em DINING KITS. A meta de Top 3 requer alcançar R$ 5–6M no 2º semestre, superando a Nobile Home (R$ 5,9M no 1º sem.). Ticket médio acima de R$ 1.800 seria diferencial único.</div>
+          <div class="action-kpi">Meta: GMV R$ 7–8M no ano · Ticket médio R$ 1.800+ · Top 3 ranking</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- RESUMO EXECUTIVO -->
+  <div class="section-title">Resumo Executivo</div>
+  <div class="grid-3">
+    <div class="insight-box insight-blue" style="flex-direction:column;margin-bottom:0;">
+      <div class="insight-icon">🏅</div>
+      <div>
+        <div class="insight-title">Posição Atual — Forte</div>
+        <div class="insight-text">Seller é #4 em GMV e tem o maior ticket médio entre os top 4 (R$ 1.615 vs. mercado R$ 821). A base de MDF+Vidro está consolidada. A Mesa Alvorada 180 é o 6º item mais vendido do mercado inteiro em 2026.</div>
+      </div>
+    </div>
+    <div class="insight-box insight-orange" style="flex-direction:column;margin-bottom:0;">
+      <div class="insight-icon">⚠️</div>
+      <div>
+        <div class="insight-title">Risco Principal</div>
+        <div class="insight-text">Concentração excessiva (34% do GMV em 1 SKU). Linha de madeira maciça ainda não ativada em DINING KITS — mercado praticamente sem concorrentes nesse segmento Premium acima de R$ 2.000.</div>
+      </div>
+    </div>
+    <div class="insight-box insight-green" style="flex-direction:column;margin-bottom:0;">
+      <div class="insight-icon">🚀</div>
+      <div>
+        <div class="insight-title">Maior Oportunidade</div>
+        <div class="insight-text">Ativar a linha de madeira maciça premium em DINING KITS. Com apenas 3 concorrentes no segmento R$ 2.000–R$ 5.000, o seller tem capital para dominar esse nicho com credibilidade de qualidade já estabelecida.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  Análise gerada em 24/07/2026 · Fonte: meli-bi-data.WHOWNER.DM_EFICIENCIA_MLB · Período Jan–Jul 2026 · Moderna Mobília · Domínio MLB-DINING_KITS
+</div>
+
+<script>
+// Registrar plugin globalmente
+Chart.register(ChartDataLabels);
+
+// ---- CHART: Evolução Mensal ----
+const ctxMensal = document.getElementById('chartMensal').getContext('2d');
+new Chart(ctxMensal, {
+  type: 'bar',
+  data: {
+    labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul'],
+    datasets: [
+      {
+        label: 'GMV (R$ M)',
+        data: [14.5, 13.7, 17.2, 15.9, 18.8, 16.4, 14.6],
+        backgroundColor: 'rgba(45,50,119,0.85)',
+        borderRadius: 5,
+        yAxisID: 'y',
+        order: 2,
+        datalabels: {
+          anchor: 'end',
+          align: 'top',
+          formatter: v => 'R$' + v + 'M',
+          font: { size: 9.5, weight: '700' },
+          color: '#2D3277'
+        }
+      },
+      {
+        label: 'Ticket Médio (R$)',
+        data: [802, 780, 802, 810, 835, 847, 821],
+        type: 'line',
+        borderColor: '#FFE600',
+        backgroundColor: 'rgba(255,230,0,0.12)',
+        borderWidth: 2.5,
+        pointBackgroundColor: '#FFE600',
+        pointRadius: 4,
+        tension: 0.4,
+        yAxisID: 'y1',
+        order: 1,
+        datalabels: {
+          anchor: 'end',
+          align: 'bottom',
+          offset: 4,
+          formatter: v => 'R$' + v,
+          font: { size: 9, weight: '700' },
+          color: '#B8A000',
+          backgroundColor: 'rgba(255,255,255,0.75)',
+          borderRadius: 3,
+          padding: { left: 3, right: 3, top: 1, bottom: 1 }
+        }
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: { mode: 'index' },
+    layout: { padding: { top: 20 } },
+    plugins: {
+      legend: { labels: { font: { size: 11 }, color: '#6C757D', usePointStyle: true } },
+      datalabels: {}
+    },
+    scales: {
+      y: {
+        position: 'left',
+        ticks: { font: { size: 10 }, color: '#6C757D', callback: v => 'R$' + v + 'M' },
+        grid: { color: 'rgba(0,0,0,.05)' }
+      },
+      y1: {
+        position: 'right',
+        ticks: { font: { size: 10 }, color: '#B8A000', callback: v => 'R$' + v },
+        grid: { display: false },
+        min: 700, max: 960
+      },
+      x: { ticks: { font: { size: 11 }, color: '#6C757D' }, grid: { display: false } }
+    }
+  }
+});
+
+// ---- CHART: Cadeiras ----
+const ctxCad = document.getElementById('chartCadeiras').getContext('2d');
+new Chart(ctxCad, {
+  type: 'doughnut',
+  data: {
+    labels: ['4 cadeiras', '6 cadeiras', '8 cadeiras', 'Outros'],
+    datasets: [{
+      data: [53.4, 31.5, 3.4, 23.0],
+      backgroundColor: ['#2D3277', '#3D44A8', '#FFE600', '#ADB5BD'],
+      borderWidth: 0,
+      hoverOffset: 4
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '52%',
+    layout: { padding: 44 },
+    plugins: {
+      legend: { display: false },
+      tooltip: { enabled: false },
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+        offset: 8,
+        textAlign: 'center',
+        formatter: (value, ctx) => {
+          const total = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+          const pct = Math.round(value / total * 100);
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          return label + '\n' + pct + '% · R$' + value + 'M';
+        },
+        color: ctx => {
+          const colors = ['#2D3277', '#3D44A8', '#B8A000', '#6C757D'];
+          return colors[ctx.dataIndex];
+        },
+        font: { size: 10, weight: '700' },
+        backgroundColor: 'rgba(255,255,255,0.85)',
+        borderRadius: 4,
+        padding: { top: 3, bottom: 3, left: 5, right: 5 }
+      }
+    }
+  }
+});
+
+// ---- CHART: Tamanho ----
+const ctxTam = document.getElementById('chartTamanho').getContext('2d');
+new Chart(ctxTam, {
+  type: 'bar',
+  data: {
+    labels: ['120cm', '140cm', '160cm', '180cm', '200cm+'],
+    datasets: [{
+      label: 'GMV R$ M',
+      data: [9.0, 0.5, 3.0, 2.1, 1.6],
+      backgroundColor: ['#2D3277', '#5C6BC0', '#00A0DF', '#FFE600', '#FF6B35'],
+      borderRadius: 5,
+      datalabels: {
+        anchor: 'end',
+        align: 'top',
+        formatter: v => 'R$' + v + 'M',
+        font: { size: 10, weight: '700' },
+        color: ctx => {
+          const colors = ['#2D3277', '#5C6BC0', '#00A0DF', '#B8A000', '#FF6B35'];
+          return colors[ctx.dataIndex];
+        }
+      }
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    layout: { padding: { top: 18 } },
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: c => ' R$' + c.raw + 'M GMV' } },
+      datalabels: {}
+    },
+    scales: {
+      y: { ticks: { font: { size: 10 }, color: '#6C757D', callback: v => 'R$' + v + 'M' }, grid: { color: 'rgba(0,0,0,.05)' } },
+      x: { ticks: { font: { size: 10 }, color: '#6C757D' }, grid: { display: false } }
+    }
+  }
+});
+
+// ---- CHART: Material ----
+const ctxMat = document.getElementById('chartMaterial').getContext('2d');
+new Chart(ctxMat, {
+  type: 'doughnut',
+  data: {
+    labels: ['MDF + Vidro', 'Outros / MDF', 'Madeira Maciça'],
+    datasets: [{
+      data: [32, 62.5, 5.5],
+      backgroundColor: ['#00A0DF', '#ADB5BD', '#FF6B35'],
+      borderWidth: 0,
+      hoverOffset: 4
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '52%',
+    layout: { padding: 44 },
+    plugins: {
+      legend: { display: false },
+      tooltip: { enabled: false },
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+        offset: 8,
+        textAlign: 'center',
+        formatter: (value, ctx) => {
+          const total = ctx.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+          const pct = Math.round(value / total * 100);
+          const label = ctx.chart.data.labels[ctx.dataIndex];
+          const gmvMap = ['R$35.6M', 'R$69.6M', 'R$6.1M'];
+          return label + '\n' + pct + '% · ' + gmvMap[ctx.dataIndex];
+        },
+        color: ctx => {
+          const colors = ['#007BAD', '#6C757D', '#C04A00'];
+          return colors[ctx.dataIndex];
+        },
+        font: { size: 10, weight: '700' },
+        backgroundColor: 'rgba(255,255,255,0.85)',
+        borderRadius: 4,
+        padding: { top: 3, bottom: 3, left: 5, right: 5 }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>
