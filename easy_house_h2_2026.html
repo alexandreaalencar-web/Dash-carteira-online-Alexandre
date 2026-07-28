@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>EASY HOUSE — H1 Fechamento + Estratégia H2 &amp; Black Friday 2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:32px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:28px;font-weight:900;letter-spacing:-.5px}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:5px}
+.hdr-right{text-align:right}
+.hdr-right .tag{font-size:11px;background:rgba(255,255,255,.2);border-radius:20px;padding:4px 12px;font-weight:700;margin-bottom:8px;display:inline-block}
+.hdr-right .ating-lbl{font-size:12px;opacity:.8}
+.hdr-right .ating-val{font-size:36px;font-weight:900;color:#FFE600}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.qg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.qc{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;border-top:3px solid #E0E0E0}
+.qc.active{border-top:3px solid #3483FA;box-shadow:0 4px 16px rgba(52,131,250,.15)}
+.qc .ql{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#888;margin-bottom:10px}
+.qc .qv{font-size:30px;font-weight:900;margin-bottom:6px}
+.qc .qm{font-size:12px;color:#888;line-height:1.5}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+.sec-ttl.yellow::before{background:#FFE600}
+.sec-ttl.orange::before{background:#FF7A00}
+.sec-ttl.red::before{background:#F23D4F}
+.chart-box{position:relative;height:340px}
+.chart-box-sm{position:relative;height:260px}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.ig{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:0}
+.ic{border-radius:10px;padding:18px;font-size:12px;line-height:1.6}
+.ic.ok{background:#F0FBF5;border-left:4px solid #00A650}
+.ic.nok{background:#FEF9F9;border-left:4px solid #F23D4F}
+.ic.opp{background:#F0F5FF;border-left:4px solid #3483FA}
+.ic.warn{background:#FFFDF0;border-left:4px solid #FFB900}
+.ic.bf{background:#1A1A2E;border-left:4px solid #FFE600;color:#fff}
+.ic .ic-ttl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.ic.ok .ic-ttl{color:#007A3D} .ic.nok .ic-ttl{color:#C62828}
+.ic.opp .ic-ttl{color:#1A5DC8} .ic.warn .ic-ttl{color:#856404}
+.ic.bf .ic-ttl{color:#FFE600}
+.ic .ic-val{font-size:24px;font-weight:900;margin-bottom:6px}
+.ok-box{background:#E8F8EF;border:1px solid #B7EFD0;border-radius:10px;padding:12px 16px;margin-top:12px;font-size:12px}
+.warn-box{background:#FEF9F9;border:1px solid #F5C6CB;border-radius:10px;padding:12px 16px;margin-top:12px;font-size:12px}
+.bf-hdr{background:linear-gradient(135deg,#1A1A1A,#2D2D2D);border-radius:12px;padding:24px 28px;margin-bottom:16px;color:#fff}
+.bf-hdr h2{font-size:22px;font-weight:900;color:#FFE600;margin-bottom:4px}
+.bf-hdr .sub{font-size:13px;opacity:.7}
+.krow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+.kcard{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06);padding:18px;border-top:3px solid #E0E0E0}
+.kcard.blue{border-top-color:#3483FA}
+.kcard.green{border-top-color:#00A650}
+.kcard.orange{border-top-color:#FF7A00}
+.kcard.red{border-top-color:#F23D4F}
+.kcard.yellow{border-top-color:#FFE600}
+.kcard .kl{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;font-weight:700}
+.kcard .kv{font-size:24px;font-weight:900;color:#1A1A1A}
+.kcard .ks{font-size:11px;color:#888;margin-top:4px}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700} .warn-c{color:#E67E00;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.pl-b{background:#E8F0FE;color:#3483FA} .pl-y{background:#FFF9E0;color:#E67E00}
+.pl-d{background:#1A1A2E;color:#FFE600}
+a{color:#3483FA;text-decoration:none}
+.act{display:flex;flex-direction:column;gap:10px}
+.act-item{display:flex;gap:12px;align-items:flex-start}
+.act-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;flex-shrink:0;color:#fff}
+.act-txt{font-size:13px;color:#ddd;line-height:1.5}
+.page-break{border:none;border-top:3px solid #FFE600;margin:28px 0 20px}
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div>
+    <h1>EASY HOUSE &mdash; Reunião Estratégica H2 2026</h1>
+    <div class="sub">Fechamento H1 &middot; Estratégia H2 &middot; Black Friday 2026 &middot; Jul/2026</div>
+    <div class="sub" style="margin-top:3px;opacity:.5">KAM: Alexandre Alencar &middot; ID: 1289467675</div>
+  </div>
+  <div class="hdr-right">
+    <div class="tag">📊 Reunião Estratégica</div>
+    <div class="ating-lbl">H1 2026 — Atingimento Meta Desafio</div>
+    <div class="ating-val">52.5%</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+
+<!-- QUARTER GRID -->
+  <div class="qg">
+    <div class="qc">
+      <div class="ql">Q1 2026 (Jan&ndash;Mar)</div>
+      <div class="qv" style="color:#F23D4F">R$ 5,86M</div>
+      <div class="qm">Meta Des: R$ 9,37M &middot; Ating: <strong><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">62.5% ❌</span></strong></div>
+      <div class="qm" style="margin-top:5px">vs Q1 2025 (R$ 3,88M): <span style="color:#00A650;font-weight:700">+50.9% YoY ▲</span></div>
+    </div>
+    <div class="qc active">
+      <div class="ql">🔥 Q2 2026 (Abr&ndash;Jun) &mdash; Fechamento</div>
+      <div class="qv" style="color:#F23D4F">R$ 5,00M</div>
+      <div class="qm">Meta Des: R$ 11,32M &middot; Ating: <strong><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">44.2% ❌</span></strong></div>
+      <div class="qm" style="margin-top:5px">vs Q2 2025 (R$ 4,31M): <span style="color:#00A650;font-weight:700">+16.1% YoY ▲</span></div>
+    </div>
+    <div class="qc">
+      <div class="ql">Q3 2026 (Jul&ndash;Set) &mdash; Meta Desafio</div>
+      <div class="qv" style="color:#3483FA">R$ 13,91M</div>
+      <div class="qm">Jul: R$ 4,60M &middot; Ago: R$ 4,45M &middot; Set: R$ 4,86M</div>
+      <div class="qm" style="margin-top:5px">MTD Jul: <strong style="color:#3483FA">R$ 1,95M</strong> &middot; Pace: <strong style="color:#E67E00">42.5%</strong></div>
+    </div>
+    <div class="qc">
+      <div class="ql">🎯 Q4 2026 (Out&ndash;Dez) &mdash; Meta Desafio</div>
+      <div class="qv" style="color:#9B59B6">R$ 14,62M</div>
+      <div class="qm">Out: R$ 5,16M &middot; Nov: R$ 5,27M &middot; Dez: R$ 4,19M</div>
+      <div class="qm" style="margin-top:5px">⭐ Nov maior meta &middot; <strong style="color:#9B59B6">Black Friday foco</strong></div>
+    </div>
+  </div>
+
+<!-- KPIs H1 -->
+  <div class="krow">
+    <div class="kcard blue"><div class="kl">GMV H1 2026</div><div class="kv">R$ 10,86M</div><div class="ks">Jan&ndash;Jun &middot; <span class="pos">+32.6% YoY</span></div></div>
+    <div class="kcard orange"><div class="kl">Ating. Meta Des. H1</div><div class="kv" style="color:#E67E00">52.5%</div><div class="ks">R$ 10,86M &divide; R$ 20,68M meta</div></div>
+    <div class="kcard orange"><div class="kl">Ticket Médio H1 2026</div><div class="kv">R$ 992</div><div class="ks"><span class="pos">+9.3% vs H1 2025</span> (R$ 908)</div></div>
+    <div class="kcard blue"><div class="kl">SIs H1 2026</div><div class="kv">10.942</div><div class="ks">vs H1 2025: 9.017 SIs (<span class="pos">+21.3%</span>)</div></div>
+  </div>
+
+<!-- CHART H1: GMV MENSAL -->
+  <div class="sec">
+    <div class="sec-ttl">GMV por Mês H1 2026 vs 2025 + Meta Desafio + SIs</div>
+    <div class="chart-box"><canvas id="cH1"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    Chart.register(ChartDataLabels);
+    var labels = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"];
+    var gmv26  = [2137092.0,2013607.0,1707635.0,1221757.0,1778308.0,1998863.0];
+    var gmv25  = [1654451.0,1167531.0,1061412.0,1198285.0,1372632.0,1735059.0];
+    var meta   = [3114860.19,2892749.76,3359774.28,3338625.06,3814147.5,4163982.63];
+    var si26   = [2062,2093,1674,1236,1834,2043];
+    var si25   = [2063,1450,1168,1282,1343,1711];
+    var momPct = gmv26.map(function(v,i){return i===0?null:(v/gmv26[i-1]-1)*100;});
+    var yoyPct = gmv26.map(function(v,i){return gmv25[i]>0?(v/gmv25[i]-1)*100:null;});
+    var cols26 = gmv26.map(function(_,i){return i<3?'#B8CCF5':'#3483FA';});
+    var datasets = [
+      {label:'GMV 2026 (R$)',data:gmv26,backgroundColor:cols26,borderRadius:5,yAxisID:'yG',order:3,
+        datalabels:{anchor:'end',align:'end',offset:3,font:{size:10,weight:'800'},
+          formatter:function(v,ctx){
+            var i=ctx.dataIndex;
+            var valStr='R$'+(v/1000).toFixed(0)+'K';
+            var y=yoyPct[i];
+            var yStr=y!==null?((y>=0?'+':'')+y.toFixed(1)+'% YoY'):null;
+            return yStr?[valStr,yStr]:valStr;},
+          color:function(ctx){var y=yoyPct[ctx.dataIndex];return y===null?'#555':(y>=0?'#00A650':'#F23D4F');}}},
+      {label:'GMV 2025 (R$)',data:gmv25,backgroundColor:'#E0E0E0',borderRadius:5,yAxisID:'yG',order:4,
+        datalabels:{anchor:'end',align:'start',offset:4,font:{size:9},
+          formatter:function(v){return v>0?'R$'+(v/1000).toFixed(0)+'K':null;},color:'#999'}},
+      {label:'Meta Desafio',data:meta,type:'line',borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[5,3],borderWidth:2.5,pointRadius:4,pointBackgroundColor:'#FF7A00',yAxisID:'yG',order:1,datalabels:{anchor:'end',align:'top',offset:4,font:{size:9,weight:'700'},formatter:function(v){return v>0?'Meta R$'+(v/1000).toFixed(0)+'K':null;},color:'#FF7A00'}},
+      {label:'SIs 2026',data:si26,type:'line',borderColor:'#3483FA',backgroundColor:'transparent',tension:.3,pointRadius:4,pointBackgroundColor:'#3483FA',yAxisID:'ySi',order:0,
+        datalabels:{anchor:'end',align:'top',offset:4,font:{size:9,weight:'700'},
+          formatter:function(v){return v>0?v+' SIs':null;},color:'#3483FA'}},
+      {label:'SIs 2025',data:si25,type:'line',borderColor:'#CCC',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3,yAxisID:'ySi',order:0,datalabels:{display:false}}
+    ];
+    new Chart(document.getElementById('cH1'),{
+      type:'bar',
+      data:{labels:labels,datasets:datasets},
+      options:{responsive:true,maintainAspectRatio:false,
+        layout:{padding:{top:80}},
+        plugins:{legend:{position:'top'},
+          tooltip:{callbacks:{label:function(c){
+            if(c.datasetIndex<=2)return c.dataset.label+': R$'+Number(c.raw).toLocaleString('pt-BR');
+            return c.dataset.label+': '+Number(c.raw).toLocaleString('pt-BR')+' SIs';
+          }}},datalabels:{}},
+        scales:{
+          yG:{position:'left',ticks:{callback:function(v){return 'R$'+(v/1000).toFixed(0)+'K';}}},
+          ySi:{position:'right',grid:{drawOnChartArea:false},ticks:{callback:function(v){return v+' SIs';}}}
+        }
+      }
+    });
+  })();
+  </script>
+
+<!-- TABELA ATINGIMENTO H1 -->
+  <div class="sec">
+    <div class="sec-ttl">Atingimento por Mês &mdash; H1 2026 vs Meta Desafio</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Quarter</th><th>Mês</th>
+        <th style="text-align:right">GMV Realizado</th>
+        <th style="text-align:right">Meta Desafio</th>
+        <th style="text-align:right">Atingimento</th>
+        <th style="text-align:right">Gap</th>
+        <th style="text-align:right">SIs</th>
+        <th style="text-align:right">Ticket</th>
+        <th style="text-align:right">YoY GMV</th>
+      </tr></thead>
+      <tbody>
+        
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td>
+          <td style="font-weight:700">Jan</td>
+          <td style="text-align:right;font-weight:700">R$ 2.137.092</td>
+          <td style="text-align:right">R$ 3.114.860</td>
+          <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">68.6% ❌</span></td>
+          <td style="text-align:right"><span style="color:#F23D4F">R$ -977.768</span></td>
+          <td style="text-align:right">2.062</td>
+          <td style="text-align:right">R$ 1.036</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">+29.2% YoY ▲</span></td>
+        </tr>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td>
+          <td style="font-weight:700">Fev</td>
+          <td style="text-align:right;font-weight:700">R$ 2.013.607</td>
+          <td style="text-align:right">R$ 2.892.750</td>
+          <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">69.6% ❌</span></td>
+          <td style="text-align:right"><span style="color:#F23D4F">R$ -879.143</span></td>
+          <td style="text-align:right">2.093</td>
+          <td style="text-align:right">R$ 962</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">+72.5% YoY ▲</span></td>
+        </tr>
+        <tr style="background:#F5FAFF">
+          <td style="font-weight:700;color:#1A5DC8">Q1</td>
+          <td style="font-weight:700">Mar</td>
+          <td style="text-align:right;font-weight:700">R$ 1.707.635</td>
+          <td style="text-align:right">R$ 3.359.774</td>
+          <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">50.8% ❌</span></td>
+          <td style="text-align:right"><span style="color:#F23D4F">R$ -1.652.139</span></td>
+          <td style="text-align:right">1.674</td>
+          <td style="text-align:right">R$ 1.020</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">+60.9% YoY ▲</span></td>
+        </tr>
+        <tr style="background:#FFFBEA">
+          <td style="font-weight:700;color:#856404">Q2</td>
+          <td style="font-weight:700">Abr</td>
+          <td style="text-align:right;font-weight:700">R$ 1.221.757</td>
+          <td style="text-align:right">R$ 3.338.625</td>
+          <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">36.6% ❌</span></td>
+          <td style="text-align:right"><span style="color:#F23D4F">R$ -2.116.868</span></td>
+          <td style="text-align:right">1.236</td>
+          <td style="text-align:right">R$ 988</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">+2.0% YoY ▲</span></td>
+        </tr>
+        <tr style="background:#FFFBEA">
+          <td style="font-weight:700;color:#856404">Q2</td>
+          <td style="font-weight:700">Mai</td>
+          <td style="text-align:right;font-weight:700">R$ 1.778.308</td>
+          <td style="text-align:right">R$ 3.814.148</td>
+          <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">46.6% ❌</span></td>
+          <td style="text-align:right"><span style="color:#F23D4F">R$ -2.035.840</span></td>
+          <td style="text-align:right">1.834</td>
+          <td style="text-align:right">R$ 970</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">+29.6% YoY ▲</span></td>
+        </tr>
+        <tr style="background:#FFFBEA">
+          <td style="font-weight:700;color:#856404">Q2</td>
+          <td style="font-weight:700">Jun</td>
+          <td style="text-align:right;font-weight:700">R$ 1.998.863</td>
+          <td style="text-align:right">R$ 4.163.983</td>
+          <td style="text-align:right"><span style="background:#FEE8EA;color:#F23D4F;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:800">48.0% ❌</span></td>
+          <td style="text-align:right"><span style="color:#F23D4F">R$ -2.165.120</span></td>
+          <td style="text-align:right">2.043</td>
+          <td style="text-align:right">R$ 978</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">+15.2% YoY ▲</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+<!-- TOP 10 H1 -->
+  <div class="sec">
+    <div class="sec-ttl">Top 10 Produtos &mdash; H1 2026 (Jan&ndash;Jun)</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Produto</th>
+        <th style="text-align:right">GMV H1</th>
+        <th style="text-align:right">SIs</th>
+        <th style="text-align:right">Ticket</th>
+        <th style="text-align:right">Share H1</th>
+      </tr></thead>
+      <tbody>
+        
+        <tr>
+          <td style="color:#888;font-size:11px">1</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5445396068" target="_blank">GUARDA-ROUPA CASAL EASY SLIM 8 PORTAS C/ ESPELHO AMENDOA/OFF AMÊNDOA CLEAN/OFF W</a><br>
+              <span style="font-size:10px;color:#999">5445396068</span></td>
+          <td style="text-align:right;font-weight:700">R$ 2.638.077</td>
+          <td style="text-align:right">2.609</td>
+          <td style="text-align:right">R$ 1.011</td>
+          <td style="text-align:right"><span class="pill pl-b">24.3%</span></td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">2</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3644997279" target="_blank">GUARDA-ROUPA CASAL MDF 2 PORTAS CORREDIÇAS BRANCO 6 GAVETAS MÓVEIS LOPAS</a><br>
+              <span style="font-size:10px;color:#999">3644997279</span></td>
+          <td style="text-align:right;font-weight:700">R$ 2.236.377</td>
+          <td style="text-align:right">1.384</td>
+          <td style="text-align:right">R$ 1.616</td>
+          <td style="text-align:right"><span class="pill pl-b">20.6%</span></td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">3</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5580461866" target="_blank">GUARDA-ROUPA CASAL EASY SLIM 8 PORTAS COM ESPELHO BRANCO BLUSH</a><br>
+              <span style="font-size:10px;color:#999">5580461866</span></td>
+          <td style="text-align:right;font-weight:700">R$ 805.991</td>
+          <td style="text-align:right">797</td>
+          <td style="text-align:right">R$ 1.011</td>
+          <td style="text-align:right"><span class="pill pl-b">7.4%</span></td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">4</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3947912507" target="_blank">CONJUNTO SALA DE JANTAR COM 4 CADEIRAS GRUPO LOPAS EASY LINE COR AMÊNDOA AMENDOA</a><br>
+              <span style="font-size:10px;color:#999">3947912507</span></td>
+          <td style="text-align:right;font-weight:700">R$ 709.959</td>
+          <td style="text-align:right">1.566</td>
+          <td style="text-align:right">R$ 453</td>
+          <td style="text-align:right"><span class="pill pl-b">6.5%</span></td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">5</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3663445549" target="_blank">GUARDA-ROUPA CASAL MÓVEIS LOPAS EASY SLIM 8 PORTAS ESPELHO MARROM MODERNO</a><br>
+              <span style="font-size:10px;color:#999">3663445549</span></td>
+          <td style="text-align:right;font-weight:700">R$ 626.168</td>
+          <td style="text-align:right">627</td>
+          <td style="text-align:right">R$ 999</td>
+          <td style="text-align:right"><span class="pill pl-b">5.8%</span></td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">6</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3749674727" target="_blank">GUARDA-ROUPA CASAL MÓVEIS LOPAS EASY SLIM 8 PORTAS COM ESPELHO E GAVETAS MARROM</a><br>
+              <span style="font-size:10px;color:#999">3749674727</span></td>
+          <td style="text-align:right;font-weight:700">R$ 297.259</td>
+          <td style="text-align:right">276</td>
+          <td style="text-align:right">R$ 1.077</td>
+          <td style="text-align:right"><span class="pill pl-y">2.7%</span></td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">7</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4381901441" target="_blank">GUARDA-ROUPA MÓVEIS LOPAS CASAL EASY SLIM C/PÉS 8 PORTAS AMENDOA CLEAN/OFF AMÊND</a><br>
+              <span style="font-size:10px;color:#999">4381901441</span></td>
+          <td style="text-align:right;font-weight:700">R$ 243.207</td>
+          <td style="text-align:right">235</td>
+          <td style="text-align:right">R$ 1.035</td>
+          <td style="text-align:right"><span class="pill pl-y">2.2%</span></td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">8</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4351022521" target="_blank">CÔMODA MÓVEIS LOPAS EASY LIKE 8 GAVETAS AMÊNDOA CLEAN/OFF WHITE</a><br>
+              <span style="font-size:10px;color:#999">4351022521</span></td>
+          <td style="text-align:right;font-weight:700">R$ 236.735</td>
+          <td style="text-align:right">286</td>
+          <td style="text-align:right">R$ 828</td>
+          <td style="text-align:right"><span class="pill pl-y">2.2%</span></td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">9</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4578211532" target="_blank">CÔMODA 2 PORTAS 7 GAVETAS 3 PRATELEIRAS VEDRA BJWT AMÊNDOA CLEAN/OFF WHITE</a><br>
+              <span style="font-size:10px;color:#999">4578211532</span></td>
+          <td style="text-align:right;font-weight:700">R$ 224.908</td>
+          <td style="text-align:right">302</td>
+          <td style="text-align:right">R$ 745</td>
+          <td style="text-align:right"><span class="pill pl-y">2.1%</span></td>
+        </tr>
+        <tr>
+          <td style="color:#888;font-size:11px">10</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4300195071" target="_blank">GUARDA-ROUPA EASY SLIM 8 PORTAS ESPELHO E PÉS AMENDOA CLEAN MARROM</a><br>
+              <span style="font-size:10px;color:#999">4300195071</span></td>
+          <td style="text-align:right;font-weight:700">R$ 198.436</td>
+          <td style="text-align:right">183</td>
+          <td style="text-align:right">R$ 1.084</td>
+          <td style="text-align:right">1.8%</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+<!-- H2: HISTÓRICO vs FUTURO -->
+  <hr class="page-break">
+  <div class="bf-hdr" style="background:linear-gradient(135deg,#1A3A1A,#2D4A2D)">
+    <h2 style="color:#00A650">🌿 H2 2026 &mdash; Potencial vs Histórico</h2>
+    <div class="sub">H2 2025: R$ 19,01M &middot; Meta Desafio H2 2026: R$ 28,53M (++50.1%)</div>
+  </div>
+
+<!-- CHART H2 -->
+  <div class="sec">
+    <div class="sec-ttl orange">H2 2025 Realizado vs H2 2026 Meta Desafio + Projeção Jul</div>
+    <div class="chart-box"><canvas id="cH2"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    Chart.register(ChartDataLabels);
+    var labels = ["Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+    var h2_25  = [3297551.0,3230834.0,2910734.0,3167109.0,4706560.0,1696673.0];
+    var meta26 = [4597735.69,4453404.88,4857313.07,5161619.39,5265238.06,4190055.14];
+    var mtd26  = [1953343.0,null,null,null,null,null];
+    var proj26 = [2162630.0,null,null,null,null,null];
+    var datasets = [
+      {label:'H2 2025 Realizado',data:h2_25,backgroundColor:'#B8CCF5',borderRadius:5,yAxisID:'yG',order:4,
+        datalabels:{anchor:'end',align:'end',offset:2,font:{size:10,weight:'700'},
+          formatter:function(v){return 'R$'+(v/1000).toFixed(0)+'K';},color:'#555'}},
+      {label:'Meta Des. 2026',data:meta26,type:'line',borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[5,3],borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#FF7A00',yAxisID:'yG',order:1,datalabels:{anchor:'end',align:'top',offset:4,font:{size:10,weight:'700'},formatter:function(v){return v?'Meta: R$'+(v/1000).toFixed(0)+'K':null;},color:'#FF7A00'}},
+      {label:'Jul 2026 MTD',data:mtd26,backgroundColor:'#00A650',borderRadius:5,yAxisID:'yG',order:2,
+        datalabels:{anchor:'end',align:'end',offset:2,font:{size:10,weight:'700'},
+          formatter:function(v){return v?'MTD R$'+(v/1000).toFixed(0)+'K':null;},color:'#007A3A'}},
+      {label:'Jul 2026 Proj.',data:proj26,backgroundColor:'rgba(52,131,250,0.55)',borderRadius:5,borderWidth:2,borderColor:'#3483FA',yAxisID:'yG',order:3,
+        datalabels:{anchor:'end',align:'end',offset:2,font:{size:10,weight:'700'},
+          formatter:function(v){return v?'Proj. R$'+(v/1000).toFixed(0)+'K':null;},color:'#1A5DC8'}}
+    ];
+    new Chart(document.getElementById('cH2'),{
+      type:'bar',
+      data:{labels:labels,datasets:datasets},
+      options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:40}},
+        plugins:{legend:{position:'top'},
+          tooltip:{callbacks:{label:function(c){return c.dataset.label+': R$'+Number(c.raw).toLocaleString('pt-BR');}}},datalabels:{}},
+        scales:{yG:{position:'left',ticks:{callback:function(v){return 'R$'+(v/1000).toFixed(0)+'K';}}}}
+      }
+    });
+  })();
+  </script>
+
+<!-- TABELA H2 MÊS A MÊS -->
+  <div class="sec">
+    <div class="sec-ttl orange">H2 Mês a Mês &mdash; 2025 Realizado vs 2026 Meta Desafio</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>Mês</th>
+        <th style="text-align:right">H2 2025 Realizado</th>
+        <th style="text-align:right">SIs 2025</th>
+        <th style="text-align:right">Ticket 2025</th>
+        <th style="text-align:right">Meta Des. 2026</th>
+        <th style="text-align:right">Crescimento necessário</th>
+        <th>Destaque</th>
+      </tr></thead>
+      <tbody>
+        
+        <tr>
+          <td style="font-weight:700">Jul</td>
+          <td style="text-align:right">R$ 3.297.551</td>
+          <td style="text-align:right">3.012</td>
+          <td style="text-align:right">R$ 1.095</td>
+          <td style="text-align:right;font-weight:700;color:#FF9500">R$ 4.597.736</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">+39.4%</span></td>
+          <td><span class="pill pl-b">MTD Em andamento</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">Ago</td>
+          <td style="text-align:right">R$ 3.230.834</td>
+          <td style="text-align:right">2.978</td>
+          <td style="text-align:right">R$ 1.085</td>
+          <td style="text-align:right;font-weight:700;color:#FF9500">R$ 4.453.405</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">+37.8%</span></td>
+          <td><span class="pill" style="background:#FFE600;color:#1A1A1A">🎊 8.8</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">Set</td>
+          <td style="text-align:right">R$ 2.910.734</td>
+          <td style="text-align:right">2.551</td>
+          <td style="text-align:right">R$ 1.141</td>
+          <td style="text-align:right;font-weight:700;color:#FF9500">R$ 4.857.313</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">+66.9%</span></td>
+          <td><span class="pill pl-b">Pré-BF prep.</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">Out</td>
+          <td style="text-align:right">R$ 3.167.109</td>
+          <td style="text-align:right">2.762</td>
+          <td style="text-align:right">R$ 1.147</td>
+          <td style="text-align:right;font-weight:700;color:#FF9500">R$ 5.161.619</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">+63.0%</span></td>
+          <td><span class="pill pl-b">Aquecimento BF</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">Nov</td>
+          <td style="text-align:right">R$ 4.706.560</td>
+          <td style="text-align:right">4.257</td>
+          <td style="text-align:right">R$ 1.106</td>
+          <td style="text-align:right;font-weight:700;color:#FF9500">R$ 5.265.238</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">+11.9%</span></td>
+          <td><span class="pill pl-d">🎉 BLACK FRIDAY</span></td>
+        </tr>
+        <tr>
+          <td style="font-weight:700">Dez</td>
+          <td style="text-align:right">R$ 1.696.673</td>
+          <td style="text-align:right">1.576</td>
+          <td style="text-align:right">R$ 1.077</td>
+          <td style="text-align:right;font-weight:700;color:#FF9500">R$ 4.190.055</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">+147.0%</span></td>
+          <td><span class="pill pl-g">Natal &amp; Ano Novo</span></td>
+        </tr>
+        <tr style="background:#FFFBEA;font-weight:800">
+          <td>Total H2</td>
+          <td style="text-align:right">R$ 19.009.461</td>
+          <td style="text-align:right">17.136</td>
+          <td style="text-align:right">R$ 1.109</td>
+          <td style="text-align:right;color:#FF9500">R$ 28.525.366</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">+50.1%</span></td>
+          <td>Meta ambiciosa</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+<!-- BLACK FRIDAY -->
+  <hr class="page-break">
+  <div class="bf-hdr">
+    <h2>🎉 Black Friday 2026 &mdash; Planejamento</h2>
+    <div class="sub">BF 2025: R$ 1,22M &middot; 1099 SIs &middot; Ticket R$ 1.107 (24-30/Nov/2025) &middot; Target 2026: R$ 1,82M+</div>
+  </div>
+
+<!-- BF KPIs -->
+  <div class="krow">
+    <div class="kcard yellow"><div class="kl">BF 2025 GMV (7 dias)</div><div class="kv">R$ 1,22M</div><div class="ks">24-30/Nov/2025 &middot; 1099 SIs</div></div>
+    <div class="kcard yellow"><div class="kl">Ticket BF 2025</div><div class="kv">R$ 1.107</div><div class="ks">vs ticket Nov usual: R$ 1.106 (+0.1%)</div></div>
+    <div class="kcard blue"><div class="kl">Target BF 2026</div><div class="kv" style="color:#3483FA">R$ 1,82M+</div><div class="ks">+50% vs BF 2025 &mdash; possível com mix atual</div></div>
+    <div class="kcard green"><div class="kl">% do Mês Nov 2025</div><div class="kv">25.8%</div><div class="ks">R$ 1,22M de R$ 4,71M nov total</div></div>
+  </div>
+
+<!-- BF DAY 28/Nov/2025 -->
+  <div style="background:linear-gradient(135deg,#1A1A1A,#2D1A00);border-radius:12px;padding:22px 28px;margin-bottom:16px;box-shadow:0 4px 20px rgba(255,149,0,.25);border:1px solid rgba(255,230,0,.2)">
+    <div style="display:flex;align-items:center;gap:20px;margin-bottom:18px">
+      <div style="font-size:52px;line-height:1">🎉</div>
+      <div>
+        <div style="font-size:22px;font-weight:900;color:#FFE600">28 de Novembro de 2025 &mdash; Black Friday</div>
+        <div style="font-size:14px;color:#aaa;margin-top:4px">Maior GMV de BF da EASY HOUSE no MeLi &middot; +150% vs média de novembro</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:18px">
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,230,0,.3);border-radius:10px;padding:14px 20px;min-width:130px">
+        <div style="font-size:10px;color:#aaa;font-weight:700;text-transform:uppercase;margin-bottom:4px">GMV BF Day</div>
+        <div style="font-size:26px;font-weight:900;color:#FFE600">R$ 372.698</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">325 pedidos</div>
+      </div>
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(0,166,80,.3);border-radius:10px;padding:14px 20px;min-width:130px">
+        <div style="font-size:10px;color:#aaa;font-weight:700;text-transform:uppercase;margin-bottom:4px">vs média pré-BF (1-27/Nov)</div>
+        <div style="font-size:26px;font-weight:900;color:#00A650">+150%</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">Média: R$ 149K/dia</div>
+      </div>
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(0,166,80,.3);border-radius:10px;padding:14px 20px;min-width:130px">
+        <div style="font-size:10px;color:#aaa;font-weight:700;text-transform:uppercase;margin-bottom:4px">YoY vs BF 2024 (29/Nov)</div>
+        <div style="font-size:26px;font-weight:900;color:#00A650">+18%</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">BF 2024: R$ 315K &middot; 385 ped.</div>
+      </div>
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(52,131,250,.3);border-radius:10px;padding:14px 20px;min-width:130px">
+        <div style="font-size:10px;color:#aaa;font-weight:700;text-transform:uppercase;margin-bottom:4px">Peso no mês de Nov</div>
+        <div style="font-size:26px;font-weight:900;color:#3483FA">7.9%</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">R$ 373K de R$ 4,71M (Nov total)</div>
+      </div>
+      <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,149,0,.3);border-radius:10px;padding:14px 20px;min-width:130px">
+        <div style="font-size:10px;color:#aaa;font-weight:700;text-transform:uppercase;margin-bottom:4px">Véspera (27/Nov)</div>
+        <div style="font-size:26px;font-weight:900;color:#FF9500">R$ 152.029</div>
+        <div style="font-size:11px;color:#888;margin-top:2px">2º maior dia do mês &middot; aquecimento</div>
+      </div>
+    </div>
+
+    <!-- Gráfico semana BF -->
+    <div style="margin-bottom:14px">
+      <div style="font-size:12px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">GMV por dia &mdash; Semana Black Friday (24&ndash;30/Nov/2025)</div>
+      <div style="position:relative;height:160px"><canvas id="cBFWeek"></canvas></div>
+    </div>
+    <script>
+    (function(){
+      var labels=["24/Nov", "25/Nov", "26/Nov", "27/Nov (v\u00e9spera)", "28/Nov \u2b50 BF", "29/Nov", "30/Nov"];
+      var vals=[127326.0,110383.0,140515.0,152029.0,372698.0,161542.0,152066.0];
+      var colors=['#555','#555','#555','#FF9500','#FFE600','#555','#555'];
+      new Chart(document.getElementById('cBFWeek'),{
+        type:'bar',
+        data:{labels:labels,datasets:[{label:'GMV (R$)',data:vals,backgroundColor:colors,borderRadius:6,borderSkipped:false,
+          datalabels:{anchor:'end',align:'end',offset:4,font:{size:11,weight:'700'},
+            formatter:function(v){return v>0?'R$'+(v/1000).toFixed(0)+'K':null;},
+            color:function(ctx){var i=ctx.dataIndex;return i===4?'#FFE600':(i===3?'#FF9500':'#aaa');}
+          }}]},
+        options:{
+          responsive:true,maintainAspectRatio:false,
+          layout:{padding:{top:30}},
+          plugins:{legend:{display:false},datalabels:{},tooltip:{callbacks:{label:function(c){return 'R$ '+Number(c.raw).toLocaleString('pt-BR');}}}},
+          scales:{x:{ticks:{color:'#aaa',font:{size:10}}},y:{ticks:{callback:function(v){return 'R$'+(v/1000).toFixed(0)+'K';},color:'#888'},grid:{color:'rgba(255,255,255,.05)'}}}
+        }
+      });
+    })();
+    </script>
+
+    
+    <!-- Horários BF -->
+    <div style="margin-bottom:16px">
+      <div style="font-size:12px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Pico de Vendas por Hora &mdash; 28/Nov/2025</div>
+      <div style="display:flex;gap:10px;margin-bottom:10px;flex-wrap:wrap">
+        <div style="background:rgba(255,230,0,.12);border:1px solid rgba(255,230,0,.3);border-radius:8px;padding:8px 14px;font-size:11px;color:#FFE600"><strong style="font-size:16px">19h</strong> &mdash; Pico máx. &middot; 33 ped. &middot; R$ 35K</div><div style="background:rgba(255,255,255,.06);border:1px solid transparent;border-radius:8px;padding:8px 14px;font-size:11px;color:#ccc"><strong style="font-size:16px">11h</strong> &mdash; 2º pico &middot; 26 ped. &middot; R$ 33K</div><div style="background:rgba(255,255,255,.06);border:1px solid transparent;border-radius:8px;padding:8px 14px;font-size:11px;color:#ccc"><strong style="font-size:16px">14h</strong> &mdash; 3º pico &middot; 26 ped. &middot; R$ 30K</div><div style="background:rgba(255,255,255,.06);border:1px solid transparent;border-radius:8px;padding:8px 14px;font-size:11px;color:#ccc"><strong style="font-size:16px">12h</strong> &mdash; 4º pico &middot; 25 ped. &middot; R$ 29K</div>
+      </div>
+      <div style="position:relative;height:140px"><canvas id="cBFHoras"></canvas></div>
+    </div>
+    <script>
+    (function(){
+      var hLabels=["0h", "1h", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "11h", "12h", "13h", "14h", "15h", "16h", "17h", "18h", "19h", "20h", "21h", "22h", "23h"];
+      var hVals=[2763.0,1589.0,999.0,999.0,999.0,7869.0,9016.0,12838.0,10191.0,16143.0,8900.0,33324.0,29292.0,18545.0,29898.0,10432.0,13573.0,15192.0,28582.0,35202.0,26586.0,28541.0,24711.0,6514.0];
+      var hColors=['#555','#555','#555','#555','#555','#555','#555','#555','#555','#555','#555','#FF9500','#FF9500','#555','#FF9500','#555','#555','#555','#FF9500','#FFE600','#FF9500','#FF9500','#FF9500','#555'];
+      new Chart(document.getElementById('cBFHoras'),{
+        type:'bar',
+        data:{labels:hLabels,datasets:[{label:'GMV (R$)',data:hVals,backgroundColor:hColors,borderRadius:4,borderSkipped:false,
+          datalabels:{anchor:'end',align:'end',offset:2,font:{size:8,weight:'700'},
+            formatter:function(v){return v>0?'R$'+(v/1000).toFixed(0)+'K':null;},
+            color:function(ctx){var v=hVals[ctx.dataIndex];var mx=Math.max.apply(null,hVals);return v===mx?'#FFE600':(v>=mx*0.7?'#FF9500':'#888');}
+          }}]},
+        options:{responsive:true,maintainAspectRatio:false,
+          layout:{padding:{top:28}},
+          plugins:{legend:{display:false},datalabels:{}},
+          scales:{x:{ticks:{color:'#888',font:{size:9}},grid:{display:false}},
+                  y:{ticks:{display:false},grid:{color:'rgba(255,255,255,.05)'},border:{display:false}}}}
+      });
+    })();
+    </script>
+    <div style="font-size:10px;color:#666;margin-top:4px;margin-bottom:14px">● Amarelo = pico máximo &middot; Laranja = horas acima de 70% do pico</div>
+    
+
+    <!-- Top 5 itens BF -->
+    <div style="font-size:12px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Top 5 Itens no dia 28/Nov/2025</div>
+    <div style="display:flex;flex-direction:column;gap:6px">
+      
+      <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;gap:10px;flex-wrap:wrap">
+        <div><span style="color:#FFE600;font-weight:900;margin-right:8px">1</span>
+          <a href="https://produto.mercadolivre.com.br/MLB-3644997279" target="_blank" style="color:#FFE600;font-size:11px;font-weight:700;margin-right:6px">3644997279</a>
+          <span style="color:#aaa;font-size:12px">GUARDA-ROUPA CASAL MDF 2 PORTAS CORREDIÇAS BRANCO 6 GAVETAS MÓVEIS LOPAS</span></div>
+        <div style="text-align:right;flex-shrink:0">
+          <span style="color:#FFE600;font-weight:900;font-size:14px">R$ 117.586</span>
+          <span style="color:#888;font-size:11px"> 72 ped. &middot; 74 un.</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;gap:10px;flex-wrap:wrap">
+        <div><span style="color:#FFE600;font-weight:900;margin-right:8px">2</span>
+          <a href="https://produto.mercadolivre.com.br/MLB-5445396068" target="_blank" style="color:#FFE600;font-size:11px;font-weight:700;margin-right:6px">5445396068</a>
+          <span style="color:#aaa;font-size:12px">GUARDA-ROUPA CASAL EASY SLIM 8 PORTAS C/ ESPELHO AMENDOA/OFF AMÊNDOA CLEAN/OFF W</span></div>
+        <div style="text-align:right;flex-shrink:0">
+          <span style="color:#FFE600;font-weight:900;font-size:14px">R$ 84.265</span>
+          <span style="color:#888;font-size:11px"> 86 ped. &middot; 88 un.</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;gap:10px;flex-wrap:wrap">
+        <div><span style="color:#FFE600;font-weight:900;margin-right:8px">3</span>
+          <a href="https://produto.mercadolivre.com.br/MLB-5580461866" target="_blank" style="color:#FFE600;font-size:11px;font-weight:700;margin-right:6px">5580461866</a>
+          <span style="color:#aaa;font-size:12px">GUARDA-ROUPA CASAL EASY SLIM 8 PORTAS COM ESPELHO BRANCO BLUSH</span></div>
+        <div style="text-align:right;flex-shrink:0">
+          <span style="color:#FFE600;font-weight:900;font-size:14px">R$ 28.971</span>
+          <span style="color:#888;font-size:11px"> 28 ped. &middot; 29 un.</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;gap:10px;flex-wrap:wrap">
+        <div><span style="color:#FFE600;font-weight:900;margin-right:8px">4</span>
+          <a href="https://produto.mercadolivre.com.br/MLB-3663445549" target="_blank" style="color:#FFE600;font-size:11px;font-weight:700;margin-right:6px">3663445549</a>
+          <span style="color:#aaa;font-size:12px">GUARDA-ROUPA CASAL MÓVEIS LOPAS EASY SLIM 8 PORTAS ESPELHO MARROM MODERNO</span></div>
+        <div style="text-align:right;flex-shrink:0">
+          <span style="color:#FFE600;font-weight:900;font-size:14px">R$ 21.978</span>
+          <span style="color:#888;font-size:11px"> 21 ped. &middot; 22 un.</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.06);border-radius:8px;padding:10px 14px;gap:10px;flex-wrap:wrap">
+        <div><span style="color:#FFE600;font-weight:900;margin-right:8px">5</span>
+          <a href="https://produto.mercadolivre.com.br/MLB-3947912507" target="_blank" style="color:#FFE600;font-size:11px;font-weight:700;margin-right:6px">3947912507</a>
+          <span style="color:#aaa;font-size:12px">CONJUNTO SALA DE JANTAR COM 4 CADEIRAS GRUPO LOPAS EASY LINE COR AMÊNDOA AMENDOA</span></div>
+        <div style="text-align:right;flex-shrink:0">
+          <span style="color:#FFE600;font-weight:900;font-size:14px">R$ 9.691</span>
+          <span style="color:#888;font-size:11px"> 22 ped. &middot; 22 un.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Top items H2 2025 + BF -->
+  <div class="sec">
+    <div class="sec-ttl" style="color:#1A1A1A"><span style="background:#FFE600;padding:2px 8px;border-radius:4px;margin-right:8px">BF</span>Top Produtos H2 2025 + Performance Black Friday</div>
+    <div style="overflow-x:auto">
+    <table>
+      <thead><tr>
+        <th>#</th><th>Produto</th>
+        <th style="text-align:right">GMV H2 2025</th>
+        <th style="text-align:right">SIs H2</th>
+        <th style="text-align:right">Ticket</th>
+        <th style="text-align:right">SIs na BF</th>
+        <th style="text-align:right">% BF/H2</th>
+      </tr></thead>
+      <tbody>
+        
+        <tr>
+          <td style="font-size:11px;color:#888">1</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3644997279" target="_blank">GUARDA-ROUPA CASAL MDF 2 PORTAS CORREDIÇAS BRANCO 6 GAVETAS MÓVEIS LOP</a><br>
+              <span style="font-size:10px;color:#999">3644997279</span></td>
+          <td style="text-align:right;font-weight:700">R$ 4.039.560</td>
+          <td style="text-align:right">2.393</td>
+          <td style="text-align:right">R$ 1.688</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">197 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-y">8.2%</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:11px;color:#888">2</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5445396068" target="_blank">GUARDA-ROUPA CASAL EASY SLIM 8 PORTAS C/ ESPELHO AMENDOA/OFF AMÊNDOA C</a><br>
+              <span style="font-size:10px;color:#999">5445396068</span></td>
+          <td style="text-align:right;font-weight:700">R$ 3.834.012</td>
+          <td style="text-align:right">3.689</td>
+          <td style="text-align:right">R$ 1.039</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">304 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-y">8.2%</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:11px;color:#888">3</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3749674727" target="_blank">GUARDA-ROUPA CASAL MÓVEIS LOPAS EASY SLIM 8 PORTAS COM ESPELHO E GAVET</a><br>
+              <span style="font-size:10px;color:#999">3749674727</span></td>
+          <td style="text-align:right;font-weight:700">R$ 1.074.825</td>
+          <td style="text-align:right">968</td>
+          <td style="text-align:right">R$ 1.110</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">28 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-y">2.9%</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:11px;color:#888">4</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3663445549" target="_blank">GUARDA-ROUPA CASAL MÓVEIS LOPAS EASY SLIM 8 PORTAS ESPELHO MARROM MODE</a><br>
+              <span style="font-size:10px;color:#999">3663445549</span></td>
+          <td style="text-align:right;font-weight:700">R$ 972.515</td>
+          <td style="text-align:right">911</td>
+          <td style="text-align:right">R$ 1.068</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">54 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-y">5.9%</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:11px;color:#888">5</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-3947912507" target="_blank">CONJUNTO SALA DE JANTAR COM 4 CADEIRAS GRUPO LOPAS EASY LINE COR AMÊND</a><br>
+              <span style="font-size:10px;color:#999">3947912507</span></td>
+          <td style="text-align:right;font-weight:700">R$ 810.709</td>
+          <td style="text-align:right">1.757</td>
+          <td style="text-align:right">R$ 461</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">100 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-y">5.7%</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:11px;color:#888">6</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4654804206" target="_blank">GUARDA-ROUPA CASAL EASY SLIM 8 PTS C/ ESPELHO E PÉS BRANCO</a><br>
+              <span style="font-size:10px;color:#999">4654804206</span></td>
+          <td style="text-align:right;font-weight:700">R$ 431.562</td>
+          <td style="text-align:right">389</td>
+          <td style="text-align:right">R$ 1.109</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">6 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-y">1.5%</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:11px;color:#888">7</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4578211532" target="_blank">CÔMODA 2 PORTAS 7 GAVETAS 3 PRATELEIRAS VEDRA BJWT AMÊNDOA CLEAN/OFF W</a><br>
+              <span style="font-size:10px;color:#999">4578211532</span></td>
+          <td style="text-align:right;font-weight:700">R$ 413.485</td>
+          <td style="text-align:right">542</td>
+          <td style="text-align:right">R$ 763</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">26 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-y">4.8%</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:11px;color:#888">8</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-5580461866" target="_blank">GUARDA-ROUPA CASAL EASY SLIM 8 PORTAS COM ESPELHO BRANCO BLUSH</a><br>
+              <span style="font-size:10px;color:#999">5580461866</span></td>
+          <td style="text-align:right;font-weight:700">R$ 381.894</td>
+          <td style="text-align:right">363</td>
+          <td style="text-align:right">R$ 1.052</td>
+          <td style="text-align:right"><span style="color:#00A650;font-weight:700">59 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-g">16.3%</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:11px;color:#888">9</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4087433655" target="_blank">CONJUNTO SALA DE JANTAR MESA EASY POP 170X90 6 CADE CONFORT</a><br>
+              <span style="font-size:10px;color:#999">4087433655</span></td>
+          <td style="text-align:right;font-weight:700">R$ 370.898</td>
+          <td style="text-align:right">245</td>
+          <td style="text-align:right">R$ 1.514</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">20 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-y">8.2%</span></td>
+        </tr>
+        <tr>
+          <td style="font-size:11px;color:#888">10</td>
+          <td><a href="https://produto.mercadolivre.com.br/MLB-4169264376" target="_blank">GUARDA-ROUPA CASAL EASY SLIM 8 PTS COM PÉS AMENDOA/OFF AMÊNDOA CLEAN/O</a><br>
+              <span style="font-size:10px;color:#999">4169264376</span></td>
+          <td style="text-align:right;font-weight:700">R$ 329.929</td>
+          <td style="text-align:right">322</td>
+          <td style="text-align:right">R$ 1.025</td>
+          <td style="text-align:right"><span style="color:#E67E00;font-weight:700">5 SIs</span></td>
+          <td style="text-align:right"><span class="pill pl-y">1.6%</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+<!-- Estratégia BF -->
+  <div class="sec">
+    <div class="sec-ttl" style="color:#1A1A1A">🔥 Estratégia Black Friday 2026 &mdash; Plano de Ação</div>
+    <div class="ig">
+      <div class="ic bf">
+        <div class="ic-ttl">● Ago/Set &mdash; Preparação Estrutural</div>
+        <div class="ic-val" style="color:#FFE600">Ago &mdash; Set</div>
+        <p style="color:#ccc">1. Garantir estoque nos SKUs campeões BF 2025.<br>2. Ativar/revisar ADS em todos os top 10.<br>3. Obter optins em campanhas de Preço Crível e Relâmpago para Nov.<br>4. Garantir Full/ME2 nos itens elegíveis.<br>5. Revisar preço DE dos top SKUs para garantir credibilidade de preço e tag Black Friday em novembro.</p>
+      </div>
+      <div class="ic bf">
+        <div class="ic-ttl">● Outubro &mdash; Aquecimento</div>
+        <div class="ic-val" style="color:#FFE600">Out</div>
+        <p style="color:#ccc">1. Pricing estratégico: posicionar preços base em Out para ter desconto real em Nov.<br>2. Ampliação de catálogo: novas cores/variações dos campeões BF.<br>3. Revisar títulos e atributos para SEO de BF.<br>4. Acumular reviews nos itens-foco (min. 4.5 estrelas).</p>
+      </div>
+      <div class="ic bf">
+        <div class="ic-ttl">● Novembro &mdash; Execução BF</div>
+        <div class="ic-val" style="color:#FFE600">24&ndash;30/Nov</div>
+        <p style="color:#ccc">1. Desconto real mín. 20% nos top SKUs (comprovado vs 30 dias antes).<br>2. Optin Oferta Relâmpago nos campeões BF.<br>3. Itens de presente para Natal — timing perfeito.<br>4. Target: <strong style="color:#FFE600">R$ 1,82M+ em 7 dias</strong> (vs R$ 1,22M em 2025).</p>
+      </div>
+      <div class="ic bf">
+        <div class="ic-ttl">● Dezembro &mdash; Pós-BF &amp; Natal</div>
+        <div class="ic-val" style="color:#FFE600">Dez</div>
+        <p style="color:#ccc">1. Itens de presentes infantis: pico em Dez. Garantir estoque e ADS.<br>2. Não baixar preços pós-BF — manter posicionamento.<br>3. Ticket médio Dez 2025: R$ 1.077 — sustentar ou superar.<br>4. Target Dez 2026: R$ 4,19M (meta) vs Dez 2025: R$ 1,70M.</p>
+      </div>
+    </div>
+  </div>
+
+<!-- PRÓXIMOS PASSOS -->
+  <div class="sec" style="background:#1A1A2E">
+    <div class="sec-ttl" style="color:#FFE600"><span style="background:#FFE600;width:4px;height:18px;border-radius:2px;display:inline-block;margin-right:8px"></span>Próximos Passos &mdash; Acordos da Reunião</div>
+    <div class="act">
+      <div class="act-item">
+        <div class="act-num" style="background:#3483FA">1</div>
+        <div class="act-txt" style="color:#ddd"><strong style="color:#fff">Diagnóstico H1</strong> &mdash; Revisar meses abaixo do ritmo esperado. Entender: campanhas, estoque, buybox. Garantir que não se repita em H2.</div>
+      </div>
+      <div class="act-item">
+        <div class="act-num" style="background:#00A650">2</div>
+        <div class="act-txt" style="color:#ddd"><strong style="color:#fff">Mix e Catálogo</strong> &mdash; Identificar oportunidades de ampliar o catálogo para H2. Novas variações dos campeões BF.</div>
+      </div>
+      <div class="act-item">
+        <div class="act-num" style="background:#FFE600; color:#1A1A1A">3</div>
+        <div class="act-txt" style="color:#ddd"><strong style="color:#fff">Optins BF 2026</strong> &mdash; Garantir optin nos top 10 itens em Oferta Relâmpago, Preço Crível e Campanhas para novembro. Prazo: concluir até Setembro.</div>
+      </div>
+      <div class="act-item">
+        <div class="act-num" style="background:#F23D4F">4</div>
+        <div class="act-txt" style="color:#ddd"><strong style="color:#fff">ADS em H2</strong> &mdash; Os campeões BF tiveram alto peso na semana BF 2025. Ativar ADS desde Agosto para construir histórico de cliques e visibilidade antes da BF.</div>
+      </div>
+      <div class="act-item">
+        <div class="act-num" style="background:#FF9500">5</div>
+        <div class="act-txt" style="color:#ddd"><strong style="color:#fff">Meta H2 Realística</strong> &mdash; Meta oficial definida. Confirmar operacionalmente se é alcançável com execução forte na BF e ticket sustentado.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;font-size:11px;color:#aaa;padding:16px 0">
+    EASY HOUSE &middot; ID: 1289467675 &middot; Dados: BigQuery meli-bi-data &middot; DM_EFICIENCIA_MLB &middot; ORD_STATUS=paid &middot; Gerado em 28/Jul/2026 &middot; KAM Alexandre Alencar
+  </div>
+
+</div>
+</body>
+</html>
