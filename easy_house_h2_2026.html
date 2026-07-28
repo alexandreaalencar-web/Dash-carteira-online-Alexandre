@@ -112,7 +112,7 @@ a{color:#3483FA;text-decoration:none}
       <div class="ql">Q3 2026 (Jul&ndash;Set) &mdash; Meta Desafio</div>
       <div class="qv" style="color:#3483FA">R$ 13,91M</div>
       <div class="qm">Jul: R$ 4,60M &middot; Ago: R$ 4,45M &middot; Set: R$ 4,86M</div>
-      <div class="qm" style="margin-top:5px">MTD Jul: <strong style="color:#3483FA">R$ 1,95M</strong> &middot; Pace: <strong style="color:#E67E00">42.5%</strong></div>
+      <div class="qm" style="margin-top:5px">MTD Jul: <strong style="color:#3483FA">R$ 1,96M</strong> &middot; Pace: <strong style="color:#E67E00">42.6%</strong></div>
     </div>
     <div class="qc">
       <div class="ql">🎯 Q4 2026 (Out&ndash;Dez) &mdash; Meta Desafio</div>
@@ -400,13 +400,13 @@ a{color:#3483FA;text-decoration:none}
     var labels = ["Jul", "Ago", "Set", "Out", "Nov", "Dez"];
     var h2_25  = [3297551.0,3230834.0,2910734.0,3167109.0,4706560.0,1696673.0];
     var meta26 = [4597735.69,4453404.88,4857313.07,5161619.39,5265238.06,4190055.14];
-    var mtd26  = [1953343.0,null,null,null,null,null];
-    var proj26 = [2162630.0,null,null,null,null,null];
+    var mtd26  = [1956854.0,null,null,null,null,null];
+    var proj26 = [2166517.0,null,null,null,null,null];
     var datasets = [
       {label:'H2 2025 Realizado',data:h2_25,backgroundColor:'#B8CCF5',borderRadius:5,yAxisID:'yG',order:4,
         datalabels:{anchor:'end',align:'end',offset:2,font:{size:10,weight:'700'},
           formatter:function(v){return 'R$'+(v/1000).toFixed(0)+'K';},color:'#555'}},
-      {label:'Meta Des. 2026',data:meta26,type:'line',borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[5,3],borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#FF7A00',yAxisID:'yG',order:1,datalabels:{anchor:'end',align:'top',offset:4,font:{size:10,weight:'700'},formatter:function(v){return v?'Meta: R$'+(v/1000).toFixed(0)+'K':null;},color:'#FF7A00'}},
+      {label:'Meta Des. 2026',data:meta26,type:'line',borderColor:'#FF7A00',backgroundColor:'transparent',borderDash:[5,3],borderWidth:2.5,pointRadius:5,pointBackgroundColor:'#FF7A00',yAxisID:'yG',order:1,datalabels:{anchor:'end',align:'top',offset:4,font:{size:10,weight:'700'},formatter:function(v){return v?'Meta: R$'+(v/1000000).toFixed(2).replace('.',',')+'M':null;},color:'#FF7A00'}},
       {label:'Jul 2026 MTD',data:mtd26,backgroundColor:'#00A650',borderRadius:5,yAxisID:'yG',order:2,
         datalabels:{anchor:'end',align:'end',offset:2,font:{size:10,weight:'700'},
           formatter:function(v){return v?'MTD R$'+(v/1000).toFixed(0)+'K':null;},color:'#007A3A'}},
