@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estudo de Mercado 2026 — Moveis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --yellow:  #FFE600;
+      --blue:    #3483FA;
+      --green:   #00A650;
+      --red:     #F23D4F;
+      --aqua:    #1baf7a;
+      --gray-bar:#C8C8C8;
+      --bg:      #F0F0F0;
+      --card:    #FFFFFF;
+      --text-1:  #1A1A1A;
+      --text-2:  #555555;
+      --text-3:  #999999;
+      --border:  #E8E8E8;
+      --shadow:  0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text-1);
+      min-height: 100vh;
+      font-size: 14px;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--yellow);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+    .header-left { display: flex; align-items: center; gap: 12px; }
+    .header-logo {
+      width: 28px; height: 28px;
+      background: #1A1A1A;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800; color: var(--yellow); letter-spacing: -0.5px;
+    }
+    .header-title { font-size: 15px; font-weight: 700; color: #1A1A1A; }
+    .header-meta  { font-size: 12px; font-weight: 500; color: #444; background: rgba(0,0,0,0.08); padding: 4px 10px; border-radius: 20px; }
+
+    /* ── Layout ── */
+    .page { max-width: 1280px; margin: 0 auto; padding: 24px 24px 60px; }
+
+    /* ── KPI Row ── */
+    .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 22px; }
+    .kpi-tile { background: var(--card); border-radius: 10px; padding: 18px 20px; box-shadow: var(--shadow); }
+    .kpi-label { font-size: 11px; font-weight: 600; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.6px; margin-bottom: 10px; }
+    .kpi-value { font-size: 30px; font-weight: 800; color: var(--text-1); line-height: 1; }
+    .kpi-sub   { font-size: 11px; color: var(--text-3); margin-top: 7px; line-height: 1.5; }
+    .kpi-accent { color: var(--blue); }
+    .kpi-muted  { color: var(--text-2); }
+
+    /* ── Tabs ── */
+    .tabs { display: flex; gap: 6px; margin-bottom: 18px; }
+    .tab-btn {
+      padding: 9px 20px; border: none; border-radius: 7px;
+      font-family: inherit; font-size: 13px; font-weight: 600;
+      color: var(--text-2); background: rgba(255,255,255,0.7);
+      cursor: pointer; transition: all 0.15s ease;
+    }
+    .tab-btn:hover:not(.active) { background: white; color: var(--text-1); }
+    .tab-btn.active { background: var(--blue); color: white; box-shadow: 0 2px 8px rgba(52,131,250,0.35); }
+
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* ── Grid ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .full   { margin-bottom: 16px; }
+
+    /* ── Card ── */
+    .card { background: var(--card); border-radius: 10px; padding: 22px 24px; box-shadow: var(--shadow); }
+    .card-title { font-size: 14px; font-weight: 700; color: var(--text-1); margin-bottom: 18px; }
+    .card-note  { font-size: 11px; color: var(--text-3); margin-bottom: 14px; line-height: 1.5; }
+
+    /* ── Data Table ── */
+    .data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+    .data-table th {
+      font-size: 10.5px; font-weight: 700; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: 0.4px;
+      padding: 7px 10px; text-align: left; border-bottom: 2px solid var(--border);
+    }
+    .data-table td { padding: 9px 10px; border-bottom: 1px solid var(--border); color: var(--text-1); vertical-align: middle; }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tbody tr:hover td { background: #F7F9FF; }
+    .data-table tbody tr.mine td { background: #FFFBEA; }
+    .data-table tbody tr.mine:hover td { background: #FFF5CC; }
+    .data-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+    .rank-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: #F0F0F0; font-size: 11px; font-weight: 700; color: var(--text-2);
+    }
+    .rank-badge.g1 { background: #FFE600; color: #333; }
+    .rank-badge.g2 { background: #E0E0E0; color: #555; }
+    .rank-badge.g3 { background: #F0C87A; color: #5A3D00; }
+
+    .mine-tag { display: inline-block; background: var(--yellow); color: #333; font-size: 9px; font-weight: 800; padding: 2px 5px; border-radius: 3px; margin-left: 5px; vertical-align: middle; letter-spacing: 0.3px; }
+    .seller-name { font-weight: 600; color: var(--text-2); font-size: 11px; }
+
+    .item-link { color: var(--blue); text-decoration: none; font-weight: 500; line-height: 1.4; }
+    .item-link:hover { text-decoration: underline; }
+
+    /* share pill */
+    .share-cell { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+    .share-bar { height: 5px; border-radius: 3px; min-width: 3px; }
+
+    /* ── Tooltip ── */
+    #tooltip {
+      position: fixed; pointer-events: none; z-index: 999; display: none;
+      background: rgba(20,20,20,0.9); color: white;
+      padding: 8px 12px; border-radius: 7px; font-size: 12px; line-height: 1.6;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25); white-space: nowrap;
+    }
+
+    /* ── Legend ── */
+    .legend { display: flex; gap: 18px; margin-top: 16px; flex-wrap: wrap; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-2); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+
+    /* ── Insight Box ── */
+    .insight-box {
+      background: #F0F6FF; border-left: 3px solid var(--blue);
+      border-radius: 0 8px 8px 0; padding: 12px 16px; margin-top: 16px;
+      font-size: 12px; color: var(--text-2); line-height: 1.6;
+    }
+    .insight-box strong { color: var(--text-1); }
+
+    @media (max-width: 900px) {
+      .kpi-row { grid-template-columns: repeat(2, 1fr); }
+      .grid-2  { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="tooltip"></div>
+
+<header class="header">
+  <div class="header-left">
+    <div class="header-logo">ML</div>
+    <div class="header-title">Estudo de Mercado 2026 — Moveis</div>
+  </div>
+  <div class="header-meta">Jan–Jul 2026 &nbsp;·&nbsp; Moveis — MLB</div>
+</header>
+
+<main class="page">
+
+  <!-- KPI Row -->
+  <div class="kpi-row">
+    <div class="kpi-tile">
+      <div class="kpi-label">GMV Guarda-Roupas</div>
+      <div class="kpi-value">R$ 280,9M</div>
+      <div class="kpi-sub">MLB-WARDROBES · 13.682 itens<br>Jan–Jul 2026</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-label">GMV Sala de Jantar</div>
+      <div class="kpi-value">R$ 113,3M</div>
+      <div class="kpi-sub">MLB-DINING_KITS · 2.957 itens<br>Jan–Jul 2026</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-label">Seu Seller — Guarda-Roupas</div>
+      <div class="kpi-value kpi-accent">#7</div>
+      <div class="kpi-sub">R$ 9,6M &nbsp;·&nbsp; 3,4% share<br>102 itens ativos</div>
+    </div>
+    <div class="kpi-tile">
+      <div class="kpi-label">Seu Seller — Sala de Jantar</div>
+      <div class="kpi-value kpi-muted">#14</div>
+      <div class="kpi-sub">R$ 1,4M &nbsp;·&nbsp; 1,3% share<br>55 itens ativos</div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(this,'gr')">Guarda-Roupas</button>
+    <button class="tab-btn" onclick="switchTab(this,'csj')">Conjuntos Sala de Jantar</button>
+    <button class="tab-btn" onclick="switchTab(this,'seg')">Segmentacao GR</button>
+    <button class="tab-btn" onclick="switchTab(this,'seg-csj')">Segmentacao CSJ</button>
+  </div>
+
+  <!-- ═══ TAB: GUARDA-ROUPAS ═══ -->
+  <div class="section active" id="tab-gr">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Top Sellers — Guarda-Roupas</div>
+        <div id="chart-gr-sellers"></div>
+        <div class="legend" id="legend-gr"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Top 5 Produtos — Guarda-Roupas</div>
+        <table class="data-table" id="tbl-gr-prod"></table>
+      </div>
+    </div>
+    <div class="card full">
+      <div class="card-title">Ranking Completo de Sellers — Guarda-Roupas</div>
+      <table class="data-table" id="tbl-gr-sell"></table>
+    </div>
+    <div class="insight-box">
+      <strong>Insight:</strong> O mercado e altamente concentrado — <strong>Seller A</strong> detem 42,3% do GMV sozinho, com 3.062 itens ativos. <strong>Nossa Empresa esta em #7 com 3,4% share e produto no Top 5</strong> (GR Easy Slim 8P Espelho · R$ 2,88M).
+    </div>
+  </div>
+
+  <!-- ═══ TAB: SALA DE JANTAR ═══ -->
+  <div class="section" id="tab-csj">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">Top Sellers — Conjuntos Sala de Jantar</div>
+        <div id="chart-csj-sellers"></div>
+        <div class="legend" id="legend-csj"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Top 5 Produtos — Sala de Jantar</div>
+        <table class="data-table" id="tbl-csj-prod"></table>
+      </div>
+    </div>
+    <div class="card full">
+      <div class="card-title">Ranking Completo de Sellers — Sala de Jantar</div>
+      <table class="data-table" id="tbl-csj-sell"></table>
+    </div>
+    <div class="insight-box">
+      <strong>Insight:</strong> Seller A e Seller B juntos dominam 40,8% do GMV em Sala de Jantar. <strong>Nossa Empresa esta em #14 com apenas 1,3% share</strong> — ha espaco significativo de crescimento neste segmento vs. Guarda-Roupas onde ja temos posicao consolidada.
+    </div>
+  </div>
+
+  <!-- ═══ TAB: SEGMENTACAO GR ═══ -->
+  <div class="section" id="tab-seg">
+    <div class="card full">
+      <div class="card-title">Segmentacao por Tipo — Guarda-Roupas (Jan–Jul 2026)</div>
+      <div class="card-note">Classificacao via titulos. Ticket medio calculado por unidade vendida. Segmentos com material ou tipo de porta identificados tendem a ticket mais alto.</div>
+      <div id="chart-seg"></div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#3483FA"></div>Porta de Correr / Espelho</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#1baf7a"></div>MDF identificado</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#C8C8C8"></div>Nao identificado</div>
+      </div>
+      <div class="insight-box" style="margin-top:16px">
+        <strong>Porta Correr + Espelho + 3P</strong> lidera entre segmentos identificados (R$ 18,8M · TM R$ 1.038). <strong>MDF 6 Portas</strong> tem o maior ticket medio identificado (R$ 1.707). <strong>MDP</strong> aparece com ticket mais baixo (R$ 741) e share minimo — mercado e majoritariamente MDF ou nao especifica material.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ TAB: SEGMENTACAO CSJ ═══ -->
+  <div class="section" id="tab-seg-csj">
+    <div class="card full">
+      <div class="card-title">Segmentacao por Tipo — Conjuntos Sala de Jantar (Jan–Jul 2026)</div>
+      <div class="card-note">Classificacao via titulos por tampo, quantidade de cadeiras e material. Ticket medio por unidade vendida.</div>
+      <div id="chart-seg-csj"></div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#3483FA"></div>Tampo de Vidro</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#1baf7a"></div>Tampo Madeira / MDF</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#C8C8C8"></div>Tampo nao identificado</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#FFE600;border:1px solid #ddd"></div>8 Cadeiras (premium)</div>
+      </div>
+      <div class="insight-box" style="margin-top:16px">
+        <strong>4 Cadeiras</strong> domina o volume (~40% do GMV). <strong>Tampo de Vidro</strong> eleva o ticket significativamente: Vidro + 4 Cad. (R$ 872) vs Sem tampo ident. + 4 Cad. (R$ 685). <strong>8 Cadeiras</strong> e o segmento premium com ticket medio de R$ 2.067+. <strong>6 Cadeiras + Vidro</strong> combina share relevante (4,4%) com ticket alto (R$ 1.323).
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const MY_ID = "1289467675";
+const C = { blue:"#3483FA", yellow:"#FFE600", green:"#00A650", red:"#F23D4F", aqua:"#1baf7a", gray:"#C8C8C8" };
+
+const GR_SELLERS = [
+  { rank:1,  id:"187308878",  name:"Seller A",      gmv:118704102, units:101545, orders:98876, items:3062, share:42.3 },
+  { rank:2,  id:"327947804",  name:"Seller B",      gmv:30406428,  units:29598,  orders:28700, items:760,  share:10.8 },
+  { rank:3,  id:"1046986303", name:"Seller C",      gmv:15875019,  units:18412,  orders:17890, items:362,  share:5.7  },
+  { rank:4,  id:"262435141",  name:"Seller D",      gmv:14796297,  units:13716,  orders:13401, items:501,  share:5.3  },
+  { rank:5,  id:"407185840",  name:"Seller E",      gmv:10830448,  units:12624,  orders:12386, items:83,   share:3.9  },
+  { rank:7,  id:"1289467675", name:"Nossa Empresa", gmv:9571344,   units:8126,   orders:8008,  items:102,  share:3.4  },
+];
+const CSJ_SELLERS = [
+  { rank:1,  id:"187308878",  name:"Seller A",      gmv:25048246, units:18672, orders:18588, items:1042, share:22.1 },
+  { rank:2,  id:"327947804",  name:"Seller B",      gmv:21174311, units:28707, orders:28586, items:535,  share:18.7 },
+  { rank:3,  id:"472099728",  name:"Seller C",      gmv:6066590,  units:5777,  orders:5755,  items:152,  share:5.4  },
+  { rank:4,  id:"240323499",  name:"Seller D",      gmv:3946408,  units:2452,  orders:2445,  items:88,   share:3.5  },
+  { rank:5,  id:"1636240046", name:"Seller E",      gmv:3698503,  units:9570,  orders:9559,  items:60,   share:3.3  },
+  { rank:14, id:"1289467675", name:"Nossa Empresa", gmv:1437091,  units:2294,  orders:2272,  items:55,   share:1.3  },
+];
+const GR_PRODS = [
+  { rank:1, id:"5339055984", seller:"Seller A", title:"GR Casal 6 Portas 2 Gavetas Franca WT", gmv:7184425, units:10200 },
+  { rank:2, id:"6251178912", seller:"Seller A", title:"GR Casal 8 Portas 4 Gavetas Paris",     gmv:3857170, units:4035  },
+  { rank:3, id:"4075941819", seller:"Seller A", title:"GR Casal Branco Paris 8 Portas 4 Gavetas", gmv:3707611, units:3868 },
+  { rank:4, id:"3555628527", seller:"Seller B", title:"GR Casal Monaco 3 Portas Correr c/ Espelho", gmv:2938497, units:3389 },
+  { rank:5, id:"5445396068", seller:"Nossa Empresa", title:"GR Casal Easy Slim 8 Portas c/ Espelho Amendoa", gmv:2880433, units:2830, mine:true },
+];
+const CSJ_PRODS = [
+  { rank:1, id:"5834705710", seller:"Seller A", title:"Mesa 120x80 Vidro + 4 Cadeiras FG Bege",       gmv:1635602, units:1416 },
+  { rank:2, id:"5204040832", seller:"Seller B", title:"Sala Jantar Evelin Vidro 4 Cadeiras",           gmv:1593492, units:1848 },
+  { rank:3, id:"4709503374", seller:"Seller A", title:"Conj. Jantar Mesa Vidro 6 Cadeiras Espanha",    gmv:1579376, units:1324 },
+  { rank:4, id:"3888533567", seller:"Seller B", title:"Sala Jantar Talita Mesa Madeira 4 Cadeiras",    gmv:1489649, units:3048 },
+  { rank:5, id:"4120062181", seller:"Seller A", title:"Mesa Luanda 180x80 Vidro/MDF 6 Cadeiras",      gmv:1387709, units:891  },
+];
+const SEGMENTS = [
+  { label:"Nao identificado — Outros",        gmv:47554809, share:16.9, ticket:963,  color:C.gray },
+  { label:"6 Portas — Sem identificacao",     gmv:44591621, share:15.9, ticket:835,  color:C.gray },
+  { label:"Porta Correr + Espelho + 3P",      gmv:18842561, share:6.7,  ticket:1038, color:C.blue },
+  { label:"4 Portas — Sem identificacao",     gmv:14451880, share:5.1,  ticket:753,  color:C.gray },
+  { label:"MDF — Varios",                     gmv:13872153, share:4.9,  ticket:1375, color:C.aqua },
+  { label:"Espelho — Outros",                 gmv:12297959, share:4.4,  ticket:1195, color:C.blue },
+  { label:"3 Portas — Sem identificacao",     gmv:11435237, share:4.1,  ticket:868,  color:C.gray },
+  { label:"Espelho — 2 Portas",               gmv:11138582, share:4.0,  ticket:1083, color:C.blue },
+  { label:"Espelho — 6 Portas",               gmv:10264022, share:3.7,  ticket:945,  color:C.blue },
+  { label:"MDF — 6 Portas",                   gmv:9950123,  share:3.5,  ticket:1707, color:C.aqua },
+  { label:"Espelho — 3 Portas",               gmv:8629566,  share:3.1,  ticket:1223, color:C.blue },
+  { label:"MDF + Espelho + 3P",               gmv:8079012,  share:2.9,  ticket:1587, color:C.aqua },
+  { label:"2 Portas — Sem identificacao",     gmv:7587686,  share:2.7,  ticket:894,  color:C.gray },
+  { label:"MDF — 4 Portas",                   gmv:7168365,  share:2.6,  ticket:956,  color:C.aqua },
+  { label:"MDF — 2 Portas",                   gmv:6644255,  share:2.4,  ticket:1562, color:C.aqua },
+  { label:"Porta Correr — 2 Portas",          gmv:6230233,  share:2.2,  ticket:984,  color:C.blue },
+];
+const CSJ_SEGMENTS = [
+  { label:"4 Cadeiras — Sem tampo ident.",    tampo:"—",      gmv:26935050, share:23.8, ticket:685,  color:C.gray  },
+  { label:"Vidro + 4 Cadeiras",               tampo:"Vidro",  gmv:14038158, share:12.4, ticket:872,  color:C.blue  },
+  { label:"6 Cadeiras — Sem tampo ident.",    tampo:"—",      gmv:13452233, share:11.9, ticket:1193, color:C.gray  },
+  { label:"Sem categoria identificada",       tampo:"—",      gmv:12586589, share:11.1, ticket:725,  color:C.gray  },
+  { label:"Madeira/MDF + 4 Cadeiras",         tampo:"Mdf",    gmv:5424765,  share:4.8,  ticket:516,  color:C.aqua  },
+  { label:"Vidro + 6 Cadeiras",               tampo:"Vidro",  gmv:5027567,  share:4.4,  ticket:1323, color:C.blue  },
+  { label:"Vidro + MDF (varios tamanhos)",    tampo:"Vidro",  gmv:4169361,  share:3.7,  ticket:1635, color:C.blue  },
+  { label:"6 Cadeiras + MDF",                 tampo:"Mdf",    gmv:3314079,  share:2.9,  ticket:1497, color:C.aqua  },
+  { label:"Madeira/MDF + 6 Cadeiras",         tampo:"Mdf",    gmv:3162957,  share:2.8,  ticket:747,  color:C.aqua  },
+  { label:"8 Cadeiras — Sem tampo ident.",    tampo:"—",      gmv:2290674,  share:2.0,  ticket:2067, color:"#FFE600"},
+  { label:"2 Cadeiras",                       tampo:"—",      gmv:2032926,  share:1.8,  ticket:882,  color:C.gray  },
+  { label:"4 Cadeiras + MDF",                 tampo:"Mdf",    gmv:1996403,  share:1.8,  ticket:861,  color:C.aqua  },
+  { label:"Madeira Macica + 4 Cadeiras",      tampo:"Mdf",    gmv:1909122,  share:1.7,  ticket:540,  color:C.aqua  },
+  { label:"Vidro + 6 Cad. + MDF",             tampo:"Vidro",  gmv:1718946,  share:1.5,  ticket:1107, color:C.blue  },
+  { label:"Madeira Macica + 6 Cadeiras",      tampo:"Mdf",    gmv:1648505,  share:1.5,  ticket:892,  color:C.aqua  },
+  { label:"Vidro + 8 Cadeiras",               tampo:"Vidro",  gmv:678119,   share:0.6,  ticket:2180, color:C.blue  },
+  { label:"8 Cadeiras + Madeira Macica",      tampo:"Mdf",    gmv:404881,   share:0.4,  ticket:3067, color:"#FFE600"},
+];
+
+// ─── HELPERS ────────────────────────────────────────────────────────────────
+const fmt = v => v >= 1e6 ? "R$ " + (v/1e6).toFixed(1) + "M" : "R$ " + Math.round(v/1e3) + "K";
+const fmtN = v => v.toLocaleString("pt-BR");
+const rankClass = r => r===1?"g1":r===2?"g2":r===3?"g3":"";
+
+// ─── TOOLTIP ────────────────────────────────────────────────────────────────
+const tip = document.getElementById("tooltip");
+function showTip(e, html) { tip.innerHTML = html; tip.style.display = "block"; moveTip(e); }
+function moveTip(e) { tip.style.left = (e.clientX + 14) + "px"; tip.style.top = (e.clientY - 10) + "px"; }
+function hideTip() { tip.style.display = "none"; }
+
+// ─── TAB SWITCH ─────────────────────────────────────────────────────────────
+function switchTab(btn, id) {
+  document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById("tab-" + id).classList.add("active");
+  btn.classList.add("active");
+}
+
+// ─── SELLER BAR CHART ───────────────────────────────────────────────────────
+function renderSellerChart(containerId, sellers) {
+  const el = document.getElementById(containerId);
+  const W = el.parentElement.clientWidth - 48;
+  const labelW = 132, barMaxW = Math.max(200, W - labelW - 110), barH = 24, gapY = 12;
+  const maxGmv = sellers[0].gmv;
+  const svgH = sellers.length * (barH + gapY);
+  const svgW = labelW + barMaxW + 110;
+
+  let svg = `<svg width="100%" viewBox="0 0 ${svgW} ${svgH}" style="overflow:visible;display:block">`;
+  sellers.forEach((s, i) => {
+    const isMine = s.id === MY_ID;
+    const bw = Math.max(6, (s.gmv / maxGmv) * barMaxW);
+    const y = i * (barH + gapY);
+    const fc = isMine ? C.yellow : C.blue;
+    const nameW = isMine ? 700 : 400;
+    svg += `
+      <g class="bar-g"
+         data-h="<b>${s.name}</b><br>GMV: ${fmt(s.gmv)}<br>Share: ${s.share}%<br>Unidades: ${fmtN(s.units)}<br>Pedidos: ${fmtN(s.orders)}<br>Itens: ${fmtN(s.items)}">
+        <text x="${labelW-8}" y="${y+barH/2+5}" text-anchor="end"
+              font-size="13" font-weight="${nameW}" fill="#333"
+              font-family="Inter,sans-serif">${s.name}</text>
+        ${isMine ? `<text x="${labelW-8}" y="${y-2}" text-anchor="end" font-size="9" fill="#aaa" font-family="Inter,sans-serif">rank #${s.rank}</text>` : ''}
+        <rect x="${labelW}" y="${y}" width="${bw}" height="${barH}" rx="4" fill="${fc}"/>
+        <text x="${labelW+bw+8}" y="${y+barH/2+5}" text-anchor="start"
+              font-size="12" font-weight="600" fill="#333" font-family="Inter,sans-serif">${fmt(s.gmv)}</text>
+        <text x="${labelW+bw+8+60}" y="${y+barH/2+5}" text-anchor="start"
+              font-size="11" fill="#999" font-family="Inter,sans-serif">${s.share}%</text>
+      </g>`;
+  });
+  svg += `</svg>`;
+  el.innerHTML = svg;
+
+  el.querySelectorAll(".bar-g").forEach(g => {
+    g.style.cursor = "default";
+    g.addEventListener("mousemove", e => showTip(e, g.dataset.h));
+    g.addEventListener("mousemove", moveTip);
+    g.addEventListener("mouseleave", hideTip);
+  });
+}
+
+// ─── PRODUCT TABLE ──────────────────────────────────────────────────────────
+function renderProdTable(id, prods) {
+  document.getElementById(id).innerHTML = `
+    <thead><tr>
+      <th style="width:32px">#</th>
+      <th>Produto</th>
+      <th>Seller</th>
+      <th class="num">GMV</th>
+      <th class="num">Unid.</th>
+    </tr></thead>
+    <tbody>${prods.map(p => `
+      <tr class="${p.mine ? 'mine' : ''}">
+        <td><span class="rank-badge ${rankClass(p.rank)}">${p.rank}</span></td>
+        <td>
+          <a class="item-link" href="https://www.mercadolivre.com.br/MLB-${p.id}" target="_blank">${p.title}</a>
+          ${p.mine ? '<span class="mine-tag">SEU</span>' : ''}
+        </td>
+        <td class="seller-name">${p.seller}</td>
+        <td class="num" style="font-weight:600">${fmt(p.gmv)}</td>
+        <td class="num" style="color:#777">${fmtN(p.units)}</td>
+      </tr>`).join('')}
+    </tbody>`;
+}
+
+// ─── SELLER FULL TABLE ───────────────────────────────────────────────────────
+function renderSellTable(id, sellers) {
+  document.getElementById(id).innerHTML = `
+    <thead><tr>
+      <th style="width:36px">#</th>
+      <th>Seller</th>
+      <th class="num">GMV</th>
+      <th class="num" style="width:130px">Share</th>
+      <th class="num">Unidades</th>
+      <th class="num">Pedidos</th>
+      <th class="num">Itens</th>
+    </tr></thead>
+    <tbody>${sellers.map(s => {
+      const isMine = s.id === MY_ID;
+      const barW = Math.round(s.share * 2.2);
+      const barColor = isMine ? C.yellow : C.blue;
+      return `<tr class="${isMine ? 'mine' : ''}">
+        <td><span class="rank-badge ${rankClass(s.rank)}">${s.rank}</span></td>
+        <td style="font-weight:${isMine?700:400}">${s.name}${isMine ? ' <span class="mine-tag">NOS</span>' : ''}</td>
+        <td class="num" style="font-weight:600">${fmt(s.gmv)}</td>
+        <td class="num">
+          <div class="share-cell">
+            <div class="share-bar" style="width:${barW}px;background:${barColor}"></div>
+            ${s.share}%
+          </div>
+        </td>
+        <td class="num" style="color:#777">${fmtN(s.units)}</td>
+        <td class="num" style="color:#777">${fmtN(s.orders)}</td>
+        <td class="num" style="color:#777">${fmtN(s.items)}</td>
+      </tr>`;
+    }).join('')}
+    </tbody>`;
+}
+
+// ─── SEGMENTATION CHART (generico) ──────────────────────────────────────────
+function renderSegChartGeneric(elId, data) {
+  const el = document.getElementById(elId);
+  const W = el.parentElement.clientWidth - 48;
+  const labelW = 240, barMaxW = Math.max(180, W - labelW - 200), barH = 26, gapY = 10;
+  const maxGmv = data[0].gmv;
+  const svgH = data.length * (barH + gapY);
+  const svgW = labelW + barMaxW + 200;
+
+  let svg = `<svg width="100%" viewBox="0 0 ${svgW} ${svgH}" style="overflow:visible;display:block">`;
+  data.forEach((s, i) => {
+    const bw = Math.max(6, (s.gmv / maxGmv) * barMaxW);
+    const y = i * (barH + gapY);
+    const tc = s.ticket ? "TM: R$ " + s.ticket.toLocaleString("pt-BR") : "";
+    const tipHtml = `<b>${s.label}</b><br>GMV: ${fmt(s.gmv)}<br>Share: ${s.share}%<br>Ticket Medio: R$ ${s.ticket ? s.ticket.toLocaleString("pt-BR") : "—"}`;
+    const textColor = s.color === "#FFE600" ? "#333" : "white";
+    svg += `
+      <g class="seg-g" data-h="${tipHtml.replace(/"/g,"'")}">
+        <text x="${labelW-8}" y="${y+barH/2+5}" text-anchor="end"
+              font-size="12.5" fill="#444" font-family="Inter,sans-serif">${s.label}</text>
+        <rect x="${labelW}" y="${y}" width="${bw}" height="${barH}" rx="4" fill="${s.color}" opacity="0.85"/>
+        <text x="${labelW+bw+8}" y="${y+barH/2+5}" text-anchor="start"
+              font-size="12" font-weight="600" fill="#333" font-family="Inter,sans-serif">${fmt(s.gmv)}</text>
+        <text x="${labelW+bw+62}" y="${y+barH/2+5}" text-anchor="start"
+              font-size="11" fill="#aaa" font-family="Inter,sans-serif">${s.share}%</text>
+        <text x="${labelW+bw+100}" y="${y+barH/2+5}" text-anchor="start"
+              font-size="11" fill="#3483FA" font-family="Inter,sans-serif" font-weight="500">${tc}</text>
+      </g>`;
+  });
+  svg += `</svg>`;
+  el.innerHTML = svg;
+
+  el.querySelectorAll(".seg-g").forEach(g => {
+    g.addEventListener("mousemove", e => showTip(e, g.dataset.h));
+    g.addEventListener("mousemove", moveTip);
+    g.addEventListener("mouseleave", hideTip);
+  });
+}
+function renderSegChart()    { renderSegChartGeneric("chart-seg",     SEGMENTS);     }
+function renderCsjSegChart() { renderSegChartGeneric("chart-seg-csj", CSJ_SEGMENTS); }
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+renderSellerChart("chart-gr-sellers",  GR_SELLERS);
+renderSellerChart("chart-csj-sellers", CSJ_SELLERS);
+renderProdTable("tbl-gr-prod", GR_PRODS);
+renderProdTable("tbl-csj-prod", CSJ_PRODS);
+renderSellTable("tbl-gr-sell", GR_SELLERS);
+renderSellTable("tbl-csj-sell", CSJ_SELLERS);
+renderSegChart();
+renderCsjSegChart();
+
+// Re-render charts on resize
+let resizeTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    renderSellerChart("chart-gr-sellers",  GR_SELLERS);
+    renderSellerChart("chart-csj-sellers", CSJ_SELLERS);
+    renderSegChart();
+    renderCsjSegChart();
+  }, 150);
+});
+</script>
+</body>
+</html>
