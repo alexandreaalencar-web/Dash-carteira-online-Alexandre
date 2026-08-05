@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Plano Loja Oficial — ORTOBOM #567667092</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#F0F0F0;color:#1a1a1a;font-size:14px}
+header{background:#FFE600;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.h-left{display:flex;align-items:center;gap:14px}
+.h-logo{width:36px;height:36px;border-radius:8px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#FFE600}
+.h-title{font-size:17px;font-weight:800;color:#1a1a1a}
+.h-sub{font-size:12px;font-weight:400;color:#555;margin-left:6px}
+.h-badges{display:flex;align-items:center;gap:8px}
+.badge{padding:5px 12px;border-radius:20px;font-size:11px;font-weight:700}
+.badge-dark{background:#1a1a1a;color:#FFE600}
+.badge-blue{background:#3483FA;color:#fff}
+.badge-green{background:#00A650;color:#fff}
+.badge-new{background:#F23D4F;color:#fff}
+.back{display:inline-flex;align-items:center;gap:6px;color:#3483FA;font-size:12px;font-weight:600;text-decoration:none;padding:4px 0}
+.back:hover{text-decoration:underline}
+.container{max-width:1240px;margin:0 auto;padding:24px 24px 40px}
+.section-label{font-size:10px;font-weight:700;color:#1a1a1a;text-transform:uppercase;letter-spacing:.8px;margin:28px 0 14px;padding-bottom:6px;border-bottom:3px solid #FFE600;display:inline-block}
+/* KPI cards */
+.kg{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.kcard{background:#fff;border-radius:12px;padding:18px 20px;border:1px solid #E8E8E8;border-top:4px solid #E0E0E0;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.kcard.hl{border-top-color:#FFE600}
+.kcard.blue{border-top-color:#3483FA}
+.kcard.green{border-top-color:#00A650}
+.kcard.red{border-top-color:#F23D4F}
+.kcard .lbl{font-size:10px;color:#888;text-transform:uppercase;letter-spacing:.7px;margin-bottom:6px;font-weight:600}
+.kcard .val{font-size:22px;font-weight:800;color:#1a1a1a}
+.kcard.green .val{color:#00A650}
+.kcard.red .val{color:#F23D4F}
+.kcard .yoy{font-size:12px;font-weight:700;margin-top:5px}
+.pos{color:#00A650}.neg{color:#F23D4F}.neu{color:#999}
+/* Charts */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.cbox{background:#fff;border-radius:12px;padding:20px;border:1px solid #E8E8E8;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.cbox h3{font-size:11px;font-weight:700;color:#555;margin-bottom:16px;text-transform:uppercase;letter-spacing:.5px;padding-bottom:7px;border-bottom:2px solid #FFE600;display:inline-block}
+/* Meta cards */
+.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
+.mcard{background:#fff;border-radius:12px;padding:20px;border:1px solid #E8E8E8;box-shadow:0 2px 8px rgba(0,0,0,.05);position:relative;overflow:hidden}
+.mcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.mcard.cp::before{background:linear-gradient(90deg,#3483FA,#00A650)}
+.mcard.mp::before{background:linear-gradient(90deg,#00A650,#FFE600)}
+.mcard.lp::before{background:linear-gradient(90deg,#FFE600,#F23D4F)}
+.mcard .periodo{font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}
+.mcard .meta-val{font-size:20px;font-weight:800;color:#1a1a1a;margin-bottom:4px}
+.mcard .meta-desc{font-size:12px;color:#666}
+.mcard .meta-range{font-size:11px;color:#3483FA;font-weight:600;margin-top:6px}
+/* Alavancas */
+.alavancas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px}
+.alvcard{background:#fff;border-radius:12px;padding:20px;border:1px solid #E8E8E8;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.alvcard .alv-icon{font-size:22px;margin-bottom:10px}
+.alvcard .alv-title{font-size:13px;font-weight:700;color:#1a1a1a;margin-bottom:6px}
+.alvcard .alv-tools{display:flex;flex-direction:column;gap:4px}
+.alv-tool{display:flex;align-items:flex-start;gap:6px;font-size:12px;color:#555;line-height:1.4}
+.alv-tool::before{content:'›';color:#3483FA;font-weight:700;flex-shrink:0;margin-top:1px}
+.alv-tag{display:inline-block;background:#EBF3FF;color:#3483FA;border-radius:4px;padding:1px 6px;font-size:10px;font-weight:700;margin-left:4px;white-space:nowrap}
+.alv-tag.green{background:#E6F9EF;color:#00A650}
+.alv-tag.yellow{background:#FFF8E1;color:#996600}
+/* Plano de ações */
+.plano{display:flex;flex-direction:column;gap:14px;margin-bottom:20px}
+.fase{background:#fff;border-radius:12px;border:1px solid #E8E8E8;box-shadow:0 2px 8px rgba(0,0,0,.05);overflow:hidden}
+.fase-header{display:flex;align-items:center;gap:14px;padding:16px 20px;border-bottom:1px solid #F0F0F0}
+.fase-badge{border-radius:8px;padding:5px 14px;font-size:11px;font-weight:700;white-space:nowrap}
+.fase-badge.s12{background:#E8F0FE;color:#3483FA}
+.fase-badge.s34{background:#E6F9EF;color:#00A650}
+.fase-badge.m2{background:#FFF8E1;color:#996600}
+.fase-badge.m3{background:#FDE8EA;color:#F23D4F}
+.fase-title{font-size:14px;font-weight:700;color:#1a1a1a}
+.fase-sub{font-size:11px;color:#888;margin-left:auto}
+.fase-body{padding:16px 20px;display:flex;flex-direction:column;gap:8px}
+.task{display:flex;align-items:flex-start;gap:10px;padding:10px 14px;border-radius:8px;border:1px solid #F0F0F0;background:#FAFAFA}
+.task.done{background:#F0FFF5;border-color:#A8E6C1}
+.task.active{background:#EBF3FF;border-color:#B3D4FF;border-width:1.5px}
+.task.pending{background:#FAFAFA;border-color:#E8E8E8}
+.check-box{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;margin-top:1px}
+.check-box.done{background:#00A650;color:#fff}
+.check-box.active{background:#3483FA;color:#fff}
+.check-box.pending{background:#E0E0E0;color:#999}
+.task-text{font-size:13px;color:#333;line-height:1.4}
+.task-text strong{color:#1a1a1a;font-weight:600}
+.task-tag{display:inline-block;background:#EBF3FF;color:#3483FA;border-radius:4px;padding:1px 7px;font-size:10px;font-weight:700;margin-left:6px}
+.task-tag.green{background:#E6F9EF;color:#00A650}
+.task-tag.yellow{background:#FFF8E1;color:#996600}
+.task-tag.red{background:#FDE8EA;color:#F23D4F}
+.task-tag.gray{background:#F0F0F0;color:#888}
+/* Timeline */
+.timeline-bar{background:#fff;border-radius:12px;padding:24px;border:1px solid #E8E8E8;box-shadow:0 2px 8px rgba(0,0,0,.05);margin-bottom:20px}
+.timeline-bar h3{font-size:11px;font-weight:700;color:#555;margin-bottom:20px;text-transform:uppercase;letter-spacing:.5px;padding-bottom:7px;border-bottom:2px solid #FFE600;display:inline-block}
+.tl-grid{display:grid;grid-template-columns:120px 1fr;gap:12px;align-items:center}
+.tl-label{font-size:12px;font-weight:600;color:#555;text-align:right;padding-right:12px}
+.tl-track{height:32px;background:#F0F0F0;border-radius:6px;position:relative;overflow:hidden}
+.tl-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:12px;font-size:11px;font-weight:700;color:#fff;white-space:nowrap}
+/* Vantagem competitiva */
+.vant{background:linear-gradient(135deg,#1a1a1a 0%,#2c2c2c 100%);border-radius:12px;padding:24px 28px;color:#fff;margin-bottom:20px;position:relative;overflow:hidden}
+.vant::after{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,230,0,.08)}
+.vant h3{font-size:13px;font-weight:700;color:#FFE600;margin-bottom:12px;text-transform:uppercase;letter-spacing:.7px}
+.vant p{font-size:13px;color:#CCC;line-height:1.7}
+.vant strong{color:#FFE600}
+.vant-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:16px}
+.vant-item{background:rgba(255,255,255,.07);border-radius:8px;padding:14px;border:1px solid rgba(255,255,255,.1)}
+.vant-item .vi-num{font-size:22px;font-weight:800;color:#FFE600}
+.vant-item .vi-lbl{font-size:11px;color:#AAA;margin-top:4px}
+/* Alerta */
+.alerta{background:#FFF8E1;border:1.5px solid #FFE600;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:13px;color:#555;display:flex;align-items:flex-start;gap:12px}
+.alerta-icon{font-size:18px;flex-shrink:0}
+/* Footer */
+footer{background:#fff;border-top:1px solid #E0E0E0;padding:14px 24px;font-size:11px;color:#999;text-align:center}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-left">
+    <div class="h-logo">ML</div>
+    <div>
+      <div class="h-title">LOJA OFICIAL — ORTOBOM <span class="h-sub">#567667092</span></div>
+    </div>
+  </div>
+  <div class="h-badges">
+    <span class="badge badge-new">NOVA LOJA</span>
+    <span class="badge badge-green">EXCLUSIVIDADE NO CANAL</span>
+    <span class="badge badge-dark">Agosto 2026</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <a class="back" href="index.html">← Voltar ao Dashboard</a>
+
+  <!-- ─── DIAGNÓSTICO ─── -->
+  <div class="section-label">Diagnóstico Atual — ORTOBOM YTD 2026</div>
+
+  <div class="kg">
+    <div class="kcard hl">
+      <div class="lbl">Faturamento GMV</div>
+      <div class="val">R$ 21,9M</div>
+      <div class="yoy pos">▲ 2% YoY</div>
+    </div>
+    <div class="kcard red">
+      <div class="lbl">Unidades Vendidas (SI)</div>
+      <div class="val">30.634</div>
+      <div class="yoy neg">▼ 10% YoY</div>
+    </div>
+    <div class="kcard red">
+      <div class="lbl">Transações (TRX)</div>
+      <div class="val">27.623</div>
+      <div class="yoy neg">▼ 50% YoY — crítico</div>
+    </div>
+    <div class="kcard green">
+      <div class="lbl">Ticket Médio (ASP)</div>
+      <div class="val">R$ 715</div>
+      <div class="yoy pos">▲ 14% YoY</div>
+    </div>
+  </div>
+
+  <div class="alerta">
+    <span class="alerta-icon">⚠️</span>
+    <div><strong>Leitura crítica:</strong> O faturamento se sustenta apenas pelo aumento de ASP (+14%). A base de compradores encolheu pela metade (-50% TRX) e o volume de unidades cai. O lançamento da Loja Oficial é o movimento estratégico para reverter a tendência com aquisição de novos clientes a partir de uma marca exclusiva no canal.</div>
+  </div>
+
+  <div class="g2">
+    <div class="cbox">
+      <h3>GMV Mensal 2026 vs. 2025 (R$)</h3>
+      <canvas id="chartGMV" height="180"></canvas>
+    </div>
+    <div class="cbox">
+      <h3>Unidades Vendidas (SI) Mensal 2026 vs. 2025</h3>
+      <canvas id="chartSI" height="180"></canvas>
+    </div>
+  </div>
+
+  <!-- ─── METAS ─── -->
+  <div class="section-label">Metas de Crescimento</div>
+
+  <div class="mg">
+    <div class="mcard cp">
+      <div class="periodo">Curto Prazo — 0 a 6 meses</div>
+      <div class="meta-val">+15% a +20%</div>
+      <div class="meta-desc">Crescimento de faturamento sobre base atual</div>
+      <div class="meta-range">R$ 25,2M → R$ 26,3M projetado</div>
+    </div>
+    <div class="mcard mp">
+      <div class="periodo">Médio Prazo — 6 a 18 meses</div>
+      <div class="meta-val">+2× Unidades</div>
+      <div class="meta-desc">Dobrar volume de SIs (~61.000 unidades)</div>
+      <div class="meta-range">Alavancado por Full + Ads + reviews</div>
+    </div>
+    <div class="mcard lp">
+      <div class="periodo">Longo Prazo — 18 a 36 meses</div>
+      <div class="meta-val">+2× Faturamento</div>
+      <div class="meta-desc">Dobrar receita total da marca no MeLi</div>
+      <div class="meta-range">Meta ~R$ 43,7M GMV anual</div>
+    </div>
+  </div>
+
+  <!-- ─── ALAVANCAS ─── -->
+  <div class="section-label">Principais Alavancas e Ferramentas MeLi</div>
+
+  <div class="alavancas">
+    <div class="alvcard">
+      <div class="alv-icon">🏪</div>
+      <div class="alv-title">Estrutura da Loja Oficial</div>
+      <div class="alv-tools">
+        <div class="alv-tool">Brand Store — vitrine exclusiva com banners e narrativa de marca <span class="alv-tag">PRIORITÁRIO</span></div>
+        <div class="alv-tool">Catálogo MeLi — dominar buy box sem concorrentes internos</div>
+        <div class="alv-tool">Anúncios Gold Special / Gold Pro — topo das buscas</div>
+      </div>
+    </div>
+    <div class="alvcard">
+      <div class="alv-icon">🚚</div>
+      <div class="alv-title">Logística (Velocidade = Conversão)</div>
+      <div class="alv-tools">
+        <div class="alv-tool">Mercado Envios Full — estoque no CD, badge Full, +30% conversão <span class="alv-tag green">SETUP FEITO</span></div>
+        <div class="alv-tool">Mercado Envios Flex — complementa Full por região</div>
+        <div class="alv-tool">Frete grátis estratégico — ASP R$ 715 comporta absorção</div>
+      </div>
+    </div>
+    <div class="alvcard">
+      <div class="alv-icon">📢</div>
+      <div class="alv-title">Mercado Ads — Visibilidade Paga</div>
+      <div class="alv-tools">
+        <div class="alv-tool">Product Ads — buscas patrocinadas, essencial nos primeiros meses</div>
+        <div class="alv-tool">Display Ads — banners de branding na Home e páginas de categoria</div>
+        <div class="alv-tool">Ads em campanhas sazonais — Hot Sale, Black Friday, Cyber</div>
+      </div>
+    </div>
+    <div class="alvcard">
+      <div class="alv-icon">💰</div>
+      <div class="alv-title">Conversão e Ticket</div>
+      <div class="alv-tools">
+        <div class="alv-tool">Parcelamento sem juros (MercadoPago) — aumenta conversão premium</div>
+        <div class="alv-tool">Desconto por volume — incentivar kits e combos</div>
+        <div class="alv-tool">Cupons e promoções — nativas do Seller Center</div>
+      </div>
+    </div>
+    <div class="alvcard">
+      <div class="alv-icon">🛡️</div>
+      <div class="alv-title">Proteção e Exclusividade</div>
+      <div class="alv-tools">
+        <div class="alv-tool">Brand Protection / MeLi Brand Shield — bloqueia falsificações <span class="alv-tag">PRIORITÁRIO</span></div>
+        <div class="alv-tool">Certificação MeLi — selo de loja oficial verificada</div>
+        <div class="alv-tool">Registro de marca no canal antes de concorrentes entrarem</div>
+      </div>
+    </div>
+    <div class="alvcard">
+      <div class="alv-icon">📊</div>
+      <div class="alv-title">Dados e Inteligência</div>
+      <div class="alv-tools">
+        <div class="alv-tool">Mercado Insights — dados de busca e tendência de categoria</div>
+        <div class="alv-tool">Seller Center Dashboard — conversão e visitas por anúncio</div>
+        <div class="alv-tool">A/B de títulos e fotos — maximizar CTR</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── PLANO DE AÇÕES ─── -->
+  <div class="section-label">Plano de Ações Imediatas — 90 Dias</div>
+
+  <div class="plano">
+
+    <!-- SEMANA 1-2 -->
+    <div class="fase">
+      <div class="fase-header">
+        <span class="fase-badge s12">Semana 1–2</span>
+        <span class="fase-title">Setup Fundacional</span>
+        <span class="fase-sub">Ativação da Loja Oficial + Proteção de Marca + Full</span>
+      </div>
+      <div class="fase-body">
+        <div class="task done">
+          <div class="check-box done">✓</div>
+          <div class="task-text"><strong>Ativar Loja Oficial da Marca</strong> via Seller Center com documentação da marca submetida <span class="task-tag green">FEITO</span></div>
+        </div>
+        <div class="task done">
+          <div class="check-box done">✓</div>
+          <div class="task-text"><strong>Brand Protection registrado</strong> — MeLi Brand Shield ativo no canal <span class="task-tag green">FEITO</span></div>
+        </div>
+        <div class="task done">
+          <div class="check-box done">✓</div>
+          <div class="task-text"><strong>Mercado Envios Full configurado</strong> — estoque inicial enviado ao CD nos SKUs âncora <span class="task-tag green">FEITO</span></div>
+        </div>
+        <div class="task active">
+          <div class="check-box active">→</div>
+          <div class="task-text"><strong>Revisar e otimizar títulos, fotos e descrições</strong> com palavras-chave de busca usando dados do Mercado Insights — priorizar top SKUs por GMV <span class="task-tag">EM ANDAMENTO</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEMANA 3-4 -->
+    <div class="fase">
+      <div class="fase-header">
+        <span class="fase-badge s34">Semana 3–4</span>
+        <span class="fase-title">Lançamento do Catálogo</span>
+        <span class="fase-sub">100% dos SKUs publicados e otimizados</span>
+      </div>
+      <div class="fase-body">
+        <div class="task pending">
+          <div class="check-box pending">○</div>
+          <div class="task-text"><strong>Cadastrar 100% dos SKUs no Catálogo MeLi</strong> com variações completas (tamanho, cor, composição)</div>
+        </div>
+        <div class="task pending">
+          <div class="check-box pending">○</div>
+          <div class="task-text"><strong>Definir política de preço e parcelamento</strong> — simular absorção de frete grátis vs. margem por SKU</div>
+        </div>
+        <div class="task pending">
+          <div class="check-box pending">○</div>
+          <div class="task-text"><strong>Ativar anúncios Gold Special</strong> em todos os produtos principais da linha</div>
+        </div>
+        <div class="task pending">
+          <div class="check-box pending">○</div>
+          <div class="task-text"><strong>Publicar fotos de lifestyle e vídeos</strong> dos produtos — diferencial de marca nova no canal <span class="task-tag yellow">DIFERENCIAL</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÊS 2 -->
+    <div class="fase">
+      <div class="fase-header">
+        <span class="fase-badge m2">Mês 2</span>
+        <span class="fase-title">Ativação de Tráfego Pago</span>
+        <span class="fase-sub">Budget sugerido: 5–8% do GMV meta mensal em Product Ads</span>
+      </div>
+      <div class="fase-body">
+        <div class="task pending">
+          <div class="check-box pending">○</div>
+          <div class="task-text"><strong>Lançar campanha Product Ads</strong> segmentada por palavras-chave da categoria + termos da marca própria</div>
+        </div>
+        <div class="task pending">
+          <div class="check-box pending">○</div>
+          <div class="task-text"><strong>Ativar Display Ads</strong> — banners de branding para usuários que visitaram a categoria de colchões/camas</div>
+        </div>
+        <div class="task pending">
+          <div class="check-box pending">○</div>
+          <div class="task-text"><strong>Criar cupom de boas-vindas</strong> para primeiros compradores — gera primeiros reviews e reputação inicial <span class="task-tag yellow">REPUTAÇÃO</span></div>
+        </div>
+        <div class="task pending">
+          <div class="check-box pending">○</div>
+          <div class="task-text"><strong>Solicitar certificação de loja oficial</strong> e verificação de conta — selo visível na listagem</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÊS 3 -->
+    <div class="fase">
+      <div class="fase-header">
+        <span class="fase-badge m3">Mês 3</span>
+        <span class="fase-title">Otimização e Escala</span>
+        <span class="fase-sub">Meta: TRX +20% vs. baseline → validar e dobrar budget</span>
+      </div>
+      <div class="fase-body">
+        <div class="task pending">
+          <div class="check-box pending">○</div>
+          <div class="task-text"><strong>Analisar conversão por SKU</strong> — pausar o que não performa, ampliar orçamento nos anúncios que convertem acima da média</div>
+        </div>
+        <div class="task pending">
+          <div class="check-box pending">○</div>
+          <div class="task-text"><strong>Gestão ativa de perguntas e reviews</strong> — responder todas em menos de 1h, acumular avaliações nos SKUs âncora <span class="task-tag red">CRÍTICO</span></div>
+        </div>
+        <div class="task pending">
+          <div class="check-box pending">○</div>
+          <div class="task-text"><strong>Preparar calendário de promoções</strong> alinhado ao calendário oficial MeLi — Hot Sale, Cyber Monday, Black Friday</div>
+        </div>
+        <div class="task pending">
+          <div class="check-box pending">○</div>
+          <div class="task-text"><strong>Ativar desconto por volume</strong> e kit bundles para aumentar unidades por pedido e reduzir queda de SI</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ─── TIMELINE VISUAL ─── -->
+  <div class="section-label">Cronograma de Resultados Esperados</div>
+
+  <div class="timeline-bar">
+    <h3>Evolução de Metas por Fase</h3>
+    <div class="tl-grid">
+      <div class="tl-label">Semana 1–2<br><small style="color:#999;font-weight:400">Setup</small></div>
+      <div class="tl-track">
+        <div class="tl-fill" style="width:20%;background:#3483FA">Estrutura base ativa</div>
+      </div>
+      <div class="tl-label">Semana 3–4<br><small style="color:#999;font-weight:400">Catálogo</small></div>
+      <div class="tl-track">
+        <div class="tl-fill" style="width:38%;background:#00A650">100% SKUs publicados</div>
+      </div>
+      <div class="tl-label">Mês 2<br><small style="color:#999;font-weight:400">Tráfego Pago</small></div>
+      <div class="tl-track">
+        <div class="tl-fill" style="width:58%;background:#FFB300;color:#333">Product Ads + Display ativos</div>
+      </div>
+      <div class="tl-label">Mês 3<br><small style="color:#999;font-weight:400">Otimização</small></div>
+      <div class="tl-track">
+        <div class="tl-fill" style="width:72%;background:#F23D4F">TRX meta +20%</div>
+      </div>
+      <div class="tl-label">Mês 4–6<br><small style="color:#999;font-weight:400">Escala</small></div>
+      <div class="tl-track">
+        <div class="tl-fill" style="width:88%;background:linear-gradient(90deg,#3483FA,#00A650)">GMV +15% a +20% YoY</div>
+      </div>
+      <div class="tl-label">18–36m<br><small style="color:#999;font-weight:400">Longo prazo</small></div>
+      <div class="tl-track">
+        <div class="tl-fill" style="width:100%;background:linear-gradient(90deg,#1a1a1a,#3483FA)">2× Faturamento — ~R$ 43,7M</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── VANTAGEM COMPETITIVA ─── -->
+  <div class="vant">
+    <h3>Vantagem Competitiva — Janela de Exclusividade</h3>
+    <p>Por ser <strong>a única marca no canal</strong> sem concorrentes diretos, o algoritmo do MeLi concentra 100% das buscas da categoria nessa loja. Isso significa que <strong>cada real investido em Ads tem retorno multiplicado</strong> enquanto a exclusividade se mantém. A prioridade máxima no curto prazo é construir reputação e volume de reviews antes que qualquer concorrente entre — essa barreira de entrada é difícil de superar depois de estabelecida.</p>
+    <div class="vant-grid">
+      <div class="vant-item">
+        <div class="vi-num">100%</div>
+        <div class="vi-lbl">Share das buscas da categoria no canal</div>
+      </div>
+      <div class="vant-item">
+        <div class="vi-num">0</div>
+        <div class="vi-lbl">Concorrentes diretos ativos (marketplaces e e-commerce)</div>
+      </div>
+      <div class="vant-item">
+        <div class="vi-num">R$ 715</div>
+        <div class="vi-lbl">ASP elevado (+14% YoY) — margem que suporta investimento</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  Análise gerada em 05/08/2026 | ORTOBOM #567667092 | Carteira Online — MeLi Brasil
+</footer>
+
+<script>
+Chart.register(ChartDataLabels);
+
+const months = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago'];
+
+// GMV Chart
+new Chart(document.getElementById('chartGMV'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [
+      {
+        label: 'GMV LY (R$)',
+        data: [2295, 2474, 2221, 2311, 4347, 4477, 3000, 239],
+        backgroundColor: 'rgba(200,200,200,0.6)',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        datalabels: { display: false }
+      },
+      {
+        label: 'GMV CY (R$)',
+        data: [4266, 2046, 3572, 1879, 3100, 2689, 4068, 265],
+        backgroundColor: '#3483FA',
+        borderColor: '#2968c8',
+        borderWidth: 1,
+        datalabels: { display: false }
+      },
+      {
+        type: 'line',
+        label: '% YoY',
+        data: [86, -17, 61, -19, -29, -40, 36, 11],
+        borderColor: '#1a1a1a',
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        pointRadius: 4,
+        pointBackgroundColor: '#1a1a1a',
+        yAxisID: 'y2',
+        datalabels: {
+          display: true,
+          align: 'top',
+          color: ctx => ctx.dataset.data[ctx.dataIndex] >= 0 ? '#00A650' : '#F23D4F',
+          font: { weight: 'bold', size: 10 },
+          formatter: v => v + '%'
+        }
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false }, tooltip: { mode: 'index' } },
+    scales: {
+      y: { ticks: { callback: v => 'R$' + (v/1000).toFixed(0) + 'K', font: { size: 10 } }, grid: { color: '#F0F0F0' } },
+      y2: { position: 'right', ticks: { callback: v => v + '%', font: { size: 10 } }, grid: { display: false } }
+    }
+  }
+});
+
+// SI Chart
+new Chart(document.getElementById('chartSI'), {
+  type: 'bar',
+  data: {
+    labels: months,
+    datasets: [
+      {
+        label: 'SI LY',
+        data: [3502, 3677, 2171, 2652, 6716, 4906, 4920, 832],
+        backgroundColor: 'rgba(200,200,200,0.6)',
+        borderColor: '#CCC',
+        borderWidth: 1,
+        datalabels: { display: false }
+      },
+      {
+        label: 'SI CY',
+        data: [5755, 2954, 5411, 2171, 4184, 3772, 5566, 360],
+        backgroundColor: '#00A650',
+        borderColor: '#007A3D',
+        borderWidth: 1,
+        datalabels: { display: false }
+      },
+      {
+        type: 'line',
+        label: '% YoY',
+        data: [64, -20, 149, -18, -38, -23, 13, -57],
+        borderColor: '#1a1a1a',
+        backgroundColor: 'transparent',
+        borderWidth: 2,
+        pointRadius: 4,
+        pointBackgroundColor: '#1a1a1a',
+        yAxisID: 'y2',
+        datalabels: {
+          display: true,
+          align: 'top',
+          color: ctx => ctx.dataset.data[ctx.dataIndex] >= 0 ? '#00A650' : '#F23D4F',
+          font: { weight: 'bold', size: 10 },
+          formatter: v => v + '%'
+        }
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false }, tooltip: { mode: 'index' } },
+    scales: {
+      y: { ticks: { font: { size: 10 } }, grid: { color: '#F0F0F0' } },
+      y2: { position: 'right', ticks: { callback: v => v + '%', font: { size: 10 } }, grid: { display: false } }
+    }
+  }
+});
+</script>
+</body>
+</html>
