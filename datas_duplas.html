@@ -35,7 +35,7 @@ a:hover{text-decoration:underline}
 <div class="header">
   <div>
     <h1>DATAS DUPLAS 2026 — Carteira Online</h1>
-    <div class="sub">02/02 · 03/03 · 04/04 · 05/05 · 06/06 · 07/07 · 08/08 · Alexandre Alencar · MercadoLibre Brasil · 10/08/2026 10:42</div>
+    <div class="sub">02/02 · 03/03 · 04/04 · 05/05 · 06/06 · 07/07 · 08/08 · Alexandre Alencar · MercadoLibre Brasil · 10/08/2026 10:48</div>
   </div>
   <div style="font-size:11px;color:#555">GMV Total: R$ 16.26M</div>
 </div>
@@ -2024,7 +2024,7 @@ const labelPlugin = {
       meta.data.forEach((bar, j) => {
         const v = dataset.data[j];
         if (!v) return;
-        const label = 'R$ ' + (v/1000).toFixed(0) + 'K';
+        const label = v >= 1e6 ? 'R$ ' + (v/1e6).toFixed(2) + 'M' : 'R$ ' + (v/1000).toFixed(0) + 'K';
         ctx.save();
         ctx.fillStyle = v >= avgVal ? '#00A650' : '#F23D4F';
         ctx.font = 'bold 11px Inter, sans-serif';
