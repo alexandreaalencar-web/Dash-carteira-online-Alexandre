@@ -5,7 +5,6 @@
 <title>Datas Duplas 2026 — Carteira Online Alexandre</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',sans-serif;background:#F0F0F0;color:#222;padding:24px;font-size:13px}
@@ -36,7 +35,7 @@ a:hover{text-decoration:underline}
 <div class="header">
   <div>
     <h1>DATAS DUPLAS 2026 — Carteira Online</h1>
-    <div class="sub">02/02 · 03/03 · 04/04 · 05/05 · 06/06 · 07/07 · 08/08 · Alexandre Alencar · MercadoLibre Brasil · 10/08/2026 10:33</div>
+    <div class="sub">02/02 · 03/03 · 04/04 · 05/05 · 06/06 · 07/07 · 08/08 · Alexandre Alencar · MercadoLibre Brasil · 10/08/2026 10:42</div>
   </div>
   <div style="font-size:11px;color:#555">GMV Total: R$ 16.26M</div>
 </div>
@@ -2013,14 +2012,37 @@ function filterTable() {
   });
 }
 
-// Registra plugin de data labels globalmente
-Chart.register(ChartDataLabels);
+// Plugin inline para mostrar valores nas barras
+const labelPlugin = {
+  id: 'barLabels',
+  afterDatasetsDraw(chart) {
+    const {ctx, data} = chart;
+    const avgVal = 2032362;
+    data.datasets.forEach((dataset, i) => {
+      if (dataset.type === 'line') return;
+      const meta = chart.getDatasetMeta(i);
+      meta.data.forEach((bar, j) => {
+        const v = dataset.data[j];
+        if (!v) return;
+        const label = 'R$ ' + (v/1000).toFixed(0) + 'K';
+        ctx.save();
+        ctx.fillStyle = v >= avgVal ? '#00A650' : '#F23D4F';
+        ctx.font = 'bold 11px Inter, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'bottom';
+        ctx.fillText(label, bar.x, bar.y - 4);
+        ctx.restore();
+      });
+    });
+  }
+};
 
 const gmvData = [1584715, 1917808, 2143855, 1448306, 1720314, 1546758, 3406938, 2490198];
 const avgVal  = 2032362;
 
 new Chart(document.getElementById('chartMain'), {
   type: 'bar',
+  plugins: [labelPlugin],
   data: {
     labels: ["02/02", "03/03", "15/03", "04/04", "05/05", "06/06", "07/07", "08/08"],
     datasets: [
@@ -2029,33 +2051,24 @@ new Chart(document.getElementById('chartMain'), {
         backgroundColor: gmvData.map(v => v >= avgVal ? 'rgba(0,166,80,0.7)' : 'rgba(242,61,79,0.7)'),
         borderColor: gmvData.map(v => v >= avgVal ? '#00A650' : '#F23D4F'),
         borderWidth: 1, order: 2,
-        datalabels: {
-          anchor: 'end', align: 'top',
-          formatter: v => 'R$ ' + (v/1000).toFixed(0) + 'K',
-          font: { size: 11, weight: '700' },
-          color: ctx => ctx.parsed.y >= avgVal ? '#00A650' : '#F23D4F',
-        }
       },
       {
         label: 'Média', data: [2032362, 2032362, 2032362, 2032362, 2032362, 2032362, 2032362, 2032362],
         type: 'line', borderColor: '#3483FA', borderWidth: 2,
         borderDash: [6,3], pointRadius: 0, fill: false, order: 1,
-        datalabels: { display: false },
       }
     ]
   },
   options: {
     responsive: true,
+    layout: { padding: { top: 25 } },
     plugins: {
       legend: { labels: { color: '#555' } },
       tooltip: { callbacks: { label: c => 'R$ ' + c.parsed.y.toLocaleString('pt-BR') } },
     },
     scales: {
       x: { ticks: { color: '#666' }, grid: { color: '#F0F0F0' } },
-      y: {
-        ticks: { color: '#666', callback: v => 'R$ ' + (v/1000).toFixed(0) + 'K' },
-        grid: { color: '#F0F0F0' },
-      }
+      y: { ticks: { color: '#666', callback: v => 'R$ ' + (v/1000).toFixed(0) + 'K' }, grid: { color: '#F0F0F0' } }
     }
   }
 });
