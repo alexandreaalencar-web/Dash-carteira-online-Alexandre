@@ -36,7 +36,7 @@ a:hover{text-decoration:underline}
 <div class="header">
   <div>
     <h1>DATAS DUPLAS 2026 — Carteira Online</h1>
-    <div class="sub">02/02 · 03/03 · 04/04 · 05/05 · 06/06 · 07/07 · 08/08 · Alexandre Alencar · MercadoLibre Brasil · 10/08/2026 10:26</div>
+    <div class="sub">02/02 · 03/03 · 04/04 · 05/05 · 06/06 · 07/07 · 08/08 · Alexandre Alencar · MercadoLibre Brasil · 10/08/2026 10:33</div>
   </div>
   <div style="font-size:11px;color:#555">GMV Total: R$ 16.26M</div>
 </div>
@@ -2013,18 +2013,28 @@ function filterTable() {
   });
 }
 
-// Gráfico com data labels
+// Registra plugin de data labels globalmente
+Chart.register(ChartDataLabels);
+
+const gmvData = [1584715, 1917808, 2143855, 1448306, 1720314, 1546758, 3406938, 2490198];
+const avgVal  = 2032362;
+
 new Chart(document.getElementById('chartMain'), {
   type: 'bar',
-  plugins: [ChartDataLabels],
   data: {
     labels: ["02/02", "03/03", "15/03", "04/04", "05/05", "06/06", "07/07", "08/08"],
     datasets: [
       {
-        label: 'GMV', data: [1584715, 1917808, 2143855, 1448306, 1720314, 1546758, 3406938, 2490198],
-        backgroundColor: [1584715, 1917808, 2143855, 1448306, 1720314, 1546758, 3406938, 2490198].map(v => v >= 2032362 ? 'rgba(0,166,80,0.7)' : 'rgba(242,61,79,0.7)'),
-        borderColor: [1584715, 1917808, 2143855, 1448306, 1720314, 1546758, 3406938, 2490198].map(v => v >= 2032362 ? '#00A650' : '#F23D4F'),
+        label: 'GMV', data: gmvData,
+        backgroundColor: gmvData.map(v => v >= avgVal ? 'rgba(0,166,80,0.7)' : 'rgba(242,61,79,0.7)'),
+        borderColor: gmvData.map(v => v >= avgVal ? '#00A650' : '#F23D4F'),
         borderWidth: 1, order: 2,
+        datalabels: {
+          anchor: 'end', align: 'top',
+          formatter: v => 'R$ ' + (v/1000).toFixed(0) + 'K',
+          font: { size: 11, weight: '700' },
+          color: ctx => ctx.parsed.y >= avgVal ? '#00A650' : '#F23D4F',
+        }
       },
       {
         label: 'Média', data: [2032362, 2032362, 2032362, 2032362, 2032362, 2032362, 2032362, 2032362],
@@ -2039,25 +2049,16 @@ new Chart(document.getElementById('chartMain'), {
     plugins: {
       legend: { labels: { color: '#555' } },
       tooltip: { callbacks: { label: c => 'R$ ' + c.parsed.y.toLocaleString('pt-BR') } },
-      datalabels: {
-        display: (ctx) => ctx.dataset.type !== 'line',
-        anchor: 'end', align: 'top',
-        formatter: v => 'R$ ' + (v/1000).toFixed(0) + 'K',
-        font: { size: 11, weight: '700' },
-        color: (ctx) => ctx.parsed.y >= 2032362 ? '#00A650' : '#F23D4F',
-        rotation: 0,
-      }
     },
     scales: {
       x: { ticks: { color: '#666' }, grid: { color: '#F0F0F0' } },
       y: {
         ticks: { color: '#666', callback: v => 'R$ ' + (v/1000).toFixed(0) + 'K' },
         grid: { color: '#F0F0F0' },
-        grace: '15%',
       }
     }
   }
 });
 </script>
 </body>
-</html> 
+</html>
