@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Relatorio ESPLANADA MOVEIS - 11/08/2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.hdr .meta-pill{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:28px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.pl-b{background:#E8F0FE;color:#3483FA} .pl-y{background:#FFF9E0;color:#E67E00}
+.chart-box{position:relative;height:260px}
+.bar-out{background:#F0F0F0;border-radius:20px;height:14px;overflow:hidden;margin-top:4px}
+.bar-in{height:100%;border-radius:20px;background:#3483FA}
+a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+<div class="hdr">
+  <div>
+    <h1>&#128202; ESPLANADA M&Oacute;VEIS</h1>
+    <div class="sub">Relat&oacute;rio de Performance &middot; 11/08/2026 &middot; ID: 262435141</div>
+  </div>
+  <div class="meta-pill">GMV YTD: R$ 122,3M &middot; YoY: &#9650; 26,4%</div>
+</div>
+<div class="wrap">
+
+  <!-- CARDS YTD -->
+  <div class="row">
+    <div class="card"><div class="lbl">GMV YTD</div><div class="val">R$ 122,3M</div><div class="sub">vs LY: <span style="color:#00A650;font-weight:700">&#9650; 26,4%</span></div></div>
+    <div class="card"><div class="lbl">Pedidos YTD</div><div class="val">135.297</div><div class="sub">LY: 125.995 &nbsp;&#9650;&nbsp;7,4%</div></div>
+    <div class="card"><div class="lbl">Ticket M&eacute;dio</div><div class="val">R$ 903,76</div><div class="sub">YTD 2026 (Jan&ndash;11/Ago)</div></div>
+    <div class="card"><div class="lbl">Unidades YTD</div><div class="val">138.256</div><div class="sub">LY: 128.615 &nbsp;<span style="color:#00A650;font-weight:700">&#9650; 7,5%</span></div></div>
+  </div>
+
+  <!-- CARDS MTD -->
+  <div class="row">
+    <div class="card"><div class="lbl">GMV MTD (1&ndash;11/8)</div><div class="val">R$ 7,9M</div><div class="sub">MoM vs Jul 1-11: <span style="color:#00A650;font-weight:700">&#9650; 8,1%</span> &nbsp;|&nbsp; YoY vs Ago/2025: <span style="color:#00A650;font-weight:700">&#9650; 57,9%</span></div></div>
+    <div class="card"><div class="lbl">Pedidos MTD</div><div class="val">8.351</div><div class="sub">dias 1&ndash;11</div></div>
+    <div class="card"><div class="lbl">GMV Jul completo</div><div class="val">R$ 18,0M</div><div class="sub">vs Jun: <span style="color:#00A650;font-weight:700">&#9650; 0,7%</span> &nbsp;|&nbsp; YoY: <span style="color:#00A650;font-weight:700">&#9650; 16,8%</span></div></div>
+    <div class="card"><div class="lbl">Pace Ago (proj.)</div><div class="val" style="color:#3483FA">R$ 22,4M</div><div class="sub">7,9M / 11d &times; 31d &nbsp;&middot;&nbsp; YoY proj: <span style="color:#00A650;font-weight:700">&#9650; 61,3%</span></div></div>
+  </div>
+
+  <!-- GRAFICO GMV -->
+  <div class="sec">
+    <div class="sec-ttl">Evolu&ccedil;&atilde;o GMV Mensal 2026 vs 2025</div>
+    <div class="chart-box" style="height:420px"><canvas id="cGmv"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    var _yoy = [4.0, 13.0, 39.7, 34.3, 37.9, 27.7, 16.8, 57.9, null, null, null, null];
+    function fk(v){ var n=Number(v); if(n>=1e6)return 'R$'+(n/1e6).toFixed(1)+'M'; if(n>=1e3)return 'R$'+(n/1e3).toFixed(0)+'K'; return 'R$'+n.toFixed(0); }
+    var labelsPlugin = {
+      id:'gmvLabels',
+      afterDatasetsDraw: function(chart){
+        var ctx=chart.ctx;
+        ctx.save(); ctx.textAlign='center';
+        var meta0=chart.getDatasetMeta(0);
+        meta0.data.forEach(function(pt,i){
+          var v=chart.data.datasets[0].data[i];
+          if(v===null||v===undefined||isNaN(Number(v)))return;
+          var yoy=_yoy[i];
+          ctx.font='bold 12px Arial'; ctx.fillStyle='#1A5DC8';
+          ctx.fillText(fk(Number(v)), pt.x, pt.y-32);
+          if(yoy!==null&&yoy!==undefined){
+            var bg=yoy>=30?'#00A650':yoy>=0?'#E67E00':'#F23D4F';
+            var txt=(yoy>0?'+':'')+yoy.toFixed(0)+'%';
+            ctx.font='bold 10px Arial';
+            var tw=ctx.measureText(txt).width+10;
+            ctx.fillStyle=bg;
+            ctx.beginPath();
+            ctx.roundRect(pt.x-tw/2, pt.y-24, tw, 16, 5);
+            ctx.fill();
+            ctx.fillStyle='#fff';
+            ctx.fillText(txt, pt.x, pt.y-12);
+          }
+        });
+        ctx.restore();
+      }
+    };
+    new Chart(document.getElementById('cGmv'),{
+      type:'line',
+      data:{labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],datasets:[
+        {label:'2026',data:[14217613,11909538,17007932,16561970,18826980,17835689,17964497,7946047,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
+        {label:'2025',data:[13666887,10535523,12178038,12327935,13652834,13972186,15378329,13883037,12585524,12645670,16616413,11441226],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3}
+      ]},
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        layout:{padding:{top:50,bottom:20}},
+        plugins:{
+          legend:{position:'top'},
+          tooltip:{callbacks:{label:function(c){
+            var lbl=c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');
+            if(c.datasetIndex===0){var yoy=_yoy[c.dataIndex];if(yoy!==null&&yoy!==undefined)lbl+=' (YoY '+(yoy>0?'+':'')+yoy.toFixed(1)+'%)';}
+            return lbl;
+          }}}
+        },
+        scales:{y:{ticks:{callback:function(v){return 'R$'+(v/1e6).toFixed(1)+'M';}}}}
+      },
+      plugins:[labelsPlugin]
+    });
+  })();
+  </script>
+
+  <!-- GRAFICO SIs -->
+  <div class="sec">
+    <div class="sec-ttl">Volume de Itens Vendidos (SIs) &mdash; 2026 vs 2025</div>
+    <div class="chart-box"><canvas id="cSI"></canvas></div>
+  </div>
+  <script>
+  new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],datasets:[
+    {label:'2026',data:[15434,13702,21241,20442,20522,19510,18927,8479,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+    {label:'2025',data:[18742,13853,16034,16949,18897,18458,19611,16683,15063,14604,18882,13542],backgroundColor:'#DDE8FF',borderRadius:4}
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})
+  </script>
+
+  <!-- TOP 10 ITENS -->
+  <div class="sec"><div class="sec-ttl">&#11088; Top 10 Itens por GMV Ago MTD (1&ndash;11/8)</div><div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Produto</th>
+      <th style="text-align:right">GMV Ago MTD</th>
+      <th style="text-align:right">Share</th>
+      <th style="text-align:right">MoM vs Jul 1-11</th>
+      <th style="text-align:right">SIs MTD</th>
+      <th style="text-align:right">Ticket</th>
+      <th style="text-align:right">Visitas 90d</th>
+      <th style="text-align:right">CVR</th>
+      <th>Log. / BB</th>
+    </tr></thead><tbody>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5318608904" target="_blank">CAMA BOX BAÚ CASAL COLCHÃO GAZIN MOLAS FLORA BEGE 138X188X63CM</a><br><span style="font-size:10px;color:#999">MLB5318608904</span></td>
+      <td style="text-align:right;font-weight:700">R$ 401K</td>
+      <td style="text-align:right">5,1%</td>
+      <td style="text-align:right"><span class="pos">&#9650; 92,1%</span></td>
+      <td style="text-align:right">412</td>
+      <td style="text-align:right">R$ 975,65</td>
+      <td style="text-align:right">286.991</td>
+      <td style="text-align:right">0,14%</td>
+      <td><span class="pill pl-y">OTHER</span> <span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3647902117" target="_blank">CAMA BOX BAÚ COLCHÃO CASAL MOLAS ENSACADAS CITY PILLOW TOP 138X188X64CM HELLEN</a><br><span style="font-size:10px;color:#999">MLB3647902117</span></td>
+      <td style="text-align:right;font-weight:700">R$ 346K</td>
+      <td style="text-align:right">4,4%</td>
+      <td style="text-align:right"><span class="neg">&#9660; 34,9%</span></td>
+      <td style="text-align:right">247</td>
+      <td style="text-align:right">R$ 1.401,43</td>
+      <td style="text-align:right">342.232</td>
+      <td style="text-align:right">0,07%</td>
+      <td><span class="pill pl-y">OTHER</span> <span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5732465216" target="_blank">COLCHÃO SOLTEIRO ESPUMA D33 PILLOW TOP NEW MILLENIUM BRANCO</a><br><span style="font-size:10px;color:#999">MLB5732465216</span></td>
+      <td style="text-align:right;font-weight:700">R$ 256K</td>
+      <td style="text-align:right">3,2%</td>
+      <td style="text-align:right"><span class="pos">&#9650; 25,3%</span></td>
+      <td style="text-align:right">485</td>
+      <td style="text-align:right">R$ 529,00</td>
+      <td style="text-align:right">139.587</td>
+      <td style="text-align:right">0,35%</td>
+      <td><span class="pill pl-b">XD</span> <span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5386034426" target="_blank">COLCHÃO CASAL MOLAS QATAR 138X188X22CM BEGE/BRANCO INDUCOL</a><br><span style="font-size:10px;color:#999">MLB5386034426</span></td>
+      <td style="text-align:right;font-weight:700">R$ 252K</td>
+      <td style="text-align:right">3,2%</td>
+      <td style="text-align:right"><span class="pos">&#9650; 84,2%</span></td>
+      <td style="text-align:right">325</td>
+      <td style="text-align:right">R$ 775,92</td>
+      <td style="text-align:right">147.359</td>
+      <td style="text-align:right">0,22%</td>
+      <td><span class="pill pl-y">OTHER</span> <span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4111944180" target="_blank">CAMA BOX CASAL COLCHÃO GAZIN MOLAS ENSACADAS PILLOW MAXIMUS 138X188X62CM CINZA/PRETO</a><br><span style="font-size:10px;color:#999">MLB4111944180</span></td>
+      <td style="text-align:right;font-weight:700">R$ 177K</td>
+      <td style="text-align:right">2,2%</td>
+      <td style="text-align:right"><span class="neg">&#9660; 14,9%</span></td>
+      <td style="text-align:right">178</td>
+      <td style="text-align:right">R$ 997,65</td>
+      <td style="text-align:right">236.256</td>
+      <td style="text-align:right">0,08%</td>
+      <td><span class="pill pl-y">OTHER</span> <span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4723729642" target="_blank">COLCHÃO CASAL CBP INDUCOL MOLAS ENSACADAS PILLOW TOP 138X188X27CM BRANCO</a><br><span style="font-size:10px;color:#999">MLB4723729642</span></td>
+      <td style="text-align:right;font-weight:700">R$ 161K</td>
+      <td style="text-align:right">2,0%</td>
+      <td style="text-align:right"><span class="pos">&#9650; 160,1%</span></td>
+      <td style="text-align:right">170</td>
+      <td style="text-align:right">R$ 947,47</td>
+      <td style="text-align:right">70.681</td>
+      <td style="text-align:right">0,24%</td>
+      <td><span class="pill pl-b">XD</span> <span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4264906587" target="_blank">COLCHÃO SOLTEIRO MOLAS QATAR 88X188X22CM BEGE/BRANCO INDUCOL</a><br><span style="font-size:10px;color:#999">MLB4264906587</span></td>
+      <td style="text-align:right;font-weight:700">R$ 134K</td>
+      <td style="text-align:right">1,7%</td>
+      <td style="text-align:right"><span class="neg">&#9660; 2,6%</span></td>
+      <td style="text-align:right">237</td>
+      <td style="text-align:right">R$ 567,87</td>
+      <td style="text-align:right">91.518</td>
+      <td style="text-align:right">0,26%</td>
+      <td><span class="pill pl-b">XD</span> <span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5386106094" target="_blank">COLCHÃO QUEEN MOLAS QATAR 158X198X22CM BEGE/BRANCO INDUCOL</a><br><span style="font-size:10px;color:#999">MLB5386106094</span></td>
+      <td style="text-align:right;font-weight:700">R$ 133K</td>
+      <td style="text-align:right">1,7%</td>
+      <td style="text-align:right"><span class="pos">&#9650; 347,1%</span></td>
+      <td style="text-align:right">141</td>
+      <td style="text-align:right">R$ 946,80</td>
+      <td style="text-align:right">48.460</td>
+      <td style="text-align:right">0,29%</td>
+      <td><span class="pill pl-b">XD</span> <span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4302583577" target="_blank">COLCHÃO CASAL ESPUMA D33 FORT 138X188X21CM CINZA BRANCO</a><br><span style="font-size:10px;color:#999">MLB4302583577</span></td>
+      <td style="text-align:right;font-weight:700">R$ 128K</td>
+      <td style="text-align:right">1,6%</td>
+      <td style="text-align:right"><span class="neg">&#9660; 11,2%</span></td>
+      <td style="text-align:right">170</td>
+      <td style="text-align:right">R$ 756,18</td>
+      <td style="text-align:right">121.512</td>
+      <td style="text-align:right">0,14%</td>
+      <td><span class="pill pl-b">XD</span> <span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4505589331" target="_blank">CAMA BOX BAÚ COLCHÃO CASAL QUEEN MOLAS GUARDA COSTAS MAX BRANCO</a><br><span style="font-size:10px;color:#999">MLB4505589331</span></td>
+      <td style="text-align:right;font-weight:700">R$ 119K</td>
+      <td style="text-align:right">1,5%</td>
+      <td style="text-align:right"><span class="pos">&#9650; 99,6%</span></td>
+      <td style="text-align:right">40</td>
+      <td style="text-align:right">R$ 2.993,00</td>
+      <td style="text-align:right">11.303</td>
+      <td style="text-align:right">0,35%</td>
+      <td><span class="pill pl-y">OTHER</span></td>
+    </tr>
+    </tbody></table></div></div>
+
+  <!-- QUEDA -->
+  <div class="sec"><div class="sec-ttl">&#9660; Itens em Queda MTD (Jul 1&ndash;11 vs Ago 1&ndash;11)</div><div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Produto</th>
+      <th style="text-align:right">Jul MTD 1-11</th>
+      <th style="text-align:right">Ago MTD 1-11</th>
+      <th style="text-align:center">Var.</th>
+      <th style="text-align:center">BB</th>
+    </tr></thead><tbody>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3647902117" target="_blank">CAMA BOX BAÚ COLCHÃO CASAL MOLAS ENSACADAS CITY PILLOW TOP HELLEN</a><br><span style="font-size:10px;color:#999">MLB3647902117</span></td>
+      <td style="text-align:right">R$ 532K</td><td style="text-align:right">R$ 346K</td>
+      <td style="text-align:center"><span class="neg">&#9660; 34,9%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4381888457" target="_blank">CAMA BOX BAÚ COLCHÃO CASAL MOLAS ENSACADAS CITY PILLOW TOP BRANCO/BEGE HELLEN</a><br><span style="font-size:10px;color:#999">MLB4381888457</span></td>
+      <td style="text-align:right">R$ 265K</td><td style="text-align:right">R$ 112K</td>
+      <td style="text-align:center"><span class="neg">&#9660; 57,6%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3500418269" target="_blank">HELLEN COLCHÃO CASAL ESPUMA D33 PILLOW TOP VAN GOGH 138X188X29CM MARROM</a><br><span style="font-size:10px;color:#999">MLB3500418269</span></td>
+      <td style="text-align:right">R$ 90K</td><td style="text-align:right">R$ 37K</td>
+      <td style="text-align:center"><span class="neg">&#9660; 58,2%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4580394518" target="_blank">CAMA BOX CASAL GAZIN MAXIMUS MOLAS ENSACADAS CINZA/PRETO CINZA/BRANCO</a><br><span style="font-size:10px;color:#999">MLB4580394518</span></td>
+      <td style="text-align:right">R$ 140K</td><td style="text-align:right">R$ 86K</td>
+      <td style="text-align:center"><span class="neg">&#9660; 38,9%</span></td>
+      <td style="text-align:center"><span style="color:#bbb">-</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3715768831" target="_blank">CAMA BOX BAÚ SOLTEIRO COLCHÃO ESPUMA D33 FORT 88X188X62CM CINZA E BRANCO GAZIN</a><br><span style="font-size:10px;color:#999">MLB3715768831</span></td>
+      <td style="text-align:right">R$ 138K</td><td style="text-align:right">R$ 85K</td>
+      <td style="text-align:center"><span class="neg">&#9660; 38,2%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5461161420" target="_blank">CAMA BOX SOLTEIRO COLCHÃO ESPUMA D33 FORT 88CM CINZA/BRANCO</a><br><span style="font-size:10px;color:#999">MLB5461161420</span></td>
+      <td style="text-align:right">R$ 76K</td><td style="text-align:right">R$ 36K</td>
+      <td style="text-align:center"><span class="neg">&#9660; 51,9%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4813767268" target="_blank">CAMA BOX BAÚ COLCHÃO SOLTEIRO MOLAS ENSACADAS CITY PILLOW TOP BRANCO E PRETO HELLEN</a><br><span style="font-size:10px;color:#999">MLB4813767268</span></td>
+      <td style="text-align:right">R$ 40K</td><td style="text-align:right">R$ 10K</td>
+      <td style="text-align:center"><span class="neg">&#9660; 74,2%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-6041771908" target="_blank">CAMA BOX BAÚ KING PROBEL MOLAS ENSACADAS GUARDA COSTAS BRANCO</a><br><span style="font-size:10px;color:#999">MLB6041771908</span></td>
+      <td style="text-align:right">R$ 40K</td><td style="text-align:right">R$ 9K</td>
+      <td style="text-align:center"><span class="neg">&#9660; 77,0%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3732149037" target="_blank">CAMA BOX COLCHÃO CASAL MOLAS ENSACADAS CITY PILLOW TOP BRANCO E BEGE HELLEN</a><br><span style="font-size:10px;color:#999">MLB3732149037</span></td>
+      <td style="text-align:right">R$ 46K</td><td style="text-align:right">R$ 7K</td>
+      <td style="text-align:center"><span class="neg">&#9660; 84,6%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4111944180" target="_blank">CAMA BOX CASAL COLCHÃO GAZIN MOLAS ENSACADAS PILLOW MAXIMUS 138X188X62CM CINZA/PRETO</a><br><span style="font-size:10px;color:#999">MLB4111944180</span></td>
+      <td style="text-align:right">R$ 208K</td><td style="text-align:right">R$ 177K</td>
+      <td style="text-align:center"><span class="neg">&#9660; 14,9%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3504071515" target="_blank">COLCHÃO CASAL MOLAS ENSACADAS EURO PILLOW MAXIMUS 138X188X24CM GAZIN CINZA/BRANCO</a><br><span style="font-size:10px;color:#999">MLB3504071515</span></td>
+      <td style="text-align:right">R$ 135K</td><td style="text-align:right">R$ 108K</td>
+      <td style="text-align:center"><span class="neg">&#9660; 19,5%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4673951504" target="_blank">GAZIN CAMA BOX CASAL COLCHÃO ESPUMA D33 FORT 138X188X59CM CINZA/BRANCO</a><br><span style="font-size:10px;color:#999">MLB4673951504</span></td>
+      <td style="text-align:right">R$ 79K</td><td style="text-align:right">R$ 55K</td>
+      <td style="text-align:center"><span class="neg">&#9660; 30,5%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4615971596" target="_blank">CAMA BOX CASAL QUEEN COLCHÃO GAZIN MAXIMUS MOLAS ENSACADAS 158X198X62CM CINZA/PRETO</a><br><span style="font-size:10px;color:#999">MLB4615971596</span></td>
+      <td style="text-align:right">R$ 49K</td><td style="text-align:right">R$ 33K</td>
+      <td style="text-align:center"><span class="neg">&#9660; 31,6%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    </tbody></table></div></div>
+
+  <!-- CRESCIMENTO -->
+  <div class="sec"><div class="sec-ttl">&#9650; Itens em Crescimento MTD (Jul 1&ndash;11 vs Ago 1&ndash;11)</div><div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Produto</th>
+      <th style="text-align:right">Jul MTD 1-11</th>
+      <th style="text-align:right">Ago MTD 1-11</th>
+      <th style="text-align:center">Var.</th>
+      <th style="text-align:center">BB</th>
+    </tr></thead><tbody>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5318608904" target="_blank">CAMA BOX BAÚ CASAL COLCHÃO GAZIN MOLAS FLORA BEGE 138X188X63CM</a><br><span style="font-size:10px;color:#999">MLB5318608904</span></td>
+      <td style="text-align:right">R$ 209K</td><td style="text-align:right">R$ 401K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 92,1%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5386106094" target="_blank">COLCHÃO QUEEN MOLAS QATAR 158X198X22CM BEGE/BRANCO INDUCOL</a><br><span style="font-size:10px;color:#999">MLB5386106094</span></td>
+      <td style="text-align:right">R$ 29K</td><td style="text-align:right">R$ 133K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 347,1%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3715703823" target="_blank">CAMA BOX CASAL COLCHÃO GAZIN MAXIMUS MOLAS ENSACADAS 138X188X62CM LINHO GRAFITE/BRANCO</a><br><span style="font-size:10px;color:#999">MLB3715703823</span></td>
+      <td style="text-align:right">R$ 20K</td><td style="text-align:right">R$ 104K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 406,6%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4723729642" target="_blank">COLCHÃO CASAL CBP INDUCOL MOLAS ENSACADAS PILLOW TOP 138X188X27CM BRANCO</a><br><span style="font-size:10px;color:#999">MLB4723729642</span></td>
+      <td style="text-align:right">R$ 61K</td><td style="text-align:right">R$ 161K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 160,1%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-6689199786" target="_blank">COLCHÃO CASAL QUEEN MOLAS GUARDA COSTAS MAX COM PILLOW CINZA/BRANCO</a><br><span style="font-size:10px;color:#999">MLB6689199786</span></td>
+      <td style="text-align:right">R$ 30K</td><td style="text-align:right">R$ 98K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 219,4%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5386034426" target="_blank">COLCHÃO CASAL MOLAS QATAR 138X188X22CM BEGE/BRANCO INDUCOL</a><br><span style="font-size:10px;color:#999">MLB5386034426</span></td>
+      <td style="text-align:right">R$ 136K</td><td style="text-align:right">R$ 252K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 84,2%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4505589331" target="_blank">CAMA BOX BAÚ COLCHÃO CASAL QUEEN MOLAS GUARDA COSTAS MAX BRANCO</a><br><span style="font-size:10px;color:#999">MLB4505589331</span></td>
+      <td style="text-align:right">R$ 59K</td><td style="text-align:right">R$ 119K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 99,6%</span></td>
+      <td style="text-align:center"><span style="color:#bbb">-</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3707939787" target="_blank">COLCHÃO SOLTEIRO COR BRANCO ISIS 27 ENSACADA CELUPLÁS</a><br><span style="font-size:10px;color:#999">MLB3707939787</span></td>
+      <td style="text-align:right">R$ 34K</td><td style="text-align:right">R$ 89K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 155,6%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5732465216" target="_blank">COLCHÃO SOLTEIRO ESPUMA D33 PILLOW TOP NEW MILLENIUM BRANCO</a><br><span style="font-size:10px;color:#999">MLB5732465216</span></td>
+      <td style="text-align:right">R$ 204K</td><td style="text-align:right">R$ 256K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 25,3%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4643397951" target="_blank">GUARDA ROUPAS CASAL 3 PORTAS CORRER 2 GAVETAS FRANÇA ANDIRÁ BRANCO</a><br><span style="font-size:10px;color:#999">MLB4643397951</span></td>
+      <td style="text-align:right">R$ 20K</td><td style="text-align:right">R$ 65K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 223,7%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-6070273410" target="_blank">COLCHÃO QUEEN PROBEL MOLAS ENSACADAS PILLOW TOP GENOVA BRANCO/BEGE</a><br><span style="font-size:10px;color:#999">MLB6070273410</span></td>
+      <td style="text-align:right">R$ 27K</td><td style="text-align:right">R$ 68K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 149,8%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-6428522940" target="_blank">COLCHÃO CASAL PROBEL MOLAS ENSACADAS E PILLOW TOP GENOVA BRANCO/BEGE</a><br><span style="font-size:10px;color:#999">MLB6428522940</span></td>
+      <td style="text-align:right">R$ 9K</td><td style="text-align:right">R$ 47K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 377,8%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-6906793380" target="_blank">CAMA BOX BAÚ COLCHÃO CASAL GAZIN INGLATERRA MOLAS ENSACADAS BRANCO</a><br><span style="font-size:10px;color:#999">MLB6906793380</span></td>
+      <td style="text-align:right">R$ 11K</td><td style="text-align:right">R$ 40K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 242,4%</span></td>
+      <td style="text-align:center"><span style="color:#bbb">-</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3496360859" target="_blank">COLCHÃO CASAL MOLAS ENSACADAS REAL 138X188X27CM BRANCO BEGE SUPORTA 130KG</a><br><span style="font-size:10px;color:#999">MLB3496360859</span></td>
+      <td style="text-align:right">R$ 28K</td><td style="text-align:right">R$ 59K</td>
+      <td style="text-align:center"><span class="pos">&#9650; 106,9%</span></td>
+      <td style="text-align:center"><span class="pill pl-b">BB</span></td>
+    </tr>
+    </tbody></table></div></div>
+
+  <!-- QUEDA VISITAS -->
+  <div class="sec"><div class="sec-ttl">&#128064; Queda de Visitas &mdash; 30d Atual vs 30d Anterior</div><div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Produto</th>
+      <th style="text-align:right">Vis. D-60&rarr;30</th>
+      <th style="text-align:right">Vis. D-30</th>
+      <th style="text-align:center">Varia&ccedil;&atilde;o</th>
+    </tr></thead><tbody>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-6610115066" target="_blank">COLCHÃO SOLTEIRO ORTOPÉDICO ESPUMA D33 HIPER 88X188X19 APOLO CINZA</a></td>
+      <td style="text-align:right">241</td><td style="text-align:right">4</td>
+      <td style="text-align:center"><span class="neg">&#9660; 98,3%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-6756718984" target="_blank">ARMÁRIO DE COZINHA COMPLETA POP ZANZINI NATURE/OFF WHITE 6 PORTAS 2 GAVETAS</a></td>
+      <td style="text-align:right">3.436</td><td style="text-align:right">313</td>
+      <td style="text-align:center"><span class="neg">&#9660; 90,9%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4577141657" target="_blank">CAMA BOX COLCHÃO CASAL ORTOPÉDICO D33 HIPER CINZA</a></td>
+      <td style="text-align:right">10.886</td><td style="text-align:right">1.058</td>
+      <td style="text-align:center"><span class="neg">&#9660; 90,3%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-6881516848" target="_blank">COLCHÃO SOLTEIRO ESPUMA D33 FORT GAZIN BEGE/BRANCO</a></td>
+      <td style="text-align:right">207</td><td style="text-align:right">20</td>
+      <td style="text-align:center"><span class="neg">&#9660; 90,3%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4131799965" target="_blank">BALCÃO GABINETE PARA PIA 1,20M VERSALHES KIT'S PARANÁ MADEIRADO/GRAFITE</a></td>
+      <td style="text-align:right">4.654</td><td style="text-align:right">485</td>
+      <td style="text-align:center"><span class="neg">&#9660; 89,6%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4309737969" target="_blank">CAMA SOLTEIRO ORTOPÉDICA SOMOPAR BAÚ COM CAMA AUXILIAR 88X188CM</a></td>
+      <td style="text-align:right">2.503</td><td style="text-align:right">309</td>
+      <td style="text-align:center"><span class="neg">&#9660; 87,7%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5287685578" target="_blank">GUARDA ROUPAS 2 PORTAS DE CORRER 6 GAVETAS IMPERADOR ZANZINI</a></td>
+      <td style="text-align:right">24.628</td><td style="text-align:right">3.296</td>
+      <td style="text-align:center"><span class="neg">&#9660; 86,6%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3978836179" target="_blank">GUARDA-ROUPA CASAL 2 PORTAS CORREDIÇA 4 GAVETAS MDP/MDF AREIA/MADEIRADO</a></td>
+      <td style="text-align:right">25.451</td><td style="text-align:right">3.773</td>
+      <td style="text-align:center"><span class="neg">&#9660; 85,2%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5536613832" target="_blank">COLCHÃO QUEEN ESPUMA D33 PILLOW TOP VAN GOGH BRANCO HELLEN</a></td>
+      <td style="text-align:right">3.357</td><td style="text-align:right">677</td>
+      <td style="text-align:center"><span class="neg">&#9660; 79,8%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4709607491" target="_blank">CAMA BOX COLCHÃO SOLTEIRO MOLAS ENSACADAS CITY PILLOW TOP 88X188X61CM HELLEN</a></td>
+      <td style="text-align:right">2.427</td><td style="text-align:right">563</td>
+      <td style="text-align:center"><span class="neg">&#9660; 76,8%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3666937899" target="_blank">CABECEIRA CASAL EXTENSÍVEL COM 2 MESAS DE APOIO OFF SUÍÇA CINAMOMO/OFF WHITE</a></td>
+      <td style="text-align:right">12.925</td><td style="text-align:right">3.451</td>
+      <td style="text-align:center"><span class="neg">&#9660; 73,3%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3856553218" target="_blank">PAINEL TV ATÉ 55&quot; 1,83M INTENSE RIPADO 3D FREIJÓ/OFF WHITE</a></td>
+      <td style="text-align:right">2.802</td><td style="text-align:right">775</td>
+      <td style="text-align:center"><span class="neg">&#9660; 72,3%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5650121718" target="_blank">CAMA BOX COLCHÃO KING MOLAS CITY PILLOW TOP LINHO BRANCO BRANCO/BEGE</a></td>
+      <td style="text-align:right">9.391</td><td style="text-align:right">2.672</td>
+      <td style="text-align:center"><span class="neg">&#9660; 71,5%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5514429470" target="_blank">CONJUNTO SALA DE JANTAR MESA 1,20M 4 CADEIRAS TRIESTE DOBUÊ</a></td>
+      <td style="text-align:right">488</td><td style="text-align:right">143</td>
+      <td style="text-align:center"><span class="neg">&#9660; 70,7%</span></td>
+    </tr>
+    </tbody></table></div></div>
+
+  <!-- SUBCATEGORIA -->
+  <div class="sec"><div class="sec-ttl">&#128200; An&aacute;lise por Subcategoria &mdash; Ago MTD (1&ndash;11/8)</div><div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Subcategoria</th>
+      <th style="text-align:right">GMV MTD</th>
+      <th style="text-align:right">Unidades</th>
+      <th style="text-align:right">Ticket M&eacute;dio</th>
+      <th style="text-align:right">Share GMV</th>
+      <th style="text-align:right">Share Unid.</th>
+      <th style="text-align:center">YoY GMV</th>
+      <th style="text-align:center">YoY Unid.</th>
+      <th style="text-align:center">YoY Ticket</th>
+    </tr></thead><tbody>
+    <tr>
+      <td>Cama Box + Colch&atilde;o (kit)</td>
+      <td style="text-align:right;font-weight:700">R$ 3,0M</td>
+      <td style="text-align:right">2.482</td>
+      <td style="text-align:right">R$ 1.210,66</td>
+      <td style="text-align:right">37,8%</td>
+      <td style="text-align:right">29,3%</td>
+      <td style="text-align:center"><span class="pos">&#9650; 58,9%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 51,6%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 4,9%</span></td>
+    </tr>
+    <tr>
+      <td>Colch&otilde;es</td>
+      <td style="text-align:right;font-weight:700">R$ 2,6M</td>
+      <td style="text-align:right">3.043</td>
+      <td style="text-align:right">R$ 839,57</td>
+      <td style="text-align:right">32,1%</td>
+      <td style="text-align:right">35,9%</td>
+      <td style="text-align:center"><span class="pos">&#9650; 232,6%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 190,1%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 14,7%</span></td>
+    </tr>
+    <tr>
+      <td>Guarda-roupas</td>
+      <td style="text-align:right;font-weight:700">R$ 922K</td>
+      <td style="text-align:right">822</td>
+      <td style="text-align:right">R$ 1.122,28</td>
+      <td style="text-align:right">11,6%</td>
+      <td style="text-align:right">9,7%</td>
+      <td style="text-align:center"><span class="neg">&#9660; 0,6%</span></td>
+      <td style="text-align:center"><span class="neg">&#9660; 19,2%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 23,0%</span></td>
+    </tr>
+    <tr>
+      <td>Arm&aacute;rios de Cozinha</td>
+      <td style="text-align:right;font-weight:700">R$ 280K</td>
+      <td style="text-align:right">523</td>
+      <td style="text-align:right">R$ 536,12</td>
+      <td style="text-align:right">3,5%</td>
+      <td style="text-align:right">6,2%</td>
+      <td style="text-align:center"><span class="pos">&#9650; 60,7%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 43,3%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 12,2%</span></td>
+    </tr>
+    <tr>
+      <td>Bases Box</td>
+      <td style="text-align:right;font-weight:700">R$ 223K</td>
+      <td style="text-align:right">233</td>
+      <td style="text-align:right">R$ 957,26</td>
+      <td style="text-align:right">2,8%</td>
+      <td style="text-align:right">2,7%</td>
+      <td style="text-align:center"><span class="pos">&#9650; 245,3%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 210,7%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 11,1%</span></td>
+    </tr>
+    <tr>
+      <td>Camas</td>
+      <td style="text-align:right;font-weight:700">R$ 210K</td>
+      <td style="text-align:right">123</td>
+      <td style="text-align:right">R$ 1.709,14</td>
+      <td style="text-align:right">2,6%</td>
+      <td style="text-align:right">1,5%</td>
+      <td style="text-align:center"><span class="pos">&#9650; 48,1%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 33,7%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 10,8%</span></td>
+    </tr>
+    <tr>
+      <td>Rack / Painel TV</td>
+      <td style="text-align:right;font-weight:700">R$ 200K</td>
+      <td style="text-align:right">366</td>
+      <td style="text-align:right">R$ 548,87</td>
+      <td style="text-align:right">2,5%</td>
+      <td style="text-align:right">4,3%</td>
+      <td style="text-align:center"><span class="neg">&#9660; 23,5%</span></td>
+      <td style="text-align:center"><span class="neg">&#9660; 42,2%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 32,3%</span></td>
+    </tr>
+    <tr>
+      <td>Conjuntos de Sala de Jantar</td>
+      <td style="text-align:right;font-weight:700">R$ 150K</td>
+      <td style="text-align:right">152</td>
+      <td style="text-align:right">R$ 987,32</td>
+      <td style="text-align:right">1,9%</td>
+      <td style="text-align:right">1,8%</td>
+      <td style="text-align:center"><span class="pos">&#9650; 159,9%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 145,2%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 6,0%</span></td>
+    </tr>
+    <tr>
+      <td>Sof&aacute;s e Poltronas</td>
+      <td style="text-align:right;font-weight:700">R$ 111K</td>
+      <td style="text-align:right">92</td>
+      <td style="text-align:right">R$ 1.208,19</td>
+      <td style="text-align:right">1,4%</td>
+      <td style="text-align:right">1,1%</td>
+      <td style="text-align:center"><span class="neg">&#9660; 73,2%</span></td>
+      <td style="text-align:center"><span class="neg">&#9660; 80,7%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 39,2%</span></td>
+    </tr>
+    <tr>
+      <td>Mesas de Jantar</td>
+      <td style="text-align:right;font-weight:700">R$ 67K</td>
+      <td style="text-align:right">96</td>
+      <td style="text-align:right">R$ 701,48</td>
+      <td style="text-align:right">0,8%</td>
+      <td style="text-align:right">1,1%</td>
+      <td style="text-align:center"><span class="neg">&#9660; 36,8%</span></td>
+      <td style="text-align:center"><span class="neg">&#9660; 33,3%</span></td>
+      <td style="text-align:center"><span class="neg">&#9660; 5,1%</span></td>
+    </tr>
+    <tr>
+      <td>Arm&aacute;rios de Lavanderia</td>
+      <td style="text-align:right;font-weight:700">R$ 66K</td>
+      <td style="text-align:right">211</td>
+      <td style="text-align:right">R$ 315,14</td>
+      <td style="text-align:right">0,8%</td>
+      <td style="text-align:right">2,5%</td>
+      <td style="text-align:center"><span class="neg">&#9660; 12,8%</span></td>
+      <td style="text-align:center"><span class="neg">&#9660; 13,9%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 1,3%</span></td>
+    </tr>
+    <tr>
+      <td>Arm&aacute;rios de Escrit&oacute;rio</td>
+      <td style="text-align:right;font-weight:700">R$ 39K</td>
+      <td style="text-align:right">130</td>
+      <td style="text-align:right">R$ 302,52</td>
+      <td style="text-align:right">0,5%</td>
+      <td style="text-align:right">1,5%</td>
+      <td style="text-align:center"><span class="pos">&#9650; 191,5%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 170,8%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 7,7%</span></td>
+    </tr>
+    <tr>
+      <td>Conjuntos de Sala</td>
+      <td style="text-align:right;font-weight:700">R$ 35K</td>
+      <td style="text-align:right">28</td>
+      <td style="text-align:right">R$ 1.270,11</td>
+      <td style="text-align:right">0,4%</td>
+      <td style="text-align:right">0,3%</td>
+      <td style="text-align:center"><span class="pos">&#9650; 35,8%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 86,7%</span></td>
+      <td style="text-align:center"><span class="neg">&#9660; 27,3%</span></td>
+    </tr>
+    <tr>
+      <td>C&ocirc;modas e Gaveteiros</td>
+      <td style="text-align:right;font-weight:700">R$ 23K</td>
+      <td style="text-align:right">42</td>
+      <td style="text-align:right">R$ 549,88</td>
+      <td style="text-align:right">0,3%</td>
+      <td style="text-align:right">0,5%</td>
+      <td style="text-align:center"><span class="neg">&#9660; 61,8%</span></td>
+      <td style="text-align:center"><span class="neg">&#9660; 55,8%</span></td>
+      <td style="text-align:center"><span class="neg">&#9660; 13,6%</span></td>
+    </tr>
+    <tr>
+      <td>Aparadores</td>
+      <td style="text-align:right;font-weight:700">R$ 20K</td>
+      <td style="text-align:right">36</td>
+      <td style="text-align:right">R$ 569,00</td>
+      <td style="text-align:right">0,3%</td>
+      <td style="text-align:right">0,4%</td>
+      <td style="text-align:center"><span class="pos">&#9650; 867,8%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 800,0%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 7,5%</span></td>
+    </tr>
+    <tr style="font-weight:700;background:#f5f5f5;border-top:2px solid #ddd">
+      <td>Total</td>
+      <td style="text-align:right">R$ 7,9M</td>
+      <td style="text-align:right">8.479</td>
+      <td style="text-align:right">R$ 937,17</td>
+      <td style="text-align:right">100%</td>
+      <td style="text-align:right">100%</td>
+      <td style="text-align:center"><span class="pos">&#9650; 57,9%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 42,5%</span></td>
+      <td style="text-align:center"><span class="pos">&#9650; 10,8%</span></td>
+    </tr>
+    </tbody></table></div></div>
+
+  <!-- SORTIMENTO -->
+  <div class="sec"><div class="sec-ttl">&#128230; Sortimento &mdash; Ago MTD</div>
+    <div class="row">
+      <div class="card"><div class="lbl">Itens c/ Venda Ago MTD</div><div class="val">1.000</div><div class="sub">itens &uacute;nicos com pedido nos 11 dias</div></div>
+      <div class="card"><div class="lbl">Unidades Totais MTD</div><div class="val">8.479</div><div class="sub">m&eacute;dia 8,5 SI/item</div></div>
+      <div class="card"><div class="lbl">GMV M&eacute;dio por Item</div><div class="val">R$ 7,9K</div><div class="sub">GMV total / 1.000 itens</div></div>
+      <div class="card"><div class="lbl">Top 10 Concentra&ccedil;&atilde;o</div><div class="val">26,6%</div><div class="sub">do GMV MTD nos 10 maiores</div></div>
+    </div>
+  </div>
+
+  <!-- MODAL LOGISTICO -->
+  <div class="sec"><div class="sec-ttl">&#128666; Modal Log&iacute;stico &mdash; Ago MTD</div><div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Modal</th>
+      <th style="text-align:right">GMV Ago MTD</th>
+      <th style="text-align:right">Pedidos MTD</th>
+      <th style="text-align:right">Share GMV</th>
+      <th style="min-width:100px">Distribui&ccedil;&atilde;o</th>
+    </tr></thead><tbody>
+    <tr>
+      <td><span class="pill pl-y">OTHER</span></td>
+      <td style="text-align:right;font-weight:700">R$ 5,1M</td>
+      <td style="text-align:right;color:#555">4.618</td>
+      <td style="text-align:right">65,0%</td>
+      <td><div class="bar-out"><div class="bar-in" style="width:65%"></div></div></td>
+    </tr>
+    <tr>
+      <td><span class="pill pl-b">XD (Cross Docking)</span></td>
+      <td style="text-align:right;font-weight:700">R$ 2,8M</td>
+      <td style="text-align:right;color:#555">3.732</td>
+      <td style="text-align:right">35,0%</td>
+      <td><div class="bar-out"><div class="bar-in" style="width:35%"></div></div></td>
+    </tr>
+    </tbody></table></div></div>
+
+  <!-- PADs -->
+  <div class="sec"><div class="sec-ttl">&#128207; Investimento em PADs (Product Ads)</div>
+    <div style="background:#FFF9E0;border-radius:8px;padding:14px 18px;font-size:13px;border-left:4px solid #FFB900">
+      <b>&#9888; Sem investimento em PADs:</b> A Esplanada M&oacute;veis n&atilde;o utiliza Product Ads (PADS) no per&iacute;odo analisado.<br>
+      <span style="color:#888;font-size:11px;margin-top:4px;display:block">Fonte: DM_EFICIENCIA_MLB &middot; PADS_INVESTMENT_LC = 0 em todos os per&iacute;odos de jan/2025 a ago/2026.</span>
+    </div>
+  </div>
+
+</div>
+<div style="text-align:center;padding:18px;font-size:11px;color:#aaa">
+  Gerado em 11/08/2026 &middot; Seller: 262435141 (Esplanada M&oacute;veis) &middot; Fonte: meli-bi-data.WHOWNER &middot; Data de corte: 11/08/2026
+</div>
+</body>
+</html>
