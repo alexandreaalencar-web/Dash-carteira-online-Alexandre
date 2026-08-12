@@ -128,10 +128,26 @@ a{color:#3483FA;text-decoration:none} a:hover{text-decoration:underline}
     <div class="chart-box"><canvas id="cSI"></canvas></div>
   </div>
   <script>
-  new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],datasets:[
-    {label:'2026',data:[15434,13702,21241,20442,20522,19510,18927,8479,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
-    {label:'2025',data:[18742,13853,16034,16949,18897,18458,19611,16683,15063,14604,18882,13542],backgroundColor:'#DDE8FF',borderRadius:4}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}}})
+  (function(){
+    var siLabels={id:'siLabels',afterDatasetsDraw:function(chart){
+      var ctx=chart.ctx;ctx.save();
+      chart.data.datasets.forEach(function(ds,di){
+        var meta=chart.getDatasetMeta(di);if(meta.hidden)return;
+        meta.data.forEach(function(bar,i){
+          var v=ds.data[i];if(v===null||v===undefined)return;
+          var txt=(v/1000).toFixed(0)+'K';
+          ctx.font='bold 9px Segoe UI,Arial,sans-serif';
+          ctx.textAlign='center';
+          ctx.fillStyle=di===0?'#1A5CC9':'#5B8DEF';
+          ctx.fillText(txt,bar.x,bar.y-5);
+        });
+      });ctx.restore();
+    }};
+    new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],datasets:[
+      {label:'2026',data:[15434,13702,21241,20442,20522,19510,18927,8479,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2025',data:[18742,13853,16034,16949,18897,18458,19611,16683,15063,14604,18882,13542],backgroundColor:'#A8C4FF',borderRadius:4}
+    ]},options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:22}},plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+Number(c.raw).toLocaleString('pt-BR')+' SIs';}}}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}},plugins:[siLabels]});
+  })();
   </script>
 
   <!-- TOP 10 ITENS -->
