@@ -206,7 +206,7 @@
         <div class="legend" id="legend-gr"></div>
       </div>
       <div class="card">
-        <div class="card-title">Top 5 Produtos — Guarda-Roupas</div>
+        <div class="card-title">Top 10 Anuncios — Guarda-Roupas</div>
         <table class="data-table" id="tbl-gr-prod"></table>
       </div>
     </div>
@@ -215,7 +215,7 @@
       <table class="data-table" id="tbl-gr-sell"></table>
     </div>
     <div class="insight-box">
-      <strong>Insight:</strong> O mercado e altamente concentrado — <strong>Seller A</strong> detem 41,6% do GMV sozinho, com 3.246 itens ativos. <strong>Nossa Empresa esta em #8 com 3,4% share e produto no Top 5</strong> (Slim Plus 8P Espelho · R$ 3,08M).
+      <strong>Insight:</strong> O mercado e altamente concentrado — <strong>Seller A</strong> detem 41,6% do GMV sozinho, com 3.246 itens ativos. <strong>Nossa Empresa esta em #8 com 3,4% share e 2 produtos no Top 10</strong>: #5 Slim Plus 8P Espelho (R$ 3,08M · TM R$ 1.022) e #8 Classic 2P MDF 6 Gav. (R$ 2,91M · TM R$ 1.642).
     </div>
   </div>
 
@@ -228,7 +228,7 @@
         <div class="legend" id="legend-csj"></div>
       </div>
       <div class="card">
-        <div class="card-title">Top 5 Produtos — Sala de Jantar</div>
+        <div class="card-title">Top 10 Anuncios — Sala de Jantar</div>
         <table class="data-table" id="tbl-csj-prod"></table>
       </div>
     </div>
@@ -300,18 +300,28 @@ const CSJ_SELLERS = [
   { rank:13, id:"1289467675", name:"Nossa Empresa", gmv:1812900,  units:2756,  orders:2733,  items:58,   share:1.4  },
 ];
 const GR_PRODS = [
-  { rank:1, id:"5339055984", seller:"Seller A",      title:"Guarda-Roupa Casal Luna 6 Portas 2 Gavetas",             gmv:7551801, units:10657 },
-  { rank:2, id:"6251178912", seller:"Seller A",      title:"Guarda-Roupa Casal Milano 8 Portas 4 Gavetas",           gmv:3917515, units:4094  },
-  { rank:3, id:"4075941819", seller:"Seller A",      title:"Guarda-Roupa Casal Riviera 8 Portas 4 Gavetas Branco",   gmv:3896191, units:4067  },
-  { rank:4, id:"3555628527", seller:"Seller B",      title:"Guarda-Roupa Casal Veneza 3 Portas Correr c/ Espelho",   gmv:3118896, units:3588  },
-  { rank:5, id:"5445396068", seller:"Nossa Empresa", title:"Guarda-Roupa Casal Slim Plus 8 Portas c/ Espelho",       gmv:3080619, units:3015, mine:true },
+  { rank:1,  id:"5339055984", seller:"Seller A",      title:"Guarda-Roupa Casal Luna 6 Portas 2 Gavetas",               gmv:7549551, units:10654, ticket:709  },
+  { rank:2,  id:"6251178912", seller:"Seller A",      title:"Guarda-Roupa Casal Milano 8 Portas 4 Gavetas Onix",         gmv:3916517, units:4093,  ticket:957  },
+  { rank:3,  id:"4075941819", seller:"Seller A",      title:"Guarda-Roupa Casal Riviera 8 Portas 4 Gavetas Branco",      gmv:3894331, units:4065,  ticket:958  },
+  { rank:4,  id:"3555628527", seller:"Seller B",      title:"Guarda-Roupa Casal Veneza 3 Portas Correr c/ Espelho",      gmv:3118896, units:3588,  ticket:869  },
+  { rank:5,  id:"5445396068", seller:"Nossa Empresa", title:"Guarda-Roupa Casal Slim Plus 8 Portas c/ Espelho",          gmv:3080619, units:3015,  ticket:1022, mine:true },
+  { rank:6,  id:"4888686172", seller:"Seller A",      title:"Guarda-Roupa Casal Milao 3 Portas Corrediça Espelhada MDF", gmv:3072658, units:3125,  ticket:983  },
+  { rank:7,  id:"4073532145", seller:"Seller A",      title:"Guarda-Roupa Casal Horizonte 3 Portas Correr Espelho MDF",  gmv:2963350, units:1838,  ticket:1612 },
+  { rank:8,  id:"3644997279", seller:"Nossa Empresa", title:"Guarda-Roupa Casal Classic 2 Portas Corrediças MDF 6 Gav.", gmv:2914277, units:1775,  ticket:1642, mine:true },
+  { rank:9,  id:"2787367381", seller:"Seller B",      title:"Guarda-Roupa Casal Royale 3 Portas 100% MDF c/ Espelho",   gmv:2607137, units:1285,  ticket:2029 },
+  { rank:10, id:"5703897936", seller:"Seller A",      title:"Guarda-Roupa Solteiro Smart 4 Portas 2 Gavetas MDF Branco", gmv:2499912, units:1912,  ticket:1307 },
 ];
 const CSJ_PRODS = [
-  { rank:1, id:"5834705710", seller:"Seller A", title:"Conjunto Jantar Mesa Vidro 120cm + 4 Cadeiras Estofadas",  gmv:1749589, units:1507 },
-  { rank:2, id:"4709503374", seller:"Seller A", title:"Conjunto Jantar Mesa Vidro 6 Cadeiras Suede",             gmv:1685821, units:1407 },
-  { rank:3, id:"5204040832", seller:"Seller B", title:"Conjunto Sala Jantar Mesa Vidro + 4 Cadeiras Linho",      gmv:1664591, units:1928 },
-  { rank:4, id:"3888533567", seller:"Seller B", title:"Conjunto Sala Jantar Mesa Madeira 4 Cadeiras Oxford",     gmv:1616866, units:3300 },
-  { rank:5, id:"4120062181", seller:"Seller A", title:"Mesa Jantar Retangular 180cm Vidro/MDF + 6 Cadeiras",    gmv:1475012, units:940  },
+  { rank:1,  id:"5834705710", seller:"Seller A", title:"Conjunto Jantar Mesa Vidro 120cm + 4 Cadeiras Estofadas",       gmv:1749589, units:1507, ticket:1161 },
+  { rank:2,  id:"4709503374", seller:"Seller A", title:"Conjunto Jantar Mesa Vidro 6 Cadeiras Espanha Suede",           gmv:1684621, units:1406, ticket:1198 },
+  { rank:3,  id:"5204040832", seller:"Seller B", title:"Conjunto Sala Jantar Mesa Vidro + 4 Cadeiras Linho",            gmv:1664591, units:1928, ticket:863  },
+  { rank:4,  id:"3888533567", seller:"Seller B", title:"Conjunto Sala Jantar Mesa Madeira 4 Cadeiras Oxford",           gmv:1616326, units:3299, ticket:490  },
+  { rank:5,  id:"4120062181", seller:"Seller A", title:"Mesa Jantar Luanda 180cm Tampo Vidro/MDF + 6 Cadeiras",        gmv:1475012, units:940,  ticket:1569 },
+  { rank:6,  id:"5738446168", seller:"Seller A", title:"Conjunto Sala Jantar Mesa 160cm MDF + 6 Cadeiras Cinza",       gmv:1196132, units:1165, ticket:1027 },
+  { rank:7,  id:"4462388928", seller:"Seller D", title:"Mesa Alvorada Retangular 180cm Vidro/MDF + 6 Cadeiras",        gmv:1153277, units:610,  ticket:1891 },
+  { rank:8,  id:"3888520897", seller:"Seller B", title:"Conjunto Sala Jantar Mesa Madeira 4 Cadeiras Perola",          gmv:1070896, units:2146, ticket:499  },
+  { rank:9,  id:"5836403400", seller:"Seller E", title:"Conjunto Sala Jantar 4 Lug. Mesa Vidro Cadeiras Estofadas",    gmv:1030104, units:1948, ticket:529  },
+  { rank:10, id:"3545979101", seller:"Seller B", title:"Conjunto Sala Jantar Mesa Vidro 4 Cadeiras Tifani",            gmv:1028017, units:1539, ticket:668  },
 ];
 const SEGMENTS = [
   { label:"Nao identificado — Outros",    gmv:53243163, share:17.0, ticket:964,  color:C.gray },
@@ -420,17 +430,19 @@ function renderProdTable(id, prods) {
       <th>Seller</th>
       <th class="num">GMV</th>
       <th class="num">Unid.</th>
+      <th class="num">TM/Un.</th>
     </tr></thead>
     <tbody>${prods.map(p => `
       <tr class="${p.mine ? 'mine' : ''}">
         <td><span class="rank-badge ${rankClass(p.rank)}">${p.rank}</span></td>
         <td>
           <a class="item-link" href="https://www.mercadolivre.com.br/MLB-${p.id}" target="_blank">${p.title}</a>
-          ${p.mine ? '<span class="mine-tag">SEU</span>' : ''}
+          ${p.mine ? '<span class="mine-tag">NOS</span>' : ''}
         </td>
         <td class="seller-name">${p.seller}</td>
         <td class="num" style="font-weight:600">${fmt(p.gmv)}</td>
         <td class="num" style="color:#777">${fmtN(p.units)}</td>
+        <td class="num" style="color:var(--blue);font-weight:600">${p.ticket ? 'R$ '+p.ticket.toLocaleString('pt-BR') : '—'}</td>
       </tr>`).join('')}
     </tbody>`;
 }

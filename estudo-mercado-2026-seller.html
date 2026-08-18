@@ -287,16 +287,26 @@
     </div>
   </div>
 
-  <!-- ── Seus Produtos ── -->
-  <div class="section-header">Seus Produtos no Mercado</div>
-  <div class="grid-2">
-    <div class="card">
-      <div class="card-title">Top Produto — Guarda-Roupas</div>
+  <!-- ── Top 10 Anuncios ── -->
+  <div class="section-header">Top 10 Anuncios do Mercado — GMV Jan–Ago 2026</div>
+  <div class="tabs" style="margin-bottom:14px">
+    <button class="tab-btn active" onclick="switchTab(this,'prod-gr')">Guarda-Roupas</button>
+    <button class="tab-btn" onclick="switchTab(this,'prod-csj')">Sala de Jantar</button>
+  </div>
+
+  <div class="section active" id="tab-prod-gr">
+    <div class="card full">
+      <div class="card-title">Top 10 Anuncios — Guarda-Roupas</div>
+      <div class="card-note">Anuncios com maior GMV na categoria. Seus anuncios destacados em amarelo.</div>
       <table class="data-table" id="tbl-prod-gr"></table>
     </div>
-    <div class="card">
-      <div class="card-title">Top Produto — Sala de Jantar</div>
-      <div id="csj-prod-placeholder"></div>
+  </div>
+
+  <div class="section" id="tab-prod-csj">
+    <div class="card full">
+      <div class="card-title">Top 10 Anuncios — Conjuntos Sala de Jantar</div>
+      <div class="card-note">Anuncios com maior GMV na categoria. Sua empresa nao aparece no Top 10 deste mercado — oportunidade de crescimento.</div>
+      <table class="data-table" id="tbl-prod-csj"></table>
     </div>
   </div>
 
@@ -366,8 +376,29 @@ const CSJ_SEG = [
   { label:"Vidro + 8 Cadeiras",          gmv:692665,   share:0.5,  ticket:2192, color:C.blue   },
   { label:"8 Cadeiras + Mad. Macica",   gmv:461235,   share:0.4,  ticket:2812, color:C.yellow },
 ];
-const MY_PROD_GR = [
-  { rank:5, id:"5445396068", title:"Guarda-Roupa Casal Easy Slim 8 Portas c/ Espelho — Amendoa/Off White", gmv:3080619, units:3015, ticket:1022 },
+const TOP10_GR = [
+  { rank:1,  id:"5339055984", seller:"Concorrente A", title:"GUARDA-ROUPA CASAL 6 PORTAS 2 GAVETAS FRANÇA ESPRESSO MÓVEIS COR CINAMOMO OFF-WHITE",                             gmv:7549551, units:10654, ticket:709,  mine:false },
+  { rank:2,  id:"6251178912", seller:"Concorrente A", title:"GUARDA ROUPA CASAL 8 PORTAS 4 GAVETAS PARIS ESPRESSO MÓVEIS ONIX",                                               gmv:3916517, units:4093,  ticket:957,  mine:false },
+  { rank:3,  id:"4075941819", seller:"Concorrente A", title:"GUARDA-ROUPA CASAL PARIS 8 PORTAS 4 GAVETAS BRANCO",                                                             gmv:3894331, units:4065,  ticket:958,  mine:false },
+  { rank:4,  id:"3555628527", seller:"Concorrente B", title:"GUARDA ROUPA CASAL MADESA MÔNACO 3 PORTAS CORRER ESPELHO COR BRANCO",                                            gmv:3118896, units:3588,  ticket:869,  mine:false },
+  { rank:5,  id:"5445396068", seller:"Sua Empresa",   title:"GUARDA-ROUPA CASAL EASY SLIM 8 PORTAS C/ ESPELHO AMENDOA/OFF WHITE",                                             gmv:3080619, units:3015,  ticket:1022, mine:true  },
+  { rank:6,  id:"4888686172", seller:"Concorrente A", title:"GUARDA-ROUPA CASAL BRANCO 3 PORTAS CORREDIÇA ESPELHADA MILÃO MDF YESCASA",                                       gmv:3072658, units:3125,  ticket:983,  mine:false },
+  { rank:7,  id:"4073532145", seller:"Concorrente A", title:"GUARDA-ROUPA CASAL 3 PORTAS CORRER ESPELHO MDF FOSCO HORIZONTE VEGAS CUMARU / FENDI",                            gmv:2963350, units:1838,  ticket:1612, mine:false },
+  { rank:8,  id:"3644997279", seller:"Sua Empresa",   title:"GUARDA-ROUPA CASAL MDF 2 PORTAS CORREDIÇAS BRANCO 6 GAVETAS MÓVEIS LOPAS",                                       gmv:2914277, units:1775,  ticket:1642, mine:true  },
+  { rank:9,  id:"2787367381", seller:"Concorrente B", title:"GUARDA ROUPA CASAL ARMÁRIO QUARTO 100% MDF C ESPELHO MADESA ROYALE 3 PORTAS COR BRANCO",                        gmv:2607137, units:1285,  ticket:2029, mine:false },
+  { rank:10, id:"5703897936", seller:"Concorrente A", title:"GUARDA-ROUPA SOLTEIRO 4 PORTAS 2 GAVETAS BRANCO MDF MANBEL 56X160,5X232,2 CM",                                  gmv:2499912, units:1912,  ticket:1307, mine:false },
+];
+const TOP10_CSJ = [
+  { rank:1,  id:"5834705710", seller:"Concorrente A", title:"MESA DE JANTAR 120X80,7CM TAMPO COM VIDRO 4 CADEIRAS FG BEGE MEL LISTRADO",                                      gmv:1749589, units:1507,  ticket:1161, mine:false },
+  { rank:2,  id:"4709503374", seller:"Concorrente A", title:"CONJUNTO SALA DE JANTAR MESA TAMPO DE VIDRO 6 CADEIRAS ESPANHA YESCASA CHOCOLATE/OFF WHITE/SUEDE BEGE",         gmv:1684621, units:1406,  ticket:1198, mine:false },
+  { rank:3,  id:"5204040832", seller:"Concorrente B", title:"SALA JANTAR MADESA EVELIN MESA TAMPO VIDRO COM 4 CADEIRAS COR RUSTIC/CREMA/IMPERIAL LINHO",                     gmv:1664591, units:1928,  ticket:863,  mine:false },
+  { rank:4,  id:"3888533567", seller:"Concorrente B", title:"SALA DE JANTAR MADESA TALITA MESA TAMPO MADEIRA 4 CADEIRAS COR RUSTIC/PRETO/OXFORD LISO",                       gmv:1616326, units:3299,  ticket:490,  mine:false },
+  { rank:5,  id:"4120062181", seller:"Concorrente A", title:"MESA DE JANTAR LUANDA 180X90CM TAMPO VIDRO/MDF CANTO IGWT ANIMALLE CHOCOLATE OFF WHITE",                        gmv:1475012, units:940,   ticket:1569, mine:false },
+  { rank:6,  id:"5738446168", seller:"Concorrente A", title:"CONJUNTO SALA DE JANTAR MESA 160X80CM TAMPO MDF COM 6 CINZA/BEGE LISO",                                         gmv:1196132, units:1165,  ticket:1027, mine:false },
+  { rank:7,  id:"4462388928", seller:"Concorrente D", title:"MESA ALVORADA 180 TP MDF VIDRO CANTO RETO 6 CADEIRAS RUFATO",                                                   gmv:1153277, units:610,   ticket:1891, mine:false },
+  { rank:8,  id:"3888520897", seller:"Concorrente B", title:"SALA DE JANTAR MADESA TALITA MESA TAMPO MADEIRA 4 CADEIRAS COR RUSTIC/CREMA/PÉROLA LISO",                       gmv:1070896, units:2146,  ticket:499,  mine:false },
+  { rank:9,  id:"5836403400", seller:"Concorrente E", title:"CONJUNTO SALA DE JANTAR 4 LUGARES COM CADEIRAS ESTOFADAS MESA COM TAMPO RETANGULAR SEMELHANTE VIDRO BASE V",    gmv:1030104, units:1948,  ticket:529,  mine:false },
+  { rank:10, id:"3545979101", seller:"Concorrente B", title:"SALA DE JANTAR MESA TAMPO DE VIDRO 4 CADEIRAS TIFANI MADESA COR RUSTIC/CREMA/SINTÉTICO BEGE",                   gmv:1028017, units:1539,  ticket:668,  mine:false },
 ];
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────
@@ -424,44 +455,38 @@ function renderSeg(elId, data){
   });
 }
 
-// ─── PRODUTO GR ──────────────────────────────────────────────────────────────
-function renderProdGr(){
+// ─── PRODUTO TABLES ───────────────────────────────────────────────────────────
+function renderProdTable(elId, prods){
   const rankClass = r=>r===1?"g1":r===2?"g2":r===3?"g3":"";
-  document.getElementById("tbl-prod-gr").innerHTML = `
+  document.getElementById(elId).innerHTML = `
     <thead><tr>
-      <th style="width:32px">Rank</th>
+      <th style="width:32px">#</th>
       <th>Produto</th>
+      <th>Seller</th>
       <th class="num">GMV</th>
       <th class="num">Unid.</th>
-      <th class="num">Ticket</th>
+      <th class="num">TM/Un.</th>
     </tr></thead>
-    <tbody>${MY_PROD_GR.map(p=>`
-      <tr class="mine">
-        <td><span class="rank-badge">Top 5</span></td>
+    <tbody>${prods.map(p=>`
+      <tr class="${p.mine?'mine':''}">
+        <td><span class="rank-badge ${rankClass(p.rank)}">${p.rank}</span></td>
         <td>
           <a class="item-link" href="https://www.mercadolivre.com.br/MLB-${p.id}" target="_blank">${p.title}</a>
-          <span class="seu-tag">SEU</span>
+          ${p.mine?'<span class="seu-tag">SEU</span>':''}
         </td>
+        <td style="font-size:12px;color:${p.mine?'#333':'#888'};font-weight:${p.mine?700:400}">${p.seller}</td>
         <td class="num" style="font-weight:600">${fmt(p.gmv)}</td>
         <td class="num" style="color:#777">${fmtN(p.units)}</td>
-        <td class="num" style="color:var(--blue);font-weight:600">${fmtR(p.ticket)}</td>
+        <td class="num" style="color:var(--blue);font-weight:600">R$ ${p.ticket.toLocaleString('pt-BR')}</td>
       </tr>`).join('')}
     </tbody>`;
 }
 
-// ─── CSJ PLACEHOLDER ─────────────────────────────────────────────────────────
-document.getElementById("csj-prod-placeholder").innerHTML = `
-  <div style="padding:20px 0;text-align:center;color:#aaa;font-size:13px">
-    <div style="font-size:32px;margin-bottom:8px">📊</div>
-    <div style="font-weight:600;color:#666;margin-bottom:4px">Sem produtos no Top 5</div>
-    <div style="font-size:12px">Oportunidade de crescimento no segmento.<br>
-    Mercado total: <strong style="color:var(--blue)">R$ 131,1M</strong> · Seu share atual: <strong style="color:var(--blue)">1,4%</strong></div>
-  </div>`;
-
 // ─── INIT ────────────────────────────────────────────────────────────────────
 renderSeg("chart-seg-gr",  GR_SEG);
 renderSeg("chart-seg-csj", CSJ_SEG);
-renderProdGr();
+renderProdTable("tbl-prod-gr",  TOP10_GR);
+renderProdTable("tbl-prod-csj", TOP10_CSJ);
 
 let resizeTimer;
 window.addEventListener("resize",()=>{
