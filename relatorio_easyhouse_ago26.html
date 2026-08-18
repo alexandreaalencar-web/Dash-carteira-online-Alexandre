@@ -101,45 +101,46 @@ tr:hover td{background:#FFFBEA}
     <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:20px">
       <div style="flex:1;min-width:160px;background:#FFF9E0;border-radius:10px;padding:18px 20px">
         <div style="font-size:11px;color:#E67E00;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Meta Agosto</div>
-        <div style="font-size:26px;font-weight:900;color:#E67E00">R$ 2,50M</div>
+        <div style="font-size:26px;font-weight:900;color:#E67E00">R$ 4,20M</div>
         <div style="font-size:12px;color:#888;margin-top:4px">Objetivo mensal</div>
       </div>
       <div style="flex:1;min-width:160px;background:#E8F0FE;border-radius:10px;padding:18px 20px">
         <div style="font-size:11px;color:#3483FA;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Realizado (1&ndash;16/ago)</div>
         <div style="font-size:26px;font-weight:900;color:#3483FA">R$ 1,75M</div>
-        <div style="font-size:12px;color:#888;margin-top:4px">70,0% da meta &middot; 52% do m&ecirc;s</div>
+        <div style="font-size:12px;color:#888;margin-top:4px">41,7% da meta &middot; 52% do m&ecirc;s</div>
       </div>
-      <div style="flex:1;min-width:160px;background:#E8F8EF;border-radius:10px;padding:18px 20px">
-        <div style="font-size:11px;color:#00A650;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Proje&ccedil;&atilde;o Mês Cheio</div>
-        <div style="font-size:26px;font-weight:900;color:#00A650">R$ 3,39M</div>
-        <div style="font-size:12px;color:#888;margin-top:4px"><span class="pos">&#9650; +35,6% acima da meta</span></div>
+      <div style="flex:1;min-width:160px;background:#FEE8EA;border-radius:10px;padding:18px 20px">
+        <div style="font-size:11px;color:#F23D4F;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">Proje&ccedil;&atilde;o M&ecirc;s Cheio</div>
+        <div style="font-size:26px;font-weight:900;color:#F23D4F">R$ 3,39M</div>
+        <div style="font-size:12px;color:#888;margin-top:4px"><span class="neg">&#9660; &minus;19,3% abaixo da meta</span></div>
       </div>
       <div style="flex:1;min-width:160px;background:#F0F5FF;border-radius:10px;padding:18px 20px">
         <div style="font-size:11px;color:#1A5CC9;font-weight:800;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">M&eacute;dia Di&aacute;ria</div>
         <div style="font-size:26px;font-weight:900;color:#1A5CC9">R$ 109K</div>
-        <div style="font-size:12px;color:#888;margin-top:4px">GMV / dia (1&ndash;16/ago)</div>
+        <div style="font-size:12px;color:#888;margin-top:4px">Precisa R$ 163K/dia para bater meta</div>
       </div>
     </div>
     <!-- Barra de progresso -->
     <div style="margin-bottom:8px;display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:#555">
       <span>Progresso vs Meta</span>
-      <span style="color:#00A650">70,0% atingido &mdash; 15 dias restantes</span>
+      <span style="color:#F23D4F">41,7% atingido &mdash; faltam R$ 2,45M &mdash; 13 dias restantes</span>
     </div>
     <div style="background:#F0F0F0;border-radius:8px;height:16px;position:relative;overflow:hidden">
-      <!-- barra meta (100%) -->
-      <div style="position:absolute;left:0;top:0;width:73.7%;height:100%;background:#3483FA;border-radius:8px 0 0 8px"></div>
-      <!-- linha meta -->
-      <div style="position:absolute;left:73.7%;top:0;width:2px;height:100%;background:#E67E00"></div>
-      <!-- barra projeção -->
-      <div style="position:absolute;left:73.7%;top:0;width:26.3%;height:100%;background:rgba(0,166,80,.25)"></div>
+      <!-- barra realizado (41.7%) -->
+      <div style="position:absolute;left:0;top:0;width:41.7%;height:100%;background:#3483FA;border-radius:8px 0 0 8px"></div>
+      <!-- barra projeção adicional (até 80.7%) -->
+      <div style="position:absolute;left:41.7%;top:0;width:39.0%;height:100%;background:rgba(242,61,79,.25)"></div>
+      <!-- linha meta (100%) -->
+      <div style="position:absolute;right:0;top:0;width:2px;height:100%;background:#E67E00"></div>
     </div>
     <div style="display:flex;justify-content:space-between;font-size:10px;color:#888;margin-top:4px">
       <span>R$ 0</span>
-      <span style="color:#E67E00;font-weight:700">&#9660; Meta R$ 2,50M</span>
-      <span style="color:#00A650;font-weight:700">Proje&ccedil;&atilde;o R$ 3,39M &#9650;</span>
+      <span style="color:#3483FA;font-weight:700">Realizado R$ 1,75M (41,7%)</span>
+      <span style="color:#F23D4F;font-weight:700">Proje&ccedil;&atilde;o R$ 3,39M (80,7%)</span>
+      <span style="color:#E67E00;font-weight:700">Meta R$ 4,20M &#9660;</span>
     </div>
-    <div style="margin-top:10px;font-size:11px;color:#888;background:#F8F8F8;border-radius:6px;padding:8px 12px">
-      &#128204; Proje&ccedil;&atilde;o baseada na m&eacute;dia di&aacute;ria de R$ 109.337/dia (16 dias &times; base) extrapolada para 31 dias de agosto. Sujeita a sazonalidade e estoque.
+    <div style="margin-top:10px;font-size:11px;color:#888;background:#FFF4F4;border-radius:6px;padding:8px 12px;border-left:3px solid #F23D4F">
+      &#9888;&#65039; Proje&ccedil;&atilde;o de R$ 3,39M baseada na m&eacute;dia de R$ 109K/dia (16 dias). Para atingir a meta de R$ 4,20M nos 13 dias restantes, seria necess&aacute;ria uma m&eacute;dia de R$ 163K/dia (+49% vs pace atual).
     </div>
   </div>
 
