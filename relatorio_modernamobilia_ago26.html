@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Relatorio MODERNA MOBILIA - 19/08/2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F2F2F2;color:#1A1A1A}
+.hdr{background:linear-gradient(135deg,#3483FA,#1A5CC9);color:#fff;padding:28px 40px;display:flex;justify-content:space-between;align-items:center}
+.hdr h1{font-size:26px;font-weight:900}
+.hdr .sub{font-size:13px;opacity:.8;margin-top:4px}
+.hdr .meta-pill{background:rgba(255,255,255,.2);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 20px}
+.row{display:flex;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:22px;flex:1;min-width:160px}
+.card .lbl{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px}
+.card .val{font-size:28px;font-weight:900;color:#1A1A1A}
+.card .sub{font-size:12px;color:#888;margin-top:4px}
+.sec{background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.07);padding:24px;margin-bottom:16px}
+.sec-ttl{font-size:15px;font-weight:800;margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.sec-ttl::before{content:'';width:4px;height:18px;background:#3483FA;border-radius:2px;display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{padding:9px 12px;background:#FFE600;font-weight:800;font-size:11px;text-align:left;white-space:nowrap}
+td{padding:9px 12px;border-bottom:1px solid #F0F0F0;vertical-align:middle}
+tr:hover td{background:#FFFBEA}
+.pos{color:#00A650;font-weight:700} .neg{color:#F23D4F;font-weight:700}
+.pill{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:700}
+.pl-g{background:#E8F8EF;color:#00A650} .pl-r{background:#FEE8EA;color:#F23D4F}
+.bar-out{background:#F0F0F0;border-radius:4px;height:8px;margin-top:4px}
+.bar-in{background:#3483FA;border-radius:4px;height:8px}
+.chart-box{height:320px;position:relative}
+  </style>
+</head>
+<body>
+
+<div class="hdr">
+  <div>
+    <h1>Moderna Mob&iacute;lia &mdash; Relat&oacute;rio de Performance</h1>
+    <div class="sub">Seller ID: 240323499 &middot; M&oacute;veis para Casa &middot; Data de corte: 19/08/2026</div>
+  </div>
+  <div class="meta-pill">Ago 2026 &mdash; MTD 1&ndash;19</div>
+</div>
+
+<div class="wrap">
+
+  <!-- CARDS YTD -->
+  <div style="font-size:11px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">&#128197; YTD 2026 &mdash; Jan a 19/Ago</div>
+  <div class="row">
+    <div class="card">
+      <div class="lbl">GMV YTD 2026</div>
+      <div class="val">R$ 10,01M</div>
+      <div class="sub"><span class="pos">&#9650; +37,0% YoY</span> &nbsp; vs R$ 7,30M em 2025</div>
+    </div>
+    <div class="card">
+      <div class="lbl">SIs YTD 2026</div>
+      <div class="val">8.407</div>
+      <div class="sub"><span class="pos">&#9650; +30,9% YoY</span> &nbsp; vs 6.425 em 2025</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Pedidos YTD 2026</div>
+      <div class="val">8.145</div>
+      <div class="sub">Jan&ndash;Ago (1&ndash;19)</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Ticket M&eacute;dio YTD</div>
+      <div class="val">R$ 1.191</div>
+      <div class="sub">GMV / SIs YTD</div>
+    </div>
+  </div>
+
+  <!-- CARDS MTD -->
+  <div style="font-size:11px;font-weight:800;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">&#128200; MTD Agosto 2026 &mdash; 1 a 19/Ago</div>
+  <div class="row">
+    <div class="card">
+      <div class="lbl">GMV Ago MTD</div>
+      <div class="val">R$ 1,33M</div>
+      <div class="sub"><span class="pos">&#9650; +48,5% YoY</span> &nbsp; <span class="pos">&#9650; +13,7% MoM</span></div>
+    </div>
+    <div class="card">
+      <div class="lbl">SIs Ago MTD</div>
+      <div class="val">1.069</div>
+      <div class="sub"><span class="pos">&#9650; +14,8% MoM</span> &nbsp; vs 931 Jul 1&ndash;19</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Pedidos Ago MTD</div>
+      <div class="val">1.039</div>
+      <div class="sub">1 a 19 de agosto</div>
+    </div>
+    <div class="card">
+      <div class="lbl">Ticket M&eacute;dio MTD</div>
+      <div class="val">R$ 1.241</div>
+      <div class="sub">GMV / SIs Ago 1&ndash;19</div>
+    </div>
+    <div class="card" style="background:#E8F8EF">
+      <div class="lbl" style="color:#00A650">Proje&ccedil;&atilde;o M&ecirc;s Cheio</div>
+      <div class="val" style="color:#00A650">R$ 2,16M</div>
+      <div class="sub">R$ 69,8K/dia &times; 31 dias</div>
+    </div>
+  </div>
+
+  <!-- GRAFICO GMV -->
+  <div class="sec">
+    <div class="sec-ttl">GMV Mensal 2026 vs 2025 (R$)</div>
+    <div class="chart-box"><canvas id="cGmv"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    var _yoy=[224.1,10.5,-17.7,60.7,3.2,28.2,61.6,null,null,null,null,null];
+    var labelsPlugin={id:'labelsPlugin',afterDatasetsDraw:function(chart){
+      var ctx=chart.ctx,ds0=chart.getDatasetMeta(0);
+      ctx.save();ctx.font='bold 10px Segoe UI,Arial,sans-serif';ctx.textAlign='center';
+      ds0.data.forEach(function(pt,i){
+        var v=chart.data.datasets[0].data[i];if(v===null||v===undefined)return;
+        var txt='R$'+(v/1e3).toFixed(0)+'K';
+        ctx.fillStyle='#1A5CC9';ctx.fillText(txt,pt.x,pt.y-18);
+        var yoy=_yoy[i];
+        if(yoy!==null&&yoy!==undefined){
+          ctx.font='bold 9px Segoe UI,Arial,sans-serif';
+          ctx.fillStyle=yoy>=0?'#00A650':'#F23D4F';
+          ctx.fillText((yoy>0?'+':'')+yoy.toFixed(1)+'%',pt.x,pt.y-6);
+        }
+      });ctx.restore();
+    }};
+    new Chart(document.getElementById('cGmv'),{
+      type:'line',
+      data:{labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],datasets:[
+        {label:'2026',data:[1239349,896262,993496,1436814,1075554,1181967,1860969,1326170,null,null,null,null],borderColor:'#3483FA',backgroundColor:'rgba(52,131,250,.1)',fill:true,tension:.3,spanGaps:true,pointRadius:5},
+        {label:'2025',data:[382365,811183,1207333,894278,1041691,922191,1151759,1431760,1643664,1389143,2239441,931257],borderColor:'#999',backgroundColor:'transparent',borderDash:[4,3],tension:.3,pointRadius:3}
+      ]},
+      options:{
+        responsive:true,maintainAspectRatio:false,layout:{padding:{top:50,bottom:20}},
+        plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){
+          var lbl=c.dataset.label+': R$ '+Number(c.raw).toLocaleString('pt-BR');
+          if(c.datasetIndex===0){var yoy=_yoy[c.dataIndex];if(yoy!==null&&yoy!==undefined)lbl+=' (YoY '+(yoy>0?'+':'')+yoy.toFixed(1)+'%)';}
+          return lbl;
+        }}}},
+        scales:{y:{ticks:{callback:function(v){return 'R$'+(v/1e3).toFixed(0)+'K';}}}}
+      },plugins:[labelsPlugin]
+    });
+  })();
+  </script>
+
+  <!-- GRAFICO SIs -->
+  <div class="sec">
+    <div class="sec-ttl">Volume de Itens Vendidos (SIs) &mdash; 2026 vs 2025</div>
+    <div class="chart-box"><canvas id="cSI"></canvas></div>
+  </div>
+  <script>
+  (function(){
+    var siLabels={id:'siLabels',afterDatasetsDraw:function(chart){
+      var ctx=chart.ctx;ctx.save();
+      chart.data.datasets.forEach(function(ds,di){
+        var meta=chart.getDatasetMeta(di);if(meta.hidden)return;
+        meta.data.forEach(function(bar,i){
+          var v=ds.data[i];if(v===null||v===undefined)return;
+          ctx.font='bold 9px Segoe UI,Arial,sans-serif';ctx.textAlign='center';
+          ctx.fillStyle=di===0?'#1A5CC9':'#5B8DEF';
+          ctx.fillText(v,bar.x,bar.y-5);
+        });
+      });ctx.restore();
+    }};
+    new Chart(document.getElementById('cSI'),{type:'bar',data:{labels:["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"],datasets:[
+      {label:'2026',data:[1109,821,857,1195,937,941,1478,1069,null,null,null,null],backgroundColor:'#3483FA',borderRadius:4},
+      {label:'2025',data:[428,702,1078,884,920,753,952,1133,1338,1197,1915,820],backgroundColor:'#A8C4FF',borderRadius:4}
+    ]},options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:22}},plugins:{legend:{position:'top'},tooltip:{callbacks:{label:function(c){return c.dataset.label+': '+Number(c.raw).toLocaleString('pt-BR')+' SIs';}}}},scales:{x:{grouped:true},y:{ticks:{callback:function(v){return Number(v).toLocaleString('pt-BR');}}}}},plugins:[siLabels]});
+  })();
+  </script>
+
+  <!-- TOP 10 ITENS -->
+  <div class="sec"><div class="sec-ttl">&#11088; Top 10 Itens por GMV Ago MTD (1&ndash;19/8)</div><div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Produto</th><th style="text-align:right">GMV Ago MTD</th><th style="text-align:right">Share</th>
+      <th style="text-align:right">MoM vs Jul 1-19</th><th style="text-align:right">SIs MTD</th>
+      <th style="text-align:right">Ticket</th><th style="text-align:right">Vis. 90d</th>
+      <th style="text-align:right">CVR</th><th>Log. / BB</th>
+    </tr></thead><tbody>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4462388928" target="_blank">MESA ALVORADA 180 TP MDF VIDRO CANTO RETO 6 CADEIRAS RUFATO</a><br><span style="font-size:10px;color:#999">MLB4462388928</span></td>
+      <td style="text-align:right;font-weight:700">R$ 140K</td><td style="text-align:right">10,6%</td>
+      <td style="text-align:right"><span class="pos">&#9650; +5,5%</span></td>
+      <td style="text-align:right">76</td><td style="text-align:right">R$ 1.846</td>
+      <td style="text-align:right">84.738</td><td style="text-align:right">0,36%</td>
+      <td><span class="pill" style="background:#E8F0FE;color:#3483FA">ME1</span> <span class="pill pl-g">BB &#10003;</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3604123805" target="_blank">MESA ALVORADA 180 TP MDF VIDRO CANTO RETO 6 CADEIRAS RUFATO</a><br><span style="font-size:10px;color:#999">MLB3604123805</span></td>
+      <td style="text-align:right;font-weight:700">R$ 111K</td><td style="text-align:right">8,4%</td>
+      <td style="text-align:right"><span class="pos">&#9650; +41,9%</span></td>
+      <td style="text-align:right">63</td><td style="text-align:right">R$ 1.768</td>
+      <td style="text-align:right">49.037</td><td style="text-align:right">0,35%</td>
+      <td><span class="pill" style="background:#E8F0FE;color:#3483FA">ME1</span> <span class="pill pl-g">BB &#10003;</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3925662097" target="_blank">SALA DE JANTAR OL&Iacute;MPIA MDF E VIDRO COM 4 CADEIRAS CAROL COR TURIM/OFF WHITE/IMBUIA</a><br><span style="font-size:10px;color:#999">MLB3925662097</span></td>
+      <td style="text-align:right;font-weight:700">R$ 74K</td><td style="text-align:right">5,6%</td>
+      <td style="text-align:right"><span class="pos">&#9650; +40,2%</span></td>
+      <td style="text-align:right">59</td><td style="text-align:right">R$ 1.259</td>
+      <td style="text-align:right">53.965</td><td style="text-align:right">0,35%</td>
+      <td><span class="pill" style="background:#E8F0FE;color:#3483FA">ME1</span> <span class="pill pl-g">BB &#10003;</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5197644524" target="_blank">MESA DE JANTAR 6 LUGARES RETANGULAR RUFATO ALVORADA LONDRINA COR VEL. CAPUCCINO/OFF WHITE/IMBUIA</a><br><span style="font-size:10px;color:#999">MLB5197644524</span></td>
+      <td style="text-align:right;font-weight:700">R$ 56K</td><td style="text-align:right">4,3%</td>
+      <td style="text-align:right"><span class="neg">&#9660; &minus;20,0%</span></td>
+      <td style="text-align:right">36</td><td style="text-align:right">R$ 1.569</td>
+      <td style="text-align:right">53.851</td><td style="text-align:right">0,23%</td>
+      <td><span class="pill" style="background:#E8F0FE;color:#3483FA">ME1</span> <span class="pill pl-g">BB &#10003;</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3464568067" target="_blank">MESA ASTER 180 TAMPO EM MDF COM 6 CADEIRAS LIZ MODERNA COR GRAFITE COM IMBUIA</a><br><span style="font-size:10px;color:#999">MLB3464568067</span></td>
+      <td style="text-align:right;font-weight:700">R$ 55K</td><td style="text-align:right">4,1%</td>
+      <td style="text-align:right"><span class="pos">&#9650; +76,8%</span></td>
+      <td style="text-align:right">35</td><td style="text-align:right">R$ 1.572</td>
+      <td style="text-align:right">23.173</td><td style="text-align:right">0,37%</td>
+      <td><span class="pill" style="background:#E8F0FE;color:#3483FA">ME1</span> <span class="pill pl-g">BB &#10003;</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-6884117334" target="_blank">SALA DE JANTAR OL&Iacute;MPIA MDF E VIDRO COM 4 CADEIRAS CAROL COR CREME/OFF WHITE/IMBUIA</a><br><span style="font-size:10px;color:#999">MLB6884117334</span></td>
+      <td style="text-align:right;font-weight:700">R$ 50K</td><td style="text-align:right">3,8%</td>
+      <td style="text-align:right"><span class="pos">&#9650; +70,3%</span></td>
+      <td style="text-align:right">40</td><td style="text-align:right">R$ 1.258</td>
+      <td style="text-align:right">22.119</td><td style="text-align:right">0,42%</td>
+      <td><span class="pill" style="background:#E8F0FE;color:#3483FA">ME1</span> <span class="pill pl-g">BB &#10003;</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-6884117314" target="_blank">SALA DE JANTAR OL&Iacute;MPIA MDF E VIDRO COM 4 CADEIRAS CAROL COR GRAFITE/OFF WHITE/IMBUIA</a><br><span style="font-size:10px;color:#999">MLB6884117314</span></td>
+      <td style="text-align:right;font-weight:700">R$ 44K</td><td style="text-align:right">3,3%</td>
+      <td style="text-align:right"><span class="pos">&#9650; +123,6%</span></td>
+      <td style="text-align:right">35</td><td style="text-align:right">R$ 1.249</td>
+      <td style="text-align:right">20.746</td><td style="text-align:right">0,46%</td>
+      <td><span class="pill" style="background:#E8F0FE;color:#3483FA">ME1</span> <span class="pill pl-g">BB &#10003;</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4160396915" target="_blank">MESA DE JANTAR LIZ 180CM CANTO COPO MODERNA MOB&Iacute;LIA</a><br><span style="font-size:10px;color:#999">MLB4160396915</span></td>
+      <td style="text-align:right;font-weight:700">R$ 41K</td><td style="text-align:right">3,1%</td>
+      <td style="text-align:right"><span class="pos">&#9650; +200,0%</span></td>
+      <td style="text-align:right">69</td><td style="text-align:right">R$ 600</td>
+      <td style="text-align:right">12.371</td><td style="text-align:right">1,07%</td>
+      <td><span class="pill" style="background:#E8F0FE;color:#3483FA">ME1</span> <span class="pill pl-g">BB &#10003;</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3360556635" target="_blank">MESA ASTER 180 TAMPO EM MDF E VIDRO + 6 CADEIRAS LIZ MODERNA COR GRAFITE COM IMBUIA</a><br><span style="font-size:10px;color:#999">MLB3360556635</span></td>
+      <td style="text-align:right;font-weight:700">R$ 40K</td><td style="text-align:right">3,0%</td>
+      <td style="text-align:right"><span style="color:#888">&mdash; est&aacute;vel</span></td>
+      <td style="text-align:right">22</td><td style="text-align:right">R$ 1.806</td>
+      <td style="text-align:right">16.152</td><td style="text-align:right">0,64%</td>
+      <td><span class="pill" style="background:#E8F0FE;color:#3483FA">ME1</span> <span class="pill pl-g">BB &#10003;</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3919368363" target="_blank">MESA DE JANTAR 6 LUGARES RETANGULAR RUFATO ALVORADA LONDRINA COR BRANCO E MADEIRA</a><br><span style="font-size:10px;color:#999">MLB3919368363</span></td>
+      <td style="text-align:right;font-weight:700">R$ 33K</td><td style="text-align:right">2,5%</td>
+      <td style="text-align:right"><span class="pos">&#9650; +38,0%</span></td>
+      <td style="text-align:right">22</td><td style="text-align:right">R$ 1.496</td>
+      <td style="text-align:right">43.542</td><td style="text-align:right">0,13%</td>
+      <td><span class="pill" style="background:#E8F0FE;color:#3483FA">ME1</span> <span class="pill pl-g">BB &#10003;</span></td>
+    </tr>
+    </tbody></table></div></div>
+
+  <!-- ITENS EM QUEDA -->
+  <div class="sec"><div class="sec-ttl">&#128308; Itens em Queda &mdash; Ago 1&ndash;19 vs Jul 1&ndash;19</div><div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Produto</th><th style="text-align:right">GMV Ago MTD</th><th style="text-align:right">GMV Jul 1&ndash;19</th><th style="text-align:right">Varia&ccedil;&atilde;o</th>
+    </tr></thead><tbody>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4451377054" target="_blank">MESA SALA DE JANTAR OL&Iacute;MPIA 120CM EM MDF E VIDRO CANTO COPO</a><br><span style="font-size:10px;color:#999">MLB4451377054</span></td>
+      <td style="text-align:right;font-weight:700">R$ 740</td><td style="text-align:right">R$ 6.639</td>
+      <td style="text-align:right"><span class="neg">&#9660; &minus;88,9%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3686985250" target="_blank">MESA ASTER 180 TAMPO EM MDF COM 6 CADEIRAS LIZ MODERNA</a><br><span style="font-size:10px;color:#999">MLB3686985250</span></td>
+      <td style="text-align:right;font-weight:700">R$ 1.500</td><td style="text-align:right">R$ 9.209</td>
+      <td style="text-align:right"><span class="neg">&#9660; &minus;83,7%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3541215219" target="_blank">MESA SALA DE JANTAR LARA 180CM EM MDF E VIDRO COM CANTO COPO</a><br><span style="font-size:10px;color:#999">MLB3541215219</span></td>
+      <td style="text-align:right;font-weight:700">R$ 3.210</td><td style="text-align:right">R$ 16.248</td>
+      <td style="text-align:right"><span class="neg">&#9660; &minus;80,2%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4700721595" target="_blank">GUARDA ROUPA CASAL EVEREST MDF MODERNA MOB&Iacute;LIA COR NATURALLE/OFF WHITE</a><br><span style="font-size:10px;color:#999">MLB4700721595</span></td>
+      <td style="text-align:right;font-weight:700">R$ 1.900</td><td style="text-align:right">R$ 9.500</td>
+      <td style="text-align:right"><span class="neg">&#9660; &minus;80,0%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-4202767936" target="_blank">GUARDA ROUPA CASAL HEROS 6 PORTAS COM P&Eacute;S MODERNA COR IMBUIA</a><br><span style="font-size:10px;color:#999">MLB4202767936</span></td>
+      <td style="text-align:right;font-weight:700">R$ 1.028</td><td style="text-align:right">R$ 4.240</td>
+      <td style="text-align:right"><span class="neg">&#9660; &minus;75,8%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-5279548928" target="_blank">GUARDA ROUPA CASAL COLISEU MDF 6 PTS 6 GVTS MODERNA MOB&Iacute;LIA</a><br><span style="font-size:10px;color:#999">MLB5279548928</span></td>
+      <td style="text-align:right;font-weight:700">R$ 2.230</td><td style="text-align:right">R$ 6.990</td>
+      <td style="text-align:right"><span class="neg">&#9660; &minus;68,1%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-3905338421" target="_blank">CLOSET CASAL HERA 2 GAVETAS 5 PRATELEIRAS MDF RUFATO COR IMBUIA</a><br><span style="font-size:10px;color:#999">MLB3905338421</span></td>
+      <td style="text-align:right;font-weight:700">R$ 760</td><td style="text-align:right">R$ 2.280</td>
+      <td style="text-align:right"><span class="neg">&#9660; &minus;66,7%</span></td>
+    </tr>
+    <tr>
+      <td><a href="https://produto.mercadolivre.com.br/MLB-6006443482" target="_blank">GUARDA ROUPA CASAL ATACAMA EM MDF 8 PORTAS 8 CABIDEIROS COR NATURALLE/OFF WHITE</a><br><span style="font-size:10px;color:#999">MLB6006443482</span></td>
+      <td style="text-align:right;font-weight:700">R$ 1.160</td><td style="text-align:right">R$ 3.480</td>
+      <td style="text-align:right"><span class="neg">&#9660; &minus;66,7%</span></td>
+    </tr>
+    </tbody></table></div></div>
+
+  <!-- SUBCATEGORIAS -->
+  <div class="sec"><div class="sec-ttl">&#128202; An&aacute;lise por Subcategoria &mdash; Ago MTD</div><div style="overflow-x:auto"><table>
+    <thead><tr>
+      <th>Categoria</th><th style="text-align:right">GMV Ago MTD</th><th style="text-align:right">Share</th>
+      <th style="text-align:right">SIs</th><th style="text-align:right">MoM vs Jul 1&ndash;19</th><th style="min-width:100px">Participa&ccedil;&atilde;o</th>
+    </tr></thead><tbody>
+    <tr>
+      <td><b>Conjuntos de Jantar</b></td>
+      <td style="text-align:right;font-weight:700">R$ 728.500</td><td style="text-align:right">54,9%</td><td style="text-align:right">468</td>
+      <td style="text-align:right"><span class="pos">&#9650; +22,4%</span></td>
+      <td><div class="bar-out"><div class="bar-in" style="width:54.9%"></div></div></td>
+    </tr>
+    <tr>
+      <td><b>Guarda-roupas</b></td>
+      <td style="text-align:right;font-weight:700">R$ 430.866</td><td style="text-align:right">32,5%</td><td style="text-align:right">401</td>
+      <td style="text-align:right"><span class="neg">&#9660; &minus;0,2%</span></td>
+      <td><div class="bar-out"><div class="bar-in" style="width:32.5%"></div></div></td>
+    </tr>
+    <tr>
+      <td><b>Mesas de Jantar/Cozinha</b></td>
+      <td style="text-align:right;font-weight:700">R$ 157.432</td><td style="text-align:right">11,9%</td><td style="text-align:right">181</td>
+      <td style="text-align:right"><span class="pos">&#9650; +21,0%</span></td>
+      <td><div class="bar-out"><div class="bar-in" style="width:11.9%"></div></div></td>
+    </tr>
+    <tr>
+      <td><b>Cadeiras de Jantar</b></td>
+      <td style="text-align:right;font-weight:700">R$ 6.562</td><td style="text-align:right">0,5%</td><td style="text-align:right">16</td>
+      <td style="text-align:right"><span class="pos">&#9650; +85,9%</span></td>
+      <td><div class="bar-out"><div class="bar-in" style="width:0.5%"></div></div></td>
+    </tr>
+    <tr>
+      <td><b>Arm&aacute;rios de Cozinha</b></td>
+      <td style="text-align:right;font-weight:700">R$ 1.871</td><td style="text-align:right">0,1%</td><td style="text-align:right">1</td>
+      <td style="text-align:right"><span class="pill" style="background:#E8F0FE;color:#3483FA">Novo</span></td>
+      <td><div class="bar-out"><div class="bar-in" style="width:0.1%"></div></div></td>
+    </tr>
+    <tr>
+      <td><b>Sapateiras</b></td>
+      <td style="text-align:right;font-weight:700">R$ 480</td><td style="text-align:right">0,04%</td><td style="text-align:right">1</td>
+      <td style="text-align:right"><span style="color:#888">&mdash; est&aacute;vel</span></td>
+      <td><div class="bar-out"><div class="bar-in" style="width:0.04%"></div></div></td>
+    </tr>
+    <tr>
+      <td><b>Arm&aacute;rios Lavanderia</b></td>
+      <td style="text-align:right;font-weight:700">R$ 460</td><td style="text-align:right">0,03%</td><td style="text-align:right">1</td>
+      <td style="text-align:right"><span class="pill" style="background:#E8F0FE;color:#3483FA">Novo</span></td>
+      <td><div class="bar-out"><div class="bar-in" style="width:0.03%"></div></div></td>
+    </tr>
+    </tbody></table></div></div>
+
+  <!-- SORTIMENTO + LOGISTICA -->
+  <div class="row">
+    <div class="sec" style="flex:1;min-width:260px;margin-bottom:0">
+      <div class="sec-ttl">&#127981; Sortimento Ativo</div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <div style="background:#E8F0FE;border-radius:8px;padding:14px 20px;flex:1;text-align:center">
+          <div style="font-size:11px;color:#3483FA;font-weight:800;margin-bottom:4px">ITENS COM VENDA AGO MTD</div>
+          <div style="font-size:32px;font-weight:900;color:#3483FA">170</div>
+        </div>
+        <div style="background:#F5F5F5;border-radius:8px;padding:14px 20px;flex:1;text-align:center">
+          <div style="font-size:11px;color:#555;font-weight:800;margin-bottom:4px">ITENS ATIVOS 90d</div>
+          <div style="font-size:32px;font-weight:900;color:#333">170</div>
+        </div>
+      </div>
+    </div>
+    <div class="sec" style="flex:2;min-width:320px;margin-bottom:0">
+      <div class="sec-ttl">&#128667; Modal Log&iacute;stico &mdash; Ago MTD</div>
+      <div style="overflow-x:auto"><table>
+        <thead><tr>
+          <th>Modal</th><th style="text-align:right">GMV MTD</th><th style="text-align:right">Share</th><th style="text-align:right">Pedidos</th>
+        </tr></thead><tbody>
+        <tr>
+          <td><b>ME1 / Padr&atilde;o</b></td>
+          <td style="text-align:right;font-weight:700">R$ 1.326.170</td>
+          <td style="text-align:right">100,0%</td><td style="text-align:right">1.039</td>
+        </tr>
+        </tbody></table>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div style="text-align:center;padding:18px;font-size:11px;color:#aaa">
+  Moderna Mob&iacute;lia &middot; Relat&oacute;rio de Performance &middot; Mercado Livre Brasil &middot; Atualizado em 20/08/2026
+</div>
+</body>
+</html>
